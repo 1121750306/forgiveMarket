@@ -1,38 +1,26 @@
-var mongoose = require("mongoose");
-
-var db = mongoose.createConnection("localhost","forgiveMarketDb")
-
-db.on("error",function(){console.log("error")});
-db.once("open",function(){
-	console.log("connected");
-	//1.schema
-	
-	userSchema = new mongoose.Schema({
-		_id:Number,
-		uname:String,
-		psw:String
-	})
-//	userSchema.methods.findByName = function(cb){
-//		console.log(this)
-//		return this.model("User2").find({uname:this.uname},cb);
-//	}
-	
-	
-	userModel = db.model("User2",userSchema);
-//	console.log(userModel)
-//	
-	var userEntity = new userModel({
-		_id:5,
-		uname:"ss",
-		psw:"ww"
-	});
-	
-	//保存到数据库
-	userEntity.save();
-//	addUser();
-//  queryUser();
-//	findByName()
-//	findByNameModel()
-	
-//	getUser(33,33)
+var base = require("./base");
+base.callback(function (models) {
+    userModel =  models.user;
 })
+
+function addUser() {
+    var userEntity = new userModel({
+        _id:"4",
+        uname:"lihanguang",
+        psw:"abc123",
+        phone:"12321231312",
+        balance:153.32,
+        avatar:"a.jpg"
+    });
+
+    //保存
+    userEntity.save(function(err,data){
+        if (!err) {
+            console.log("user added");
+            console.log(data);
+        }else{
+            console.log(err.message);
+        }
+    });
+}
+module.exports.addUser = addUser;
