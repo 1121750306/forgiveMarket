@@ -1,6 +1,6 @@
 var mongoose = require("mongoose");
 
-var db = mongoose.createConnection("localhost","forgiveMailDb")
+var db = mongoose.createConnection("localhost","forgiveMarketDb")
 
 db.on("error",function(){console.log("error")});
 db.once("open",function(){
