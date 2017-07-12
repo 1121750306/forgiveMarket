@@ -3,3 +3,6 @@ function initModel(models) {
 	//商品规格模型
     goodsizeModel =  models.goodsize;
 }
+
+
+module.exports.initModel = initModel;

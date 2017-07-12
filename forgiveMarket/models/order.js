@@ -3,3 +3,6 @@ function initModel(models) {
 	//订单模型
     orderModel =  models.order;
 }
+
+
+module.exports.initModel = initModel;

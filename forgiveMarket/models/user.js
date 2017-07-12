@@ -1,8 +1,8 @@
-var base = require("./base");
-base.callback(function(models) {
+//注册models监听
+function initModel(models) {
 	//用户模型
 	userModel = models.user;
-})
+}
 
 function addUser() {
 	var userEntity = new userModel({
@@ -24,10 +24,6 @@ function addUser() {
 		}
 	});
 }
+
+module.exports.initModel = initModel;
 module.exports.addUser = addUser;
-
-function callback(data) {
-	userModel = data;
-}
-
-module.exports.callback = callback;
