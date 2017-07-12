@@ -137,19 +137,19 @@ db.once("open",function(){
     userModel = db.model("User",userSchema);
     goodModel = db.model("Good",goodSchema);
     goodtypeModel = db.model("Goodtype",goodtypeSchema);
+    goodphotoModel = db.model("Goodphoto",goodphotoSchema);
+    goodsizetypeModel = db.model("Goodsizetype",goodsizetypeSchema);
+    goodsizeModel = db.model("Goodsize",goodsizeSchema);
     orderModel = db.model("Order",orderSchema);
     orderitemModel = db.model("Orderitem",orderitemSchema);
     locationModel = db.model("Location",locationSchema);
     commentModel = db.model("Comment",commentSchema);
-    goodphotoModel = db.model("Goodphoto",goodphotoSchema);
-    goodsizetypeModel = db.model("Goodsizetype",goodsizetypeSchema);
-    goodsizeModel = db.model("Goodsize",goodsizeSchema);
     historyModel = db.model("History",historySchema);
     collectModel = db.model("Collect",collectSchema);
 
-    listener({user:userModel,good:goodModel,order:orderModel,orderitem:orderitemModel,location:locationModel,comment:commentModel,
-                goodphoto:goodphotoModel,goodsizetype:goodsizetypeModel,goodsize:goodsizeModel,history:historyModel,
-                collect:collectModel,goodtype:goodtypeModel});
+    listener({user:userModel,good:goodModel,goodtype:goodtypeModel,goodphoto:goodphotoModel,
+    		goodsizetype:goodsizetypeModel,goodsize:goodsizeModel,order:orderModel,orderitem:orderitemModel,
+    		location:locationModel,comment:commentModel,history:historyModel,collect:collectModel});
 })
 
 function callback(cb){
