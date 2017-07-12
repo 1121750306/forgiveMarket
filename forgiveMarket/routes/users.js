@@ -4,8 +4,14 @@ var user = require("../models/user")
 
 /* GET users listing. */
 router.get('/add', function(req, res, next) {
-  res.send('respond with a resource');
-  user.addUser();
+	user.addUser();
+	res.send('respond with a resource');
 });
 
 module.exports = router;
+
+function callback(data) {
+	user.callback(data);
+}
+
+module.exports.callback = callback;
