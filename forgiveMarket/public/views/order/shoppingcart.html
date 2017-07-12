@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>shoppingcart</title>
+		
+		<!--<link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.css" />-->
+		<link rel="stylesheet" type="text/css" href="../../../bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+		
+		<link rel="stylesheet" type="text/css" href="../../css/order/shoppingcart.css"/>
+		
+		<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+		
+	</head>
+	<body>
+		<div class="header">
+			<h3>购物车</h3>
+		</div>
+		
+		<div class="content">
+			<div class="cart_bar">
+				<div class="cart_search">
+					<img src="../../img/innisfree矢量图标/搜索.png"/>
+					<input type="text" class="search_text" placeholder="搜索购物车"/>
+				</div>
+				<button type="button" onmousedown="cartsearch()">搜索</button>
+			</div>
+			<ul class="cart container-fluid">
+				<li class="row" style="margin: 0;">
+					<div class="col-xs-1">
+						<input type="checkbox" />
+					</div>
+					
+					<div class="col-xs-3"><img src="../../img/innisfree-img/商品/1000000311_l.png"/></div>
+					<div class="item_info col-xs-8">
+						
+					</div>
+				</li>
+			</ul>
+		</div>
+		
+		<div class="footer">
+			<!--<div class="footer_left ">
+				
+			</div>
+			<input type="checkbox" onclick="checkall()"/>
+			<p>全选</p>-->
+			
+		</div>
+		
+	</body>
+	
+	<script src="../../../bower_components/jquery/dist/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../../bower_components/angular/angular.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		
+		$(function(){
+			
+			$(".cart_search input").focus(function(){
+				$(".cart_search").animate({"width":"85%"},function(){
+					$(".cart_bar button").show();
+				});
+				
+			});
+			$(".cart_search input").blur(function(){
+				$(".cart_bar button").hide();
+				$(".cart_search").animate({"width":"100%"});
+			});
+		
+		})
+		
+		function cartsearch () {
+			alert("购物车搜索按钮");
+		}
+		
+		function checkall(){
+//			$(".cart_bar input").
+		}
+	</script>
+	
+</html>
