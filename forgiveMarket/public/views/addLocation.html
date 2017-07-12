@@ -7,20 +7,51 @@
 	</head>
 	<body>
 		<div class="title">
-			<span>管理收货地址</span>
+			<span class="back">返回</span>
+			<span class="titlename">管理收货地址</span>
 		</div>
 		<div class="modeBox">
 			<ul id="province">
 				
 			</ul>
 			<ul id="city">
-				<li class="choice">甘肃省</li>
+				<li class="choice"></li>
 			</ul>
+			<ul id="area">
+				<li class="choicecity"></li>
+				<li class="choicearea"></li>
+			</ul>
+		</div>
+		<div class="formBox">
+			<form>
+				<ul>
+					<li>
+						<input name="province" type="text" contenteditable="false" value="甘肃省" class="dd province"readonly="readonly"/>
+						<input name="city" type="text" contenteditable="false" value="白银市" class="dd city" readonly="readonly"/>
+						<input name="district" type="text" contenteditable="false" value="白银区" class="dd district" readonly="readonly"/>
+					</li>
+					<li>
+						<input placeholder="请输入详细地址" name="address" class="address"/>
+					</li>
+					<li>
+						<input placeholder="请输入收货人姓名" name="shname" class="shname"/>
+					</li>
+					<li>
+						<input placeholder="请输入收货人电话" name="phone" class="phone"/>
+					</li>
+					<li>
+						<input placeholder="请输入邮政编码" name="postcode" class="postcode"/>
+					</li>
+					<li class="tijiao">
+						<input type="submit" value="保存地址" />
+					</li>
+				</ul>
+			</form>
 		</div>
 	<script type="text/javascript" src="/jquery/dist/jquery.js" ></script>
 	<script>
 		$(function(){
-			var datas;
+			var datas,provinceCtrl,cityCtrl,provIndex,cityIndex,areaCtrl,areaIndex;
 			$.ajax({
 				type:"get",
 				url:"../json/region.json",
@@ -41,21 +72,66 @@
 			
 			$("#province").on('click',"li",function(){
 				
-				var index=$(this).index();
-				var prov=$(this).html();
-				/*alert(prov);*/
+				provIndex=$(this).index();
+				provinceCtrl=$(this).html();
 				$("#province").css('display','none');
 				$("#city").css('display','block');
-				$("#city .choice").html(prov);
-				var len=datas[index].city.length;
+				$("#city .choice").html(provinceCtrl);
+				var len=datas[provIndex].city.length;
 				for (var i = 0; i < len; i++) {
 					$("#city").append(
-							"<li>"+
-							 datas[index].city[i].name+
+							"<li class='t2'>"+
+							 datas[provIndex].city[i].name+
 							 "</li>"
 						);
 				}
+			});
+			$("#city").on('click','li',function(){
+				cityIndex=$(this).index();
+				cityCtrl=$(this).html();
+				$("#city").css('display','none');
+				$("#area").css('display','block');
+				console.log("city"+cityCtrl+"==="+"province"+provinceCtrl)
+				$("#area .choicearea").html(cityCtrl);
+				$("#area .choicecity").html(provinceCtrl);
+				var leng=datas[provIndex].city[cityIndex-1].areas.length;
+				for (var i = 0; i < leng; i++) {
+					$("#area").append(
+							"<li class='t1'>"+
+							 datas[provIndex].city[cityIndex-1].areas[i]+
+							 "</li>"
+						);
+				}
+			});
+			$("#area").on('click','li',function(){
+				areaIndex=$(this).index();
+				areaCtrl=$(this).html();
+				$(".modeBox").css('display',"none");
+				$(".formBox").css('display','block');
+				$(".province").val(provinceCtrl);
+				$(".city").val(cityCtrl);
+				$(".district").val(areaCtrl);
+				
+			});
+			$(".choice").click(function(){
+				$("#province").css('display','block');
+				$("#city").css('display','none');
+				$("li").remove('.t2');
+				return false;
+			});
+			$(".choicearea").click(function(){
+				$("#city").css('display','block');
+				$("#area").css('display','none');
+				$("li").remove('.t1');
+				return false;
+			});
+			$(".choicecity").click(function(){
+				$("#area").css('display','none');
+				$("#province").css('display','block');
+				$("li").remove('.t1');
+				$("li").remove('.t2');
 			})
+			
 		})
 	</script>
 	</body>

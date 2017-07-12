@@ -92,6 +92,8 @@ db.once("open",function(){
         //区、县
         district:String,
         address:String,
+        //收货人姓名
+        shname:String,
         postcode:Number,
         phone:String,
         //0.非默认 1.默认
