@@ -205,8 +205,13 @@
 }
 .activities-now-img
 {
-	width: 440px;
+	width: 500px;
 	margin: 20px 20px;
+}
+
+.actitle-past
+{
+	margin-top: 1300px;
 }
 .hotgoods
 {
