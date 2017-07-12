@@ -117,7 +117,6 @@
 	margin: 10px auto;
 	font-size: 50px;
 	color: white;
-	background-image: url(/forgiveMarket/public/img/innisfree-img/BG_gnb.gif);
 }
 
 .newsturnl
@@ -142,28 +141,73 @@
 	width: 80%;
 	height: 70px;
 	margin-top: 5px;
-	margin-left: 100px;
-	text-align: center;
+	margin-left: 200px;
+}
+
+/*-------------------------------------------选项卡*/
+.lnbtitle
+{
+	position: absolute;
+	width: 300px;
+}
+
+.lnbtitle-info
+{
+	margin-left: 20px;
+}
+.lnbtitle-act
+{
+	margin-left: 330px;
+}
+.lnbtitle-communicate
+{
+	margin-left: 640px;
 }
 /*-------------------------------------------品牌介绍*/
 .innisinformation
 {
 	position: relative;
 	width: 100%;
-	height: 300px;
-	background-color: lightcoral;
+	height: 3600px;
 	margin: 10px auto;
 }
 
+.innisinfoimg
+{
+	position: absolute;
+	width: 100%;
+	margin-top: 80px;
+}
+/*---------------------------------------------活动*/
 .activities
 {
 	position: relative;
 	width: 100%;
-	height: 300px;
-	background-color: blue;
+	height: 1800px;
 	margin: 10px auto;
+	background-image: url(../img/innisfree-img/BG_lnbEvent.gif);
+	background-repeat: no-repeat;
 }
-
+.acttitle
+{
+	position: absolute;
+	width: 500px;	
+}
+.acttitle-now
+{
+	margin-top: 280px;
+}
+.activities-now
+{
+	position: absolute;
+	width: 100%;
+	margin-top:350px;
+}
+.activities-now-img
+{
+	width: 440px;
+	margin: 20px 20px;
+}
 .hotgoods
 {
 	position: relative;
