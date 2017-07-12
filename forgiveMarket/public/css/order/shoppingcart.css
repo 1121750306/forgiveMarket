@@ -1,12 +1,97 @@
 .header{
 	width: 100%;
-	height:150px;
+	height:120px;
 	text-align: center;
-	border-bottom: 0.5rem green solid;
+	border-bottom: 1rem green solid;
 	box-sizing: border-box;
 }
 
 .header h3{
-	font-size: 6rem;
-	line-height: 150px;
+	font-size: 5rem;
+	line-height: 120px;
+}
+
+.cart_bar{
+	width: 100%;
+	height: 100px;
+	background-color: lightgrey;
+	padding: 15px 20px;
+	box-sizing: border-box;
+}
+
+.cart_search{
+	width: 100%;
+	height: 70px;
+	background-color: white;
+	border-radius: 1rem;
+	box-sizing: border-box;
+	float: left;
+}
+
+.cart_search input{	
+	width: 80%;
+	height: 100%;
+	border: none;
+	outline: none;
+	float: left;
+	padding-left: 10px;
+	font-size: 4rem;
+}
+
+.cart_search img{
+	height: 50px;
+	margin: 10px;
+	float: left;
+}
+
+.cart_bar button{
+	float: right;
+	font-size: 4rem;
+	background: none;
+	border: none;
+	outline: none;
+	line-height: 65px;
+	margin-right: 15px;
+	display: none;
+}
+
+.cart{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.cart li{
+	width: 100%;
+	height: 300px;
+	padding: 20px 0;
+	box-sizing: border-box;
+}
+
+.cart li div{
+	height: 260px;
+}
+
+.cart li .col-xs-1 input{
+	width: 100%;
+	height: 100%;
+}
+
+.cart li .col-xs-3{
+	display: flex;
+	align-items: center;
+}
+
+.cart li .col-xs-3 img{
+	width: 100%;
+	border: 0.2rem lightgrey solid;
+}
+
+
+.cart li img{
+	
+}
+
+.cart li .item_info{
+	
 }
