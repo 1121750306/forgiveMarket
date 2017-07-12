@@ -1,7 +1,5 @@
-/**
- * Created by czr_8 on 2017/7/11.
- */
-goodtypeSchema = new mongoose.Schema({
-    _id:Number,
-    tname:String
+var base = require("./base");
+base.callback(function (models) {
+	//商品类型模型
+    goodtypeModel =  models.goodtype;
 })

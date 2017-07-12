@@ -1,9 +1,5 @@
-/**
- * Created by czr_8 on 2017/7/11.
- */
-goodsizetypeSchema = new mongoose.Schema({
-    _id:Number,
-    gstname:String,
-    //商品外键
-    gid:Number
+var base = require("./base");
+base.callback(function (models) {
+	//商品规格类型模型
+    goodsizetypeModel =  models.goodsizetype;
 })
