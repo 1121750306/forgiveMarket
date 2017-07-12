@@ -1,0 +1,26 @@
+.content {}
+
+.content form {
+	width: 100%;
+	margin-top: 30%;
+	display: block;
+}
+
+.input {
+	background-color: #fff;
+	border: 1px solid #dedede;
+	border-radius: 2px;
+	width: 80%;
+	margin-left: 10%;
+	margin-top: 10px;
+}
+
+.register {
+	width: 80%;
+	background-color: #03A9F4;
+	border: 1px solid #03A9F4;
+	border-radius: 5px;
+	margin-left: 10%;
+	margin-top: 30px;
+	color: #fff;
+}
