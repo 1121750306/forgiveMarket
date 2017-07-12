@@ -1,6 +1,3 @@
-/**
- * Created by czr_8 on 2017/7/11.
- */
 var mongoose = require("mongoose");
 
 var db = mongoose.createConnection("localhost","forgiveMarketDb");
@@ -148,14 +145,15 @@ db.once("open",function(){
     historyModel = db.model("History",historySchema);
     collectModel = db.model("Collect",collectSchema);
 
-	//model回调map
+	//models回调map
     listener({user:userModel,good:goodModel,goodtype:goodtypeModel,goodphoto:goodphotoModel,
     		goodsizetype:goodsizetypeModel,goodsize:goodsizeModel,order:orderModel,orderitem:orderitemModel,
     		location:locationModel,comment:commentModel,history:historyModel,collect:collectModel});
 })
 
-function callback(cb){
+//models回调
+function initModels(cb){
     listener = cb;
 }
 
-module.exports.callback = callback;
+module.exports.initModels = initModels;
