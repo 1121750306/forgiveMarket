@@ -10,9 +10,9 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var base = require("./models/base");
 
-//传递Model
-base.callback(function(data) {
-	users.callback(data);
+//传递models
+base.initModels(function(models) {
+	users.callback(models);
 })
 
 var app = express();
