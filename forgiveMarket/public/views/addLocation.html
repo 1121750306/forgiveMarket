@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../css/addLocation.css" />
+	</head>
+	<body>
+		<div class="title">
+			<span>管理收货地址</span>
+		</div>
+		<div class="modeBox">
+			<ul id="province">
+				
+			</ul>
+			<ul id="city">
+				<li class="choice">甘肃省</li>
+			</ul>
+		</div>
+	<script type="text/javascript" src="/jquery/dist/jquery.js" ></script>
+	<script>
+		$(function(){
+			var datas;
+			$.ajax({
+				type:"get",
+				url:"../json/region.json",
+				async:true,
+				
+				success:function(data){
+					datas=data;
+					/*alert(data[1].name)*/
+					for (var i=0;i<data.length;i++) {
+						$("#province").append(
+							"<li>"+
+							  data[i].name+
+							 "</li>"
+						);
+					}
+				}
+			});
+			
+			$("#province").on('click',"li",function(){
+				
+				var index=$(this).index();
+				var prov=$(this).html();
+				/*alert(prov);*/
+				$("#province").css('display','none');
+				$("#city").css('display','block');
+				$("#city .choice").html(prov);
+				var len=datas[index].city.length;
+				for (var i = 0; i < len; i++) {
+					$("#city").append(
+							"<li>"+
+							 datas[index].city[i].name+
+							 "</li>"
+						);
+				}
+			})
+		})
+	</script>
+	</body>
+
+</html>
