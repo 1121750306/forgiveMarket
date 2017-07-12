@@ -1,5 +1,6 @@
 var base = require("./base");
 base.callback(function (models) {
+	//用户模型
     userModel =  models.user;
 })
 

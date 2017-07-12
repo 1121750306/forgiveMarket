@@ -133,7 +133,8 @@ db.once("open",function(){
         //商品外键
         gid:Number
     },{versionKey:false});
-
+    
+    //定义model
     userModel = db.model("User",userSchema);
     goodModel = db.model("Good",goodSchema);
     goodtypeModel = db.model("Goodtype",goodtypeSchema);
@@ -147,6 +148,7 @@ db.once("open",function(){
     historyModel = db.model("History",historySchema);
     collectModel = db.model("Collect",collectSchema);
 
+	//model回调map
     listener({user:userModel,good:goodModel,goodtype:goodtypeModel,goodphoto:goodphotoModel,
     		goodsizetype:goodsizetypeModel,goodsize:goodsizeModel,order:orderModel,orderitem:orderitemModel,
     		location:locationModel,comment:commentModel,history:historyModel,collect:collectModel});

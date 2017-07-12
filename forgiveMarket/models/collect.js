@@ -1,10 +1,5 @@
-/**
- * Created by czr_8 on 2017/7/11.
- */
-collectSchema = new mongoose.Schema({
-    _id:Number,
-    //用户外键
-    uid:Number,
-    //商品外键
-    gid:Number
+var base = require("./base");
+base.callback(function (models) {
+	//收藏模型
+    collectModel =  models.collect;
 })
