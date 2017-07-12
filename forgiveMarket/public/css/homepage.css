@@ -47,7 +47,7 @@
 	height: 80px;
 	border: 8px solid #ACBD93;
 	border-radius: 20px;
-	background-color: #EEEDE9;
+	background-color: whitesmoke;
 }
 
 .searchimg
@@ -67,4 +67,49 @@
 	width: 85%;
 	height: 60px;
 	border: none;
+}
+
+.adturn
+{
+	position: relative;
+	width: 100%;
+	height: 500px;
+	background-color: red;
+	margin: 10px auto;
+}
+
+.newsturn
+{
+	position: relative;
+	width: 100%;
+	height: 80px;
+	background-color: rosybrown;
+	margin: 10px auto;
+}
+
+.innisinformation
+{
+	position: relative;
+	width: 100%;
+	height: 300px;
+	background-color: lightcoral;
+	margin: 10px auto;
+}
+
+.activities
+{
+	position: relative;
+	width: 100%;
+	height: 300px;
+	background-color: blue;
+	margin: 10px auto;
+}
+
+.hotgoods
+{
+	position: relative;
+	width: 100%;
+	height: 300px;
+	background-color: mediumaquamarine;
+	margin: 10px auto;
 }
