@@ -82,7 +82,7 @@ db.once("open",function(){
 
     // 收货地址表
     locationSchema = new mongoose.Schema({
-        _id:Number,
+        _id:String,
         //用户外键
         uid:Number,
         //省
