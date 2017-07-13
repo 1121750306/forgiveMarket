@@ -3,38 +3,263 @@
 
 	<head>
 		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 		<title></title>
 		<link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css" />
 		<script type="text/javascript" src="/jquery/dist/jquery.min.js"></script>
 		<script type="text/javascript" src="/bootstrap/dist/js/bootstrap.min.js"></script>
 		<link rel="stylesheet" href="/css/style.css" />
 		<style>
-			body{
-				/*font-size: 16px;*/
-			}
-			
-			#mainCtr{
+			#main-ctr {
 				width: 100%;
 				margin: 0 auto;
 			}
-			#mainCtr .ctrbtn{
+			
+			#main-ctr .ctrbtn {
 				width: 33.3%;
 				display: block;
 				float: left;
-				height: 100px;
+				height: 40px;
+				font-size: 1.5rem;
+				border: 0;
+				background: #fff;
+				color: yellowgreen;
+				background: rgba(5, 83, 33, 1);
+			}
+			
+			.good-ct {
+				padding-bottom: 10px;
+				/*border-bottom: 2px solid yellowgreen;*/
+			}
+			
+			
+			.good-ct .good-img {
+				width: 300px;
+				height: 300px;
+			}
+			
+			.good-ct .title {}
+			
+			.good-ct .good-info {
+				margin-top: 10px;
+				border-top: 2px solid yellowgreen;
+				font-size: 1.25rem;
+				color: grey;
+				padding: 5px 8px;
+			}
+			
+			.good-ct .good-info li {
+				padding: 3px 0;
+			}
+			
+			.left {
+				float: left;
+			}
+			
+			.right {
+				float: right;
+			}
+			
+			.choice {
+				padding: 2px 8px;
+				border-top: 1px dotted #ccc;
+				border-bottom: 1px dotted #ccc;
+				background: #f9f9f9;
+			}
+			
+			.total-price {
+				padding: 2px 8px;
+				/*border-top: 1px solid #ccc;*/
+				border-bottom: 1px dotted #ccc;
+				/*background: #f9f9f9;/*/
+			}
+			
+			.choice-box {
+				background: rgba(236, 214, 214, 0.5);
+				width: 100%;
+				position: fixed;
+				bottom: 0;
+				height: 600px;
+			}
+			
+			.choice-box .good-img {
+				width: 120px;
+				height: 120px;
+			}
+			
+			.choice-box-ct {
+				height: 400px;
+				position: absolute;
+				background: #fff;
+				width: 100%;
+				bottom: 0;
+				padding: 0 10px;
+			}
+			.choice-box-ct .left{
+				position: relative;
+				top: -20px;
+			}
+			.choice-box-ct .right{
+				float: left;
+				padding-left: 20px;
+			}
+			.choice-box-ct .good-type ul{
+				padding: 0;
+			}
+			.choice-box-ct .good-type ul .on{
+				background: yellowgreen;
+			}
+			.choice-box-ct .good-type ul li{
+				padding: 5px 10px;
+				background: gainsboro;
+				border-radius: 10px;
+				font-size: 1rem;
+				float: left;
+				list-style: none;
+				margin: 10px 20px;
+			}
+			.choice-box-ct .count{
+				padding: 5px 0;
+				border-top: 1px solid gainsboro;
+				border-bottom: 1px solid gainsboro;
+			}
+			.choice-box-ct .count >h5{
+				float: left;
+			}
+			.choice-box-ct .count .count-box{
+				float: right;
+				border-radius: 5px;
+				overflow: hidden;
+			}
+			.choice-box-ct .count .count-box .count-ctr{
+				background: gainsboro;
+				display: block;
+				float: left;
+				width: 40px;
+				height: 40px;
+				padding: 10px;
+				text-align: center;
+				vertical-align: middle;
+			}
+			.choice-box-ct .count .count-box .count-ctr .add{
+				display: block;
+				background: url(../../img/innisfreeIco/add.png);
+				width: 20px;
+				height: 20px;
+				background-size: 20px 20px;
+			}
+			.choice-box-ct .count .count-box .count-ctr .sub{
+				display: block;
+				background: url(../../img/innisfreeIco/sub.png);
+				width: 20px;
+				height: 20px;
+				background-size: 20px 20px;
+			}
+			.choice-box-ct .count .count-box .count-num{
 				font-size: 2.5rem;
+				display: block;
+				height: 40px;
+				float: left;
+				width: 60px;
+				text-align: center;
+				line-height: 40px;
+			}
+			.choice-box .good-btn{
+				position: fixed;
+				margin-left: -10px;
+				width: 100%;
+				bottom: 0;
+			}
+			.choice-box .good-btn a{
+				font-size: 1.5rem;
+				color: #fff;
+				display: block;
+				width: 50%;
+				border-radius: 0px;
+				padding: 15px 0;
+			}
+			.choice-box .good-btn .add-car{
+				
+				float: left;
+				background: rgba(5, 83, 33, 1);
+			}
+			.choice-box .good-btn .buy{
+				float: right;
+				background: yellowgreen;
 			}
 		</style>
 	</head>
 
 	<body>
-		<div class="ctrWrap">
-			<div id="mainCtr" class="btn-group clearfix" role="group" aria-label="...">
-				<button type="button" class="ctrbtn">Left</button>
-				<button type="button" class="ctrbtn">Middle</button>
-				<button type="button" class="ctrbtn">Right</button>
+
+		<div id="main-ctr" class="clearfix" role="group" aria-label="...">
+			<button type="button" class="ctrbtn">商品</button>
+			<button type="button" class="ctrbtn">详情</button>
+			<button type="button" class="ctrbtn">评价</button>
+		</div>
+		<div class="good-ct">
+			<h5 class="title text-center">招牌洁面-绿茶精萃保湿洁面膏</h5>
+			<img class="good-img center-block" src="/img/innisfree-img/goods/1000000721_l.png" />
+			<ul class="good-info list-unstyled">
+				<li class="clearfix">
+					<span class="left">产地</span>
+					<span class="right">中国</span>
+				</li>
+				<li class="clearfix">
+					<span class="left">价格</span>
+					<span class="right">￥55.0</span>
+				</li>
+				<li class="clearfix">
+					<span class="left">主要功效</span>
+					<span class="right">洁面</span>
+				</li>
+			</ul>
+			<div class="choice clearfix">
+				<h5 class="left">选择分类数量</h5>
+				<h5 class="right">>&nbsp;&nbsp;</h5>
+			</div>
+			<div class="total-price clearfix">
+				<h5 class="left">总计</h5>
+				<h5 class="right" style="font-size: 1.5rem;">￥55.0</h5>
+			</div>
+			<div class="choice-box">
+				<div class="choice-box-ct">
+					<div class="clearfix">
+						<div class="left">
+							<img class="good-img img-thumbnail" src="/img/innisfree-img/goods/1000000721_l.png" />
+						</div>
+						<div class="right">
+							<h4>￥55.0</h4>
+							<h5>库存</h5>
+							<h5>选择分类</h5>
+						</div>
+					</div>
+					<div class="good-type">
+						<h5>规格选择</h5>
+						<ul class="clearfix">
+							<li class="on"><span>125ml</span></li>
+							<li><span>125ml</span></li>
+							<li><span>125ml</span></li>
+							<li><span>125ml</span></li>
+							<li><span>125ml</span></li>
+						</ul>
+					</div>
+					<div class="count clearfix">
+						<h5>购买数量</h5>
+						<div class="count-box">
+							<span class="count-ctr"><i class="sub"></i></span>
+							<span class="count-num">1</span>
+							<span class="count-ctr"><i class="add"></i></span>
+						</div>
+					</div>
+					<div class="good-btn">
+						<a class="btn add-car" href="javascript:;">加入购物车</a>
+						<a class="btn buy" href="javascript:;">立即购买</a>
+					</div>
+				</div>
 			</div>
 		</div>
+
 	</body>
 
 </html>
