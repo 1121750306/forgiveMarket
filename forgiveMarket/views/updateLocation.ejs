@@ -3,7 +3,8 @@
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
-		<link rel="stylesheet" href="../css/addLocation.css" />
+		<link rel="stylesheet" href="/css/addLocation.css" />
+		<script type="text/javascript" src="/angular/angular.min.js" ></script>
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	</head>
 	<body>
@@ -26,22 +27,36 @@
 		<div class="formBox">
 			<form method="post" action="/location/update">
 				<ul>
-					<li>
-						<input name="province" type="text" contenteditable="false" value="" class="dd province"readonly="readonly"/>
-						<input name="city" type="text" contenteditable="false" value="" class="dd city" readonly="readonly"/>
-						<input name="district" type="text" contenteditable="false" value="" class="dd district" readonly="readonly"/>
+					<li class="chang">
+						<input name="province" type="text" contenteditable="false" value="<%=locationItem.province%>" class="dd province"readonly="readonly"/>
+						<input name="city" type="text" contenteditable="false" value="<%=locationItem.city%>" class="dd city" readonly="readonly"/>
+						<input name="district" type="text" contenteditable="false" value="<%=locationItem.district%>" class="dd district" readonly="readonly"/>
 					</li>
 					<li>
-						<input placeholder="请输入详细地址" name="address" class="address"/>
+						<input placeholder="请输入详细地址" name="address" class="address" value="<%=locationItem.address%>"/>
 					</li>
 					<li>
-						<input placeholder="请输入收货人姓名" name="shname" class="shname"/>
+						<input placeholder="请输入收货人姓名" name="shname" class="shname" value="<%=locationItem.shname%>"/>
 					</li>
 					<li>
-						<input placeholder="请输入收货人电话" name="phone" class="phone"/>
+						<input placeholder="请输入收货人电话" name="phone" class="phone" value="<%=locationItem.phone%>"/>
 					</li>
 					<li>
-						<input placeholder="请输入邮政编码" name="postcode" class="postcode"/>
+						<input placeholder="请输入邮政编码" name="postcode" class="postcode" value="<%=locationItem.postcode%>"/>
+					</li>
+					<li class="default" ng-app="">
+						<span>设为默认</span>
+						<div class="check" ng-model="flag" ng-init="flag=<%=locationItem.flag%>">						    
+						    <input type="checkbox" value="1" id="checkBoxInput" name="flag"  checked ng-if="flag==1"/>
+						    <input type="checkbox" value="0" id="checkBoxInput" name="flag"  ng-if="flag!=1"/>
+							<label for="checkBoxInput" class="cg"></label>
+						</div>
+						
+					</li>
+					<input type="hidden" name="_id" value="<%=locationItem._id%>"/>
+					<input type="hidden" name="uid" value="<%=locationItem.uid%>"/>
+					<li class="default">
+						<a href="#">删除该收货地址</a>
 					</li>
 					<li class="tijiao">
 						<input type="submit" value="保存修改" />
@@ -59,9 +74,8 @@
 			function initDate(){
 				$.ajax({
 				type:"get",
-				url:"../json/region.json",
-				async:true,
-				
+				url:"/json/region.json",
+				async:true,			
 				success:function(data){
 					datas=data;
 					/*alert(data[1].name)*/
@@ -73,10 +87,21 @@
 						);
 					}
 				}
-			});
-			
+			});			
 			}
-			
+			$(".cg").click(function(){
+				var flag=$(this).parent().find("input").val();
+				if(flag==1){
+					$(this).parent().find("input").val(0);
+				}else{
+					$(this).parent().find("input").val(1);
+				}
+			})
+			$(".chang").click(function(){
+				$(".modeBox").css('display','block');
+				$(".formBox").css('display',"none");
+				initDate();
+			})			
 			$("#province").on('click',"li",function(){
 				
 				provIndex=$(this).index();
