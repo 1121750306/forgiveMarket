@@ -2,68 +2,107 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 		<title>管理收货地址</title>
-		<link rel="stylesheet" href="../css/locationmanager.css" />
+		<link rel="stylesheet" href="../css/locationManagers.css" />
 	</head>
 	<body>
-		<div  class="title">
-			<img class="backbtn" src="../img/innisfree矢量图标/back.png"/>
-			<div class="addresstitile">
-				管理收货地址
-			</div>
+		
+		<div class="title">
+			<span class="back"></span>
+			<span class="titlename">管理收货地址</span>
+		    <div class="clear">	
+		    </div>
 		</div>
-		<div class="addressitem">
+		<div class="addresscontain ">
+			
+			<div  class="addressitem activeitem" >
 			<p class="infoline"> 
-				<span class="consignee">收货人:</span>
-				<span class="consigneetel">电话:</span>
+				<span class="consignee">收货人:Mr王</span>
+				<span class="consigneetel">电话:110123456789</span>
+				<img class="check-icon" src="../img/innisfree矢量图标/对勾.png"/>
 			</p>
-			<p class="consigneeaddress">收货地址：</p>
+			
+			<p class="consigneeaddress">收货地址:辽宁省辽宁省辽宁省辽宁省辽宁省辽宁省辽宁省辽宁省</p>
+			
+			
 		</div>
-		<div class="addressitem">
+		<div  class="addressitem " >
 			<p class="infoline"> 
-				<span class="consignee">收货人:</span>
-				<span class="consigneetel">电话:</span>
+				<span class="consignee">收货人:Mr王</span>
+				<span class="consigneetel">电话:110</span>
+				<img class="check-icon" src="../img/innisfree矢量图标/对勾.png"/>
 			</p>
-			<p class="consigneeaddress">收货地址：</p>
+			<p class="consigneeaddress">收货地址:辽宁省</p>
 		</div>
-		<div class="addressitem">
+		<div  class="addressitem " >
 			<p class="infoline"> 
-				<span class="consignee">收货人:</span>
-				<span class="consigneetel">电话:</span>
+				<span class="consignee">收货人:Mr王</span>
+				<span class="consigneetel">电话:110</span>
+				<img class="check-icon" src="../img/innisfree矢量图标/对勾.png"/>
 			</p>
-			<p class="consigneeaddress">收货地址：</p>
+			<p class="consigneeaddress">收货地址:辽宁省</p>
 		</div>
-		<div class="addressitem">
+		<div  class="addressitem " >
 			<p class="infoline"> 
-				<span class="consignee">收货人:</span>
-				<span class="consigneetel">电话:</span>
+				<span class="consignee">收货人:Mr王</span>
+				<span class="consigneetel">电话:110</span>
+				<img class="check-icon" src="../img/innisfree矢量图标/对勾.png"/>
 			</p>
-			<p class="consigneeaddress">收货地址：</p>
+			<p class="consigneeaddress">收货地址:辽宁省</p>
 		</div>
-		<div class="addressitem">
+		<div  class="addressitem " >
 			<p class="infoline"> 
-				<span class="consignee">收货人:</span>
-				<span class="consigneetel">电话:</span>
+				<span class="consignee">收货人:Mr王</span>
+				<span class="consigneetel">电话:110</span>
+				<img class="check-icon" src="../img/innisfree矢量图标/对勾.png"/>
 			</p>
-			<p class="consigneeaddress">收货地址：</p>
+			<p class="consigneeaddress">收货地址:辽宁省</p>
 		</div>
-		<div class="addressitem">
+		<div  class="addressitem " >
 			<p class="infoline"> 
-				<span class="consignee">收货人:</span>
-				<span class="consigneetel">电话:</span>
+				<span class="consignee">收货人:Mr王</span>
+				<span class="consigneetel">电话:110</span>
+				<img class="check-icon" src="../img/innisfree矢量图标/对勾.png"/>
 			</p>
-			<p class="consigneeaddress">收货地址：</p>
+			<p class="consigneeaddress">收货地址:辽宁省</p>
 		</div>
-		<div class="addressitem">
+		<div class="addressitem " >
 			<p class="infoline"> 
-				<span class="consignee">收货人:</span>
-				<span class="consigneetel">电话:</span>
+				<span class="consignee">收货人:Mr王</span>
+				<span class="consigneetel">电话:110</span>
+				<img class="check-icon" src="../img/innisfree矢量图标/对勾.png"/>
 			</p>
-			<p class="consigneeaddress">收货地址：</p>
+			<p class="consigneeaddress">收货地址:辽宁省</p>
+		</div>
+		
+		<div class="addressitem " >
+			<p class="infoline"> 
+				<span class="consignee">收货人:Mr王</span>
+				<span class="consigneetel">电话:110</span>
+				<img class="check-icon" src="../img/innisfree矢量图标/对勾.png"/>
+			</p>
+			<p class="consigneeaddress">收货地址:辽宁省</p>
+		</div>
 		</div>
 		
 		<div class="addbtn">
-			新增收货地址
+			<a href="../views/addLocation.html">新增收货地址</a>
+			
 		</div>
+		
+		<script type="text/javascript" src="/jquery/dist/jquery.js" ></script>
+		<script type="text/javascript">
+		$(function(){
+			$(".addressitem").click(function(){
+					var index = $(this).index();
+					var username = $(this).find('.consignee')
+//					var username = $(this).attr("data-username");
+//					var address = $(this).attr("data-address");
+//					var tel = $(this).attr("data-tel");
+					alert(index);
+			});
+		});
+</script>
 	</body>
 </html>

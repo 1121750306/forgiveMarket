@@ -12,5 +12,16 @@ function addLocation(obj,cb) {
 }
 
 
+function getLocation(uid,cb){
+	var query=locationModel.find({uid:uid});
+	
+	query.exec(cb)
+}
+function getLocationById(id,cb){
+	locationModel.findById(id,cb);
+
+}
 module.exports.initModel = initModel;
 module.exports.addLocation=addLocation;
+module.exports.getLocation=getLocation;
+module.exports.getLocationById=getLocationById;
