@@ -1,3 +1,7 @@
+body
+{
+	overflow-x: hidden;
+}
 /*------------------------------------------头部*/
 .header 
 {
@@ -70,6 +74,12 @@
 	border: none;
 }
 
+.search-title
+{
+	position: relative;
+	margin-top: 58px;
+	margin-left: 35px;
+}
 /*------------------------------------------广告轮播图*/
 .adturn
 {
@@ -83,7 +93,7 @@
 .adcontainer
 {
 	position: absolute;
-	width: 2600px;
+	width: 3000px;
 	
 }
 .adpicture
@@ -107,6 +117,11 @@
 	background-color: #CED4D2;
 	margin: 0px 5px;
 }
+
+#l1
+{
+	background-color: orange;
+}
 /*------------------------------------------新闻轮播图*/
 .newsturn
 {
@@ -116,34 +131,31 @@
 	margin: 10px auto;
 	font-size: 20px;
 	color: white;
-}
-
-.newsturnl
-{
-	position: absolute;
-	width: 30px;
-	margin-top: 5px;
-	margin-left: 30px;
-}
-
-.newsturnr
-{
-	position: absolute;
-	width: 30px;
-	margin-top: 5px;
-	margin-left: 60px;
+	overflow: hidden;
 }
 
 .newscontainer
 {
 	position: absolute;
-	width: 80%;
-	height: 70px;
+	width: 1000px;
+	height: 40px;
 	margin-top: 10px;
-	margin-left:100px;
+}
+
+.newscontainer>a
+{
+	text-decoration: none;
+	color: white;
 }
 
 /*-------------------------------------------选项卡*/
+.lnbtitlediv
+{
+	position: relative;
+	width: 100%;
+	height: 43px;
+	overflow-x: hidden;
+}
 .lnbtitle
 {
 	position: absolute;
@@ -166,10 +178,9 @@
 /*-------------------------------------------品牌介绍*/
 .innisinformation
 {
-	position: absolute;
+	position: relative;
 	width: 100%;
-	height: 1500px;
-	margin-top: 48px;
+	height: 1400px;
 }
 
 .innisinfoimg
@@ -180,10 +191,9 @@
 /*---------------------------------------------活动*/
 .activities
 {
-	position: absolute;
+	position: relative;
 	width: 100%;
-	height: 1500px;
-	margin-top: 48px;
+	height: 700px;
 	display: none;
 	font-size: 10px;
 	background-color: white;
@@ -263,9 +273,66 @@
 /**--------------------------------------------------社区*/
 .communicate
 {
-	position: absolute;
+	position: relative;
 	width: 100%;
 	height: 1500px;
-	margin-top: 48px;
 	display: none;
+}
+
+/*---------------------------------------------热销*/
+.hotgoods
+{
+	position: relative;
+	width: 100%;
+	height: 600px;
+}
+
+.hotgoods-topline
+{
+	width: 99%;
+}
+
+
+
+.hotgoodsimg
+{
+	position: relative;
+	width: 605px;
+}
+
+.hotgoods-title
+{
+	position: relative;
+	width: 150px;	
+}
+
+.hotgoods-container-img
+{
+	position: relative;
+	width: 80px;
+	margin: 10px 5px;
+}
+.hotgoods-container-num
+{
+	position: absolute;
+	width: 30px;
+	margin-top: 0px;
+	margin-left: -80px;
+}
+/*----------------------------------------------页脚*/
+.footer
+{
+	position: relative;
+	width: 100%;
+	height: 300px;
+}
+
+.footer-logo
+{
+	margin-top: 100px;
+}
+
+.footer-SNS
+{
+	width: 200px;
 }
