@@ -1,29 +1,60 @@
+h1,h2,h3,h4,h5,h6,p{margin: 0;}
+
+h1{font-size: 2.5rem;}
+h2{font-size: 2rem;}
+h3{font-size: 1.5rem;}
+h4{font-size: 1rem;}
+
+html,body{
+	height: 100%;
+}
+
+body{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
 .header{
 	width: 100%;
-	height:60px;
+	height:50px;
 	text-align: center;
-	border-bottom: 0.5rem green solid;
-	box-sizing: border-box;
+	background: rgba(5, 83, 33, 1);
+	color: yellowgreen;
 }
 
 .header h1{
-	font-size: 2.5rem;
-	line-height: 60px;
+	line-height: 50px;
 }
 
-.cart_bar{
+.banner{
 	width: 100%;
 	height: 40px;
 	background-color: lightgrey;
-	padding: 5px 10px;
+	padding: 5px 0;
 	box-sizing: border-box;
 }
 
+.banner h2{
+	width: 14%;
+	float: right;
+	margin-right: 2%;
+	border-radius: 5px;
+	font-size: 1.5rem;
+	line-height: 30px;
+	text-align: center;
+	background: yellowgreen;
+	color: white;
+	font-weight: bold;
+	display: none;
+}
+
 .cart_search{
-	width: 100%;
+	width: 96%;
 	height: 30px;
+	margin: 0 2%;
 	background-color: white;
-	border-radius: 0.5rem;
+	border-radius: 5px;
 	box-sizing: border-box;
 	float: left;
 }
@@ -43,14 +74,9 @@
 	float: left;
 }
 
-.cart_bar button{
-	float: right;
-	font-size: 1.5rem;
-	background: none;
-	border: none;
-	outline: none;
-	line-height: 28px;
-	display: none;
+.content{
+	flex: 1;
+	overflow: auto;
 }
 
 .cart{
@@ -59,41 +85,53 @@
 	padding: 0;
 }
 
-.cart li{
+.cart .cart_item{
 	width: 100%;
 	height: 120px;
-	padding: 5px 0;
+	padding: 5px;
+	padding-right: 20px;
 	box-sizing: border-box;
 	border-bottom: 0.1rem lightgrey solid;
 }
 
-.cart li form{
+.cart .cart_item form{
 	height: 100%;
 	display: flex;
-	justify-content: space-around;
+	justify-content: space-between;
 	align-items: center;
 }
 
-.cart li input{
-	width: 5%;
-	height: 100px;
+.item_check{
+	width: 20px;
+	height: 20px;
+	margin: 0 10px;
+	background-image: url(../../img/innisfreeIco/unchecked.png);
+	background-size: 20px 20px;
 }
 
-.cart li img{
+.item_check input{
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	display: block;
+	opacity: 0;
+}
+
+
+.cart .cart_item img{
 	width: 25%;
-	border: 0.2rem lightgrey solid;
+	border: 1px lightgrey solid;
+	border-radius: 2px;
 }
 
-.cart li .item_info{
+.cart .cart_item .item_info{
 	width: 60%;
 	height: 100px;
 	display: flex;
 	flex-direction: column;	
 }
 
-.cart li .item_info h2{
-	font-size: 1.5rem;
-	margin: 5px 0 5px 0;
+.cart .cart_item .item_info h3{
 	text-overflow: ellipsis;
 	overflow: hidden;
 	display: -webkit-box;
@@ -101,36 +139,64 @@
 	-webkit-box-orient: vertical;
 }
 
-.cart li .item_info h3{
-	font-size: 1rem;
-	margin: 5px 0 5px 0;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-	overflow: hidden;
+
+.cart .cart_item .item_info .good_size{
+	width: 100%;
+	height: 15px;
+	margin: 5px 0 0 0;
+	padding: 0;
+	list-style: none;
 }
 
-.cart li .item_info .info_bottom{
+.cart .cart_item .item_info .good_size li{
+	height: 15px;
+	float: left;
+	margin-right: 5px;
+	padding: 0 5px;
+	border-radius: 5px;
+	background-color: yellowgreen;
+}
+
+.cart .cart_item .item_info .good_size li h4{
+	line-height: 15px;
+	/*color: white;*/
+}
+
+.cart .cart_item .item_info .info_bottom{
 	display: flex;
 	align-items: flex-end;
 	flex: 1;
 }
 
-.cart li .item_info .info_bottom p{
-	font-size: 2rem;
+.cart .cart_item .item_info .info_bottom p{
+	font-size: 1.5rem;
 	flex: 1;
 	margin: 0;
 }
 
-.cart li .item_info .info_bottom span{
+.cart .cart_item .item_info .info_bottom span{
 	width: 30px;
 	height: 30px;
-	font-size: 3rem;
-	line-height: 26px;
-	text-align: center;
-	border: 1px lightgrey solid;
+	background: gainsboro;
 }
 
-.cart li .item_info .info_bottom input{
+.cart .cart_item .item_info .info_bottom .item_add{
+	width: 100%;
+	height: 100%;
+	display: block;
+	background: url(../../img/innisfreeIco/add.png) 5px 5px no-repeat;
+	background-size: 20px 20px;
+}
+
+.cart .cart_item .item_info .info_bottom .item_sub{
+	width: 100%;
+	height: 100%;
+	display: block;
+	background: url(../../img/innisfreeIco/sub.png) 5px 5px no-repeat;
+	background-size: 20px 20px;
+}
+
+.cart .cart_item .item_info .info_bottom input{
 	font-size: 1.5rem;
 	width: 40px;
 	height: 30px;
@@ -141,4 +207,39 @@
 	outline: none;
 	border-top: 1px lightgrey solid;
 	border-bottom: 1px lightgrey solid;
+}
+
+.footer{
+	width: 100%;
+	height: 60px;
+	padding-left: 5px;
+	background: rgba(5, 83, 33, 1);
+	color: white;
+}
+
+.footer .item_allcheck{
+	margin-top: 20px;
+	float: left;
+}
+
+.footer h3{
+	line-height: 60px;
+	float: left;
+}
+
+.footer h2{
+	line-height: 60px;
+	float: right;
+	margin-right: 5px;
+}
+
+.footer button{
+	width: 35%;
+	height: 100%;
+	float: right;
+	border: none;
+	outline: none;
+	background: yellowgreen;
+	font-size: 2rem;
+	color: white;
 }
