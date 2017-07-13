@@ -14,65 +14,75 @@
 		    <div class="clear">	
 		    </div>
 		</div>
-		<div class="addresscontain">
+		<div class="addresscontain ">
 			
-			<div class="addressitem">
+			<div  class="addressitem activeitem" >
 			<p class="infoline"> 
-				<span class="consignee">收货人:</span>
-				<span class="consigneetel">电话:</span>
+				<span class="consignee">收货人:Mr王</span>
+				<span class="consigneetel">电话:110123456789</span>
+				<img class="check-icon" src="../img/innisfree矢量图标/对勾.png"/>
 			</p>
-			<p class="consigneeaddress">收货地址：</p>
+			
+			<p class="consigneeaddress">收货地址:辽宁省辽宁省辽宁省辽宁省辽宁省辽宁省辽宁省辽宁省</p>
+			
+			
 		</div>
-		<div class="addressitem">
+		<div  class="addressitem " >
 			<p class="infoline"> 
-				<span class="consignee">收货人:</span>
-				<span class="consigneetel">电话:</span>
+				<span class="consignee">收货人:Mr王</span>
+				<span class="consigneetel">电话:110</span>
+				<img class="check-icon" src="../img/innisfree矢量图标/对勾.png"/>
 			</p>
-			<p class="consigneeaddress">收货地址：</p>
+			<p class="consigneeaddress">收货地址:辽宁省</p>
 		</div>
-		<div class="addressitem">
+		<div  class="addressitem " >
 			<p class="infoline"> 
-				<span class="consignee">收货人:</span>
-				<span class="consigneetel">电话:</span>
+				<span class="consignee">收货人:Mr王</span>
+				<span class="consigneetel">电话:110</span>
+				<img class="check-icon" src="../img/innisfree矢量图标/对勾.png"/>
 			</p>
-			<p class="consigneeaddress">收货地址：</p>
+			<p class="consigneeaddress">收货地址:辽宁省</p>
 		</div>
-		<div class="addressitem">
+		<div  class="addressitem " >
 			<p class="infoline"> 
-				<span class="consignee">收货人:</span>
-				<span class="consigneetel">电话:</span>
+				<span class="consignee">收货人:Mr王</span>
+				<span class="consigneetel">电话:110</span>
+				<img class="check-icon" src="../img/innisfree矢量图标/对勾.png"/>
 			</p>
-			<p class="consigneeaddress">收货地址：</p>
+			<p class="consigneeaddress">收货地址:辽宁省</p>
 		</div>
-		<div class="addressitem">
+		<div  class="addressitem " >
 			<p class="infoline"> 
-				<span class="consignee">收货人:</span>
-				<span class="consigneetel">电话:</span>
+				<span class="consignee">收货人:Mr王</span>
+				<span class="consigneetel">电话:110</span>
+				<img class="check-icon" src="../img/innisfree矢量图标/对勾.png"/>
 			</p>
-			<p class="consigneeaddress">收货地址：</p>
+			<p class="consigneeaddress">收货地址:辽宁省</p>
 		</div>
-		<div class="addressitem">
+		<div  class="addressitem " >
 			<p class="infoline"> 
-				<span class="consignee">收货人:</span>
-				<span class="consigneetel">电话:</span>
+				<span class="consignee">收货人:Mr王</span>
+				<span class="consigneetel">电话:110</span>
+				<img class="check-icon" src="../img/innisfree矢量图标/对勾.png"/>
 			</p>
-			<p class="consigneeaddress">收货地址：</p>
+			<p class="consigneeaddress">收货地址:辽宁省</p>
+		</div>
+		<div class="addressitem " >
+			<p class="infoline"> 
+				<span class="consignee">收货人:Mr王</span>
+				<span class="consigneetel">电话:110</span>
+				<img class="check-icon" src="../img/innisfree矢量图标/对勾.png"/>
+			</p>
+			<p class="consigneeaddress">收货地址:辽宁省</p>
 		</div>
 		
-		<div class="addressitem">
+		<div class="addressitem " >
 			<p class="infoline"> 
-				<span class="consignee">收货人:</span>
-				<span class="consigneetel">电话:</span>
+				<span class="consignee">收货人:Mr王</span>
+				<span class="consigneetel">电话:110</span>
+				<img class="check-icon" src="../img/innisfree矢量图标/对勾.png"/>
 			</p>
-			<p class="consigneeaddress">收货地址：</p>
-		</div>
-		
-		<div class="addressitem">
-			<p class="infoline"> 
-				<span class="consignee">收货人:</span>
-				<span class="consigneetel">电话:</span>
-			</p>
-			<p class="consigneeaddress">收货地址：</p>
+			<p class="consigneeaddress">收货地址:辽宁省</p>
 		</div>
 		</div>
 		
@@ -84,10 +94,13 @@
 		<script type="text/javascript" src="/jquery/dist/jquery.js" ></script>
 		<script type="text/javascript">
 		$(function(){
-			$("addressitem").each(function(){
-				$(this).click(function(){
-					
-				});
+			$(".addressitem").click(function(){
+					var index = $(this).index();
+					var username = $(this).find('.consignee')
+//					var username = $(this).attr("data-username");
+//					var address = $(this).attr("data-address");
+//					var tel = $(this).attr("data-tel");
+					alert(index);
 			});
 		});
 </script>

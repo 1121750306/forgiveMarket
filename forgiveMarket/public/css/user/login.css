@@ -1,6 +1,4 @@
-.content {}
-
-.content form {
+.content {
 	width: 100%;
 	margin-top: 30%;
 	display: block;
@@ -17,22 +15,24 @@
 
 .login {
 	width: 80%;
-	background-color: #03A9F4;
-	border: 1px solid #03A9F4;
+	background-color: green;
+	border: 1px solid green;
 	border-radius: 5px;
 	margin-left: 10%;
 	margin-top: 30px;
 	color: #fff;
 }
 
-.word a{
-	color: #03A9F4;
+.word a {
+	color: green;
 	font-family: "arial, helvetica, sans-serif";
-	font-size: 14px;
+	font-size: 1rem;
 }
-.word a:active{
+
+.word a:active {
 	text-decoration: none;
 }
+
 .word_div {
 	width: 80%;
 	margin-left: 10%;
@@ -41,4 +41,35 @@
 
 #register {
 	float: right;
+}
+#error {
+	height: 30px;
+	line-height: 25px;
+	width: 80%;
+	margin-left: 10%;
+	color: red;
+	font-size: 1rem;
+	opacity: 0;
+}
+
+#div_show_pwd {
+	width: 80%;
+	position: relative;
+	margin-left: 10%;
+}
+
+#div_show_pwd input {
+	width: 100%;
+	margin-left: 0;
+}
+
+#show_pwd {
+	display: block;
+	width: 30px;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	right: 5px;
+	background-image: url(../../img/innisfreeIco/eye.png);
+	background-size: 30px 100%;
 }
