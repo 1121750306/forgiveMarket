@@ -7,12 +7,64 @@ function callback(models) {
 	user.initModel(models);
 }
 
-/* GET users listing. */
-router.get('/add', function(req, res, next) {
-	user.addUser();
-	res.send('respond with a resource');
-});
+/**
+ *注册 
+ */
+router.post('/register', function(req, res, next) {
+	var phone = req.body.phone;
+	var password = req.body.password;
+	var code = req.body.code;
+	console.log("phone:" + phone + ",password:" + password + ",code:" + code);
+	user.register(phone, password, function(flag, err, result) {
+		var json;
+		if (flag == 0) {
+			json = {
+				flag: 300,
+				msg: err
+			};
+		} else if (flag == 1) {
+			json = {
+				flag: 300,
+				msg: "已存在该用户"
+			};
+		} else if (flag == 2) {
+			req.session.user = result;
+			json = {
+				flag: 200,
+				msg: "注册成功",
+				result: result
+			};
+		}
+		res.send(json);
+	})
 
+});
+/**
+ * 登录 
+ */
+router.post('/login', function(req, res, next) {
+	var phone = req.body.phone;
+	var password = req.body.password;
+	console.log("phone:" + phone + ",password:" + password);
+	user.login(phone, password, function(flag, err, result) {
+		var json;
+		if (flag == 0 || flag == 1) {
+			json = {
+				flag: 300,
+				msg: err
+			};
+		} else if (flag == 2) {
+			req.session.user = result;
+			json = {
+				flag: 200,
+				msg: "登录成功",
+				result: result
+			};
+		}
+		res.send(json);
+	})
+
+});
 
 module.exports = router;
 module.exports.callback = callback;
