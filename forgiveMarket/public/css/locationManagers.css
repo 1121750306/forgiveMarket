@@ -14,17 +14,18 @@
 	background-color:#fff ;
 	line-height: 40px;
 	border-bottom: solid 1px grey;
-	/*background: url("../img/innisfree矢量图标/back.png") no-repeat #fff;*/
+	background: url("../img/shback.png") 5px 7px no-repeat #fff;
 }
 .title .back{
 	width:20%;
 	height:100%;
 	float: left;
-	margin-left: -10%;
+	margin-left: 5%;
 	display: inline-block;
+	color: #000000;
 }
 .title .titlename{
-	width: 80%;
+	width: 50%;
 	display: inline-block;
 	float: left;
 	text-align:center;
@@ -80,4 +81,9 @@
 	position: fixed;
 	bottom: 0;
 	padding-left: 5px;	
+}
+.addbtn>a{
+	width: 100%;
+	color:white;
+	text-decoration: none;
 }
