@@ -39,6 +39,7 @@ body{
 	width: 14%;
 	float: right;
 	margin-right: 2%;
+	border-radius: 5px;
 	font-size: 1.5rem;
 	line-height: 30px;
 	text-align: center;
@@ -53,7 +54,7 @@ body{
 	height: 30px;
 	margin: 0 2%;
 	background-color: white;
-	border-radius: 0.5rem;
+	border-radius: 5px;
 	box-sizing: border-box;
 	float: left;
 }
@@ -216,7 +217,7 @@ body{
 	color: white;
 }
 
-.footer .item_check{
+.footer .item_allcheck{
 	margin-top: 20px;
 	float: left;
 }
