@@ -4,7 +4,7 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 		<title>管理收货地址</title>
-		<link rel="stylesheet" href="../css/locationManagers.css" />
+		<link rel="stylesheet" href="../css/locationmanager.css" />
 	</head>
 	<body>
 		
@@ -75,6 +75,7 @@
 			<p class="consigneeaddress">收货地址：</p>
 		</div>
 		</div>
+		
 		
 		<div class="addbtn">
 			新增收货地址
