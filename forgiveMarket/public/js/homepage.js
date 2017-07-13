@@ -3,7 +3,4 @@
 /*------------------------------------------广告轮播图*/
 /*------------------------------------------新闻轮播图*/
 /*------------------------------------------选项卡*/
-document.getElementsByClassName("lnbtitle-info").onclick = function()
-{
-	document.getElementsByClassName()
-}
+$(".")
