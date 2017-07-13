@@ -1,84 +1,83 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-		<title>管理收货地址</title>
-		<link rel="stylesheet" href="../css/locationmanager.css" />
-	</head>
-	<body>
-		
-		<div class="title">
-			<span class="back">返回</span>
-			<span class="titlename">管理收货地址</span>
-		    <div class="clear">	
-		    </div>
-		</div>
-		<div class="addresscontain">
-			
-			<div class="addressitem">
-			<p class="infoline"> 
-				<span class="consignee">收货人:</span>
-				<span class="consigneetel">电话:</span>
-			</p>
-			<p class="consigneeaddress">收货地址：</p>
-		</div>
-		<div class="addressitem">
-			<p class="infoline"> 
-				<span class="consignee">收货人:</span>
-				<span class="consigneetel">电话:</span>
-			</p>
-			<p class="consigneeaddress">收货地址：</p>
-		</div>
-		<div class="addressitem">
-			<p class="infoline"> 
-				<span class="consignee">收货人:</span>
-				<span class="consigneetel">电话:</span>
-			</p>
-			<p class="consigneeaddress">收货地址：</p>
-		</div>
-		<div class="addressitem">
-			<p class="infoline"> 
-				<span class="consignee">收货人:</span>
-				<span class="consigneetel">电话:</span>
-			</p>
-			<p class="consigneeaddress">收货地址：</p>
-		</div>
-		<div class="addressitem">
-			<p class="infoline"> 
-				<span class="consignee">收货人:</span>
-				<span class="consigneetel">电话:</span>
-			</p>
-			<p class="consigneeaddress">收货地址：</p>
-		</div>
-		<div class="addressitem">
-			<p class="infoline"> 
-				<span class="consignee">收货人:</span>
-				<span class="consigneetel">电话:</span>
-			</p>
-			<p class="consigneeaddress">收货地址：</p>
-		</div>
-		
-		<div class="addressitem">
-			<p class="infoline"> 
-				<span class="consignee">收货人:</span>
-				<span class="consigneetel">电话:</span>
-			</p>
-			<p class="consigneeaddress">收货地址：</p>
-		</div>
-		
-		<div class="addressitem">
-			<p class="infoline"> 
-				<span class="consignee">收货人:</span>
-				<span class="consigneetel">电话:</span>
-			</p>
-			<p class="consigneeaddress">收货地址：</p>
-		</div>
-		</div>
-		
-		
-		<div class="addbtn">
-			新增收货地址
-		</div>
-	</body>
-</html>
+*{
+	margin: 0px;
+	padding: 0px;
+}
+
+.title{
+	width: 100%;
+	height:40px;
+	position: fixed;
+	z-index:10;
+	top:0;
+	color: #000;
+	font-size:14px;
+	background-color:#fff ;
+	line-height: 40px;
+	border-bottom: solid 1px grey;
+	/*background: url("../img/innisfree矢量图标/back.png") no-repeat #fff;*/
+}
+.title .back{
+	width:20%;
+	height:100%;
+	float: left;
+	margin-left: -10%;
+	display: inline-block;
+}
+.title .titlename{
+	width: 80%;
+	display: inline-block;
+	float: left;
+	text-align:center;
+}
+.clear{
+	clear: both;
+}
+.addresscontain{
+  width: 100%;
+  position:absolute;
+  top:40px;
+  height:95%;
+  display: block;
+}
+.addressitem{
+	width: 100%;
+	height: 100px;
+	border-bottom: solid 1px darkgray ;
+	padding-left: 20px;
+	box-sizing: border-box;
+}
+.infoline{
+	margin-top: 5px;
+	width: 100%;
+	height:40px;
+	/*padding-left: 20px;*/
+	
+}
+.consignee{
+	width: 50%;
+	height: 100%;
+	font-size: 14px;
+	float: left;
+}
+.consigneetel{
+	width: 50%;
+	height: 100%;
+	font-size: 14px;
+	float:left;
+}
+.consigneeaddress{
+	font-size:14px ;
+}
+
+.addbtn{
+	width: 100%;
+	height: 40px;
+	background-color:darkgreen ;
+	color: white;
+	font-size: 14px;
+	text-align:center;
+    line-height: 40px; 
+	position: fixed;
+	bottom: 0;
+	padding-left: 5px;	
+}
