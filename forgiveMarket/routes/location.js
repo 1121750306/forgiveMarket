@@ -56,11 +56,37 @@ router.get('/getLocation', function(req, res, next){
 
 router.get('/updateinit/:id', function(req, res, next){
 	  var id=req.params.id;
+	 /* locations.getLocationById(id,function(err,doc){
+	  	console.log(doc);
+	   	res.send(doc);
+	  })*/
+      res.send(id);
+	/* res.redirect("/location/updateWait/"+id);*/
+});
+router.get('/updateWait/:id', function(req, res, next){
+	  var id=req.params.id;
 	  locations.getLocationById(id,function(err,doc){
 	  	console.log(doc);
-	  	
-	  })
-	  res.render('updateLocation',{});
+	    res.render("updateLocation",{locationItem:doc});
+	  });  
+});
+router.post('/update',function(req,res,next){
+	var flag=req.body.flag;
+	var _id=req.body._id;
+	var uid=req.body.uid;
+	var province=req.body.province;
+    var city=req.body.city;
+    var district=req.body.district;
+    var address=req.body.address;
+    var phone=req.body.phone;
+    var shname=req.body.shname;
+    var postcode=req.body.postcode;
+	console.log(flag);
+	var obj={id:_id,uid:uid,flag:flag,province:province,city:city,district:district,address:address,phone:phone,shname:shname,postcode:postcode};
+	locations.updateLocation(obj,function(err){
+		console.log(err);
+	});
+	res.render("locationManagers");
 })
 module.exports = router;
 module.exports.callback = callback;
