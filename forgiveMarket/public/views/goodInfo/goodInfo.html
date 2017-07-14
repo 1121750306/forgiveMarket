@@ -9,206 +9,19 @@
 		<script type="text/javascript" src="/jquery/dist/jquery.min.js"></script>
 		<script type="text/javascript" src="/bootstrap/dist/js/bootstrap.min.js"></script>
 		<link rel="stylesheet" href="/css/style.css" />
+		<link rel="stylesheet" href="../../css/goodInfo/goodinfo.css"/>
 		<style>
 
-			#main-ctr {
-				width: 100%;
-				margin: 0 auto;
-			}
 			
-			#main-ctr .ctrbtn {
-				width: 33.3%;
-				display: block;
-				float: left;
-				height: 40px;
-				font-size: 1.5rem;
-				border: 0;
-				background: #fff;
-				color: yellowgreen;
-				background: rgba(5, 83, 33, 1);
-			}
-			
-			.good-ct {
-				padding-bottom: 10px;
-				/*border-bottom: 2px solid yellowgreen;*/
-			}
-			
-			
-			.good-ct .good-img {
-				width: 300px;
-				height: 300px;
-			}
-			
-			.good-ct .title {}
-			
-			.good-ct .good-info {
-				margin-top: 10px;
-				border-top: 2px solid yellowgreen;
-				font-size: 1.25rem;
-				color: grey;
-				padding: 5px 8px;
-			}
-			
-			.good-ct .good-info li {
-				padding: 3px 0;
-			}
-			
-			.left {
-				float: left;
-			}
-			
-			.right {
-				float: right;
-			}
-			
-			.choice {
-				padding: 2px 8px;
-				border-top: 1px dotted #ccc;
-				border-bottom: 1px dotted #ccc;
-				background: #f9f9f9;
-			}
-			
-			.total-price {
-				padding: 2px 8px;
-				/*border-top: 1px solid #ccc;*/
-				border-bottom: 1px dotted #ccc;
-				/*background: #f9f9f9;/*/
-			}
-			
-			.choice-box {
-				background: rgba(236, 214, 214, 0.4);
-				width: 100%;
-				position: fixed;
-				bottom: -500px;
-				height: 1600px;
-                display: none;
-			}
-            #choice-bg{
-                width: 100%;
-                height: 2000px;
-                background: rgba(236, 214, 214, 0.5);
-                display: none;
-                position: absolute;
-                top:0;
-                left:0;
-            }
-			.choice-box .good-img {
-				width: 120px;
-				height: 120px;
-			}
-			
-			.choice-box-ct {
-				height: 400px;
-				position: absolute;
-				background: #fff;
-				width: 100%;
-				bottom: 0;
-				padding: 0 10px;
-			}
-			.choice-box-ct .left{
-				position: relative;
-				top: -20px;
-			}
-			.choice-box-ct .right{
-				float: left;
-				padding-left: 20px;
-			}
-			.choice-box-ct .good-type ul{
-				padding: 0;
-			}
-			.choice-box-ct .good-type ul .on{
-				background: yellowgreen;
-			}
-			.choice-box-ct .good-type ul li{
-				padding: 5px 10px;
-				background: gainsboro;
-				border-radius: 10px;
-				font-size: 1rem;
-				float: left;
-				list-style: none;
-				margin: 10px 20px;
-			}
-			.choice-box-ct .count{
-				padding: 5px 0;
-				border-top: 1px solid gainsboro;
-				border-bottom: 1px solid gainsboro;
-			}
-			.choice-box-ct .count >h5{
-				float: left;
-			}
-			.choice-box-ct .count .count-box{
-				float: right;
-				border-radius: 5px;
-				overflow: hidden;
-			}
-			.choice-box-ct .count .count-box .count-ctr{
-				background: gainsboro;
-				display: block;
-				float: left;
-				width: 40px;
-				height: 40px;
-				padding: 10px;
-				text-align: center;
-				vertical-align: middle;
-			}
-			.choice-box-ct .count .count-box .count-ctr .add{
-				display: block;
-				background: url(../../img/innisfreeIco/add.png);
-				width: 20px;
-				height: 20px;
-				background-size: 20px 20px;
-			}
-			.choice-box-ct .count .count-box .count-ctr .sub{
-				display: block;
-				background: url(../../img/innisfreeIco/sub.png);
-				width: 20px;
-				height: 20px;
-				background-size: 20px 20px;
-			}
-			.choice-box-ct .count .count-box .count-num{
-				font-size: 2.5rem;
-				display: block;
-				height: 40px;
-				float: left;
-				width: 60px;
-				text-align: center;
-				line-height: 40px;
-                border: 0;
-                padding: 0;
-                outline: 0;
-			}
-			.choice-box .good-btn{
-				position: absolute;
-				margin-left: -10px;
-				width: 100%;
-				bottom: 0;
-			}
-			.choice-box .good-btn a{
-				font-size: 1.5rem;
-				color: #fff;
-				display: block;
-				width: 50%;
-				border-radius: 0px;
-				padding: 15px 0;
-			}
-			.choice-box .good-btn .add-car{
-				
-				float: left;
-				background: rgba(5, 83, 33, 1);
-			}
-			.choice-box .good-btn .buy{
-				float: right;
-				background: yellowgreen;
-			}
 		</style>
 	</head>
 
 	<body>
 
 		<div id="main-ctr" class="clearfix" role="group" aria-label="...">
-			<button type="button" class="ctrbtn">商品</button>
+			<button type="button" class="ctrbtn on">商品</button>
 			<button type="button" class="ctrbtn">详情</button>
-			<button type="button" class="ctrbtn">评价</button>
+			<button type="button" class="ctrbtn">评价(100)</button>
 		</div>
 		<div class="good-ct">
 			<h5 class="title text-center">招牌洁面-绿茶精萃保湿洁面膏</h5>
@@ -247,6 +60,9 @@
                             <h5>库存35件</h5>
 							<h5>选择分类</h5>
 						</div>
+						<div class="cross">
+							<span class=""><i class="cross-ico"></i></span>
+						</div>
 					</div>
 					<div class="good-type">
 						<h5>规格选择</h5>
@@ -273,8 +89,119 @@
 					</div>
 				</div>
 			</div>
+			<div class="ser-rec">
+				<!--
+					
+				-->
+			</div>
 		</div>
-
+		<div class="good-detail">
+			<img width="100%" src="../../img/innisfree-img/goods/1000000721_mm.jpg" />
+			<h6>商品基本信息</h6>
+			<div>
+				<table width="100%" class="table">
+					<colgroup>
+						<col width="26%" />
+						<col width="74%" />
+					</colgroup>
+					<tr>
+						<th><h6>商品名称</h6></th>
+						<td><h6>招牌洁面-绿茶精萃保湿洁面膏</h6></td>
+					</tr>
+					<tr>
+						<th><h6>容量</h6></th>
+						<td><h6>150ml</h6></td>
+					</tr>
+					<tr>
+						<th><h6>类型</h6></th>
+						<td><h6></h6></td>
+					</tr>
+					<tr>
+						<th><h6>适用肤质</h6></th>
+						<td><h6>洁面与卸妆</h6></td>
+					</tr>
+					<tr>
+						<th><h6>主要功效</h6></th>
+						<td><h6>洁面</h6></td>
+					</tr>
+					<tr>
+						<th><h6>使用部位</h6></th>
+						<td><h6>面部</h6></td>
+					</tr>
+					<tr>
+						<th><h6>包装规格</h6></th>
+						<td><h6></h6></td>
+					</tr>
+					<tr>
+						<th><h6>保质期</h6></th>
+						<td><h6></h6></td>
+					</tr>
+					<tr>
+						<th><h6>注意事项</h6></th>
+						<td><h6></h6></td>
+					</tr>
+					<tr>
+						<th><h6>主要成分</h6></th>
+						<td><h6>甘油、水、硬脂酸、肉豆蔻酸、聚乙二醇-32、氢氧化钾、高岭土、月桂酸、丁二醇、甘油硬脂酸酯、茶叶提取物、胭脂仙人掌果提取物、温州蜜柑果皮提取物、山茶叶提取物、兰科植物提取物、海藻糖、乙基己基甘油、PEG-100 硬脂酸酯、椰油酰胺丙基甜菜碱、EDTA 二钠、氯化钠、苯氧乙醇、苯甲酸钠、香精</h6></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div class="comment">
+			<div class="comment-ct">
+				<div class="item">
+					<img  src="../../img/innisfreeIco/avatar.png"/>
+					<div class="item-right clearfix">
+						<h5>挺可以的，性价比也很好，值得购买，而且发货的速度也很快，反正我还是挺满意的。</h5>
+						<div class="item-rb" >
+							<strong class="itemname">小乔同学仔</strong>
+							&nbsp;&nbsp;<span>(2017-04-28)</span>
+						</div>
+					</div>
+				</div>
+				<div class="item">
+					<img  src="../../img/innisfreeIco/avatar.png"/>
+					<div class="item-right clearfix">
+						<h5>挺可以的，性价比也很好，值得购买，而且发货的速度也很快，反正我还是挺满意的。</h5>
+						<div class="item-rb" >
+							<strong class="itemname">小乔同学仔</strong>
+							&nbsp;&nbsp;<span>(2017-04-28)</span>
+						</div>
+					</div>
+				</div>
+				<div class="item">
+					<img  src="../../img/innisfreeIco/avatar.png"/>
+					<div class="item-right clearfix">
+						<h5>挺可以的，性价比也很好，值得购买，而且发货的速度也很快，反正我还是挺满意的。</h5>
+						<div class="item-rb" >
+							<strong class="itemname">小乔同学仔</strong>
+							&nbsp;&nbsp;<span>(2017-04-28)</span>
+						</div>
+					</div>
+				</div>
+				<div class="item">
+					<img  src="../../img/innisfreeIco/avatar.png"/>
+					<div class="item-right clearfix">
+						<h5>挺可以的，性价比也很好，值得购买，而且发货的速度也很快，反正我还是挺满意的。</h5>
+						<div class="item-rb" >
+							<strong class="itemname">小乔同学仔</strong>
+							&nbsp;&nbsp;<span>(2017-04-28)</span>
+						</div>
+					</div>
+				</div>
+				<div class="item">
+					<img  src="../../img/innisfreeIco/avatar.png"/>
+					<div class="item-right clearfix">
+						<h5>挺可以的，性价比也很好，值得购买，而且发货的速度也很快，反正我还是挺满意的。</h5>
+						<div class="item-rb" >
+							<strong class="itemname">小乔同学仔</strong>
+							&nbsp;&nbsp;<span>(2017-04-28)</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+		</div>
 	</body>
     <script type="text/javascript" src="../../js/goodInfo/goodInfo.js"></script>
 </html>
