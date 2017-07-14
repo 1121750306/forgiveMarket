@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			 *{
+			 	margin:0px;
+			 	padding:0px;
+			 }
+			body{
+				background: url("/img/pc/bg4.jpg");
+			    background-position:center;
+			    background-size:cover;
+			   }
+			   .loginBox{
+			   	width: 400px;
+			   	height: 200px;
+			   	margin:150px auto;
+			   	box-sizing: border-box;
+			  	padding-top: 10px;
+			   	background: rgba(255,255,255,.2);
+			   }
+			   ::-webkit-input-placeholder{
+			   	color:#fff;
+			   	opacity: 1;
+			   }
+			   .loginBox p{
+			   	height:35px;
+			   }
+			   .loginBox h2{
+			   	color:#fff;
+		        text-align: center;
+		        font-weight: lighter;
+			   }
+			    .loginBox .p input{
+			    	width: 80%;
+			    	height:99%;
+			    	margin-top: 4px;
+			    	outline: none;
+			    	border:none;
+			    	margin-left: 10%;
+			    	color:#fff;
+			    	background:#74817B;
+			    	box-sizing: border-box;
+			    	padding-left: 30px;
+			    }
+			     .loginBox .p .username{
+			     	background: url("/img/pc/username.png")no-repeat 5px 7px #74817B;
+			     }
+			       .loginBox .p .password{
+			     	background: url("/img/pc/password.png")no-repeat 5px 7px #74817B;
+			     	border-top: 1px solid #5d4d4d;
+			     	
+			     }
+			     .loginBox .p3{
+			     	margin-top: 10px;
+			     	padding-left: 0px;
+			     }
+			     .loginBox .p3 .submit{
+			     	width:20%;
+			     	height: 90%;
+			     	display: inline-block;
+			     	background: #74817b;
+			     	color: #fff;
+			     	border-radius: 3px;
+			     	border: none;
+			     	float: left;
+			     	margin-left: 10%;
+			     	text-align: center;
+			     	
+			     }
+			     .loginBox .p3 a{
+			     	display: inline-block;
+			     	width: 20%;
+			     	height: 90%;
+			     	text-decoration: none;
+			     	background: #74817b;
+			     	color: #fff;
+			     	float: right;
+			     	text-align: center;
+			     	font-size: 14px;
+			     	line-height: 30px;
+			     	margin-right: 10%;
+			     	border-radius: 3px;
+			     }
+		</style>
+	</head>
+	<body>
+		<div class="loginBox">
+		    <h2>管理员登录</h2>
+			<p class="p" style="margin-top: 20px;"><input  type="text" placeholder="账号" class="username"/></p>
+			<p class="p"><input type="password" placeholder="密码" class="password"/></p>
+			<p class="p3"><input type="submit" value="登陆" class="submit"/><a href="javascript:void(0)">忘记密码</a></p>
+		</div>
+	</body>
+</html>
