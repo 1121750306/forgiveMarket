@@ -15,7 +15,8 @@
 		<script type="text/javascript">
 			window.onload = function(){
 				if(sessionStorage.user == null || sessionStorage.user == "null" || sessionStorage.user ==""){
-					self.location = "/views/user/login.html";
+//					self.location = "/views/user/login.html";
+//					location.assign("/views/user/login.html");
 				}
 			}
 		</script>
@@ -24,11 +25,15 @@
 	<body>
 		<div class="nav">
 			<span class="nav_menu"></span>
-			<a href="#" class="nav_logo"></a>
+			<a href="/views/homepage.html" class="nav_logo"></a>
 			<a href="/views/user/user.html" class="nav_user"></a>
 			<a href="/order" class="nav_cart">
 				<p class="nav_cartnum">0</p>
 			</a>
+			
+			<div class="nav_type">
+				
+			</div>
 		</div>
 		
 		<div class="header">
