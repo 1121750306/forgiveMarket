@@ -66,5 +66,12 @@ router.post('/login', function(req, res, next) {
 
 });
 
+router.post("/logout", function(req, res, next) {
+	req.session.user = null;
+	res.send({
+		flag: 200
+	});
+});
+
 module.exports = router;
 module.exports.callback = callback;
