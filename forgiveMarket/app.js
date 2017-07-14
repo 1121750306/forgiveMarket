@@ -8,6 +8,7 @@ var session = require('express-session');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+var order = require('./routes/order');
 var locations=require('./routes/location');
 var base = require("./models/base");
 
@@ -42,6 +43,7 @@ app.use(express.static(path.join(__dirname, 'bower_components')));
 
 app.use('/', index);
 app.use('/users', users);
+app.use('/order', order);
 app.use('/location',locations);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
