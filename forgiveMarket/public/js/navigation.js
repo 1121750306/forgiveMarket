@@ -1,7 +1,8 @@
 $(function() {
 	//打开侧滑菜单
 	$(".nav_menu").click(function() {
-
+		$(".nav_modal").show();
+		$(".modal_content").animate({"right":"30%"},500);
 	})
 
 	//打开个人空间
