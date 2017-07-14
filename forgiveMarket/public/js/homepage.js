@@ -139,21 +139,22 @@ $(function(){
 	var _wheeldelta = function(e)
 	{
 		e = e || window.event;
-		console.log(e.wheelDelta);
 		if(e.wheelDelta < 0)
 		{
 			var scrollh = document.body.scrollTop ||  document.documentElement.scrollTop;
-			console.log(scrollh)
-			if(scrollh >1600 && scrollh <1700)
+			if(scrollh >1600 && scrollh <1800)
 			{
 				$(".popdiv").slideDown();		
 				$(".popdiv-close").click(function(){
 					$(".popdiv").slideUp();
 				})
-			}			
+			}	
 		}				
 	}
 	window.onmousewheel = document.onmousewheel = _wheeldelta; 
 	
-});
+	$(".backtotop").click(function(){
+		scrollTo(0,0);
+	})
 
+});
