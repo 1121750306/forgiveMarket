@@ -34,22 +34,43 @@
 					success: function(data) {
 						console.log("ssss"+data);
 					   for(var i=0;i<data.length;i++){
-					   	  $(".addresscontain").append(
-					   	  	"<div class='addressitem'>"+
-					   	  	  "<input type='hidden' value='"+data[i]._id+"'/>"+
-					   	  	  "<p class='infoline'>"+
-					   	  	     "<span class='consignee'>收货人:"+
-					   	  	          data[i].shname+
-					   	  	      "</span>"+
-					   	  	       "<span class='consigneetel'>电话:"+
-					   	  	          data[i].phone+
-					   	  	      "</span>"+
-					   	  	    "</p>"+
-					   	  	    "<p class='consigneeaddress'>收货地址:"+
-					   	  	          data[i].province+" "+data[i].city+" "+data[i].district+" "+data[i].address+
-					   	  	    "</p>"+
-					   	  	   "</div>" 
-					   	  );
+					   	  if(data[i].flag==1){
+					   	  	  $(".addresscontain").append(
+						   	  	"<div class='addressitem activeitem'>"+
+						   	  	  "<input type='hidden' value='"+data[i]._id+"'/>"+
+						   	  	  "<p class='infoline'>"+
+						   	  	     "<span class='consignee'>收货人:"+
+						   	  	          data[i].shname+
+						   	  	      "</span>"+
+						   	  	       "<span class='consigneetel'>电话:"+
+						   	  	          data[i].phone+
+						   	  	      "</span>"+
+						   	  	      "<img class='check-icon' src='/img/innisfree矢量图标/对勾.png' />"+
+						   	  	    "</p>"+
+						   	  	    "<p class='consigneeaddress'>收货地址:"+
+						   	  	          data[i].province+" "+data[i].city+" "+data[i].district+" "+data[i].address+
+						   	  	    "</p>"+
+						   	  	   "</div>" 
+						   	  );
+					   	  }else{
+						   	  $(".addresscontain").append(
+						   	  	"<div class='addressitem' >"+
+						   	  	  "<input type='hidden' value='"+data[i]._id+"'/>"+
+						   	  	  "<p class='infoline'>"+
+						   	  	     "<span class='consignee'>收货人:"+
+						   	  	          data[i].shname+
+						   	  	      "</span>"+
+						   	  	       "<span class='consigneetel'>电话:"+
+						   	  	          data[i].phone+
+						   	  	      "</span>"+
+						   	  	      "<img class='check-icon' src='/img/innisfree矢量图标/对勾.png' />"+
+						   	  	    "</p>"+
+						   	  	    "<p class='consigneeaddress'>收货地址:"+
+						   	  	          data[i].province+" "+data[i].city+" "+data[i].district+" "+data[i].address+
+						   	  	    "</p>"+
+						   	  	   "</div>" 
+						   	  );				   	  	
+					   	  }
 					   }
 					}
 				});
