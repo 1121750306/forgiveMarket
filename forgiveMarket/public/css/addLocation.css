@@ -18,11 +18,16 @@
 	width:20%;
 	height:100%;
 	float: left;
-	margin-left: -10%;
+	margin-left: 5%;
 	display: inline-block;
 }
+.back>a{
+	width: 100%;
+	height: 100%;
+	display: block;
+}
 .title .titlename{
-	width: 80%;
+	width: 50%;
 	display: inline-block;
 	float: left;
 	text-align:center;
@@ -187,4 +192,20 @@ input[type=checkbox]{
 	text-decoration: none;
 	color:red;
 	text-indent: 10px;
+}
+.float-pop{
+	display: none;
+	background: rgba(0,0,0,0.5);
+	color: white;
+	top: 350px;
+	left:50px;
+	width: 80%;
+	height: 70px;
+    border-radius: .21333rem;
+    z-index: 9999;
+    position: absolute;
+    text-align: center;
+    line-height: 70px;
+    font-size: inherit;
+    
 }
