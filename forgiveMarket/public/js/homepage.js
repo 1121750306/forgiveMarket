@@ -66,10 +66,9 @@ $(function(){
 	})
 	
 	/*-----------------------------------------------搞事情的叶子*/
-	var scrollh;
 	window.onscroll = function(e)
 	{
-		scrollh = document.body.scrollTop ||  document.documentElement.scrollTop;
+		var scrollh = document.body.scrollTop ||  document.documentElement.scrollTop;
 		if(scrollh >0 && scrollh < 741)
 		{
 			$(".yezi").css("display","inline-block")
@@ -139,20 +138,21 @@ $(function(){
 	/*--------------------------popdiv*/
 	var _wheeldelta = function(e)
 	{
-		e = e || window.event
-		console.log(e.wheelDelta)
+		e = e || window.event;
+		console.log(e.wheelDelta);
 		if(e.wheelDelta < 0)
 		{
+			var scrollh = document.body.scrollTop ||  document.documentElement.scrollTop;
 			console.log(scrollh)
-			if(scrollh > 1600 && scrollh < 1700)
+			if(scrollh >1600 && scrollh <1700)
 			{
 				$(".popdiv").slideDown();		
 				$(".popdiv-close").click(function(){
 					$(".popdiv").slideUp();
 				})
 			}			
-		}			
-	}		 	
+		}				
+	}
 	window.onmousewheel = document.onmousewheel = _wheeldelta; 
 	
 });
