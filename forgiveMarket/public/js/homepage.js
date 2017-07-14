@@ -66,10 +66,10 @@ $(function(){
 	})
 	
 	/*-----------------------------------------------搞事情的叶子*/
-	window.onscroll = function()
+	var scrollh;
+	window.onscroll = function(e)
 	{
-		var scrollh = document.body.scrollTop ||  document.documentElement.scrollTop;
-		console.log(scrollh)
+		scrollh = document.body.scrollTop ||  document.documentElement.scrollTop;
 		if(scrollh >0 && scrollh < 741)
 		{
 			$(".yezi").css("display","inline-block")
@@ -133,18 +133,27 @@ $(function(){
 			$(".yezi").animate({
 				left : '60%'
 			},1000)
-		}
-		
-		/*--------------------------popdiv*/
-		else if (scrollh > 1600 && scrollh <1650)
-		{
-			$(".popdiv").slideDown();		
-			$(".popdiv-close").click(function(){
-				$(".popdiv").slideUp();
-			})
-		}
+		}	
 	
 	}
+	/*--------------------------popdiv*/
+	var _wheeldelta = function(e)
+	{
+		e = e || window.event
+		console.log(e.wheelDelta)
+		if(e.wheelDelta < 0)
+		{
+			console.log(scrollh)
+			if(scrollh > 1600 && scrollh < 1700)
+			{
+				$(".popdiv").slideDown();		
+				$(".popdiv-close").click(function(){
+					$(".popdiv").slideUp();
+				})
+			}			
+		}			
+	}		 	
+	window.onmousewheel = document.onmousewheel = _wheeldelta; 
 	
 });
 
