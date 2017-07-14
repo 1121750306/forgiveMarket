@@ -48,11 +48,12 @@ body
 {
 	position: relative;
 	margin: 30px auto;
-	width: 98%;
+	width: 100%;
 	height: 50px;
 	border: 2px solid #ACBD93;
 	border-radius: 10px;
 	background-color: whitesmoke;
+	margin-left: 2%;
 }
 
 .searchimg
@@ -155,6 +156,7 @@ body
 	position: relative;
 	width: 100%;
 	height: 45px;
+	margin-left: 2%;
 }
 .lnbtitle
 {
@@ -181,6 +183,7 @@ body
 	position: relative;
 	width: 100%;
 	height: 1400px;
+	margin-left: 2%;
 }
 
 .innisinfoimg
@@ -197,6 +200,7 @@ body
 	display: none;
 	font-size: 10px;
 	background-color: white;
+	margin-left: 2%;
 }
 
 .acttitle
@@ -284,13 +288,13 @@ body
 {
 	position: relative;
 	width: 100%;
-	height: 1200px;
+	height: 1135px;
 }
 
 .hotgoods-topline
 {
 	position: relative;
-	width: 99%;
+	width: 100%;
 	padding-bottom: 20px;
 }
 
@@ -299,7 +303,6 @@ body
 	position: relative;
 	list-style: none;
 	height: 40px;
-	margin-left: 0px;
 }
 
 .hotgoods-nav-li
@@ -368,7 +371,7 @@ body
 
 .hotgoods-quick2
 {
-	width: 90px;
+	width: 100px;
 }
 
 .hotgoods-quick1,.hotgoods-quick3,.hotgoods-righttitle1,.hotgoods-righttitle3
@@ -379,32 +382,37 @@ body
 {
 	float: right;
 }
+.hotgoods-quick1,.hotgoods-quick3
+{
+	margin-left: 10%;
+}
 
+.hotgoods-quick2,.hotgoods-quick4
+{
+	margin-right: 10%;
+}
 .hotgoods-righttitle1,.hotgoods-righttitle3
 {
-	margin-top: 10px;
-	margin-left: 30px;
+	margin-top: 20px;
+	margin-left: 10%;
 }
 
 .hotgoods-righttitle2,.hotgoods-righttitle4
 {
-	margin-top: 10px;
-	margin-right: 30px;
+	margin-top: 20px;
+	margin-right: 10%;
 }
 /*----------------------------------------------页脚*/
 .footer
 {
 	position: relative;
 	width: 100%;
-	height: 300px;
+	height: 100px;
+	margin-left: 2%;
 }
 
 .footer-logo
 {
-	margin-top: 100px;
+	width: 100%;
 }
 
-.footer-SNS
-{
-	width: 200px;
-}
