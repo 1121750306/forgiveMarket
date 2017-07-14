@@ -31,6 +31,8 @@ router.post('/add', function(req, res, next) {
     console.log("province"+province+"="+city+"="+district+"="+address+"="+phone+"="+shname+"="+postcode);
     
     //uid 从session中获取
+    var uid=req.session.user._id;
+    console.log(uid);
     var obj={_id:guid(),uid:'10001',province:province,city:city,district:district,address:address,phone:phone,shname:shname,postcode:postcode,flag:0};
     locations.addLocation(obj,function(err,docs){
     	if(!err){
