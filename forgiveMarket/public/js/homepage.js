@@ -55,7 +55,15 @@ $(function(){
 		$(".activities").css("display","inline-block");
 		$(".communicate").css("display","none");
 	});
-	
+	/*--------------------------------------------热销*/
+	$(".hotgoods-nav-li").click(function(){
+		$(".hotgoods-nav-li").each(function(){
+			$(this).css("color","#CCD9BB")
+			$(this).css("border-bottom","0px")
+		})
+		$(this).css("color","#799656");
+		$(this).css("border-bottom","2px solid #799656")
+	})
 	
 });
 

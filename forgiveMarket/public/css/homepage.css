@@ -249,7 +249,7 @@ body
 {
 	position: absolute;
 	width: 100%;
-	margin-top:500px;
+	margin-top:480px;
 }
 .activities-past-img
 {
@@ -289,10 +289,33 @@ body
 
 .hotgoods-topline
 {
+	position: relative;
 	width: 99%;
+	padding-bottom: 20px;
 }
 
+.hotgoods-nav
+{
+	position: relative;
+	list-style: none;
+	height: 40px;
+	margin-left: -30px;
+}
 
+.hotgoods-nav-li
+{
+	position: relative;
+	display: inline-block;
+	color: #CCD9BB;
+	padding: 2px 6px;
+	margin: 0px 5px;
+}
+
+.hotgoods-nav-li1
+{
+	color: #799656;	
+	border-bottom: 2px solid #799656;
+}
 
 .hotgoodsimg
 {
@@ -303,7 +326,7 @@ body
 .hotgoods-title
 {
 	position: relative;
-	width: 150px;	
+	width: 150px;
 }
 
 .hotgoods-container-img
