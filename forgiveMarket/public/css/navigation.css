@@ -72,8 +72,8 @@
 	z-index: 10;
 }
 
-.nav .nav_modal .modal_content{
-	width: 70%;
+.nav .nav_modal .nav_modal_content{
+	width: 80%;
 	height: 100%;
 	background: rgba(5, 83, 33, 1);
 	position: absolute;
@@ -82,30 +82,100 @@
 	box-shadow: 0 0 20px 10px rgba(0,0,0,0.4)
 }
 
-.nav .nav_modal .modal_content h1{
-	width: 60%;
-	height: 60px;
-	padding-left: 10px;
-	line-height: 60px;
-	text-align: left;
-	background: white;
+.nav .nav_modal .nav_modal_content .nav_modal_title{
+	height: 45px;
+	padding: 10px 20px;
+	border-bottom: 1px solid white;
+	position: relative;
 }
 
-.nav .nav_modal .modal_content ul{
-	width: 100%;
-	height: 500px;
+.nav .nav_modal .nav_modal_content .nav_modal_title .nav_modal_logo{
+	width: 100px;
+	height: 25px;
+	background: url(../img/innisfreeIco/logo.png) 0 -25px no-repeat;
+	display: block;
+	background-size: 100px 50px;
+	float: left;
+}
+
+.nav .nav_modal .nav_modal_content .nav_modal_title h2{
+	margin-left: 10px;
+	float: left;
+	line-height: 30px;
+	color: white;
+}
+.nav .nav_modal .nav_modal_content .nav_modal_title .nav_modal_close{
+	width: 24px;
+	height: 24px;
+	border-radius: 12px;
+	background: white;
+	position: absolute;
+	top: 10px;
+	left: 105%;
+}
+
+.nav .nav_modal .nav_modal_content .nav_modal_title .nav_modal_close i{
+	width: 24px;
+	height: 24px;
+	background: url(../img/innisfreeIco/close.png) 4px 4px no-repeat;
+	display: block;
+	background-size: 16px 16px;
+}
+
+.nav .nav_modal .nav_modal_content .nav_modal_tab{
+	height: 40px;
 	list-style: none;
 	padding: 0;
 	margin: 0;
+	margin-top: 2px;
+}
+
+.nav .nav_modal .nav_modal_content .nav_modal_tab li{
+	width: 50%;
+	height: 40px;
+	font-size: 1.3rem;
+	line-height: 40px;
+	text-align: center;
+	background: white;
+	float: left;
+	color: rgba(5, 83, 33, 1);
+}
+
+.nav .nav_modal .nav_modal_content .nav_modal_tab li:nth-child(even){
+	color: white;
+	background: rgba(5, 83, 33, 1);
+}
+
+.nav .nav_modal .nav_modal_content .nav_modal_page{
+	width: 100%;
+	height: 500px;
 	background: white;
 }
 
-.nav .nav_modal .modal_content ul li{
+.nav .nav_modal .nav_modal_content .nav_modal_page:last-of-type{
+	display: none;
+}
+
+.nav .nav_modal .nav_modal_content .nav_modal_page ul{
+	width: 100%;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.nav .nav_modal .nav_modal_content .nav_modal_page li{
 	width: 50%;
 	height: 40px;
+	padding-left: 15px;
 	float: left;
-	border-bottom:1px yellowgreen solid;
-	border-right:1px yellowgreen solid;	
-	font-size: 1rem;
+	border-bottom:1px lightgrey solid;
+	border-right:1px lightgrey solid;	
+	font-size: 1.2rem;
+	line-height: 40px;
 }
+
+.nav .nav_modal .nav_modal_content .nav_modal_page li:nth-of-type(even){
+	border-right: none;
+}
+
 
