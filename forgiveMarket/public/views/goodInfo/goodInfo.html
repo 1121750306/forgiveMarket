@@ -4,11 +4,13 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 		<title></title>
+
 		<link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css" />
 		<script type="text/javascript" src="/jquery/dist/jquery.min.js"></script>
 		<script type="text/javascript" src="/bootstrap/dist/js/bootstrap.min.js"></script>
 		<link rel="stylesheet" href="/css/style.css" />
 		<style>
+
 			#main-ctr {
 				width: 100%;
 				margin: 0 auto;
@@ -74,13 +76,22 @@
 			}
 			
 			.choice-box {
-				background: rgba(236, 214, 214, 0.5);
+				background: rgba(236, 214, 214, 0.4);
 				width: 100%;
 				position: fixed;
-				bottom: 0;
-				height: 600px;
+				bottom: -500px;
+				height: 1600px;
+                display: none;
 			}
-			
+            #choice-bg{
+                width: 100%;
+                height: 2000px;
+                background: rgba(236, 214, 214, 0.5);
+                display: none;
+                position: absolute;
+                top:0;
+                left:0;
+            }
 			.choice-box .good-img {
 				width: 120px;
 				height: 120px;
@@ -162,9 +173,12 @@
 				width: 60px;
 				text-align: center;
 				line-height: 40px;
+                border: 0;
+                padding: 0;
+                outline: 0;
 			}
 			.choice-box .good-btn{
-				position: fixed;
+				position: absolute;
 				margin-left: -10px;
 				width: 100%;
 				bottom: 0;
@@ -222,6 +236,7 @@
 				<h5 class="right" style="font-size: 1.5rem;">￥55.0</h5>
 			</div>
 			<div class="choice-box">
+                <div id="choice-bg"></div>
 				<div class="choice-box-ct">
 					<div class="clearfix">
 						<div class="left">
@@ -229,7 +244,7 @@
 						</div>
 						<div class="right">
 							<h4>￥55.0</h4>
-							<h5>库存</h5>
+                            <h5>库存35件</h5>
 							<h5>选择分类</h5>
 						</div>
 					</div>
@@ -246,9 +261,10 @@
 					<div class="count clearfix">
 						<h5>购买数量</h5>
 						<div class="count-box">
-							<span class="count-ctr"><i class="sub"></i></span>
-							<span class="count-num">1</span>
-							<span class="count-ctr"><i class="add"></i></span>
+							<span class="count-ctr ctr-sub"><i class="sub"></i></span>
+							<!--<span class="count-num">1</span>-->
+                            <input type="text" class="count-num" value="1"  onkeyup="this.value=this.value.replace(/[^\d]/g,'') " onafterpaste="this.value=this.value.replace(/[^\d]/g,'') "/>
+							<span class="count-ctr ctr-add"><i class="add"></i></span>
 						</div>
 					</div>
 					<div class="good-btn">
@@ -260,5 +276,5 @@
 		</div>
 
 	</body>
-
+    <script type="text/javascript" src="../../js/goodInfo/goodInfo.js"></script>
 </html>

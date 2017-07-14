@@ -1,23 +1,29 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 		<meta charset="UTF-8">
 		<title></title>
 		<link rel="stylesheet" href="../css/homepage.css" />
+		<script type="text/javascript" src="/jquery/dist/jquery.js" ></script>
 		<script type="text/javascript" src="../js/homepage.js" ></script>
+		
 	</head>
 	<body>
 		
 		<div class="header">
-			<img class="headerimg headerimg-log" src="../img/innisfree矢量图标/目录.png"/>
+			<img class="headerimg headerimg-log" src="../img/innisfreeIco/目录.png"/>
 			<img class="headerimg innisfreelogo" src="../img/innisfree-img/ico_renewal01.jpg"/>
-			<img class="headerimg headerimg-car" src="../img/innisfree矢量图标/购物车.png"/>
-			<img class="headerimg headerimg-user" src="../img/innisfree矢量图标/用户.png"/>
+			<img class="headerimg headerimg-car" src="../img/innisfreeIco/购物车.png"/>
+			<img class="headerimg headerimg-user" src="../img/innisfreeIco/用户.png"/>
 		</div>
 	
 		<div class="search">
-			<img class="searchimg" src="../img/innisfree矢量图标/搜索.png"/>
+			<img class="searchimg" src="../img/innisfreeIco/搜索.png"/>
 			<input class="search-textbox" placeholder="搜索"/>
+			<img class="search-title" src="../img/innisfree-img/header_quick_bestseller.png" />
+			<img class="search-title" src="../img/innisfree-img/header_quick_mdsPick.png" />
+			<img class="search-title" src="../img/innisfree-img/header_quick_newPdt.png" />
 		</div>
 	
 		<div class="adturn">
@@ -28,6 +34,8 @@
 				<img class="adpicture" id="img4" src="../img/innisfree-img/19995348453240183mainBanner.jpg" />
 				<img class="adpicture" id="img5" src="../img/innisfree-img/20182211900450311mainBanner.jpg" />
 				<img class="adpicture" id="img6" src="../img/innisfree-img/20259766717450799mainBanner.jpg" />
+				<img class="adpicture" id="img1" src="../img/innisfree-img/12156756304939454mainBanner.jpg" />
+				
 			</div>
 			<ul class="adturnul">
 				<li class="adturnullist" id="l1"></li>
@@ -40,28 +48,82 @@
 		</div>
 		
 		<div class="newsturn" style="background-image: url(../img/innisfree-img/BG_nowhot.gif);">
-			<img class="newsturnl" src="../img/innisfree-img/btn_nowhotL.gif" />
-			<img class="newsturnr" src="../img/innisfree-img/btn_nowhotR.gif" />
 			<div class="newscontainer">
 				<a href="">123456789123456789001111</a>
+				<a href="">sdfsafasdfsfsfsfsfsfsfsf</a>
+				<a href="">123456789123456789001111</a>
+				<a href="">sdfsafasdfsfsfsfsfsfsfsf</a>
 			</div>
 		</div>
-		<img class="lnbtitle lnbtitle-info" src="../img/innisfree-img/lnbTitle_brand.gif" />
-		<img class="lnbtitle lnbtitle-act" src="../img/innisfree-img/lnbTitle_event.gif" />
-		<img class="lnbtitle lnbtitle-communicate" src="../img/innisfree-img/lnbTitle_community.gif"/>
+		
+		<div class="lnbtitlediv">
+			<img class="lnbtitle lnbtitle-info" src="../img/innisfree-img/lnbTitle_brand.gif" />
+			<img class="lnbtitle lnbtitle-act" src="../img/innisfree-img/lnbTitle_event.gif" />
+			<img class="lnbtitle lnbtitle-communicate" src="../img/innisfree-img/lnbTitle_community.gif"/>
+		</div>
+		
 		<div class="innisinformation">
 			<img class="innisinfoimg" src="../img/innisfree-img/brand.jpg" />
 		</div>
+	
 		<div class="activities">
 			<img class="acttitle acttitle-now" src="../img/innisfree-img/lnbEvent1_on.gif" />
 			<div class="activities-now">
-				<img class="activities-now-img" src="../img/innisfree-img/12159430822693222_banner.jpg"/>
-				<img class="activities-now-img" src="../img/innisfree-img/12159640231472820_banner.png" />
-				<img class="activities-now-img" src="../img/innisfree-img/9736707791896060_banner.jpg" />
+				<div>
+					<img class="activities-now-img" src="../img/innisfree-img/12159430822693222_banner.jpg"/>
+					<a href="" class="activities-now-text">火山岩泥专题活动<br /><img src="../img/innisfree-img/icon_eventType2.gif" /></a>
+					<a class="activities-now-time">活动期间 06-30 ~ 07-31</a>
+				</div>
+				<div>
+					<img class="activities-now-img" src="../img/innisfree-img/12159640231472820_banner.png" />
+					<a href="" class="activities-now-text">七月买赠档<br /><img src="../img/innisfree-img/icon_eventType2.gif" /></a>
+					<a class="activities-now-time">活动期间 06-30 ~ 07-31</a>
+				</div>
+				<div>
+					<img class="activities-now-img" src="../img/innisfree-img/9736707791896060_banner.jpg" />
+					<a href="" class="activities-now-text">夏日指甲大作战<br /><img src="../img/innisfree-img/icon_eventType2.gif" /></a>
+					<a class="activities-now-time">活动期间 06-30 ~ 07-31</a>
+				</div>
 			</div>
 			<img class="acttitle actitle-past" src="../img/innisfree-img/lnbEvent2_on.gif" />
-			<div class="activities-past"></div>
+			<div class="activities-past">
+				<img class="activities-past-img" src="../img/innisfree-img/10942843471598134_banner.png" />
+				<a href="" class="activities-past-text">一起玩转618<br /><img src="../img/innisfree-img/icon_eventType3.gif" /></a>
+				<a href="" style="position: relative; margin-top: 50px; margin-left: 100px; text-decoration: none; color:gray; font-size: 16px;">更多>></a>
+			</div>
 		</div>
-		<div class="hotgoods"></div>
+		
+		<div class="communicate"></div>
+		
+		<div class="hotgoods">
+			<img class="hotgoodsimg hotgoods-topline"src="../img/innisfree-img/top10_ttl_line.png" />
+			<img class="hotgoodsimg hotgoods-title" src="../img/innisfree-img/title_weekly10.gif"/>
+			<a href="" style="position: absolute; margin-top: 0px; margin-left: 150px; text-decoration: none; color:gray; font-size: 16px;">更多>></a>
+			<div class="hotgoods-container">
+				<img class="hotgoods-container-img" src="../img/innisfree-img/goods/1000000361_m.png" />
+				<img class="hotgoods-container-num" src="../img/innisfree-img/nowhot_no1.png"/>
+				<img class="hotgoods-container-img" src="../img/innisfree-img/goods/1000000721_m.png" />
+				<img class="hotgoods-container-num" src="../img/innisfree-img/nowhot_no2.png"/>
+				<img class="hotgoods-container-img" src="../img/innisfree-img/goods/1000000361_m.png" />
+				<img class="hotgoods-container-num" src="../img/innisfree-img/nowhot_no3.png"/>
+				<img class="hotgoods-container-img" src="../img/innisfree-img/goods/1000000721_m.png" />
+				<img class="hotgoods-container-num" src="../img/innisfree-img/nowhot_no4.png"/>
+				<img class="hotgoods-container-img" src="../img/innisfree-img/goods/1000000361_m.png" />
+				<img class="hotgoods-container-num" src="../img/innisfree-img/nowhot_no5.png"/>
+				<img class="hotgoods-container-img" src="../img/innisfree-img/goods/1000000721_m.png" />
+				<img class="hotgoods-container-num" src="../img/innisfree-img/nowhot_no6.png"/>
+				<img class="hotgoods-container-img" src="../img/innisfree-img/goods/1000000361_m.png" />
+				<img class="hotgoods-container-num" src="../img/innisfree-img/nowhot_no7.png"/>
+				<img class="hotgoods-container-img" src="../img/innisfree-img/goods/1000000721_m.png" />
+				<img class="hotgoods-container-num" src="../img/innisfree-img/nowhot_no8.png"/>
+			</div>
+			<img class="hotgoodsimg hotgoods-inni"src="../img/innisfree-img/inniPromo_20170330.jpg" />
+			<img class="hotgoodsimg hotgoods-121" src="../img/innisfree-img/12158751604990577mainBanner.png" />
+		</div> 
+		
+		<div class="footer">		
+			<img class="footer-logo" src="../img/innisfree-img/logo.png" />
+			<span></span>
+		</div>
 	</body>
 </html>
