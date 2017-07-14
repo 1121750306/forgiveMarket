@@ -14,16 +14,27 @@ function addLocation(obj,cb) {
 
 function getLocation(uid,cb){
 	var query=locationModel.find({uid:uid});
-	
-	query.exec(cb)
+	query.sort({flag:'desc'});
+	query.exec(cb);
 }
 function getLocationById(id,cb){
 	locationModel.findById(id,cb);
 
 }
+function updateFlag(id,cb){
+	locationModel.findById(id,function(err,doc){
+		if(!err){
+			doc.flag=0;
+			doc.save();
+		}else{
+			cb(err);
+		}
+	})
+}
 function updateLocation(obj,cb){
 	locationModel.findById(obj.id,function(err,doc){
 		if(!err){
+			doc.flag=obj.flag;
 			doc.uid=obj.uid;
 			doc.province=obj.province;
 			doc.city=obj.city;
@@ -36,12 +47,18 @@ function updateLocation(obj,cb){
 		}
 		else{
 			cb(err);
-		}
-		
+		}		
 	})
+}
+function deleteLocation(id,cb){
+	locationModel.findById(id,function(err,doc){
+		doc.remove(cb);
+	});
 }
 module.exports.initModel = initModel;
 module.exports.addLocation=addLocation;
 module.exports.getLocation=getLocation;
 module.exports.getLocationById=getLocationById;
 module.exports.updateLocation=updateLocation;
+module.exports.updateFlag=updateFlag;
+module.exports.deleteLocation=deleteLocation;
