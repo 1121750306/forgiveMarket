@@ -46,7 +46,6 @@ router.get('/getLocation', function(req, res, next){
 	 locations.getLocation('10001',function(err,docs){
 	 	if(!err){
     		console.log("location get");
-			console.log(docs);
 			res.send(docs);
     	}else{
     		console.log(err.message);
@@ -56,12 +55,7 @@ router.get('/getLocation', function(req, res, next){
 
 router.get('/updateinit/:id', function(req, res, next){
 	  var id=req.params.id;
-	 /* locations.getLocationById(id,function(err,doc){
-	  	console.log(doc);
-	   	res.send(doc);
-	  })*/
       res.send(id);
-	/* res.redirect("/location/updateWait/"+id);*/
 });
 router.get('/updateWait/:id', function(req, res, next){
 	  var id=req.params.id;
@@ -81,12 +75,33 @@ router.post('/update',function(req,res,next){
     var phone=req.body.phone;
     var shname=req.body.shname;
     var postcode=req.body.postcode;
-	console.log(flag);
 	var obj={id:_id,uid:uid,flag:flag,province:province,city:city,district:district,address:address,phone:phone,shname:shname,postcode:postcode};
 	locations.updateLocation(obj,function(err){
 		console.log(err);
 	});
+	locations.getLocation("10001",function(err,docs){
+		if(!err){
+			for (var i = 0; i < docs.length; i++) {			
+				 if(docs[i]._id!=_id){
+				 	locations.updateFlag(docs[i]._id,function(errs){
+				 		console.log(errs);
+				 	})
+				 }
+			}
+		}else{
+				console.log(err);
+		}
+	
+	})
 	res.render("locationManagers");
+});
+router.get('/delete/:id',function(req,res,next){
+	
+	var id=req.params.id;
+	console.log("sss"+id);
+	locations.deleteLocation(id,function(){
+		res.render("locationManagers");
+	});
 })
 module.exports = router;
 module.exports.callback = callback;

@@ -4,6 +4,7 @@ function initModel(models) {
 	userModel = models.user;
 }
 
+
 function addUser(_id, phone, password, cb) {
 
 	var userEntity = new userModel({

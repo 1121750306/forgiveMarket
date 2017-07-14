@@ -1,0 +1,211 @@
+*{
+	margin:0px;
+	padding:0px;
+}
+.title{
+	width: 100%;
+	height:40px;
+	position: fixed;
+	z-index:10;
+	top:0;
+	color: #000;
+	font-size:15px;
+	background-color:#fff ;
+	line-height: 40px;
+   background: url("../img/shback.png") 5px 7px no-repeat #fff;
+}
+.title .back{
+	width:20%;
+	height:100%;
+	float: left;
+	margin-left: 5%;
+	display: inline-block;
+}
+.back>a{
+	width: 100%;
+	height: 100%;
+	display: block;
+}
+.title .titlename{
+	width: 50%;
+	display: inline-block;
+	float: left;
+	text-align:center;
+}
+.modeBox{
+  width: 100%;
+  position:absolute;
+  top:40px;
+  height:95%;
+  background:#f3f0f0;
+  display: block;
+}
+#province{
+	list-style: none;
+	display: block;
+}
+#province li{
+	width: 100%;
+	height:40px;
+	background: #f3f0f0;
+	border-bottom: 1px solid #888;
+	color:#000;
+	font-size:14px;
+	text-indent: 10px;
+	line-height: 40px;
+}
+#city{
+	list-style: none;
+	display: none;
+}
+#city li{
+	width: 100%;
+	height:40px;
+	background: #f3f0f0;
+	border-bottom: 1px solid #888;
+	color:#000;
+	font-size:14px;
+	text-indent: 10px;
+	line-height: 40px;
+}
+#city li.choice{
+	background: #c7baa7;
+}
+#area{
+	list-style: none;
+	display: none;
+}
+#area li{
+	width: 100%;
+	height:40px;
+	background: #f3f0f0;
+	border-bottom: 1px solid #888;
+	color:#000;
+	font-size:14px;
+	text-indent: 10px;
+	line-height: 40px;
+}
+#area li.choicecity{
+	background: #c7baa7;
+}
+#area li.choicearea{
+	background: #d4d1cc;
+}
+.formBox{
+	position: absolute;
+	top:40px;
+	width: 100%;
+	height: 94%;
+	background: #f3f0f0;
+	display: none;
+}
+.formBox form{
+	width: 100%;
+	height: 100%;
+}
+.formBox form ul{
+	list-style: none;
+	display: block;
+}
+.formBox ul li{
+	height:42px;
+	width: 100%;
+	background-color: #f3f0f0;
+	line-height: 50px;
+	border-bottom: 1px solid #888;
+	background: url("../img/shgai.png") no-repeat 94% 50%;
+	
+}
+.formBox ul li input{
+	height:30px;
+	border:none;
+	outline: none;
+	background: #f3f0f0;
+	font-size: 14px;
+	text-indent:10px;
+}
+.formBox ul li .dd{
+	margin-left: -3px;
+	display: inline-block;
+	width: 20%;
+}
+.formBox ul li.tijiao{
+	position: absolute;
+    bottom: 0px;
+   
+
+}
+.formBox ul li.tijiao input{
+	 background: orangered;
+	 width: 100%;
+	 height: 100%;
+	 color: #fff;
+	 font-size: 14px;
+}
+.formBox ul li.default{
+	background: #f3f0f0;
+}
+.formBox ul li span{
+	display: inline-block;
+	width: 20%;
+	height:100%;
+	float: left;
+	font-size: 14px;
+	text-align: center;
+	line-height: 40px;
+}
+.formBox ul li .check{
+	border:1px solid #888;
+	display: inline-block;
+	width: 15%;
+	height:65%;
+	margin-top: 1.5%;
+	background: #fff;
+	border-radius:15px;
+	margin-right: 4%;
+	float: right;
+	position: relative;
+}
+input[type=checkbox]{
+	visibility: hidden;
+}
+.formBox ul li .check label{
+	display: block;
+	position: absolute;
+	width: 28px;
+	height: 28px;
+	background: #fff;
+	box-shadow: 1px 1px 1px 0px #000;
+	transition: all .5s ease;
+	border-radius: 50%;
+	top:0px;
+	z-index: 2;
+}
+.check input[type=checkbox]:checked + label{
+	left: 50%;
+	background: green;
+}
+.formBox ul li.default a{
+	display: block;
+	width: 100%;
+	height: 100%;
+	text-decoration: none;
+	color:red;
+	text-indent: 10px;
+}
+.float-pop{
+	display: none;
+	background: rgba(0,0,0,0.5);
+	color: white;
+	top: 350px;
+	left:50px;
+	width: 80%;
+	height: 70px;
+    border-radius: .21333rem;
+    z-index: 9999;
+    position: absolute;
+    text-align: center;
+    line-height: 70px;
+    font-size: inherit;
+    
+}

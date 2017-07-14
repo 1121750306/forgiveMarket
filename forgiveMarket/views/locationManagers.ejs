@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<title>管理收货地址</title>
+		<link rel="stylesheet" href="/css/locationManagers.css" />
+	</head>
+
+	<body>
+
+		<div class="title">
+			<span class="back"><a href="/location"></a></span>
+			<span class="titlename">管理收货地址</span>
+			<div class="clear">
+			</div>
+		</div>
+		<div class="addresscontain">		
+		</div>
+
+		<div class="addbtn">
+			<a href="/location/addinit">新增收货地址</a>
+
+		</div>
+
+		<script type="text/javascript" src="/jquery/dist/jquery.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				$.ajax({
+					type: "get",
+					url: "/location/getLocation",
+					async: true,
+					success: function(data) {
+						console.log("ssss"+data);
+					   for(var i=0;i<data.length;i++){
+					   	  $(".addresscontain").append(
+					   	  	"<div class='addressitem'>"+
+					   	  	  "<input type='hidden' value='"+data[i]._id+"'/>"+
+					   	  	  "<p class='infoline'>"+
+					   	  	     "<span class='consignee'>收货人:"+
+					   	  	          data[i].shname+
+					   	  	      "</span>"+
+					   	  	       "<span class='consigneetel'>电话:"+
+					   	  	          data[i].phone+
+					   	  	      "</span>"+
+					   	  	    "</p>"+
+					   	  	    "<p class='consigneeaddress'>收货地址:"+
+					   	  	          data[i].province+" "+data[i].city+" "+data[i].district+" "+data[i].address+
+					   	  	    "</p>"+
+					   	  	   "</div>" 
+					   	  );
+					   }
+					}
+				});
+				
+				$(".addresscontain").on('click','.addressitem',function(){
+					var id=$(this).find("input").val();
+					$.ajax({
+						type:"get",
+						url:"/location/updateinit/"+id,
+						async:true,
+						success:function(data){
+							console.log(data);
+							location.href="/location/updateWait/"+id;
+						}
+					});
+				
+				})
+			});
+			
+			
+		</script>
+	</body>
+
+</html>

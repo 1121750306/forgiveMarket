@@ -1,9 +1,16 @@
 body {
 	padding: 0;
 	margin: 0;
-  	font: 60px "microsoft yahei",'宋体',tahoma,arial;
+	font: 60px "microsoft yahei", '宋体', tahoma, arial;
 }
 
 a {
-  color: #000;
+	color: #000;
+	text-decoration: none;
+}
+
+a:active,
+a:focus,
+a:link {
+	text-decoration: none;
 }

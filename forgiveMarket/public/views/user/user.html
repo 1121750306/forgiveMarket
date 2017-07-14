@@ -8,30 +8,89 @@
 		<link rel="stylesheet" href="../../css/style.css" />
 		<link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.css" />
 		<link rel="stylesheet" href="../../css/user/user.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/navigation.css" />
+
 		<script src="/jquery/dist/jquery.js"></script>
 		<script src="../../js/user/user.js"></script>
+		<script src="../../js/navigation.js" type="text/javascript" charset="utf-8"></script>
 	</head>
 
 	<body>
-		<header></header>
+		<div class="nav">
+			<span class="nav_menu"></span>
+			<a href="#" class="nav_logo"></a>
+			<span class="nav_user"></span>
+			<span class="nav_cart">
+				<p class="nav_cartnum">0</p>
+			</span>
+		</div>
 		<div id="user_info">
 			<div id="login">
-				<div id="user_photo">
-					<img src="../../img/innisfreeIco/avatar.png" />
-				</div>
-				<div id="user_info_content">
-					<h2 id="username">18377709263</h2>
-					<span id="message"><i></i>未读消息 0条</span>
-					<span id="balance">余额：￥20.0</span>
-					<p id="vip">只要再消费600元， 下个月即可升级为 VIP。</p>
-				</div>
-
+				<a href="userinfo.html">
+					<div id="user_photo">
+						<img src="../../img/innisfreeIco/avatar.png" />
+					</div>
+					<div id="user_info_content">
+						<h2 id="username">18377709263</h2>
+						<span id="message"><i></i>未读消息 0条</span>
+						<span id="balance">余额：￥20.0</span>
+						<p id="vip">只要再消费600元， 下个月即可升级为 VIP。</p>
+					</div>
+				</a>
 			</div>
 			<div id="unlogin">
 				<a href="login.html">请登录</a>
 			</div>
 		</div>
-		<div id="user_"></div>
+		<div id="user_function">
+			<ul>
+				<li id="order">
+					<a href="#"><span>我的订单</span></a>
+					<div>
+						<ul class="clearfix">
+							<li id="unpay">
+								<a href="#">未付款</a>
+								<span>99+</span>
+							</li>
+							<li id="paid">
+								<a href="#">已付款</a>
+								<span>0</span>
+							</li>
+							<li id="send">
+								<a href="#">已发货</a>
+								<span>0</span>
+							</li>
+							<li id="accept">
+								<a href="#">已收货</a>
+								<span>0</span>
+							</li>
+							<li id="finish">
+								<a href="#">已完成</a>
+								<span>0</span>
+							</li>
+						</ul>
+					</div>
+				</li>
+				<li id="look">
+					<a href="#"><span>浏览记录</span></a>
+				</li>
+				<li id="collect">
+					<a href="#"><span>我的收藏</span></a>
+				</li>
+				<li id="location">
+					<a href="#"><span>收货地址</span></a>
+				</li>
+				<li id="after">
+					<a href="#"><span>售后服务</span></a>
+				</li>
+				<li id="forget">
+					<a href="#"><span>忘记密码</span></a>
+				</li>
+				<li id="logout">
+					<a href="#"><span>退出</span></a>
+				</li>
+			</ul>
+		</div>
 	</body>
 
 </html>
