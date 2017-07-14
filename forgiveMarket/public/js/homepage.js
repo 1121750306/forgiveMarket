@@ -8,7 +8,7 @@ $(function(){
 	function showImg()
 	{
 		i = i+1;
-		_left = i*(-405)+"px";
+		_left = i*(-410)+"px";
 		$(".adcontainer").animate({left: _left},1500,function(){
 			if(parseInt($(".adcontainer").css("left")) < -2025)
 			{

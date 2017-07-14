@@ -22,25 +22,25 @@ body
 .headerimg-log 
 {
 	margin-top: 30px;
-	margin-left: 20px;
+	margin-left: 8%;
 }
 
 .innisfreelogo 
 {
 	height: 60px;
-	margin-left: 150px;
+	margin-left: 36%;
 }
 
 .headerimg-car 
 {
 	margin-top: 30px;
-	margin-left: 330px;
+	margin-left: 78%;
 }
 
 .headerimg-user 
 {
 	margin-top: 30px;
-	margin-left: 370px;
+	margin-left: 88%;
 }
 
 /*--------------------------------------------搜索栏*/
@@ -60,7 +60,7 @@ body
 	position: absolute;
 	width: 30px;
 	height: 30px;
-	margin-left: 20px;
+	margin-left: 5%;
 	margin-top: 10px;
 }
 .search-textbox
@@ -78,7 +78,7 @@ body
 {
 	position: relative;
 	margin-top: 58px;
-	margin-left: 35px;
+	margin-left: 8%;
 }
 /*------------------------------------------广告轮播图*/
 .adturn
@@ -86,7 +86,7 @@ body
 	position: relative;
 	width: 100%;
 	height: 250px;
-	margin: 10px auto;
+	margin-left: 1%;
 	overflow: hidden;
 }
 
@@ -99,7 +99,8 @@ body
 .adpicture
 {
 	display: inline-block;
-	height: 240px;
+	height: 245px;
+	
 }
 
 .adturnul
@@ -153,27 +154,26 @@ body
 {
 	position: relative;
 	width: 100%;
-	height: 43px;
-	overflow-x: hidden;
+	height: 45px;
 }
 .lnbtitle
 {
 	position: absolute;
-	width: 150px;
+	width: 34%;
 	margin-top: 5px;
 }
 
 .lnbtitle-info
 {
-	margin-left: 0px;
+	margin-left: 0%;
 }
 .lnbtitle-act
 {
-	margin-left: 130px;
+	margin-left: 33%;
 }
 .lnbtitle-communicate
 {
-	margin-left: 270px;
+	margin-left: 66%;
 }
 /*-------------------------------------------品牌介绍*/
 .innisinformation
@@ -284,7 +284,7 @@ body
 {
 	position: relative;
 	width: 100%;
-	height: 600px;
+	height: 1200px;
 }
 
 .hotgoods-topline
@@ -299,7 +299,7 @@ body
 	position: relative;
 	list-style: none;
 	height: 40px;
-	margin-left: -30px;
+	margin-left: 0px;
 }
 
 .hotgoods-nav-li
@@ -320,19 +320,25 @@ body
 .hotgoodsimg
 {
 	position: relative;
-	width: 605px;
+	width: 160%;
 }
 
 .hotgoods-title
 {
 	position: relative;
-	width: 150px;
+	width: 40%;
+	margin-left: 5%;
+	margin-bottom: 10px;
+}
+.hotgoods-container
+{
+	margin-left: 8%;
 }
 
 .hotgoods-container-img
 {
 	position: relative;
-	width: 80px;
+	width: 20%;
 	margin: 10px 5px;
 }
 .hotgoods-container-num
@@ -341,6 +347,49 @@ body
 	width: 30px;
 	margin-top: 0px;
 	margin-left: -80px;
+}
+
+.hotgoods-inni
+{
+	margin-bottom: 20px;
+}
+
+/*--------------------------------------------公益邮箱*/
+.quickdiv
+{
+	position: relative;
+	height: 150px;
+}
+.hotgoods-quick
+{
+	width: 120px;
+	margin: 10px 20px;
+}
+
+.hotgoods-quick2
+{
+	width: 90px;
+}
+
+.hotgoods-quick1,.hotgoods-quick3,.hotgoods-righttitle1,.hotgoods-righttitle3
+{
+	float: left;
+}
+.hotgoods-quick2,.hotgoods-quick4,.hotgoods-righttitle2,.hotgoods-righttitle4
+{
+	float: right;
+}
+
+.hotgoods-righttitle1,.hotgoods-righttitle3
+{
+	margin-top: 10px;
+	margin-left: 30px;
+}
+
+.hotgoods-righttitle2,.hotgoods-righttitle4
+{
+	margin-top: 10px;
+	margin-right: 30px;
 }
 /*----------------------------------------------页脚*/
 .footer
