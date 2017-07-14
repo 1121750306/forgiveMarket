@@ -132,11 +132,11 @@
 .formBox ul li.tijiao{
 	position: fixed;
     bottom: 0px;
-   left:0px;
+    left:0px;
 
 }
 .formBox ul li.tijiao input{
-	 background: orangered;
+	 background: darkgreen;
 	 width: 100%;
 	 height: 100%;
 	 color: #fff;
