@@ -138,17 +138,9 @@ $(function(){
 		/*--------------------------popdiv*/
 		else if (scrollh > 1600 && scrollh <1650)
 		{
-			$(".popdiv").slideDown();
-			window.onmousewheel = function()
-			{
-				return false;
-			}
+			$(".popdiv").slideDown();		
 			$(".popdiv-close").click(function(){
 				$(".popdiv").slideUp();
-				window.onmousewheel = function()
-				{
-					return true;
-				}
 			})
 		}
 	

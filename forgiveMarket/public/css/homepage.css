@@ -329,7 +329,7 @@ body
 .hotgoodsimg
 {
 	position: relative;
-	width: 160%;
+	width: 150%;
 }
 
 .hotgoods-title
@@ -339,10 +339,7 @@ body
 	margin-left: 5%;
 	margin-bottom: 10px;
 }
-.hotgoods-container
-{
-	margin-left: 8%;
-}
+
 
 .hotgoods-container-img
 {
