@@ -9,8 +9,8 @@ function callback(models) {
 
 //购物车
 router.get('/', function(req, res, next) {
-	console.log("router get");
-  	res.render("shoppingcart");
+	console.log("cart router get");
+  	res.render("order/shoppingcart");
 });
 
 module.exports = router;

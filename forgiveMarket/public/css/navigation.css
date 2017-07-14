@@ -1,0 +1,58 @@
+.nav{
+	height: 50px;
+	padding: 10px;
+	position: relative;
+}
+
+.nav .nav_logo{
+	width: 120px;
+	height: 30px;
+	background: url(../img/innisfreeIco/logo.png) 0 0 no-repeat;
+	display: block;
+	background-size: 120px 60px;
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.nav .nav_menu{
+	width: 30px;
+	height: 30px;
+	background: url(../img/innisfreeIco/menu.png) 50% 50% no-repeat;
+	background-size: 25px 25px;
+	display: block;
+	float: left;
+}
+
+.nav .nav_user{
+	width: 30px;
+	height: 30px;
+	background: url(../img/innisfreeIco/user.png) 50% 50% no-repeat;
+	background-size: 25px 25px;
+	float: right;
+}
+
+.nav .nav_cart{
+	width: 30px;
+	height: 30px;
+	background: url(../img/innisfreeIco/cart.png) 50% 50% no-repeat;
+	background-size: 25px 25px;
+	float: right;
+	margin-right: 10px;
+	position: relative;
+}
+
+.nav .nav_cart .nav_cartnum{
+	width: 20px;
+	height: 12px;
+	border-radius: 6px;
+	background:  rgba(5, 83, 33, 1);
+	font-size: 1rem;
+	color: white;
+	text-align: center;
+	line-height: 12px;
+	position: absolute;
+	right: -6px;
+	top: 1px;
+}
+
