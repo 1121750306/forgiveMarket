@@ -3,72 +3,32 @@ body
 	overflow-x: hidden;
 }
 /*------------------------------------------头部*/
-.header 
-{
-	position: relative;
-	width: 100%;
-	height: 60px;
-	line-height: 120px;
-	background-color: white;
-}
-
-.headerimg
-{
-	position: absolute;
-	height: 30px;
-	margin: 10px 10px;
-}
-
-.headerimg-log 
-{
-	margin-top: 30px;
-	margin-left: 20px;
-}
-
-.innisfreelogo 
-{
-	height: 60px;
-	margin-left: 150px;
-}
-
-.headerimg-car 
-{
-	margin-top: 30px;
-	margin-left: 330px;
-}
-
-.headerimg-user 
-{
-	margin-top: 30px;
-	margin-left: 370px;
-}
 
 /*--------------------------------------------搜索栏*/
 .search 
 {
 	position: relative;
 	margin: 30px auto;
-	width: 98%;
-	height: 50px;
+	width: 100%;
+	height: 40px;
 	border: 2px solid #ACBD93;
 	border-radius: 10px;
-	background-color: whitesmoke;
 }
 
 .searchimg
 {
 	position: absolute;
-	width: 30px;
-	height: 30px;
-	margin-left: 20px;
-	margin-top: 10px;
+	width: 20px;
+	height: 20px;
+	margin-left: 5%;
+	margin-top: 5px;
 }
 .search-textbox
 {
 	position: absolute;
 	margin-left: 60px;
-	margin-top: 10px;
-	font-size: 20px;
+	margin-top: 0px;
+	font-size: 15px;
 	width: 80%;
 	height: 30px;
 	border: none;
@@ -78,7 +38,7 @@ body
 {
 	position: relative;
 	margin-top: 58px;
-	margin-left: 35px;
+	margin-left: 8%;
 }
 /*------------------------------------------广告轮播图*/
 .adturn
@@ -86,7 +46,7 @@ body
 	position: relative;
 	width: 100%;
 	height: 250px;
-	margin: 10px auto;
+	margin-top: 50px;
 	overflow: hidden;
 }
 
@@ -99,7 +59,8 @@ body
 .adpicture
 {
 	display: inline-block;
-	height: 240px;
+	height: 245px;
+	
 }
 
 .adturnul
@@ -153,27 +114,26 @@ body
 {
 	position: relative;
 	width: 100%;
-	height: 43px;
-	overflow-x: hidden;
+	height: 45px;
 }
 .lnbtitle
 {
 	position: absolute;
-	width: 150px;
+	width: 34%;
 	margin-top: 5px;
 }
 
 .lnbtitle-info
 {
-	margin-left: 0px;
+	margin-left: 0%;
 }
 .lnbtitle-act
 {
-	margin-left: 130px;
+	margin-left: 33%;
 }
 .lnbtitle-communicate
 {
-	margin-left: 270px;
+	margin-left: 66%;
 }
 /*-------------------------------------------品牌介绍*/
 .innisinformation
@@ -188,6 +148,16 @@ body
 	position: absolute;
 	width: 100%;
 }
+
+.yezi
+{
+	position: absolute;
+	width: 8%;
+	z-index: 999;
+	margin-top: 640px;
+	margin-left: 45%;
+	display: none;
+}
 /*---------------------------------------------活动*/
 .activities
 {
@@ -197,6 +167,7 @@ body
 	display: none;
 	font-size: 10px;
 	background-color: white;
+	margin-left: 2%;
 }
 
 .acttitle
@@ -249,7 +220,7 @@ body
 {
 	position: absolute;
 	width: 100%;
-	margin-top:500px;
+	margin-top:480px;
 }
 .activities-past-img
 {
@@ -284,32 +255,57 @@ body
 {
 	position: relative;
 	width: 100%;
-	height: 600px;
+	height: 1150px;
 }
 
 .hotgoods-topline
 {
-	width: 99%;
+	position: relative;
+	width: 100%;
+	padding-bottom: 20px;
 }
 
+.hotgoods-nav
+{
+	position: relative;
+	list-style: none;
+	height: 40px;
+}
 
+.hotgoods-nav-li
+{
+	position: relative;
+	display: inline-block;
+	color: #CCD9BB;
+	padding: 2px 6px;
+	margin: 0px 5px;
+}
+
+.hotgoods-nav-li1
+{
+	color: #799656;	
+	border-bottom: 2px solid #799656;
+}
 
 .hotgoodsimg
 {
 	position: relative;
-	width: 605px;
+	width: 150%;
 }
 
 .hotgoods-title
 {
 	position: relative;
-	width: 150px;	
+	width: 40%;
+	margin-left: 5%;
+	margin-bottom: 10px;
 }
+
 
 .hotgoods-container-img
 {
 	position: relative;
-	width: 80px;
+	width: 20%;
 	margin: 10px 5px;
 }
 .hotgoods-container-num
@@ -319,20 +315,100 @@ body
 	margin-top: 0px;
 	margin-left: -80px;
 }
+
+.hotgoods-inni
+{
+	margin-bottom: 20px;
+}
+
+.popdiv
+{
+	position: fixed;
+	background-color: rgba(0,0,0,0.8);
+	top: 0px;
+	height: 100%;
+	width: 100%;
+	z-index: 9999;
+	display: none;
+}
+
+.popdiv-ad
+{
+	position: absolute;
+	margin-left: 10%;
+	margin-top: 200px;
+	width: 80%;
+}
+
+.popdiv-close
+{
+	position: absolute;
+	margin-top: 200px;
+	margin-left:75%;
+}
+/*--------------------------------------------公益邮箱*/
+.quickdivcontainer
+{
+	position: relative;
+	margin-top: 0px;
+	background-color: white;
+	
+}
+.quickdiv
+{
+	position: relative;
+	height: 150px;
+}
+.hotgoods-quick
+{
+	width: 120px;
+	margin: 10px 20px;
+}
+
+.hotgoods-quick2
+{
+	width: 100px;
+}
+
+.hotgoods-quick1,.hotgoods-quick3,.hotgoods-righttitle1,.hotgoods-righttitle3
+{
+	float: left;
+}
+.hotgoods-quick2,.hotgoods-quick4,.hotgoods-righttitle2,.hotgoods-righttitle4
+{
+	float: right;
+}
+.hotgoods-quick1,.hotgoods-quick3
+{
+	margin-left: 10%;
+}
+
+.hotgoods-quick2,.hotgoods-quick4
+{
+	margin-right: 10%;
+}
+.hotgoods-righttitle1,.hotgoods-righttitle3
+{
+	margin-top: 20px;
+	margin-left: 10%;
+}
+
+.hotgoods-righttitle2,.hotgoods-righttitle4
+{
+	margin-top: 20px;
+	margin-right: 10%;
+}
 /*----------------------------------------------页脚*/
 .footer
 {
 	position: relative;
 	width: 100%;
-	height: 300px;
+	height: 100px;
+	margin-left: 2%;
 }
 
 .footer-logo
 {
-	margin-top: 100px;
+	width: 100%;
 }
 
-.footer-SNS
-{
-	width: 200px;
-}

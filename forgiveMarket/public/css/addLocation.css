@@ -18,11 +18,16 @@
 	width:20%;
 	height:100%;
 	float: left;
-	margin-left: -10%;
+	margin-left: 5%;
 	display: inline-block;
 }
+.back>a{
+	width: 100%;
+	height: 100%;
+	display: block;
+}
 .title .titlename{
-	width: 80%;
+	width: 50%;
 	display: inline-block;
 	float: left;
 	text-align:center;
@@ -125,13 +130,13 @@
 	width: 20%;
 }
 .formBox ul li.tijiao{
-	position: absolute;
+	position: fixed;
     bottom: 0px;
-   
+    left:0px;
 
 }
 .formBox ul li.tijiao input{
-	 background: orangered;
+	 background: darkgreen;
 	 width: 100%;
 	 height: 100%;
 	 color: #fff;
@@ -187,4 +192,70 @@ input[type=checkbox]{
 	text-decoration: none;
 	color:red;
 	text-indent: 10px;
+}
+.formBox .confimBox{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top:0px;
+	left: 0px;
+	z-index: 3;
+	background: rgba(0,0,0,.4);
+	display: none;
+}
+.formBox .confimBox  .c_box{
+	position: fixed;
+	bottom: -100px;
+	width: 100%;
+	height: 100px;
+	background: #fff;
+}
+.formBox .confimBox  .c_box p:nth-child(1){
+	width: 100%;
+	height: 40%;
+	color:#8C8C8C;
+	font-size: 14px;
+	text-align: center;
+	line-height: 40px;
+	border-bottom: 1px solid #888;
+}
+.formBox .confimBox  .c_box p:nth-child(2){
+	width: 100%;
+	height: 28%;
+	border-bottom: 5px solid #b3acac;
+}
+.formBox .confimBox  .c_box p:nth-child(2) a{
+	display: block;
+	width: 100%;
+	height: 100%;
+	text-decoration: none;
+	color:red;
+	font-size: 16px;
+	text-align: center;
+	line-height: 28px;
+	cursor:pointer
+}
+.formBox .confimBox  .c_box p:nth-child(3){
+	width: 100%;
+	height: 26%;
+	text-align: center;
+	line-height: 26px;
+	cursor:pointer;
+}
+
+.float-pop{
+	display: none;
+	background: rgba(0,0,0,0.5);
+	color: white;
+	top: 350px;
+	left:50px;
+	width: 80%;
+	height: 70px;
+    border-radius: .21333rem;
+    z-index: 9999;
+    position: absolute;
+    text-align: center;
+    line-height: 70px;
+    font-size: inherit;
+    
 }

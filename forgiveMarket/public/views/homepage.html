@@ -5,21 +5,30 @@
 		<meta charset="UTF-8">
 		<title></title>
 		<link rel="stylesheet" href="../css/homepage.css" />
+		<link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.css" />
 		<script type="text/javascript" src="/jquery/dist/jquery.js" ></script>
 		<script type="text/javascript" src="../js/homepage.js" ></script>
-		
+		<script type="text/javascript" src="/bootstrap/dist/js/bootstrap.js" ></script>
+		<link rel="stylesheet" type="text/css" href="/css/navigation.css"/>
+		<script src="/js/navigation.js" type="text/javascript" charset="utf-8"></script>
 	</head>
 	<body>
 		
-		<div class="header">
-			<img class="headerimg headerimg-log" src="../img/innisfreeIco/目录.png"/>
-			<img class="headerimg innisfreelogo" src="../img/innisfree-img/ico_renewal01.jpg"/>
-			<img class="headerimg headerimg-car" src="../img/innisfreeIco/购物车.png"/>
-			<img class="headerimg headerimg-user" src="../img/innisfreeIco/用户.png"/>
+		<div class="nav">
+			<span class="nav_menu"></span>
+			<a href="/views/homepage.html" class="nav_logo"></a>
+			<a href="/views/user/user.html" class="nav_user"></a>
+			<a href="/order" class="nav_cart">
+				<p class="nav_cartnum">0</p>
+			</a>
+			
+			<div class="nav_type">
+				
+			</div>
 		</div>
 	
-		<div class="search">
-			<img class="searchimg" src="../img/innisfreeIco/搜索.png"/>
+		<div id="search" class="search">
+			<img class="searchimg" src="../img/innisfreeIco/search.png"/>
 			<input class="search-textbox" placeholder="搜索"/>
 			<img class="search-title" src="../img/innisfree-img/header_quick_bestseller.png" />
 			<img class="search-title" src="../img/innisfree-img/header_quick_mdsPick.png" />
@@ -49,10 +58,10 @@
 		
 		<div class="newsturn" style="background-image: url(../img/innisfree-img/BG_nowhot.gif);">
 			<div class="newscontainer">
-				<a href="">123456789123456789001111</a>
+				<a href="">恭喜182******66获得男士护肤一套</a>
 				<a href="">sdfsafasdfsfsfsfsfsfsfsf</a>
 				<a href="">123456789123456789001111</a>
-				<a href="">sdfsafasdfsfsfsfsfsfsfsf</a>
+				<a href="">sdfsafasdfsfs</a>
 			</div>
 		</div>
 		
@@ -63,6 +72,7 @@
 		</div>
 		
 		<div class="innisinformation">
+			<img class="yezi" src="../img/innisfree-img/叶子.png" />
 			<img class="innisinfoimg" src="../img/innisfree-img/brand.jpg" />
 		</div>
 	
@@ -96,9 +106,15 @@
 		<div class="communicate"></div>
 		
 		<div class="hotgoods">
-			<img class="hotgoodsimg hotgoods-topline"src="../img/innisfree-img/top10_ttl_line.png" />
-			<img class="hotgoodsimg hotgoods-title" src="../img/innisfree-img/title_weekly10.gif"/>
-			<a href="" style="position: absolute; margin-top: 0px; margin-left: 150px; text-decoration: none; color:gray; font-size: 16px;">更多>></a>
+			<img class="hotgoods-topline"src="../img/innisfree-img/top10_ttl_line.png" />
+			<img class="hotgoods-title" src="../img/innisfree-img/title_weekly10.gif"/>
+			<!--<a href="" style="position: absolute; margin-top: 0px; margin-left: 150px; text-decoration: none; color:gray; font-size: 16px;">更多>></a>-->
+			<ul class="hotgoods-nav">
+				<li class="hotgoods-nav-li hotgoods-nav-li1">全部</li>
+				<li class="hotgoods-nav-li">护理系列</li>
+				<li class="hotgoods-nav-li">妆品系列</li>
+				<li class="hotgoods-nav-li">男士系列</li>
+			</ul>
 			<div class="hotgoods-container">
 				<img class="hotgoods-container-img" src="../img/innisfree-img/goods/1000000361_m.png" />
 				<img class="hotgoods-container-num" src="../img/innisfree-img/nowhot_no1.png"/>
@@ -118,12 +134,45 @@
 				<img class="hotgoods-container-num" src="../img/innisfree-img/nowhot_no8.png"/>
 			</div>
 			<img class="hotgoodsimg hotgoods-inni"src="../img/innisfree-img/inniPromo_20170330.jpg" />
-			<img class="hotgoodsimg hotgoods-121" src="../img/innisfree-img/12158751604990577mainBanner.png" />
+			<img class="hotgoods-topline"src="../img/innisfree-img/top10_ttl_line.png" />
+			<div class="popdiv">
+				<img class="popdiv-ad" src="../img/innisfree-img/pop_login_coupon.png" />
+				<img class="popdiv-close" src="../img/innisfree-img/btn_close_quickShopping.png" />
+			</div>
+			<div class="quickdivcontainer">
+				<div class="quickdiv">
+					<img class="hotgoods-quick hotgoods-quick1" src="../img/innisfree-img/BG_mainQuick1.gif" />
+					<img class="hotgoods-righttitle hotgoods-righttitle1" src="../img/innisfree-img/title_mainQuick1.gif" />
+					<img class="hotgoods-righttitle hotgoods-righttitle1" src="../img/innisfree-img/desc_mainQuick1.gif" />
+				</div>
+				<div  class="quickdiv">
+					<img class="hotgoods-quick hotgoods-quick2" src="../img/innisfree-img/BG_mainQuick2.gif" />
+					<img class="hotgoods-righttitle hotgoods-righttitle2" src="../img/innisfree-img/title_mainQuick2.gif" />
+					<img class="hotgoods-righttitle hotgoods-righttitle2" src="../img/innisfree-img/desc_mainQuick2.gif" />
+					
+				</div>
+				<div  class="quickdiv">
+					<img class="hotgoods-quick hotgoods-quick3" src="../img/innisfree-img/BG_mainQuick3.gif" />
+					<img class="hotgoods-righttitle hotgoods-righttitle3" src="../img/innisfree-img/title_mainQuick3.gif" />
+					<img class="hotgoods-righttitle hotgoods-righttitle3" src="../img/innisfree-img/desc_mainQuick3.gif" />
+				</div>
+				<div  class="quickdiv">
+				<img class="hotgoods-quick hotgoods-quick4" src="../img/innisfree-img/BG_subscribe.gif" />
+				<img class="hotgoods-righttitle hotgoods-righttitle4" src="../img/innisfree-img/title_mainQuick4.gif" />
+				<img class="hotgoods-righttitle hotgoods-righttitle4" src="../img/innisfree-img/desc_mainQuick4.gif" />
+			</div>
+			</div>
+			<img class="hotgoods-topline"src="../img/innisfree-img/top10_ttl_line.png" />
 		</div> 
-		
+	    
+	    <div class="backtotop">
+	    	<img style="position: fixed; width: 10%; bottom:60px; margin-left: 85%; z-index: 1111;" src="../img/innisfree矢量图标/向上.png" />
+	    </div>
+	    
 		<div class="footer">		
-			<img class="footer-logo" src="../img/innisfree-img/logo.png" />
-			<span></span>
+			<img class="footer-logo" src="../img/innisfree-img/BG_footer_170705_2.jpg" />
 		</div>
+		
+		
 	</body>
 </html>
