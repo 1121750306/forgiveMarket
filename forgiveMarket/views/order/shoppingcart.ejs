@@ -12,15 +12,23 @@
 		<link rel="stylesheet" type="text/css" href="/css/navigation.css"/>
 		<link rel="stylesheet" type="text/css" href="/css/order/shoppingcart.css"/>
 		
+		<script type="text/javascript">
+			window.onload = function(){
+				if(sessionStorage.user == null || sessionStorage.user == "null" || sessionStorage.user ==""){
+					self.location = "/views/user/login.html";
+				}
+			}
+		</script>
+		
 	</head>
 	<body>
 		<div class="nav">
 			<span class="nav_menu"></span>
 			<a href="#" class="nav_logo"></a>
-			<span class="nav_user"></span>
-			<span class="nav_cart">
+			<a href="/views/user/user.html" class="nav_user"></a>
+			<a href="/order" class="nav_cart">
 				<p class="nav_cartnum">0</p>
-			</span>
+			</a>
 		</div>
 		
 		<div class="header">

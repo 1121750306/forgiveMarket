@@ -9,8 +9,8 @@ $(function() {
 		self.location = "/views/user/user.html";
 	})
 
-	//打开购物车
-	$(".nav_cart").click(function() {
-		self.location = "/order";
-	})
+//	//打开购物车
+//	$(".nav_cart").click(function() {
+//		self.location = "/order";
+//	})
 });
