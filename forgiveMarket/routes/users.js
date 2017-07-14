@@ -1,7 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var user = require("../models/user")
-
+var multiparty = require('multiparty');
+var util = require('util');
+var fs = require('fs');
 //注册models监听并传递models
 function callback(models) {
 	user.initModel(models);
@@ -36,7 +38,7 @@ router.post('/register', function(req, res, next) {
 			};
 		}
 		res.send(json);
-	})
+	});
 
 });
 /**
@@ -72,6 +74,24 @@ router.post("/logout", function(req, res, next) {
 		flag: 200
 	});
 });
+
+router.post("/changeavatar", function(req, res, next) {
+	var form = new multiparty.Form({
+		uploadDir: './public/img/upload'
+	});
+	form.parse(req, function(err, fields, files) {
+		console.log("fields:" + fields)
+		console.log('err:' + err);
+		console.log('files:' + files);
+		var uname = fields.uname[0];
+		var inputFile = files.photo[0];
+		var uploadedPath = inputFile.path;
+		console.log("uname:" + uname)
+		console.log('inputFile:' + inputFile);
+		console.log('uploadedPath:' + uploadedPath);
+		res.send("9");
+	});
+})
 
 module.exports = router;
 module.exports.callback = callback;

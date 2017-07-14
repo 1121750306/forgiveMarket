@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>个人信息</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="../../css/style.css" />
+		<link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.css" />
+		<link rel="stylesheet" href="../../css/user/userinfo.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/navigation.css" />
+		<script src="/jquery/dist/jquery.js"></script>
+		<script src="../../js/user/userinfo.js"></script>
+		<script src="../../js/navigation.js" type="text/javascript" charset="utf-8"></script>
+
+	</head>
+
+	<body>
+		<div class="nav">
+			<span class="nav_menu"></span>
+			<a href="#" class="nav_logo"></a>
+			<span class="nav_user"></span>
+			<a class="nav_cart" href="/order">
+				<p class="nav_cartnum">0</p>
+			</a>
+		</div>
+		<div class="header">
+			<h1>个人信息</h1>
+		</div>
+		<form id="form" enctype="multipart/form-data">
+			<div id="userinfo">
+				<ul>
+					<li id="avatar">
+						<span class="title">头像</span>
+						<img src="../../img/innisfreeIco/avatar.png" />
+						<input type="file" accept="image/*" name="photo" />
+					</li>
+					<li id="uname">
+						<span class="title">昵称</span>
+						<span class="content">无</span>
+						<input type="text" name="uname" />
+					</li>
+					<li id="uid">
+						<span class="title">UID</span>
+						<span class="content">0</span>
+					</li>
+				</ul>
+				<div id="div_submit">
+					<button id="submit" type="button">保存</button>
+				</div>
+			</div>
+		</form>
+	</body>
+</html>
