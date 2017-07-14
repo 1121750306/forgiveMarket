@@ -40,7 +40,7 @@ function login() {
 			if (data.flag == 200) {
 				//登录成功
 				var result = data.result;
-				
+				sessionStorage.user = JSON.stringify(result);
 				window.history.back();
 			} else if(data.flag == 300){
 				$("#error").css("opacity", "1");
