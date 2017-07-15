@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>商城管理</title>
+    <link rel="stylesheet" href="/jquery-easyui/themes/default/easyui.css" />
+    <script type="text/javascript" src="/jquery-easyui/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="/jquery-easyui/jquery.easyui.min.js" ></script>
+  </head>
+  <body class="easyui-layout" style="width: 100%;height: 100%; background: #0000FF;">
+  	  <div data-options="region:'north',splite:true" style="height:70px;background: rgb(143,154,193);">
+  	  	
+  	  </div>
+  	  <div data-options="region:'center'">
+  	  	  <div class="easyui-layout" data-options="fit:true">
+  	  	  	 <div data-options = "region:'west',splite:true" title="导航菜单" style="width: 150px;overflow: hidden;">
+  	  	  	 	 <div class="easyui-accordion" style="width: 150px;height: 100%;">
+  	  	  	 	 	  <div title="用户管理" data-options="iconCls:'icon-manager'"style="padding:10px;overflow:auto;position:relative">
+			                   <p style="width:100%;display:block;height:20px;line-height:20px;text-align: center;
+			                   background:url(/easyui/icons/manager.png) no-repeat 18px;cursor: pointer;" >
+			                       <a class="jump" rel="/users/querylist" href="#" style="text-decoration: none;" >用户管理</a>
+			                   </p>
+			           </div>
+			           <div title="商品审核"  data-options="iconCls:'icon-spsh'"style="padding:10px;">
+				                    <p style="width:100%;display:block;height:20px;line-height:20px;text-align: center;
+				                   background:url(/easyui/icons/spsh.png) no-repeat 18px;cursor: pointer;">
+				                        <a class="jump" rel="http://www.baidu.com" style="text-decoration: none;">商品审核</a>
+				                    </p>	
+				         </div>
+  	  	  	 	 </div>
+  	  	  	 </div>
+	  	  	 <div class="easyui-tabs" id="tt" data-options="region:'center',fit:true,border:false,closable:true">
+		           <div title="首页">
+		               
+		           </div>
+		      </div>
+  	  	  </div>
+  	  </div>
+  </body>
+</html>
