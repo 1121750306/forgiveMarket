@@ -1,0 +1,22 @@
+{
+  "name": "jquery-easyui",
+  "main": "jquery.easyui.min.js",
+  "dependencies": {
+    "jquery": "~1.9.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/realface/jquery-easyui"
+  },
+  "homepage": "https://github.com/realface/jquery-easyui",
+  "_release": "9645ccc377",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "9645ccc3775a0a8be4dd34c975060b6ce31ba89f"
+  },
+  "_source": "https://github.com/realface/jquery-easyui.git",
+  "_target": "*",
+  "_originalSource": "jquery-easyui",
+  "_direct": true
+}
