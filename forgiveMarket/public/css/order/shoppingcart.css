@@ -76,10 +76,9 @@ body{
 	float: left;
 }
 
-/*.content{
-	flex: 1;
-	overflow: auto;
-}*/
+.content{
+	margin-bottom: 60px;
+}
 
 .cart{
 	list-style: none;
@@ -169,7 +168,7 @@ body{
 	flex: 1;
 }
 
-.cart .cart_item .item_info .info_bottom p{
+.cart .cart_item .item_info .info_bottom .item_price{
 	font-size: 1.5rem;
 	flex: 1;
 	margin: 0;
@@ -197,7 +196,7 @@ body{
 	background-size: 20px 20px;
 }
 
-.cart .cart_item .item_info .info_bottom input{
+.cart .cart_item .item_info .info_bottom .item_num{
 	font-size: 1.5rem;
 	width: 40px;
 	height: 30px;
@@ -230,13 +229,13 @@ body{
 	float: left;
 }
 
-.footer h2{
+.footer .totalprice{
 	line-height: 60px;
 	float: right;
 	margin-right: 5px;
 }
 
-.footer button{
+.footer .goodscheck{
 	width: 35%;
 	height: 100%;
 	float: right;

@@ -65,14 +65,5 @@ $(function() {
     	$(this).css({"color":"rgba(5, 83, 33, 1)","background":"white"}).siblings("li").css({"color":"white","background":"rgba(5, 83, 33, 1)"});
     	$(".nav_modal_page").eq($(this).index()).show().siblings(".nav_modal_page").hide();
     });
-
-	//打开个人空间
-	$(".nav_user").click(function() {
-		self.location = "/views/user/user.html";
-	});
-
-//	//打开购物车
-//	$(".nav_cart").click(function() {
-//		self.location = "/order";
-//	});
+    
 });
