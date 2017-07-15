@@ -6,13 +6,14 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 
+var base = require("./models/base");
 var index = require('./routes/index');
 var users = require('./routes/users');
-var order = require('./routes/order');
 var good = require('./routes/good');
-var admin=require("./routes/admin");
+var goodtype = require('./routes/goodtype');
+var order = require('./routes/order');
 var locations=require('./routes/location');
-var base = require("./models/base");
+var admin=require("./routes/admin");
 
 //传递models
 base.initModels(function(models) {
@@ -45,9 +46,10 @@ app.use(express.static(path.join(__dirname, 'bower_components')));
 
 app.use('/', index);
 app.use('/users', users);
+app.use('/good',good);
+app.use('/goodtype',goodtype);
 app.use('/order', order);
 app.use('/location',locations);
-app.use('/good',good);
 app.use('/admin',admin);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
