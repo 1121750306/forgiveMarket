@@ -2,7 +2,7 @@ $(function() {
 	console.log(sessionStorage.user);
 	var userjson = sessionStorage.user;
 	if(userjson != null && userjson != "null") {
-		var user = JSON.parse(userjson)[0];
+		var user = JSON.parse(userjson);
 		console.log(user);
 		//已经登录
 		$("#login").css("display", "block");

@@ -46,7 +46,7 @@ function login() {
 			if(data.flag == 200) {
 				//登录成功
 				var result = data.result;
-				sessionStorage.user = JSON.stringify(result);
+				sessionStorage.user = JSON.stringify(result[0]);
 				if(listener != null) {
 					listener(null, result);
 				}

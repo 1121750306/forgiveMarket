@@ -4,7 +4,6 @@ function initModel(models) {
 	userModel = models.user;
 }
 
-
 function addUser(_id, phone, password, cb) {
 
 	var userEntity = new userModel({
@@ -18,7 +17,7 @@ function addUser(_id, phone, password, cb) {
 
 	//保存
 	userEntity.save(function(err, data) {
-		if (!err) {
+		if(!err) {
 			cb(2, null, data);
 		} else {
 			cb(0, err, null);
@@ -39,16 +38,16 @@ function register(phone, password, cb) {
 	}).exec(function(err, docs) {
 		console.log("进入检查用户是否存在");
 		console.log("err:" + err + ",docs:" + docs)
-		if (err) {
+		if(err) {
 			cb(0, err, null);
 			console.log("错误1");
 		} else {
-			if (docs.length == 0) {
+			if(docs.length == 0) {
 				//没有注册
 				console.log("没有注册");
 				userModel.find({}).exec(function(err, docs) {
 					//获取用户数量
-					if (err) {
+					if(err) {
 						cb(0, err, null);
 					} else {
 						var _id = docs.length + 1;
@@ -75,25 +74,62 @@ function login(phone, password, cb) {
 	}).exec(function(err, docs) {
 		console.log("进入检查用户是否存在");
 		console.log("err:" + err + ",docs:" + docs)
-		if (err) {
+		if(err) {
 			cb(0, err, null);
 			console.log("错误1");
 		} else {
-			if (docs.length == 0 || docs == null) {
+			if(docs.length == 0 || docs == null) {
 				cb(1, "不存在该用户", null);
 			} else {
 				console.log("pas:" + password + ",psw:" + docs[0]);
-				if (password != docs[0].psw) {
+				if(password != docs[0].psw) {
 					console.log("pas:" + password + ",psw:" + docs.psw);
 					cb(1, "密码不正确", null);
 				} else {
-					
+
 					cb(2, null, docs);
 				}
 			}
 		}
 	});
 }
+
+/**
+ * 
+ * @param {Object} _id 修改用户的id
+ * @param {Object} uname 需要修改的昵称
+ * @param {Object} photo 需要修改的头像
+ * @param {Function(flag, err, result)} cb flag(1修改成功，2不存在该用户，3修改失败)
+ */
+function changeUserInfo(_id, uname, photo, cb) {
+	console.log("changeUserInfo", "_id:" + _id + ",uname:" + uname + ",photo:" + photo);
+	userModel.findById(_id, function(err, docs) {
+		if(!err) {
+			console.log("changeUserInfo", "docs:" + docs);
+			if(docs == null) {
+				cb(2, null, null);
+			} else {
+				if(uname != null) {
+					docs.uname = uname;
+				}
+				if(photo != null) {
+					docs.avatar = photo;
+				}
+				docs.save(function(err, updatedTank) {
+					if(err) {
+						cb(3, err, null);
+					} else {
+						cb(1, null, updatedTank);
+					}
+				});
+			}
+		} else {
+			cb(3, err, null);
+		}
+	});
+}
+
 module.exports.initModel = initModel;
 module.exports.register = register;
 module.exports.login = login;
+module.exports.changeUserInfo = changeUserInfo;

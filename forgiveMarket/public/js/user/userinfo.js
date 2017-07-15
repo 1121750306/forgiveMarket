@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	var user = JSON.parse(sessionStorage.user)[0];
+	var user = JSON.parse(sessionStorage.user);
 	console.log(user)
 	$("#avatar img").attr("src", user.avatar);
 	$("#uname .content").text(user.uname);
@@ -26,6 +26,10 @@ $(document).ready(function() {
 			async: true,
 			success: function(data) {
 				console.log(data)
+				if(data.flag == 200){
+					console.log(data.result);
+					sessionStorage.user = JSON.stringify(data.result);
+				}
 			}
 		});
 	})

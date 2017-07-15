@@ -79,23 +79,65 @@ router.post("/logout", function(req, res, next) {
 	});
 });
 
+/**
+ *	修改资料 
+ */
 router.post("/changeavatar", function(req, res, next) {
+	if(req.session.user == null) {
+		res.send({
+			flag: 300,
+			msg: "未登录"
+		});
+		return;
+	}
 	var form = new multiparty.Form({
 		uploadDir: './public/img/upload'
 	});
 	form.parse(req, function(err, fields, files) {
+		console.log("user:" + req.session.user[0])
 		console.log("fields:" + fields)
 		console.log('err:' + err);
 		console.log('files:' + files);
-		var uname = fields.uname[0];
-		var inputFile = files.photo[0];
-		var uploadedPath = inputFile.path;
+		var uname = fields.uname != undefined ? fields.uname[0] : null;
+		var inputFile = files.photo != undefined ? files.photo[0] : null;
+		var uploadedPath = inputFile != null ? inputFile.path : null;
 		console.log("uname:" + uname)
 		console.log('inputFile:' + inputFile);
 		console.log('uploadedPath:' + uploadedPath);
-		res.send("9");
+		if(uploadedPath != null) {
+			uploadedPath = uploadedPath.substr(uploadedPath.indexOf("\\"), uploadedPath.length);
+		}
+		user.changeUserInfo(req.session.user[0]._id, uname, uploadedPath, function(flag, err, result) {
+			if(!err) {
+				if(flag == 1) {
+					res.send({
+						flag: 200,
+						msg: "修改成功",
+						result: result
+					});
+				} else if(flag == 2) {
+					res.send({
+						flag: 300,
+						msg: "不存在该用户"
+					});
+				} else {
+					res.send({
+						flag: 300,
+						msg: "修改失败"
+					});
+				}
+			} else {
+				res.send({
+					flag: 300,
+					msg: "修改失败"
+				});
+			}
+		})
+
 	});
 })
-
+router.get("/session", function(req, res, next) {
+	res.send(req.session.user);
+})
 module.exports = router;
 module.exports.callback = callback;

@@ -4,6 +4,7 @@
 	text-align: center;
 	background: rgba(5, 83, 33, 1);
 	color: yellowgreen;
+	margin-top: 50px;
 }
 
 .header h1 {
@@ -36,6 +37,7 @@
 #user_photo img {
 	width: 100px;
 	height: 100px;
+	border-radius: 50px;
 }
 
 #user_info_content {
