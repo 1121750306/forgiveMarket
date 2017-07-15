@@ -9,6 +9,7 @@ $(function() {
 	var detailP = $(".good-detail")[0].offsetTop - parseInt($(".good-ct").css('padding-top'));
 	var commentP = $(".comment")[0].offsetTop - parseInt($(".good-ct").css('padding-top'));
 
+	var mainlock = false;//控制主按钮的锁
 	ht.push(ctP);
 	ht.push(detailP);
 	ht.push(commentP);
@@ -26,13 +27,19 @@ $(function() {
 
 	//切换事件
 	$("#main-ctr .ctrbtn").click(function() {
-		$("#main-ctr .ctrbtn").removeClass("on");
-		$(this).addClass('on');
-		var index = $("#main-ctr .ctrbtn").index($("#main-ctr .on"));
-		console.log(ht[index] + "px");
-		$('body').animate({
-			scrollTop: ht[index]
-		})
+		// $("#main-ctr .ctrbtn").removeClass("on");
+		// $(this).addClass('on');
+		if(!mainlock){
+            mainlock = true;
+            var index = $("#main-ctr .ctrbtn").index($(this));
+            console.log(ht[index]+2 + "px");
+            $('body').animate({
+                scrollTop: ht[index]+2
+            },function(){
+            	mainlock = false;
+			})
+		}
+
 	})
 	$(".choice-box .good-type li").click(function() {
 		$(".choice-box .good-type li").removeClass("on");

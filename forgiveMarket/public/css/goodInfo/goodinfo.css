@@ -3,6 +3,7 @@
 	margin: 0 auto;
 	position: fixed;
 	top: 0;
+	z-index: 10;
 }
 
 #main-ctr .ctrbtn {
@@ -73,7 +74,7 @@
 .total-price {
 	padding: 2px 8px;
 	/*border-top: 1px solid #ccc;*/
-	border-bottom: 1px dotted #ccc;
+	/*border-bottom: 1px dotted #ccc;*/
 	/*background: #f9f9f9;/*/
 }
 
@@ -216,14 +217,14 @@
 	outline: 0;
 }
 
-.choice-box .good-btn {
+.choice-box  .good-btn {
 	position: absolute;
 	margin-left: -10px;
 	width: 100%;
 	bottom: 0;
 }
 
-.choice-box .good-btn a {
+ .choice-box .good-btn a {
 	font-size: 1.5rem;
 	color: #fff;
 	display: block;
@@ -246,6 +247,53 @@
 	height: 200px;
 	background: greenyellow;
 	opacity: .5;
+}
+.sub .good-btn{
+	margin:0;
+	height: 100%;
+}
+.sub .good-btn a{
+	display: block;
+	float: left;
+}
+.sub .good-btn .btn{
+	width: 40%;
+	font-size: 1.5rem;
+	color: #fff;
+	display: block;
+	border-radius: 0px;
+	padding: 15px 0;
+}
+.sub .good-btn .add-car{
+	background:rgba(5, 83, 33, 1);
+}
+.sub .good-btn .buy{
+	background: yellowgreen;
+}
+.sub .good-btn .collect{
+	position: relative;
+	width: 20%;
+	height:100%;
+	display: block;
+	text-indent: 3000px;
+	font-size: 1.5rem;
+	padding: 15px 0;
+	box-sizing: inherit;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+}
+.sub .good-btn .collect i{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -20px;
+	margin-left: -20px;
+	width: 40px;
+	height:40px;
+	display: block;
+	/*margin:5px auto 0;*/
+	background: url("../../img/innisfreeIco/collect0.png") no-repeat;
+	background-size: 40px;
 }
 
 /* 商品详情*/
@@ -272,12 +320,16 @@
 
 /*评价*/
 .comment{
-	height: 400px;
+	height: 100%;
 	width: 100%;
-	border:1px solid #008000;
+	border-top:2px solid #008000;
+	border-bottom:2px solid #008000;
+}
+.comment-hd{
+	color: rgba(5, 83, 33, 1);
 }
 .comment-ct{
-	margin-top: 10px;
+	margin: 10px 0;
 	padding: 0 10px;
 	border-top: 1px solid #ddd;
 }
@@ -299,12 +351,62 @@
 }
 .comment .item .item-right h5{
 	font-size: 1.25rem;
-	line-height: 1.25rem;
+	line-height: 1.8rem;
 	margin: 5px 0;
 }
 .comment .item .item-right .item-rb{
 	font-size: 1rem;
+	margin:5px 0;
 }
 .comment .item .item-right .item-rb .itemname{
 	color: #66ab52;
+}
+.comment .item .item-right .item-rb .item-inte{
+	float: right;
+	margin-right: 20px;
+}
+.comment .item .item-right .item-rb .item-inte span{
+	display: inline-block;
+	width: 50px;
+	height:15px;
+	border:1px solid #ccc;
+	font-size: 1rem;
+	border-radius: 7.5px;
+	line-height: 13px;
+}
+.comment .item .item-right .item-rb .item-inte i{
+	width: 10px;
+	height: 10px;
+	display: block;
+	float: left;
+	margin:2px 5px 0 5px;
+}
+.comment .item .item-right .item-rb .item-inte .com-ico{
+	background: url("../../img/innisfreeIco/comment.png") no-repeat;
+	background-size: 10px;
+}
+.comment .item .item-right .item-rb .item-inte .thumb-ico{
+	background: url("../../img/innisfreeIco/thumb0.png") no-repeat;
+	background-size: 10px;
+}
+.comment .comment-ctr{
+	margin:10px 0;
+	padding: 0 10px;
+	font-size: 1.25rem;
+	display: flex;
+	justify-content: space-between;
+}
+.comment .comment-ctr .ctr a{
+	border:2px solid #66ab52;
+	display: block;
+	height: 20px;
+	width: 20px;
+	text-indent: 3000px;
+	border-radius: 3px;
+	background: url("../../img/innisfreeIco/prev.gif") no-repeat 50% 50%;
+	background-size: 7px 14px;
+}
+.comment .comment-ctr .next a{
+	background: url("../../img/innisfreeIco/next.gif") no-repeat 50% 50%;
+	background-size: 7px 14px;
 }
