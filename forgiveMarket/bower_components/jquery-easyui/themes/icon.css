@@ -7,27 +7,6 @@
 .icon-edit{
 	background:url('icons/pencil.png') no-repeat center center;
 }
-.icon-manager{
-   background:url('icons/manager.png') no-repeat center center;
-}
-.icon-spsh{
-   background:url('icons/spsh.png') no-repeat center center;
- }
- .icon-jyjl{
-  background:url('icons/jyjl.png') no-repeat center center;
- }
- .icon-khxq{
-   background:url('icons/khxq.png') no-repeat center center;
- }
-.icon-splb{
-	background:url('icons/splb.png') no-repeat center center;
-}
-.icon-grgl{
-	background:url('icons/grgl.png') no-repeat center center;
-}
-.icon-wdsp{
-	background:url('icons/wdsp.png') no-repeat center center;
-}
 .icon-clear{
 	background:url('icons/clear.png') no-repeat center center;
 }
@@ -115,3 +94,9 @@
 .icon-large-chart{
 	background:url('icons/large_chart.png') no-repeat center center;
 }
+.icon-manager{
+   background:url('icons/manager.png') no-repeat center center;
+}
+.icon-spsh{
+   background:url('icons/spsh.png') no-repeat center center;
+ }
