@@ -5,7 +5,7 @@ h2{font-size: 1.5rem;}
 h3{font-size: 1rem;}
 h4{font-size: 0.5rem;}
 
-html,body{
+/*html,body{
 	height: 100%;
 }
 
@@ -13,7 +13,7 @@ body{
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-}
+}*/
 
 .header{
 	width: 100%;
@@ -76,10 +76,10 @@ body{
 	float: left;
 }
 
-.content{
+/*.content{
 	flex: 1;
 	overflow: auto;
-}
+}*/
 
 .cart{
 	list-style: none;
@@ -159,9 +159,8 @@ body{
 	background-color: yellowgreen;
 }
 
-.cart .cart_item .item_info .good_size li h4{
+.cart .cart_item .item_info .good_size li h3{
 	line-height: 15px;
-	/*color: white;*/
 }
 
 .cart .cart_item .item_info .info_bottom{
@@ -217,6 +216,8 @@ body{
 	padding-left: 5px;
 	background: rgba(5, 83, 33, 1);
 	color: white;
+	position: fixed;
+	bottom: 0;
 }
 
 .footer .item_allcheck{
