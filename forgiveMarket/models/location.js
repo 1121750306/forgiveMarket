@@ -4,6 +4,11 @@ function initModel(models) {
     locationModel =  models.location;
 }
 
+/**
+ * 
+ * @param {Object} obj  保存对象
+ * @param {Object} cb   回调函数
+ */
 function addLocation(obj,cb) {
 	var locationEntity = new locationModel(obj);
 
@@ -11,16 +16,31 @@ function addLocation(obj,cb) {
 	locationEntity.save(cb);
 }
 
-
+/**
+ *   获取该用户的收获地址
+ * @param {Object} uid 用户id
+ * @param {Object} cb  回调函数
+ */
 function getLocation(uid,cb){
 	var query=locationModel.find({uid:uid});
 	query.sort({flag:'desc'});
 	query.exec(cb);
 }
+/**
+ *   查询某条收获地址
+ * @param {Object} id 收货地址id
+ * @param {Object} cb  回调函数
+ */
 function getLocationById(id,cb){
 	locationModel.findById(id,cb);
 
 }
+/**
+ * 
+ *  修改某条记录的flag值
+ * @param {Object} id 收货地址记录id
+ * @param {Object} cb  回掉函数
+ */
 function updateFlag(id,cb){
 	locationModel.findById(id,function(err,doc){
 		if(!err){
@@ -31,6 +51,12 @@ function updateFlag(id,cb){
 		}
 	})
 }
+/**
+ * 
+ * 跟新收货地址
+ * @param {Object} obj 收货地址记录对 象
+ * @param {Object} cb 回调函数
+ */
 function updateLocation(obj,cb){
 	locationModel.findById(obj.id,function(err,doc){
 		if(!err){
@@ -50,6 +76,12 @@ function updateLocation(obj,cb){
 		}		
 	})
 }
+/**
+ * 
+ * 删除该记录
+ * @param {Object} id 收货地址id
+ * @param {Object} cb  回掉函数
+ */
 function deleteLocation(id,cb){
 	locationModel.findById(id,function(err,doc){
 		doc.remove(cb);

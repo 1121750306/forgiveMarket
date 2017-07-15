@@ -3,6 +3,7 @@
   <head>
     <title>商城管理</title>
     <link rel="stylesheet" href="/jquery-easyui/themes/default/easyui.css" />
+    <link rel="stylesheet" href="/jquery-easyui/themes/icon.css" />
     <script type="text/javascript" src="/jquery-easyui/jquery-1.7.2.min.js"></script>
     <script type="text/javascript" src="/jquery-easyui/jquery.easyui.min.js" ></script>
   </head>
@@ -14,15 +15,15 @@
   	  	  <div class="easyui-layout" data-options="fit:true">
   	  	  	 <div data-options = "region:'west',splite:true" title="导航菜单" style="width: 150px;overflow: hidden;">
   	  	  	 	 <div class="easyui-accordion" style="width: 150px;height: 100%;">
-  	  	  	 	 	  <div title="用户管理" data-options="iconCls:'icon-manager'"style="padding:10px;overflow:auto;position:relative">
+  	  	  	 	 	  <div title="商品管理" data-options="iconCls:'icon-manager'"style="padding:10px;overflow:auto;position:relative">
 			                   <p style="width:100%;display:block;height:20px;line-height:20px;text-align: center;
-			                   background:url(/easyui/icons/manager.png) no-repeat 18px;cursor: pointer;" >
-			                       <a class="jump" rel="/users/querylist" href="#" style="text-decoration: none;" >用户管理</a>
+			                   background:url(/jquery-easyui/themes/icons/manager.png) no-repeat 18px;cursor: pointer;" >
+			                       <a class="jump" rel="/good/goodlistInit" href="#" style="text-decoration: none;" >商品管理</a>
 			                   </p>
 			           </div>
 			           <div title="商品审核"  data-options="iconCls:'icon-spsh'"style="padding:10px;">
 				                    <p style="width:100%;display:block;height:20px;line-height:20px;text-align: center;
-				                   background:url(/easyui/icons/spsh.png) no-repeat 18px;cursor: pointer;">
+				                   background:url(/jquery-easyui/themes/icons/spsh.png) no-repeat 18px;cursor: pointer;">
 				                        <a class="jump" rel="http://www.baidu.com" style="text-decoration: none;">商品审核</a>
 				                    </p>	
 				         </div>
@@ -35,5 +36,18 @@
 		      </div>
   	  	  </div>
   	  </div>
+  	  
+ <script type="text/javascript">
+    $(".jump").click(function(){
+        var url=$(this).attr('rel');
+        var title=$(this).html();
+        $('#tt').tabs('add',{
+            title:title,
+            content:'<iframe style="width: 100%; height: 100%;" frameborder="0" src="' + url + '"></iframe>',
+            closable:true
+        });
+    });
+
+</script>
   </body>
 </html>

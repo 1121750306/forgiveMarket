@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html style="height: 97%;">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="/jquery-easyui/themes/default/easyui.css" />
+	    <link rel="stylesheet" href="/jquery-easyui/themes/icon.css" />
+	    <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css" />
+	    <script type="text/javascript" src="/jquery-easyui/jquery-1.7.2.min.js"></script>
+	    <script type="text/javascript" src="/jquery-easyui/jquery.easyui.min.js" ></script>
+	     <script>
+	        //弹出窗口
+	        function showWindow(options){
+	            jQuery("#MyPopWindow").window(options);
+	        }
+	        //关闭弹出窗口
+	        function closeWindow(){
+	            $("#MyPopWindow").window('close');
+	        }
+	        $(function(){
+	        	$(".panel-tool-close").click(function(){
+	        		alert("asd")
+	        		closeWindow();
+	        	})
+	        })
+	    </script>
+	</head>
+	<body style="height: 100%;">	
+		<div class="easyui-layout" style="width:100%;height:100%;">
+			<div data-options="region:'north'" style="height: 10%;overflow: hidden;" >
+                  <form class="navbar-form navbar-left" role="search" style="margin-top: -8px;">
+					  <div class="form-group" >
+					    <input type="text" class="form-control" placeholder="商品名称">
+					  </div>
+					  <button type="button" class="btn btn-default" onclick="">搜索</button>
+				</form>
+			</div>
+			 <div data-options="region:'south'" style="height:90%">
+		        <table id="GoodTable" style="height: 100%;">
+		
+		        </table>
+		    </div>
+		</div>
+	    <div id="MyPopWindow" modal="true" shadow="false" minimizable="false" cache="false" maximizable="false" collapsible="false" resizable="false" style="margin: 0px;padding: 0px; overflow: hidden;"></div>
+      <script>
+       $(document).ready(function () {
+        $("#GoodTable").datagrid({
+            title:"商品列表",
+            method:'post',
+            singleSelect:false,
+            fitColumns:true,
+            striped:true,
+            url:"/good/queryGoodList",
+            idFiled:'_id',
+            sortName:'_id',
+            sortOrder:'desc',
+            queryParams:{},
+            pagination:true,
+            rownumbers:true,
+            columns:[[
+                {field:'ck',checkbox:true,width:10},
+                {field:'gname',title:'商品名',width:100,
+                    formatter:function(value,row,index){return row.uname;}
+                },
+                {field:'pricebase',title:'基础价格',width:60,
+                    formatter:function(value,row,index){return row.pwd;}
+                },
+                {field:'lefts',title:'库存',width:80,
+                    formatter:function(value,row,index){return row.birthday;}
+                },
+                {field:'sales',title:'销量',width:100,
+                    formatter:function(value,row,index){return row._id;}
+                },
+                {field:'discount',title:'折扣',width:100,
+                    formatter:function(value,row,index){return row.photo;}
+               },
+               {field:'typeid',title:'类型',width:100,
+                    formatter:function(value,row,index){
+                    	getTypeName(row.typeid);
+                    }
+                }
+            ]],
+            toolbar:[{
+                text:"增加",
+                iconCls:'icon-add',
+                handler:function () {
+                      addRow();
+                }
+            },'-',{
+                text:"删除",
+                iconCls:'icon-remove',
+                handler:function () {
+                        deleteUser();
+                }
+            },'-',{
+                text:"跟新",
+                iconCls:'icon-edit',
+                handler:function () {
+                      updateUser();
+                }
+            },'-'],
+            onLoadSuccess:function () {
+                $("#GoodTable").datagrid('clearSelections');
+            }
+        });
+    });
+    
+       function getTypeName(typeid){
+       	  
+       }
+        </script>
+	</body>
+</html>

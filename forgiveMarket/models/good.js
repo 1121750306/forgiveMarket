@@ -4,5 +4,11 @@ function initModel(models) {
     goodModel =  models.good;
 }
 
+ function addGood(obj,cb){
+ 	var goodEntity=new goodModel(obj);
+ 	
+ 	goodEntity.save(cb);
+ }
 
 module.exports.initModel = initModel;
+module.exports.addGood = addGood;

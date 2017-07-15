@@ -8,7 +8,7 @@ db.once("open",function(){
     //定义schema
     //用户表
     userSchema = new mongoose.Schema({
-        _id:Number,
+        _id:String,
         uname:String,
         psw:String,
         phone:String,
@@ -18,9 +18,9 @@ db.once("open",function(){
 
     // 商品表
     goodSchema = new mongoose.Schema({
-        _id:Number,
+        _id:String,
         //商品类型外键
-        typeid:Number,
+        typeid:String,
         gname:String,
         pricebase:Number,
         discount:Number,
@@ -30,15 +30,15 @@ db.once("open",function(){
 
     // 商品类型表
     goodtypeSchema = new mongoose.Schema({
-        _id:Number,
+        _id:String,
         tname:String
     },{versionKey:false});
 
     // 商品照片表
     goodphotoSchema = new mongoose.Schema({
-        _id:Number,
+        _id:String,
         //商品外键
-        gid:Number,
+        gid:String,
         //0.商品图片 1.商品详情图片
         flag:Number,
         url:String
@@ -46,25 +46,25 @@ db.once("open",function(){
 
     // 商品规格类型表
     goodsizetypeSchema = new mongoose.Schema({
-        _id:Number,
+        _id:String,
         gstname:String,
         //商品外键
-        gid:Number
+        gid:String
     },{versionKey:false});
 
     // 商品规格表
     goodsizeSchema = new mongoose.Schema({
-        _id:Number,
+        _id:String,
         gsname:String,
         //商品价格偏移量
         priceoffset:Number,
         //商品规格类型外键
-        gstid:Number
+        gstid:String
     },{versionKey:false});
 
     // 订单表
     orderSchema = new mongoose.Schema({
-        _id:Number,
+        _id:String,
         ordernum:String,
         //0.未付款 1.购物车 2.已付款 3.已发货 4.已收货(待评价) 5.已完成
         flag:Number
@@ -72,11 +72,11 @@ db.once("open",function(){
 
     // 订单项表
     orderitemSchema = new mongoose.Schema({
-        _id:Number,
+        _id:String,
         //订单外键
-        oid:Number,
+        oid:String,
         //商品外键
-        gid:Number,
+        gid:String,
         num:Number
     },{versionKey:false});
 
@@ -84,7 +84,7 @@ db.once("open",function(){
     locationSchema = new mongoose.Schema({
         _id:String,
         //用户外键
-        uid:Number,
+        uid:String,
         //省
         province:String,
         //市
@@ -102,35 +102,35 @@ db.once("open",function(){
 
     // 评论表
     commentSchema = new mongoose.Schema({
-        _id:Number,
+        _id:String,
         //用户外键
-        uid:Number,
+        uid:String,
         //订单外键
-        oid:Number,
+        oid:String,
         //商品外键
-        gid:Number,
+        gid:String,
         //评论外键
-        cid:Number,
+        cid:String,
         content:String,
         date:Date
     },{versionKey:false});
 
     // 浏览历史表
     historySchema = new mongoose.Schema({
-        _id:Number,
+        _id:String,
         //用户外键
-        uid:Number,
+        uid:String,
         //商品外键
-        gid:Number
+        gid:String
     },{versionKey:false});
 
     // 收藏表
     collectSchema = new mongoose.Schema({
-        _id:Number,
+        _id:String,
         //用户外键
-        uid:Number,
+        uid:String,
         //商品外键
-        gid:Number
+        gid:String
     },{versionKey:false});
     
     //定义model

@@ -9,6 +9,7 @@ var session = require('express-session');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var order = require('./routes/order');
+var good = require('./routes/good');
 var admin=require("./routes/admin");
 var locations=require('./routes/location');
 var base = require("./models/base");
@@ -46,6 +47,7 @@ app.use('/', index);
 app.use('/users', users);
 app.use('/order', order);
 app.use('/location',locations);
+app.use('/good',good);
 app.use('/admin',admin);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
