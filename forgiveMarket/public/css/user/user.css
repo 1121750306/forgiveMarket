@@ -77,7 +77,7 @@
 	display: none;
 }
 
-#unlogin a {
+#unlogin button {
 	display: block;
 	width: 170px;
 	height: 40px;
@@ -93,11 +93,6 @@
 	border-radius: 2px;
 	padding: 5px 15px 5px 15px;
 }
-
-#unlogin a:active {
-	text-decoration: none;
-}
-
 
 /*功能列表*/
 

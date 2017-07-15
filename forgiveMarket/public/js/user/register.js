@@ -47,6 +47,7 @@ function register() {
 			if (data.flag == 200) {
 				//注册成功
 				var result = data.result;
+				window.location.assign("/views/user/user.html");
 			} else if(data.flag == 300){
 				$("#error").css("opacity", "1");
 				$("#error").text(data.msg);

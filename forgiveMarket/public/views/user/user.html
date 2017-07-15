@@ -13,16 +13,23 @@
 		<script src="/jquery/dist/jquery.js"></script>
 		<script src="../../js/user/user.js"></script>
 		<script src="../../js/navigation.js" type="text/javascript" charset="utf-8"></script>
+		
+		<link rel="stylesheet" href="../../css/user/login.css" />
+		<script src="../../js/user/login.js"></script>
 	</head>
 
 	<body>
 		<div class="nav">
 			<span class="nav_menu"></span>
-			<a href="#" class="nav_logo"></a>
-			<span class="nav_user"></span>
-			<a class="nav_cart" href="/order">
+			<a href="/views/homepage.html" class="nav_logo"></a>
+			<a href="/views/user/user.html" class="nav_user"></a>
+			<a href="/order" class="nav_cart">
 				<p class="nav_cartnum">0</p>
 			</a>
+			
+			<div class="nav_type">
+				
+			</div>
 		</div>
 		<div class="header">
 			<h1>个人主页</h1>
@@ -41,7 +48,7 @@
 				</a>
 			</div>
 			<div id="unlogin">
-				<a href="login.html">请登录</a>
+				<button onclick="showLogin()">请登录</button>
 			</div>
 		</div>
 		<div id="user_function">
@@ -92,6 +99,20 @@
 					<a href="#"><span>退出</span></a>
 				</li>
 			</ul>
+		</div>
+		<div id="div_login">
+			<span id="login_close"></span>
+			<div class="login_content">
+				<input type="phone" class="form-control input" id="phone" placeholder="用户名">
+				<div id="div_show_pwd"><input type="password" class="form-control input" id="password" placeholder="密码">
+					<i id="show_pwd"></i></div>
+				<button type="button" class="btn login" id="btn_login">登录</button>
+				<div id="error"></div>
+				<div class="word_div">
+					<span id="forget" class="word"><a href="">忘记密码？</a></span>
+					<span id="register" class="word"><a href="/views/user/regiter.html">注册新用户</a></span>
+				</div>
+			</div>
 		</div>
 	</body>
 
