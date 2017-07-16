@@ -8,7 +8,7 @@ db.once("open",function(){
     //定义schema
     //用户表
     userSchema = new mongoose.Schema({
-        _id:String,
+//      _id:String,
         uname:String,
         psw:String,
         phone:String,

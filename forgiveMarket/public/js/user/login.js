@@ -14,6 +14,7 @@ $(document).ready(function() {
 	$("#btn_login").click(login);
 
 	$("#login_close").click(function() {
+		$("body").css("overflow","auto");
 		$("#div_login").animate({
 			left: '-100%'
 		}, 300);
@@ -72,6 +73,7 @@ function login() {
 }
 
 function showLogin() {
+	$("body").css("overflow","hidden");
 	$("#div_login").animate({
 		left: '0%'
 	}, 300);
@@ -81,6 +83,7 @@ function dismissLogin() {
 	$("#div_login").css({
 		left: "-100%"
 	});
+	$("body").css("overflow","auto");
 }
 
 /**

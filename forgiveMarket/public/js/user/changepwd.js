@@ -1,4 +1,3 @@
-var phonem = /^1(3|4|5|7|8)\d{9}$/;
 $(document).ready(function() {
 	$("#show_pwd").click(function() {
 		var type = $("#div_show_pwd .input").attr("type");
@@ -11,16 +10,16 @@ $(document).ready(function() {
 		}
 	});
 
-	$("#register").click(register);
+	$("#change").click(changepwd);
 });
 
-function register() {
-	var phone = $("#phone").val();
+function changepwd() {
+	var now_pwd = $("#now_pwd").val();
 	var password = $("#password").val();
 	var code = $("#code").val();
-	if (!phonem.test(phone)) {
+	if (now_pwd == null || now_pwd == undefined || now_pwd == "") {
 		$("#error").css("opacity", "1");
-		$("#error").text("手机号码错误");
+		$("#error").text("请输入密码");
 		return;
 	}
 	if (password == null || password == undefined || password == "") {
@@ -28,26 +27,19 @@ function register() {
 		$("#error").text("请输入密码");
 		return;
 	}
-	if (code == null || code == undefined || code == "") {
-		$("#error").css("opacity", "1");
-		$("#error").text("请输入验证码");
-		return;
-	}
 	$.ajax({
 		type: "post",
-		url: "/users/register",
+		url: "/users/changepwd",
 		async: true,
 		data: {
-			phone: phone,
-			password: password,
-			code: code
+			nowpwd: now_pwd,
+			password: password
 		},
 		success: function(data) {
 			console.log(data);
 			if (data.flag == 200) {
-				//注册成功
+				//修改密码成功
 				var result = data.result;
-				sessionStorage.user = JSON.stringify(result[0]);
 				window.location.assign("/views/user/user.html");
 			} else if(data.flag == 300){
 				$("#error").css("opacity", "1");

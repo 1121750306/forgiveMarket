@@ -1,6 +1,6 @@
 $(function(){
 	//判断用户是否登录
-	if(sessionStorage.user == null){
+	if(sessionStorage.user == null || sessionStorage.user == "null" || sessionStorage.user == undefined){
 		//提示框显示
 		$(".attention").show();
 		$(".no_login").show();

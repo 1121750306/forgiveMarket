@@ -7,7 +7,7 @@ function initModel(models) {
 function addUser(_id, phone, password, cb) {
 
 	var userEntity = new userModel({
-		_id: _id,
+//		_id: _id,
 		uname: phone, //默认为电话
 		psw: password,
 		phone: phone,
@@ -102,6 +102,7 @@ function login(phone, password, cb) {
  * @param {Function(flag, err, result)} cb flag(1修改成功，2不存在该用户，3修改失败)
  */
 function changeUserInfo(_id, uname, photo, cb) {
+	_id = String(_id);
 	console.log("changeUserInfo", "_id:" + _id + ",uname:" + uname + ",photo:" + photo);
 	userModel.findById(_id, function(err, docs) {
 		if(!err) {
@@ -129,7 +130,43 @@ function changeUserInfo(_id, uname, photo, cb) {
 	});
 }
 
+/**
+ * 
+ * @param {Object} _id 用户id
+ * @param {Object} nowPwd 旧密码
+ * @param {Object} newPwd 新密码
+ * @param {Function(flag, err, result)} cb flag(1修改成功，2不存在该用户，3修改失败)
+ */
+function changePwd(_id, nowPwd, newPwd, cb) {
+	_id = String(_id);
+	console.log("changePwd", "_id:" + _id + ",nowPwd:" + nowPwd + ",newPwd:" + newPwd);
+	userModel.findOne({_id:_id}, function(err, docs) {
+		if(!err) {
+			console.log("changePwd", "docs:" + docs);
+			if(docs == null) {
+				cb(2, null, null);
+			} else {
+				if(nowPwd != docs.psw) {
+					cb(3, "密码错误", null);
+					return;
+				}
+				docs.psw = newPwd;
+				docs.save(function(err, updatedTank) {
+					if(err) {
+						cb(3, err, null);
+					} else {
+						cb(1, null, updatedTank);
+					}
+				});
+			}
+		} else {
+			cb(3, err, null);
+		}
+	});
+}
+
 module.exports.initModel = initModel;
 module.exports.register = register;
 module.exports.login = login;
 module.exports.changeUserInfo = changeUserInfo;
+module.exports.changePwd = changePwd;

@@ -23,7 +23,7 @@ $(function() {
 			url: "/users/logout",
 			async: true,
 			success: function(data) {
-				sessionStorage.user = null;
+				sessionStorage.removeItem("user");
 				location.reload();
 			}
 
