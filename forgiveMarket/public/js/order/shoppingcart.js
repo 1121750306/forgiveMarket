@@ -1,7 +1,52 @@
 $(function(){
 	//判断用户是否登录
 	if(sessionStorage.user == null){
+		//提示框显示
+		$(".attention").show();
+		$(".no_login").show();
+		
+		//弹出登录框
 		showLogin();
+		
+	}else{
+		
+		var cartgoods = JSON.parse(sessionStorage.getItem("cartgoods"));
+		
+		//判断是否获取过购物车数据
+		if (cartgoods == null) {
+			//请求购物车数据
+			$.ajax({
+				type:"get",
+				url:"/order/cart/getgoods/"+"1",
+	//			url:"/order/cart/getgoods/"+user._id,
+				async:true,
+				success:function(data){
+					if (data.length != 0) {
+						//购物车不为空
+						$(".cart").show();
+					}else{
+						//购物车为空
+						$(".attention").show();
+						$(".cart_empty").show();
+					}
+				},
+				error:function(err){
+					console.log(err);
+				}
+			});
+			
+		}else{
+			
+			if (cartgoods.length != 0) {
+				//购物车不为空
+				$(".cart").show();
+			}else{
+				//购物车为空
+				$(".attention").show();
+				$(".cart_empty").show();
+			}
+		}
+		
 	}
 	addOnLoginListener(function(err, result){
 		if (!err) {
@@ -47,17 +92,12 @@ $(function(){
 			}
 			
 			if ($(this).parent()[0] != $(".item_allcheck")[0]) {
-				//商品总价增加当前勾选的商品
+				
 				var price = parseFloat($(this).parent().parent().find(".item_price").html().substr(1));
 				var num = parseFloat($(this).parent().parent().find(".item_num").val());
-				var totalprice = parseFloat($(".totalprice").html().substr(4)) + price*num;
-				totalprice = totalprice.toFixed(2);
-				$(".totalprice").html("总价￥:" + totalprice);
-				
-				//结算商品数量增加
-				var totalnum = $(".goodscheck").html().substr(4);
-				totalnum = parseInt(totalnum.substring(0,totalnum.length - 1)) + num;
-				$(".goodscheck").html("去结算(" + totalnum + ")");
+					
+				//结算商品价格和数量增加当前勾选的商品
+				countChange(price, num);
 				
 			}
 			
@@ -70,7 +110,6 @@ $(function(){
 			$(".check_delete").hide();
 			for (var i = 0; i < itemChecks.length - 1; i++) {
 				if (itemChecks.eq(i)[0].checked && itemChecks.eq(i)[0] != $(this).parent()[0]) {
-					console.log(i);
 					$(".check_delete").show();
 					break;
 				}
@@ -83,17 +122,12 @@ $(function(){
 			}
 			
 			if ($(this).parent()[0] != $(".item_allcheck")[0]) {
-				//商品总价减少当前勾选的商品
+
 				var price = parseFloat($(this).parent().parent().find(".item_price").html().substr(1));
 				var num = parseFloat($(this).parent().parent().find(".item_num").val());
-				var totalprice = parseFloat($(".totalprice").html().substr(4)) - price*num;
-				totalprice = totalprice.toFixed(2);
-				$(".totalprice").html("总价￥:" + totalprice);
-				
-				//结算商品数量减少
-				var totalnum = $(".goodscheck").html().substr(4);
-				totalnum = parseInt(totalnum.substring(0,totalnum.length - 1)) - num;
-				$(".goodscheck").html("去结算(" + totalnum + ")");
+					
+				//结算商品价格和数量减少当前勾选的商品
+				countChange(price, -num);
 				
 			}
 		}
@@ -137,25 +171,18 @@ $(function(){
 					checkBtn.eq(i).css("background-image","url(../../img/innisfreeIco/checked.png)");
 					checkBtn.eq(i).children("input")[0].checked = true;
 										
-					//商品总价增加当前勾选的商品
 					var price = parseFloat(checkBtn.eq(i).parent().find(".item_price").html().substr(1));
 					var num = parseFloat(checkBtn.eq(i).parent().find(".item_num").val());
-					var totalprice = parseFloat($(".totalprice").html().substr(4)) + price*num;
-					totalprice = totalprice.toFixed(2);
-					$(".totalprice").html("总价￥:" + totalprice);
 					
-					//结算商品数量增加
-					var totalnum = $(".goodscheck").html().substr(4);
-					totalnum = parseInt(totalnum.substring(0,totalnum.
-						length - 1)) + num;
-					$(".goodscheck").html("去结算(" + totalnum + ")");
+					//结算商品价格和数量增加当前勾选的商品
+					countChange(price, num);
 				}
 			}
 		}
 		
 	})
 
-	//商品数量控制
+	//商品数量加减控制
 	$(".item_add").click(function(){
 		var item = $(this).parents(".cart_item");
 		var num = parseInt(item.find(".item_num").val());
@@ -166,17 +193,11 @@ $(function(){
 			
 			//如果商品已被勾选
 			if (item.find(".item_check input")[0].checked) {
-				//商品总价增加一个当前勾选的商品
+				
 				var price = parseFloat(item.find(".item_price").html().substr(1));
-				var totalprice = parseFloat($(".totalprice").html().substr(4)) + price;
-				totalprice = totalprice.toFixed(2);
-				$(".totalprice").html("总价￥:" + totalprice);
-			
-				//结算商品数量增加
-				var totalnum = $(".goodscheck").html().substr(4);
-				totalnum = parseInt(totalnum.substring(0,totalnum.
-					length - 1)) + 1;
-				$(".goodscheck").html("去结算(" + totalnum + ")");
+				
+				//结算商品价格和数量增加一个当前勾选的商品
+				countChange(price, 1);
 			}
 		}
 	});
@@ -190,32 +211,49 @@ $(function(){
 			
 			//如果商品已被勾选
 			if (item.find(".item_check input")[0].checked) {
-				//商品总价减少一个当前勾选的商品
+
 				var price = parseFloat(item.find(".item_price").html().substr(1));
-				var totalprice = parseFloat($(".totalprice").html().substr(4)) - price;
-				totalprice = totalprice.toFixed(2);
-				$(".totalprice").html("总价￥:" + totalprice);
-			
-				//结算商品数量减少
-				var totalnum = $(".goodscheck").html().substr(4);
-				totalnum = parseInt(totalnum.substring(0,totalnum.
-					length - 1)) - 1;
-				$(".goodscheck").html("去结算(" + totalnum + ")");
+				
+				//结算商品价格和数量减少一个当前勾选的商品
+				countChange(price, -1);
 			}
 		}
 				
 	});
+	
+	//商品数量输入控制
+	var originnum;
 	$(".info_bottom").children("input[type=text]").keydown(function(){
+		originnum = parseInt($(this).val());
+		if (isNaN(originnum)) {
+			originnum = 1;
+		}
 		if (event.keyCode != 8 && event.keyCode != 37 && event.keyCode != 39 && (event.keyCode > 57 || event.keyCode < 48)) {
 			event.preventDefault();
 		}
 	});
 	$(".info_bottom").children("input[type=text]").keyup(function(){
+		var item = $(this).parents(".cart_item");
 		var num = parseInt($(this).val());
-		if (num < 1) {
-			$(this).val(1);
-		} else if (num > 99) {
-			$(this).val(99);
+		if (isNaN(num)) {
+			num = 1;
+			$(this).val("");
+		}else{
+			if (num < 1) {
+				num = 1;
+			} else if (num > 99) {
+				num = 99;
+			}
+			$(this).val(num);
+		}
+		
+		//如果商品已被勾选
+		if (item.find(".item_check input")[0].checked) {
+			
+			var price = parseFloat(item.find(".item_price").html().substr(1));
+			
+			//结算商品价格和数量改变
+			countChange(price, num - originnum)
 		}
 	});
 	$(".info_bottom").children("input[type=text]").blur(function(){
@@ -231,6 +269,11 @@ $(function(){
 		//遍历所有被勾选的商品
 		for (var i = 0; i < item.length; i++) {
 			if (item.eq(i).find(".item_check input")[0].checked) {
+				//导航栏购物车商品数量减少
+				var num = parseInt($(".nav_cartnum").html());
+				$(".nav_cartnum").html(num - 1);
+				
+				//商品列移除
 				item.eq(i).remove();
 			}
 		}
@@ -243,10 +286,38 @@ $(function(){
 		$(".totalprice").html("总价￥:0.00");
 		$(".goodscheck").html("去结算(0)");
 		
+		//删除后购物车为空时提示框显示
+		if($(".cart_item").length == 0){
+			$(".cart").hide();
+			$(".attention").show();
+			$(".cart_empty").show();
+		}
+		
+		//购物车数据session销毁需要重新请求
+		sessionStorage.removeItem("cartgoods");
+		
 		//删除按钮消失
 		$(this).hide();
 		
 	});
+	
+	//请登录按钮控制
+	$(".no_login").click(function(){
+		showLogin();
+	});
+	
+	//改变结算商品信息
+	function countChange (price, num) {
+		//结算商品价格改变
+		var totalprice = parseFloat($(".totalprice").html().substr(4)) + price*num;
+		totalprice = totalprice.toFixed(2);
+		$(".totalprice").html("总价￥:" + totalprice);
+	
+		//结算商品数量改变
+		var totalnum = $(".goodscheck").html().substr(4);
+		totalnum = parseInt(totalnum.substring(0,totalnum.length - 1)) + num;
+		$(".goodscheck").html("去结算(" + totalnum + ")");
+	}
 	
 })
 

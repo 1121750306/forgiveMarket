@@ -1,4 +1,39 @@
 $(function() {
+	//判断用户是否登录
+	if(sessionStorage.user != null){
+		//从session中获得用户数据和购物车数据
+		var user = JSON.parse(sessionStorage.getItem("user"));
+		var cartgoods = JSON.parse(sessionStorage.getItem("cartgoods"));
+		
+		//判断是否获取过购物车数据
+		if (cartgoods == null) {
+			//请求购物车数据
+			$.ajax({
+				type:"get",
+				url:"/order/cart/getgoods/"+"1",
+	//			url:"/order/cart/getgoods/"+user._id,
+				async:true,
+				success:function(data){
+					//修改导航栏购物车商品数量
+					$(".nav_cartnum").html(data.length);
+						
+					//将购物车商品信息存储在session中
+					sessionStorage.setItem("cartgoods", JSON.stringify(data));
+				},
+				error:function(err){
+					//设置导航栏购物车商品数量为0
+					$(".nav_cartnum").html("0");
+					console.log(err);
+				}
+			});
+			
+		}else{
+			//修改导航栏购物车商品数量
+			$(".nav_cartnum").html(cartgoods.length);
+			
+		}
+	}
+	
 	//打开侧滑菜单
 	$(".nav_menu").click(function() {
 		$(".nav").parent().css("overflow","hidden");

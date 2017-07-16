@@ -84,6 +84,7 @@ body{
 	list-style: none;
 	margin: 0;
 	padding: 0;
+	display: none;
 }
 
 .cart .cart_item{
@@ -117,7 +118,6 @@ body{
 	display: block;
 	opacity: 0;
 }
-
 
 .cart .cart_item img{
 	width: 25%;
@@ -207,6 +207,41 @@ body{
 	outline: none;
 	border-top: 1px lightgrey solid;
 	border-bottom: 1px lightgrey solid;
+}
+
+.attention{
+	display: none;
+}
+
+.attention i{
+	height: 80px;
+	margin-top: 80px;
+	background: url(../../img/innisfreeIco/error.gif) 50% 0 no-repeat;
+	background-size: auto 80px; 
+	display: block;
+}
+
+.attention p{
+	height: 40px;
+	width: 45%;
+	margin: auto;
+	line-height: 40px;
+	text-align: center;
+}
+
+.attention .no_login{
+	font-size: 1.25rem;
+	margin-top: 20px;
+	background: green;
+	color: white;
+	border-radius: 2px;
+	display: none;
+}
+
+.attention .cart_empty{
+	margin-top: 10px;
+	font-size: 1.5rem;
+	display: none;
 }
 
 .footer{
