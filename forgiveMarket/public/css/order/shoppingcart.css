@@ -225,8 +225,18 @@ body{
 }
 
 .footer h3{
+	font-size: 1.25rem;
 	line-height: 60px;
 	float: left;
+}
+
+.footer .check_delete{
+	font-size: 1rem;
+	line-height: 60px;
+	float: left;
+	text-decoration: underline;
+	margin-left: 10px;
+	display: none;
 }
 
 .footer .totalprice{
