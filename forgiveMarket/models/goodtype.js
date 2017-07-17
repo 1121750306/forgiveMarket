@@ -11,7 +11,6 @@ function initModel(models) {
 function addGoodType (tname) {
   			
 	var goodtypeEntity = new goodtypeModel({
-		_id: guid(),
 		tname:tname
 	});
 	
@@ -34,7 +33,6 @@ function addGoodTypes (tnames) {
 	for (var i = 0; i < tnames.length; i++) {
 		
 		var goodtypeEntity = new goodtypeModel({
-			_id: guid(),
 			tname:tnames[i]
 		});
 		
