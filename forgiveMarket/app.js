@@ -14,10 +14,12 @@ var goodtype = require('./routes/goodtype');
 var order = require('./routes/order');
 var locations=require('./routes/location');
 var admin=require("./routes/admin");
+var history = require("./routes/history");
 
 //传递models
 base.initModels(function(models) {
 	users.callback(models);
+	history.callback(models);
 })
 
 var app = express();

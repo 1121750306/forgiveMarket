@@ -1,7 +1,7 @@
 $(function() {
 	console.log(sessionStorage.user);
 	var userjson = sessionStorage.user;
-	if(userjson != null && userjson != "null") {
+	if (userjson != null && userjson != "null" && userjson != undefined && userjson != "undefined") {
 		var user = JSON.parse(userjson);
 		console.log(user);
 		//已经登录
@@ -31,7 +31,7 @@ $(function() {
 	})
 
 	addOnLoginListener(function(err, result) {
-		if(err) {
+		if (err) {
 
 		} else {
 			dismissLogin();
