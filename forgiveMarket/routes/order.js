@@ -105,27 +105,52 @@ router.get('/cart/getgoods/:uid', function(req, res, next) {
 				//获取所有订单项
 				orderitem.getOrderItem1(data_getorder[0]._id, function(err_getorderitem, data_getorderitem){
 					if (!err_getorderitem) {
-//						console.log("result:" + data_getorderitem[0]);
+						console.log("result:" + data_getorderitem[0]);
+						console.log("result:" + data_getorderitem[0].gsids);
 						
+						//遍历每个订单项
 						for (var i = 0; i < data_getorderitem.length; i++) {
 							var orderitem = data_getorderitem[i];
-							console.log(orderitem.gsids);
-//							var good = {name:orderitem.gid.gname, size:};
+							
+							//取得订单项的商品价格基数
+							var price = orderitem.gid.pricebase;
+							
+							//取得订单项的商品规格数组
+							var sizes = [];
+							for (var j = 0; j < orderitem.gsids.length; j++) {
+								var sizeitem = orderitem.gsids[j].gsid;
+								
+								//计算商品在此规格下价格偏移后的结果
+								price = price + sizeitem.priceoffset;
+								
+								//将商品规格名加入数组
+								sizes.push(sizeitem.gsname);
+							}
+							
+							//拼接每个订单项中所需数据
+							var good = {gid: orderitem.gid._id,
+										gname: orderitem.gid.gname,
+										gsizes: sizes,
+										price: price,
+										num: orderitem.num};
+										
+							//加入商品列表
+							goods.push(good);
 							
 						}
+						
+  						res.send(goods);
+						
 					} else{
 						console.log(new Date() + "ERROR: " + err_getorderitem);
 					}
+					
 				});
-//				console.log(items);
-
-				goods = [{_id:"1"},{_id:"2"},{_id:"3"},{_id:"4"},{_id:"5"},{_id:"6"}];
+				
 			}
 		} else{
 			console.log(new Date() + "ERROR: " + err_getorder);
 		}
-		
-  		res.send(goods);
 	});
 	
 });

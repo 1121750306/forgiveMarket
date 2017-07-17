@@ -19,6 +19,43 @@ $(function() {
 					if (data.length != 0) {
 						//购物车不为空
 						$(".cart").show();
+						
+						//遍历商品列表
+						for (var i = 0; i < data.length; i++) {
+							var good = data[i];
+							
+							//拼接商品规格
+							var goodsizeUl = "";
+							for (var j = 0; j < good.gsizes.length; j++) {
+								goodsizeUl = goodsizeUl + "<li><h3>" + good.gsizes[j] +"</h3></li>";
+							}
+							
+							//组合li
+							var li ='<li class="cart_item">\
+										<form action="">\
+											<div class="item_check">\
+												<input type="checkbox" />\
+											</div>\
+											<img src="../../img/innisfree-img/goods/1000000311_l.png"/>\
+											<div class="item_info">\
+												<h2>' + good.gname + '</h2>\
+												<ul class="good_size">' + goodsizeUl + '</ul>\
+												<div class="info_bottom">\
+													<p class="item_price">￥' + good.price + '</p>\
+													<span><i class="item_sub"></i></span>\
+													<input class="item_num" type="text" value="' + good.num + '"/>\
+													<span><i class="item_add"></i></span>\
+												</div>\
+											</div>\
+										</form>\
+									</li>';
+									
+							$(".cart").append(li);
+						}
+						
+						
+						
+						console.log(data);
 					}else{
 						//购物车为空
 						$(".attention").show();
