@@ -1,3 +1,4 @@
+var mongoose = require("mongoose");
 //注册models监听
 function initModel(models) {
 	//浏览历史模型
@@ -15,7 +16,7 @@ function initModel(models) {
 function addHistory(uid, gid, date, cb) {
 	console.log("date:" + date);
 	good = new goodModel({
-		typeid: '1',
+		typeid: '2',
 		gname: '洗面奶',
 		pricebase: 20,
 		discount: 15
@@ -24,7 +25,7 @@ function addHistory(uid, gid, date, cb) {
 		if (!err) {
 			historyEntity = new historyModel({
 				uid: uid,
-				gid: data,
+				gid: mongoose.Types.ObjectId(data._id),
 				date: date.getTime()
 			});
 			//保存
