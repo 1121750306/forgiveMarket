@@ -28,4 +28,25 @@ function addHistory(uid, gid, date, cb) {
 	});
 }
 
+/**
+ * 查询所有浏览记录
+ * @param {Object} uid 用户ID
+ * @param {Object} index 获取的页数
+ * @param {Object} cb 回调
+ */
+function queryHistory(uid, index, cb) {
+	console.log("进入register");
+	userModel.find({
+		uid: uid
+	}).limit(10).skip(index * 10).exec(function(err, docs) {
+		if (!err) {
+			cb(1, null, docs);
+		} else {
+			cb(0, err, null);
+		}
+	});
+}
+
 module.exports.initModel = initModel;
+module.exports.addHistory = addHistory;
+module.exports.queryHistory = queryHistory;
