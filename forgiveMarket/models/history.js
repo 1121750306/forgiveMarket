@@ -12,11 +12,11 @@ function initModel(models) {
  * @param {Function(flag, err, result)} cb 回调(flag 0：失败  1：成功)
  */
 function addHistory(uid, gid, date, cb) {
-
+	console.log("date:" + date);
 	historyEntity = new historyModel({
 		uid: uid,
 		gid: gid,
-		date: date
+		date: date.getTime()
 	});
 	//保存
 	historyEntity.save(function(err, data) {
@@ -36,15 +36,21 @@ function addHistory(uid, gid, date, cb) {
  */
 function queryHistory(uid, index, cb) {
 	console.log("进入register");
-	userModel.find({
-		uid: uid
-	}).limit(10).skip(index * 10).exec(function(err, docs) {
-		if (!err) {
-			cb(1, null, docs);
-		} else {
-			cb(0, err, null);
-		}
-	});
+	historyModel.find({
+			uid: uid
+		})
+		.limit(10)
+		.skip(index * 10)
+		.sort({
+			date: -1
+		})
+		.exec(function(err, docs) {
+			if (!err) {
+				cb(1, null, docs);
+			} else {
+				cb(0, err, null);
+			}
+		});
 }
 
 module.exports.initModel = initModel;
