@@ -71,8 +71,11 @@ db.once("open",function(){
 
     // 订单表
     orderSchema = new mongoose.Schema({
+    	//订单号
         ordernum:String,
-        //0.未付款 1.购物车 2.已付款 3.已发货 4.已收货(待评价) 5.已完成
+        //用户外键
+        uid:String,
+        //0.购物车 1.未付款 2.已付款 3.已发货 4.已收货(待评价) 5.已完成
         flag:Number
     },{versionKey:false});
 
@@ -123,7 +126,9 @@ db.once("open",function(){
         //用户外键
         uid:String,
         //商品外键
-        gid:String
+        gid:String,
+        //浏览时间
+        date:Date
     },{versionKey:false});
 
     // 收藏表
@@ -131,7 +136,9 @@ db.once("open",function(){
         //用户外键
         uid:String,
         //商品外键
-        gid:String
+        gid:String,
+        //收藏时间
+        date:Date
     },{versionKey:false});
     
     //定义model
