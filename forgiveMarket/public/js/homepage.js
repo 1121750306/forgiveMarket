@@ -138,6 +138,7 @@ $(function() {
 	window.onscroll = function(e) {
 			var scrollh = document.body.scrollTop || document.documentElement.scrollTop;
 			if (scrollh > 0 && scrollh < 741) {
+				$(".yezi").css("margin-left","45%")
 				$(".yezi").css("display", "inline-block")
 				$(".yezi").css("margin-top", "640px")
 			} else if (scrollh > 741 && scrollh < 800) {
@@ -177,7 +178,11 @@ $(function() {
 					left: '60%'
 				}, 1000)
 			}
-
+			else if(scrollh >1800)
+			{
+				$(".yezi").css("display", "none")
+				
+			}
 		}
 		/*--------------------------popdiv*/
 	var _wheeldelta = function(e) {
