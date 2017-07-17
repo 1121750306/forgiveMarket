@@ -118,7 +118,7 @@ db.once("open",function(){
         //评论外键
         cid:String,
         content:String,
-        date:Date
+        date:String
     },{versionKey:false});
 
     // 浏览历史表
