@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var mongoose = require("mongoose");
 var user = require("../models/user");
 var good = require("../models/good");
 var goodsize = require("../models/goodsize");
@@ -53,15 +54,15 @@ router.get('/cart/getgoods/:uid', function(req, res, next) {
 //						console.log("fail");
 //					}
 //				});
-//				goodsize.addGoodSizes([{gsname:"薄荷味",priceoffset:-10,gid:"596c490ec55a7b115875635a",sales:0,lefts:0,type:0},
-//										{gsname:"150ml",priceoffset:-20,gid:"596c490ec55a7b115875635a",sales:0,lefts:0,type:1},
-//										{gsname:"薄荷味",priceoffset:-20,gid:"222c490ec55a7b115875635a",sales:0,lefts:0,type:0},
-//										{gsname:"薄荷味",priceoffset:-30,gid:"333c490ec55a7b115875635a",sales:0,lefts:0,type:0},
-//										{gsname:"薄荷味",priceoffset:-40,gid:"444c490ec55a7b115875635a",sales:0,lefts:0,type:0},
-//										{gsname:"薄荷味",priceoffset:-50,gid:"555c490ec55a7b115875635a",sales:0,lefts:0,type:0},
-//										{gsname:"薄荷味",priceoffset:-60,gid:"666c490ec55a7b115875635a",sales:0,lefts:0,type:0},
-//										{gsname:"薄荷味",priceoffset:-70,gid:"777c490ec55a7b115875635a",sales:0,lefts:0,type:0},
-//										{gsname:"薄荷味",priceoffset:-80,gid:"888c490ec55a7b115875635a",sales:0,lefts:0,type:0}],
+//				goodsize.addGoodSizes([{gsname:"薄荷味",priceoffset:-10,gid:"596c7fb7806c5204cc6a0b04",sales:0,lefts:0,type:0},
+//										{gsname:"150ml",priceoffset:-20,gid:"596c7fb7806c5204cc6a0b04",sales:0,lefts:0,type:1},
+//										{gsname:"薄荷味",priceoffset:-20,gid:"222c7fb7806c5204cc6a0b04",sales:0,lefts:0,type:0},
+//										{gsname:"薄荷味",priceoffset:-30,gid:"333c7fb7806c5204cc6a0b04",sales:0,lefts:0,type:0},
+//										{gsname:"薄荷味",priceoffset:-40,gid:"444c7fb7806c5204cc6a0b04",sales:0,lefts:0,type:0},
+//										{gsname:"薄荷味",priceoffset:-50,gid:"555c7fb7806c5204cc6a0b04",sales:0,lefts:0,type:0},
+//										{gsname:"薄荷味",priceoffset:-60,gid:"666c7fb7806c5204cc6a0b04",sales:0,lefts:0,type:0},
+//										{gsname:"薄荷味",priceoffset:-70,gid:"777c7fb7806c5204cc6a0b04",sales:0,lefts:0,type:0},
+//										{gsname:"薄荷味",priceoffset:-80,gid:"888c7fb7806c5204cc6a0b04",sales:0,lefts:0,type:0}],
 //										function(err){
 //											
 //										});
@@ -81,40 +82,59 @@ router.get('/cart/getgoods/:uid', function(req, res, next) {
 //											}
 //										})
 				
+//				orderitem.addOrderItem({oid:"596c7fb3806c5204cc6a0b03",gid:mongoose.Types.ObjectId("596c7fb7806c5204cc6a0b04"),gsid:mongoose.Types.ObjectId("596c8155693f4621c0da48e0"),num:"1"})
+//				orderitem.addOrderItems([{oid:mongoose.Types.ObjectId("596c7fb3806c5204cc6a0b03"),gid:mongoose.Types.ObjectId("596c7fb7806c5204cc6a0b04"),gsid:mongoose.Types.ObjectId("596c8155693f4621c0da48e0"),num:"1"},
+//										{oid:mongoose.Types.ObjectId("596c7fb3806c5204cc6a0b03"),gid:mongoose.Types.ObjectId("222c7fb7806c5204cc6a0b04"),gsid:mongoose.Types.ObjectId("596c8155693f4621c0da48e2"),num:"1"},
+//										{oid:mongoose.Types.ObjectId("596c7fb3806c5204cc6a0b03"),gid:mongoose.Types.ObjectId("333c7fb7806c5204cc6a0b04"),gsid:mongoose.Types.ObjectId("596c8155693f4621c0da48e3"),num:"1"},
+//										{oid:mongoose.Types.ObjectId("596c7fb3806c5204cc6a0b03"),gid:mongoose.Types.ObjectId("444c7fb7806c5204cc6a0b04"),gsid:mongoose.Types.ObjectId("596c8155693f4621c0da48e4"),num:"1"},
+//										{oid:mongoose.Types.ObjectId("596c7fb3806c5204cc6a0b03"),gid:mongoose.Types.ObjectId("555c7fb7806c5204cc6a0b04"),gsid:mongoose.Types.ObjectId("596c8155693f4621c0da48e5"),num:"1"},
+//										{oid:mongoose.Types.ObjectId("596c7fb3806c5204cc6a0b03"),gid:mongoose.Types.ObjectId("666c7fb7806c5204cc6a0b04"),gsid:mongoose.Types.ObjectId("596c8155693f4621c0da48e6"),num:"1"},
+//										{oid:mongoose.Types.ObjectId("596c7fb3806c5204cc6a0b03"),gid:mongoose.Types.ObjectId("777c7fb7806c5204cc6a0b04"),gsid:mongoose.Types.ObjectId("596c8155693f4621c0da48e7"),num:"1"},
+//										{oid:mongoose.Types.ObjectId("596c7fb3806c5204cc6a0b03"),gid:mongoose.Types.ObjectId("888c7fb7806c5204cc6a0b04"),gsid:mongoose.Types.ObjectId("596c8155693f4621c0da48e8"),num:"1"}],
+//										function(err){
+//											if(!err){
+//												console.log("success");
+//											}else{
+//												console.log("fail");
+//											}
+//										})
+				
+				
 				var items = [];
 				
 				//获取所有订单项
-				orderitem.getOrderItem(oid, function(err_getorderitem, data_getorderitem){
+				orderitem.getOrderItem1(data_getorder[0]._id, function(err_getorderitem, data_getorderitem){
 					if (!err_getorderitem) {
-//						console.log(data_getorderitem);
-						for (var i = 0; i < data_getorderitem.length; i++) {
-							var item = {};
-							var gid = data_getorderitem[i].gid;
-							var gsid = data_getorderitem[i].gsid;
-							
-							good.getGoodById(gid, function(err_getgood, data_getgood){
-//								console.log(data_getgood);
-								item.gname = data_getgood[0].gname;
-//								console.log(data_getgood[0].gname);
-								
-								
-								goodsize.getGoodSizeById(gsid, function(err_getgoodsize, data_getgoodsize){
-	//								console.log(data_getgoodsize);
-									item.gsname = data_getgoodsize[0].gsname;
-//									console.log(data_getgoodsize[0].gsname);
-
-									items.push(item);
-									console.log(item);
-								});
-							});
-							
-//							console.log(item);
-						}
+						console.log("result:" + data_getorderitem[0].gid);
+//						for (var i = 0; i < data_getorderitem.length; i++) {
+//							var item = {};
+//							var gid = data_getorderitem[i].gid;
+//							var gsid = data_getorderitem[i].gsid;
+//							
+//							good.getGoodById(gid, function(err_getgood, data_getgood){
+////								console.log(data_getgood);
+//								item.gname = data_getgood[0].gname;
+////								console.log(data_getgood[0].gname);
+//								
+//								
+//								goodsize.getGoodSizeById(gsid, function(err_getgoodsize, data_getgoodsize){
+//	//								console.log(data_getgoodsize);
+//									item.gsname = data_getgoodsize[0].gsname;
+////									console.log(data_getgoodsize[0].gsname);
+//
+//									items.push(item);
+//									console.log(item);
+//								});
+//							});
+//							
+////							console.log(item);
+//						}
 					} else{
 						console.log(new Date() + "ERROR: " + err_getorderitem);
 					}
 				});
 //				console.log(items);
+
 				goods = [{_id:"1"},{_id:"2"},{_id:"3"},{_id:"4"},{_id:"5"},{_id:"6"}];
 			}
 		} else{

@@ -51,7 +51,20 @@ function getOrderItem (oid, callback) {
 	orderitemModel.find({oid:oid},callback);
 }
 
+function getOrderItem1 (oid, callback) {
+	orderitemModel.find({
+		oid:oid
+	}).populate({
+		path: 'oid' 
+	}).populate({
+		path: 'gid' 
+	}).populate({
+		path: 'gsid'
+	}).exec(callback);
+}
+
 module.exports.initModel = initModel;
 module.exports.addOrderItem = addOrderItem;
 module.exports.addOrderItems = addOrderItems;
 module.exports.getOrderItem = getOrderItem;
+module.exports.getOrderItem1 = getOrderItem1;

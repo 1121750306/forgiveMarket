@@ -23,7 +23,10 @@ db.once("open", function() {
 	// 商品表
 	goodSchema = new mongoose.Schema({
 		//商品类型外键
-		typeid: String,
+		typeif: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'Goodtype'
+		},
 		gname: String,
 		pricebase: Number,
 		discount: Number
@@ -43,7 +46,10 @@ db.once("open", function() {
 	// 商品照片表
 	goodphotoSchema = new mongoose.Schema({
 		//商品外键
-		gid: String,
+		gid: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'Good'
+		},
 		//0.商品图片 1.商品详情图片
 		flag: Number,
 		url: String
@@ -60,9 +66,13 @@ db.once("open", function() {
 	});
 	goodsizetypeModel = db.model("Goodsizetype", goodsizetypeSchema);
 
-	//goodInfo
+	//商品信息表
 	goodInfoSchema = new mongoose.Schema({
-		gid: String,
+		//商品外键
+		gid: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'Good'
+		},
 		container: String,
 		smile: String,
 		fitSkin: String,
@@ -82,7 +92,10 @@ db.once("open", function() {
 		//商品价格偏移量
 		priceoffset: Number,
 		//商品外键
-		gid: String,
+		gid: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'Good'
+		},
 		sales: Number,
 		lefts: Number,
 		//0气味1容量
@@ -95,7 +108,10 @@ db.once("open", function() {
 	// 订单表
 	orderSchema = new mongoose.Schema({
 		//用户外键
-		uid: String,
+		uid: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'User'
+		},
 		//0.购物车 1.未付款 2.已付款 3.已发货 4.已收货(待评价)5.已完成
 		flag: Number,
 		//订单时间
@@ -108,11 +124,20 @@ db.once("open", function() {
 	// 订单项表
 	orderitemSchema = new mongoose.Schema({
 		//订单外键
-		oid: String,
+		oid: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'Order'
+		},
 		//商品外键
-		gid: String,
+		gid: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'Good'
+		},
 		//商品规格外键
-		gsid: String,
+		gsid: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'Goodsize'
+		},
 		num: Number
 	}, {
 		versionKey: false
@@ -144,13 +169,25 @@ db.once("open", function() {
 	// 评论表
 	commentSchema = new mongoose.Schema({
 		//用户外键
-		uid: String,
+		uid: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'User'
+		},
 		//订单外键
-		oid: String,
+		oid: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'Order'
+		},
 		//商品外键
-		gid: String,
+		gid: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'Good'
+		},
 		//评论外键
-		cid: String,
+		cid: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'Comment'
+		},
 		content: String,
 		date: Date
 	}, {
@@ -161,9 +198,15 @@ db.once("open", function() {
 	//点赞表
 	thumbSchema = new mongoose.Schema({
 		//用户外键
-		uid: String,
+		uid: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'User'
+		},
 		//评论外键
-		commentid: String
+		cid: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'Comment'
+		}
 	}, {
 		versionKey: false
 	});
@@ -190,8 +233,10 @@ db.once("open", function() {
 		//用户外键
 		uid: String,
 		//商品外键
-		gid: String,
-		//收藏时间
+		gid: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'Good'
+		},
 		date: Date
 	}, {
 		versionKey: false
