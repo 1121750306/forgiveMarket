@@ -3,11 +3,15 @@
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
+	    <link rel="stylesheet" href="/bootstrap-fileinput-master/css/fileinput.min.css"/>
 	    <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css" />
 	    <link rel="stylesheet" href="/jquery-easyui/themes/default/easyui.css" />
 	    <link rel="stylesheet" href="/jquery-easyui/themes/icon.css" />
 	    <script type="text/javascript" src="/jquery-easyui/jquery.min.js"></script>
+	    <script type="text/javascript" src="/bootstrap/dist/js/bootstrap.min.js" ></script>
 	    <script type="text/javascript" src="/jquery-easyui/jquery.easyui.min.js" ></script>
+        <script type="text/javascript" src="/bootstrap-fileinput-master/js/fileinput.min.js" ></script>
+	    <script type="text/javascript" src="/bootstrap-fileinput-master/js/fileinput_locale_zh.js" ></script>
 	     <script>
 	        //弹出窗口
 	        function showWindow(options){
@@ -42,7 +46,28 @@
 		    </div>
 		</div>
 	    <div id="MyPopWindow" modal="true" shadow="false" minimizable="false" cache="false" maximizable="false" collapsible="false" resizable="false" style="margin: 0px;padding: 0px; overflow-y: scroll;"></div>
-      <script>
+     
+        	<div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+				  <div class="modal-dialog" role="document">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				        <h4 class="modal-title">图片上传</h4>
+				      </div>
+				      <div class="modal-body ">
+				      	
+				      		 <input id="file-Portrait"  type="file"/> 
+				      	           
+				      </div>
+				      <div class="modal-footer">
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				        <button type="button" class="btn btn-primary">Save changes</button>
+				      </div>
+				    </div><!-- /.modal-content -->
+				  </div><!-- /.modal-dialog -->
+				</div><!-- /.modal -->
+        
+     <script>
        $(document).ready(function () {
         $("#GoodTable").datagrid({
             title:"商品列表",
@@ -71,9 +96,16 @@
                {field:'typeid',title:'类型',width:100,
                     formatter:getTypeName
                },
-               {field:'opera',title:'类型',width:100,
+               {field:'opera',title:'详情',width:40,
                     formatter:function(value,row,index){
-                    	return "<a class='details' href='#'></a>";
+                    	var a='<a class="details" href="javascript:void(0)"></a>'
+                    	return a;
+                    }
+               },
+               {field:'photo',title:'图片',width:40,
+                    formatter:function(value,row,index){
+                    	//"<a class='photo' onclick='Upload()' href='javascript:void(0)'></a>";
+                    	return '<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">上传</button>';
                     }
                 }
             ]],
@@ -98,13 +130,14 @@
             },'-'],
             onLoadSuccess:function () {
             	$(".details").linkbutton({text:'查看详情',plain:true,iconCls:'icon-more'});  
+            	$(".photo").linkbutton({text:'上传',plain:true});  
                 $("#GoodTable").datagrid('clearSelections');
             }
         });
     });
     
        function getTypeName(value,row,index){
-       	 console.log("typeid+"row.typeid);
+       	 console.log("typeid"+row.typeid);
        	var typename="";
        	 $.ajax({
        	 	type:"post",
@@ -129,7 +162,24 @@
        	 		
        	 	}
        	 })
-       }
+       };
+      initFileInput("file-Portrait", "/admin/upload");
+    function initFileInput(ctrlName, uploadUrl) {    
+     var control = $('#' + ctrlName); 
+
+     control.fileinput({
+        language: 'zh', //设置语言
+        uploadUrl: uploadUrl, //上传的地址
+        allowedFileExtensions : ['jpg', 'png','gif'],//接收的文件后缀
+        showUpload: true, //是否显示上传按钮
+        showCaption: false,//是否显示标题
+         maxFileCount: 100,
+         enctype: 'multipart/form-data',
+        browseClass: "btn btn-primary", //按钮样式             
+        previewFileIcon: "<i class='glyphicon glyphicon-king'></i>", 
+        msgFilesTooMany: "选择上传的文件数量({n}) 超过允许的最大数值{m}！",
+    });
+}
         </script>
 	</body>
 </html>

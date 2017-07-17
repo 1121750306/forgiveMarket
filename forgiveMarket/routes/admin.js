@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var user = require("../models/user")
+var user = require("../models/user");
+var multiparty = require('multiparty');
 
 //注册models监听并传递models
 function callback(models) {
@@ -20,5 +21,16 @@ router.post('/login', function(req, res, next) {
 	}
 });
 
+
+router.post("/upload",function(req,res,next){
+	console.log("进来了");
+	var form = new multiparty.Form({
+		uploadDir: './public/img/upload'
+	});
+	form.parse(req,function(err, fields, files){
+		console.log('files:' + files);
+		
+	})
+})
 module.exports = router;
 module.exports.callback = callback;
