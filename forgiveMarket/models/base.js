@@ -160,7 +160,7 @@ db.once("open", function() {
 		//用户外键
 		uid: String,
 		//商品外键
-		gid: String,
+		gid: {type: mongoose.Schema.Types.ObjectId, ref: 'good'},
 		//浏览时间
 		date: String
 	}, {
@@ -209,7 +209,7 @@ db.once("open", function() {
 		history: historyModel,
 		collect: collectModel,
 		goodInfo: goodInfoModel,
-		thumb:thumbModel
+		thumb: thumbModel
 	});
 })
 
