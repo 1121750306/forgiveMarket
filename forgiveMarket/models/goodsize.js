@@ -4,5 +4,14 @@ function initModel(models) {
     goodsizeModel =  models.goodsize;
 }
 
-
+/**
+ * 
+ * @param {Object} obj 商品规格记录
+ * @param {Object} cb
+ */
+function addGoodSize(obj,cb){
+	var goodSizeEntity=new goodsizeModel(obj);
+	goodSizeEntity.save(cb);
+}
 module.exports.initModel = initModel;
+module.exports.addGoodSize = addGoodSize;

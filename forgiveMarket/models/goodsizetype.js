@@ -4,5 +4,19 @@ function initModel(models) {
     goodsizetypeModel =  models.goodsizetype;
 }
 
+/**
+ * 
+ * @param {Object} obj 一条商品规格类型记录
+ * @param {Object} cb 回调函数
+ */
+function addGoodSizeType(obj,cb){
+	var goodsizeTypeEntity=new goodsizetypeModel(obj);
+	goodsizeTypeEntity.save(cb);
+}
 
+function getGoodSizeTypes(cb){
+	goodsizetypeModel.find({},cb);
+}
 module.exports.initModel = initModel;
+module.exports.addGoodSizeType = addGoodSizeType;
+module.exports.getGoodSizeTypes = getGoodSizeTypes;

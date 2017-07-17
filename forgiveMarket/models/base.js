@@ -8,7 +8,6 @@ db.once("open",function(){
     //定义schema
     //用户表
     userSchema = new mongoose.Schema({
-//      _id:String,
         uname:String,
         psw:String,
         phone:String,
@@ -18,25 +17,20 @@ db.once("open",function(){
 
     // 商品表
     goodSchema = new mongoose.Schema({
-        _id:String,
         //商品类型外键
         typeid:String,
         gname:String,
         pricebase:Number,
-        discount:Number,
-        sales:Number,
-        lefts:Number
+        discount:Number
     },{versionKey:false});
 
     // 商品类型表
     goodtypeSchema = new mongoose.Schema({
-        _id:String,
         tname:String
     },{versionKey:false});
 
     // 商品照片表
     goodphotoSchema = new mongoose.Schema({
-        _id:String,
         //商品外键
         gid:String,
         //0.商品图片 1.商品详情图片
@@ -46,25 +40,37 @@ db.once("open",function(){
 
     // 商品规格类型表
     goodsizetypeSchema = new mongoose.Schema({
-        _id:String,
-        gstname:String,
-        //商品外键
-        gid:String
+        gstname:String
     },{versionKey:false});
-
+    
+    //goodInfo
+    goodInfoSchema=new mongoose.Schema({
+    	gid:String,
+    	container:String,
+    	smile:String,
+    	fitSkin:String,
+    	usage:String,
+    	fitwhere:String,
+    	packing:String,
+    	tip:String,
+    	basis:String
+    },{versionKey:false})
+    
     // 商品规格表
     goodsizeSchema = new mongoose.Schema({
-        _id:String,
         gsname:String,
         //商品价格偏移量
         priceoffset:Number,
-        //商品规格类型外键
-        gstid:String
+        //商品外键
+        gid:String,
+        sales:Number,
+        lefts:Number,
+        //0气味1容量
+        type:Number
     },{versionKey:false});
 
     // 订单表
     orderSchema = new mongoose.Schema({
-        _id:String,
         ordernum:String,
         //0.未付款 1.购物车 2.已付款 3.已发货 4.已收货(待评价) 5.已完成
         flag:Number
@@ -72,7 +78,6 @@ db.once("open",function(){
 
     // 订单项表
     orderitemSchema = new mongoose.Schema({
-        _id:String,
         //订单外键
         oid:String,
         //商品外键
@@ -82,7 +87,6 @@ db.once("open",function(){
 
     // 收货地址表
     locationSchema = new mongoose.Schema({
-        _id:String,
         //用户外键
         uid:String,
         //省
@@ -102,7 +106,6 @@ db.once("open",function(){
 
     // 评论表
     commentSchema = new mongoose.Schema({
-        _id:String,
         //用户外键
         uid:String,
         //订单外键
@@ -117,7 +120,6 @@ db.once("open",function(){
 
     // 浏览历史表
     historySchema = new mongoose.Schema({
-        _id:String,
         //用户外键
         uid:String,
         //商品外键
@@ -126,7 +128,6 @@ db.once("open",function(){
 
     // 收藏表
     collectSchema = new mongoose.Schema({
-        _id:String,
         //用户外键
         uid:String,
         //商品外键
@@ -146,11 +147,11 @@ db.once("open",function(){
     commentModel = db.model("Comment",commentSchema);
     historyModel = db.model("History",historySchema);
     collectModel = db.model("Collect",collectSchema);
-
+    goodInfoModel = db.model("GoodInfo",collectSchema);
 	//models回调map
     listener({user:userModel,good:goodModel,goodtype:goodtypeModel,goodphoto:goodphotoModel,
     		goodsizetype:goodsizetypeModel,goodsize:goodsizeModel,order:orderModel,orderitem:orderitemModel,
-    		location:locationModel,comment:commentModel,history:historyModel,collect:collectModel});
+    		location:locationModel,comment:commentModel,history:historyModel,collect:collectModel,goodInfo:goodInfoModel});
 })
 
 //models回调
