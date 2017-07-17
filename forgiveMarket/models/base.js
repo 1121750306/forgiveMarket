@@ -71,12 +71,12 @@ db.once("open",function(){
 
     // 订单表
     orderSchema = new mongoose.Schema({
-    	//订单号
-        ordernum:String,
         //用户外键
         uid:String,
-        //0.购物车 1.未付款 2.已付款 3.已发货 4.已收货(待评价) 5.已完成
-        flag:Number
+        //0.购物车 1.未付款 2.已付款 3.已发货 4.已收货(待评价)5.已完成
+        flag:Number,
+        //订单时间
+        date:Date
     },{versionKey:false});
 
     // 订单项表

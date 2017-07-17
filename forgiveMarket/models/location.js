@@ -51,6 +51,17 @@ function updateFlag(id,cb){
 		}
 	})
 }
+
+function updateFlag2(id,cb){
+	locationModel.findById(id,function(err,doc){
+		if(!err){
+			doc.flag=1;
+			doc.save();
+		}else{
+			cb(err);
+		}
+	})
+}
 /**
  * 
  * 跟新收货地址
@@ -93,4 +104,5 @@ module.exports.getLocation=getLocation;
 module.exports.getLocationById=getLocationById;
 module.exports.updateLocation=updateLocation;
 module.exports.updateFlag=updateFlag;
+module.exports.updateFlag2=updateFlag2;
 module.exports.deleteLocation=deleteLocation;
