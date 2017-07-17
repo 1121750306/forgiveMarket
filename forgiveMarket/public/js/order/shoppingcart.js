@@ -1,51 +1,12 @@
 $(function(){
 	//判断用户是否登录
-	if(sessionStorage.user == null || sessionStorage.user == "null" || sessionStorage.user == undefined){
+	if(sessionStorage.user == null){
 		//提示框显示
 		$(".attention").show();
 		$(".no_login").show();
 		
 		//弹出登录框
 		showLogin();
-		
-	}else{
-		
-		var cartgoods = JSON.parse(sessionStorage.getItem("cartgoods"));
-		
-		//判断是否获取过购物车数据
-		if (cartgoods == null) {
-			//请求购物车数据
-			$.ajax({
-				type:"get",
-				url:"/order/cart/getgoods/"+"1",
-	//			url:"/order/cart/getgoods/"+user._id,
-				async:true,
-				success:function(data){
-					if (data.length != 0) {
-						//购物车不为空
-						$(".cart").show();
-					}else{
-						//购物车为空
-						$(".attention").show();
-						$(".cart_empty").show();
-					}
-				},
-				error:function(err){
-					console.log(err);
-				}
-			});
-			
-		}else{
-			
-			if (cartgoods.length != 0) {
-				//购物车不为空
-				$(".cart").show();
-			}else{
-				//购物车为空
-				$(".attention").show();
-				$(".cart_empty").show();
-			}
-		}
 		
 	}
 	addOnLoginListener(function(err, result){

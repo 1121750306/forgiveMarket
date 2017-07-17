@@ -64,15 +64,6 @@ function getGoodType (id,callback){
 	goodtypeModel.find({_id:id},callback);
 }
 
-/**
- * 获取uuid32 id
- */
-function guid() {
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-        var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
-        return v.toString(16);
-    });
-}
 
 module.exports.initModel = initModel;
 module.exports.addGoodType = addGoodType;

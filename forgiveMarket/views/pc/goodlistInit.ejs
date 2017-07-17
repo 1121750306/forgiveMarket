@@ -41,7 +41,7 @@
 		        </table>
 		    </div>
 		</div>
-	    <div id="MyPopWindow" modal="true" shadow="false" minimizable="false" cache="false" maximizable="false" collapsible="false" resizable="false" style="margin: 0px;padding: 0px; overflow: hidden;"></div>
+	    <div id="MyPopWindow" modal="true" shadow="false" minimizable="false" cache="false" maximizable="false" collapsible="false" resizable="false" style="margin: 0px;padding: 0px; overflow-y: scroll;"></div>
       <script>
        $(document).ready(function () {
         $("#GoodTable").datagrid({
@@ -60,22 +60,21 @@
             columns:[[
                 {field:'ck',checkbox:true,width:10},
                 {field:'gname',title:'商品名',width:100,
-                    formatter:function(value,row,index){return row.uname;}
+                    formatter:function(value,row,index){return row.gname;}
                 },
                 {field:'pricebase',title:'基础价格',width:60,
-                    formatter:function(value,row,index){return row.pwd;}
-                },
-                {field:'lefts',title:'库存',width:80,
-                    formatter:function(value,row,index){return row.birthday;}
-                },
-                {field:'sales',title:'销量',width:100,
-                    formatter:function(value,row,index){return row._id;}
-                },
+                    formatter:function(value,row,index){return row.pricebase;}
+               },
                 {field:'discount',title:'折扣',width:100,
-                    formatter:function(value,row,index){return row.photo;}
+                    formatter:function(value,row,index){return row.discount;}
                },
                {field:'typeid',title:'类型',width:100,
                     formatter:getTypeName
+               },
+               {field:'opera',title:'类型',width:100,
+                    formatter:function(value,row,index){
+                    	return "<a class='details' href='#'></a>";
+                    }
                 }
             ]],
             toolbar:[{
@@ -98,13 +97,37 @@
                 }
             },'-'],
             onLoadSuccess:function () {
+            	$(".details").linkbutton({text:'查看详情',plain:true,iconCls:'icon-more'});  
                 $("#GoodTable").datagrid('clearSelections');
             }
         });
     });
     
        function getTypeName(value,row,index){
-       	  console.log(row._id)
+       	var typename="";
+       	 $.ajax({
+       	 	type:"post",
+       	 	url:"/good/queryGoodType",
+       	 	data:{id:row.typeid},
+       	 	async:false,
+       	 	success:function(data){
+       	 		console.log(data[0].tname)
+       	 		typename=data[0].tname;
+       	 	}     	 	
+       	 });
+       	 return typename;
+       }
+       
+       function addRow(){
+       	 showWindow({
+       	 	title:"添加商品",
+       	 	width:"800",
+       	 	height:'500',
+       	 	href:'/good/addInit',
+       	 	onLoad:function(){
+       	 		
+       	 	}
+       	 })
        }
         </script>
 	</body>
