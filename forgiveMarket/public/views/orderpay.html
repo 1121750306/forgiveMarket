@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		
+		<title>orderpay</title>
+		
+		<link rel="stylesheet" type="text/css" href="/bootstrap/dist/css/bootstrap.min.css"/>	
+		<link rel="stylesheet" type="text/css" href="../css/order/shoppingcart.css"/>	
+		<link rel="stylesheet" type="text/css" href="../css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/navigation.css"/>
+		<link rel="stylesheet" href="../css/orderpay.css" /> 
+		<script type="text/javascript" src="../js/orderpay.js" ></script>
+		<script src="/jquery/dist/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="/bootstrap/dist/js/bootstrap.js" ></script>
+	</head>
+	<body>
+		<div class="nav">
+			<span class="nav_menu"></span>
+			<a href="/views/homepage.html" class="nav_logo"></a>
+			<a href="/views/user/user.html" class="nav_user"></a>
+			<a href="/order" class="nav_cart">
+				<p class="nav_cartnum">0</p>
+			</a>
+			
+			<div class="nav_type">
+				
+			</div>
+		</div>
+		
+		<div class="header">
+			<h1>确认订单</h1>
+		</div>
+		
+		<div class="content">
+			<div class="userinfo">
+				<div class="username">收货人：MMP</div>
+				<div class="userphone">18240441759</div>
+				<img src="../img/innisfreeIco/icon_look.gif" style="margin-top: 15% ;margin-left:4%;"/>
+				<div class="useraddress">
+					收货地址：辽宁省沈阳市浑南新区东北大学浑南校区二舍ABIJSDBFWBEFLAWHEBFLAWEFJAHE
+				</div>
+				<span style="position:absolute;font-size: 20px;margin-top: 100px;margin-left: 80%;color: green;">></span>
+				<img src="../img/innisfree-img/BG_gnb.gif" style="position:relative; width: 100%;height: 3px; margin-top: 40px;"/>
+			</div>
+			<div class="order">
+				<ul class="cart">
+					<li class="cart_item">
+						<form action="">
+							<img class="img" src="../../img/innisfree-img/goods/1000000311_l.png"/>
+							<div class="item_info">
+								<h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium corporis at quas facere voluptas aliquam eos necessitatibus cupiditate officia aspernatur illum vel omnis totam in eaque odit quisquam tempore unde!</h2>
+								<ul class="good_size">
+									<li><h4>绿色</h4></li>
+									<li><h4>150ml</h4></li>	
+								</ul>
+								<div class="info_bottom">
+									<a class="money">100.00</a>		
+									<a class="mount">x1</a>
+								</div>
+							</div>	
+						</form>
+					</li>
+					<li class="cart_item">
+						<form action="">
+							<img class="img" src="../../img/innisfree-img/goods/1000000311_l.png"/>
+							<div class="item_info">
+								<h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium corporis at quas facere voluptas aliquam eos necessitatibus cupiditate officia aspernatur illum vel omnis totam in eaque odit quisquam tempore unde!</h2>
+								<ul class="good_size">
+									<li><h4>绿色</h4></li>
+									<li><h4>150ml</h4></li>	
+								</ul>
+								<div class="info_bottom">
+									<a class="money">100.00</a>		
+									<a class="mount">x1</a>
+								</div>
+							</div>	
+						</form>
+					</li>
+					<li class="cart_item">
+						<form action="">
+							<img class="img" src="../../img/innisfree-img/goods/1000000311_l.png"/>
+							<div class="item_info">
+								<h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium corporis at quas facere voluptas aliquam eos necessitatibus cupiditate officia aspernatur illum vel omnis totam in eaque odit quisquam tempore unde!</h2>
+								<ul class="good_size">
+									<li><h4>绿色</h4></li>
+									<li><h4>150ml</h4></li>	
+								</ul>
+								<div class="info_bottom">
+									<a class="money">100.00</a>		
+									<a class="mount">x1</a>
+								</div>
+							</div>	
+						</form>
+					</li>
+					<li class="cart_item">
+						<form action="">
+							<img class="img" src="../../img/innisfree-img/goods/1000000311_l.png"/>
+							<div class="item_info">
+								<h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium corporis at quas facere voluptas aliquam eos necessitatibus cupiditate officia aspernatur illum vel omnis totam in eaque odit quisquam tempore unde!</h2>
+								<ul class="good_size">
+									<li><h4>绿色</h4></li>
+									<li><h4>150ml</h4></li>	
+								</ul>
+								<div class="info_bottom">
+									<a class="money">100.00</a>		
+									<a class="mount">x1</a>
+								</div>
+							</div>	
+						</form>
+					</li>
+				</ul>
+			</div>
+			<div class="usermsg">  买家留言：
+				<textarea cols="40" style="width:100%;height:60px;border: none;border-bottom: 1px solid gainsboro;margin-top: 10px;"></textarea>
+			</div>
+		</div>
+		
+		<div style="height: 50px;"></div>
+		<div class="footer">
+			<h2 class="totalcount"></h2>
+			<h2 class="totalpay"></h2>
+			<button type="button">提交订单</button>
+					
+		</div>
+		
+		
+		<script>
+		//计算总价
+		var totalmoney =0;
+		var i = 0;
+		$(".money").each(function(){	
+			totalmoney= totalmoney + parseInt(this.innerHTML);
+			$(".totalpay").html("总计："+totalmoney)
+		})
+		
+		$(".cart_item").each(function(){	
+			i = i+1;
+			$(".totalcount").html("共"+i+"件商品")
+		})
+		</script>
+	</body>
+	
+</html>

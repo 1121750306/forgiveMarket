@@ -1,0 +1,119 @@
+body
+{
+	overflow-x: hidden;
+}
+.header
+{
+	position: fixed;
+	top: 0px;
+	z-index: 99;
+}
+.content
+{
+	position: relative;
+	margin-top: 100px;
+}
+.userinfo
+{
+	position: relative;
+	width: 100%;
+	height: 150px;
+	font-size: 16px;
+	margin-top: 10px;
+}
+
+.username
+{
+	position: absolute;
+	font-size: 18px;
+	margin-left: 15%;
+	margin-top: 4%;
+}
+.userphone
+{
+	position: absolute;
+	margin-left: 69%;
+	margin-top:4%;
+}
+.useraddress
+{
+	position: absolute;
+	margin-left: 15%;
+	margin-top: -8%;
+	margin-right: 4%;
+	font-size: 14px;
+}
+.order
+{
+	position: relative;
+	width: 100%;
+	margin-top: 10px;
+}
+
+.cart
+{
+	display: block;
+}
+.img
+{
+	position: absolute;
+	margin-left: 5%;
+}
+.item_info
+{
+	position: absolute;
+	margin-left: 38%;
+}
+.money
+{
+	position: absolute;
+	font-size: 16px;
+	color: red;
+	background: white;
+	margin-left: 0%;
+}
+
+.mount
+{
+	position: absolute;
+	font-size: 16px;
+	color: black;
+	background: white;
+	margin-left: 80%;
+}
+.totalcount
+{
+	position: absolute;
+	font-size: 16px;
+	margin-left: 20%;
+	margin-top: 20px;
+}
+.totalpay
+{
+	position: absolute;
+	font-size: 16px;
+	margin-left: 40%;
+	margin-top: 20px;
+}
+
+.footer>button
+{
+	position: absolute;
+	width: 30%;
+	background-color: greenyellow;
+	font-size: 20px;
+	color: black;
+	border: none;
+	margin-left: 69%;
+	height: 100%;
+}
+
+.usermsg
+{
+	position: relative;
+	margin-top: 20px;
+	margin-left: 4%;
+	width: 100%;
+	height: 50px;
+	font-size: 16px;
+}

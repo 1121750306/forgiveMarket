@@ -158,6 +158,23 @@ body
 	margin-left: 45%;
 	display: none;
 }
+
+.largeimg
+{
+	position: absolute;
+	z-index: 20;
+	margin-top: 300px;
+	width: 100%;
+	height: 200px;
+}
+
+.largeimg1
+{
+	position: absolute;
+	width: 35%;
+	margin-top: 70px;
+	display: none;
+}
 /*---------------------------------------------活动*/
 .activities
 {
