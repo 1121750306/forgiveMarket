@@ -31,18 +31,8 @@ router.post("/Add",function(req,res,next){
 	var typeid=req.body.typeid;
 	var discount=req.body.discount;
 	var goodid;
-	var goodObj={gname:gname,pricebase:pricebase,typeid:typeid,discount:discount};
 	
-	good.addGood(goodObj,function(err,doc){
-		if(!err){
-			goodid=doc._id;
-		}else{
-			console.log(err);
-		}
-	});
-	
-	/*************************************************************************************/
-	//添加商品信息表
+		//添加商品信息表
 	var fitSkin=req.body.fitSkin;
 	var usage=req.body.usage;
 	var fitwhere=req.body.fitwhere;
@@ -51,87 +41,104 @@ router.post("/Add",function(req,res,next){
 	var basis=req.body.basis;
 	var realContainer="",realSmile="";
 	var container=req.body.container;
-	console.log("container"+container);
-	if(typeof(container)=="string"){
-		realContainer=container;
-	}else if(typeof(container)=="object"){
-		realContainer=JSON.stringify(container);
-	}
 	var  smile=req.body.smile;
-	console.log("smile"+smile);
-	if(typeof(smile)=="string"){
-		realSmile=smile;
-	}else if(typeof(smile)=="object"){
-		realSmile=JSON.stringify(smile);
-	}
-	console.log(realSmile);
-	var goodInfoObj={gid:goodid,fitSkin:fitSkin,usage:usage,fitwhere:fitwhere,packing:packing,tip:tip,basis:basis,container:realContainer,smile:realSmile};
-	/*goodInfo.addGoodInfo(goodInfoObj,function(err2,doc2){
-		if(!err){
-			console.log(doc2);
-		}else{
-			console.log(err2);
-		}
-	})*/
-	/*************************************************************************************/
-	//添加商品规格
-	var goodsizeObjs1,goodsizeObjs2;
+		//添加商品规格
+	var goodsizeObjs1=[],goodsizeObjs2=[];
 	var lefts1=req.body.lefts1;
 	var lefts2=req.body.lefts2;
 	var priceoffset1=req.body.priceoffset1;
 	var priceoffset2=req.body.priceoffset2;
-	if(typeof(container)=="string"){
-		realContainer=container;
-		var goodsizeObj={gid:goodid,type:1,gsname:realContainer,priceoffset:priceoffset1,lefts:lefts1};
-		goodsize.addGoodSize(goodsizeObj,function(err3,doc3){
-			if(!err3){
-				console.log(doc3);
-			}else{
-				console.log(err3);
-			}
-		})
-	}else if(typeof(container)=="object"){
-		realContainer=JSON.stringify(container);
-		console.log("len"+container.length);
-		for(var i=0;i<container.length;i++){
-			var gsObj={gid:goodid,type:1,gsname:container[i],priceoffset:priceoffset1[i],lefts:lefts1[i]};
-			goodsizeObjs1.push(gsObj);
-		}
-		goodsize.addGoodSizes(goodsizeObjs1,function(err4,doc4){
-			if(!err4){
-				console.log(doc4);
-			}else{
-				console.log(err4);
-			}
-		})
-	}
 	
+	var goodObj={gname:gname,pricebase:pricebase,typeid:typeid,discount:discount};
 	
-    if(typeof(smile)=="string"){
-		realSmile=smile;
-		var goodsizeObj={gid:goodid,type:0,gsname:realSmile,priceoffset:priceoffset2,lefts:lefts2};
-		goodsize.addGoodSize(goodsizeObj,function(err5,doc5){
-			if(!err3){
-				console.log(doc3);
-			}else{
-				console.log(err3);
+	good.addGood(goodObj,function(err,doc){
+		if(!err){
+			goodid=doc._id;
+			if(typeof(container)=="string"){
+				realContainer=container;
+			}else if(typeof(container)=="object"){
+				realContainer=JSON.stringify(container);
 			}
-		})
-	}else if(typeof(smile)=="object"){
-		realContainer=JSON.stringify(container);
-		console.log("len"+smile.length);
-		for(var i=0;i<smile.length;i++){
-			var gsObj={gid:goodid,type:0,gsname:smile[i],priceoffset:priceoffset2[i],lefts:lefts2[i]};
-			goodsizeObjs2.push(gsObj);
+			
+			console.log("smile"+smile);
+			if(typeof(smile)=="string"){
+				realSmile=smile;
+			}else if(typeof(smile)=="object"){
+				realSmile=JSON.stringify(smile);
+			}
+			console.log(realSmile);
+			var goodInfoObj={gid:goodid,fitSkin:fitSkin,usage:usage,fitwhere:fitwhere,packing:packing,tip:tip,basis:basis,container:realContainer,smile:realSmile};
+			goodInfo.addGoodInfo(goodInfoObj,function(err2,doc2){
+				if(!err2){
+					console.log(doc2);
+				}else{
+					console.log(err2);
+				}
+			})
+			/*************************************************************************************/
+		
+			if(typeof(container)=="string"){
+				realContainer=container;
+				var goodsizeObj={gid:goodid,type:1,gsname:realContainer,priceoffset:priceoffset1,lefts:lefts1};
+				goodsize.addGoodSize(goodsizeObj,function(err3,doc3){
+					if(!err3){
+						console.log(doc3);
+					}else{
+						console.log(err3);
+					}
+				})
+			}else if(typeof(container)=="object"){
+				realContainer=JSON.stringify(container);
+				console.log("len"+container.length);
+				for(var i=0;i<container.length;i++){
+					var gsObj={gid:goodid,type:1,gsname:container[i],priceoffset:priceoffset1[i],lefts:lefts1[i]};
+					goodsizeObjs1.push(gsObj);
+				}
+				goodsize.addGoodSizes(goodsizeObjs1,function(err4,doc4){
+					if(!err4){
+						console.log(doc4);
+					}else{
+						console.log(err4);
+					}
+				})
+			}
+			
+		    if(typeof(smile)=="string"){
+				realSmile=smile;
+				var goodsizeObj={gid:goodid,type:0,gsname:realSmile,priceoffset:priceoffset2,lefts:lefts2};
+				goodsize.addGoodSize(goodsizeObj,function(err5,doc5){
+					if(!err3){
+						console.log(doc3);
+					}else{
+						console.log(err3);
+					}
+				})
+			}else if(typeof(smile)=="object"){
+				realContainer=JSON.stringify(container);
+				console.log("len"+smile.length);
+				for(var i=0;i<smile.length;i++){
+					var gsObj={gid:goodid,type:0,gsname:smile[i],priceoffset:priceoffset2[i],lefts:lefts2[i]};
+					goodsizeObjs2.push(gsObj);
+				}
+				goodsize.addGoodSizes(goodsizeObjs2,function(err6,doc6){
+					if(!err6){
+						console.log(doc6);
+					}else{
+						console.log(err6);
+					}
+				})
+			}
+					
+		}else{
+			console.log(err);
 		}
-		goodsize.addGoodSizes(goodsizeObjs2,function(err6,doc6){
-			if(!err6){
-				console.log(doc6);
-			}else{
-				console.log(err6);
-			}
-		})
-	}
+		res.render("pc/goodlistInit");
+	});
+	
+	/*************************************************************************************/
+
+
+	
 	
 })
 /**
