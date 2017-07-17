@@ -9,7 +9,7 @@ $(function() {
 	var detailP = $(".good-detail")[0].offsetTop - parseInt($(".good-ct").css('padding-top'));
 	var commentP = $(".comment")[0].offsetTop - parseInt($(".good-ct").css('padding-top'));
 
-	var mainlock = false;//控制主按钮的锁
+	var mainlock = false; //控制主按钮的锁
 	ht.push(ctP);
 	ht.push(detailP);
 	ht.push(commentP);
@@ -29,14 +29,14 @@ $(function() {
 	$("#main-ctr .ctrbtn").click(function() {
 		// $("#main-ctr .ctrbtn").removeClass("on");
 		// $(this).addClass('on');
-		if(!mainlock){
-            mainlock = true;
-            var index = $("#main-ctr .ctrbtn").index($(this));
-            console.log(ht[index]+2 + "px");
-            $('body').animate({
-                scrollTop: ht[index]+2
-            },function(){
-            	mainlock = false;
+		if(!mainlock) {
+			mainlock = true;
+			var index = $("#main-ctr .ctrbtn").index($(this));
+			console.log(ht[index] + 2 + "px");
+			$('body').animate({
+				scrollTop: ht[index] + 2
+			}, function() {
+				mainlock = false;
 			})
 		}
 
@@ -45,6 +45,26 @@ $(function() {
 		$(".choice-box .good-type li").removeClass("on");
 		$(this).addClass('on')
 	})
+
+	//图片轮播
+	{
+
+		setInterval(function() {
+			var imgNum = $(".good-ct .img-ctr").children().length;
+			var preIndex = $(".ct-imgList .img-ctr span").index($(".ct-imgList .img-ctr .on"));
+			var nowIndex;
+			if(preIndex >= imgNum - 1) {
+				nowIndex = 0;
+			} else {
+				nowIndex = preIndex + 1;
+			}
+			$(".ct-imgList .img-ctr span").removeClass('on');
+			$(".ct-imgList .img-ctr span").eq(nowIndex).addClass('on')
+			$(".ct-imgList .img-wrap").animate({
+				marginLeft: -300 * nowIndex
+			}, 1000)
+		}, 3000)
+	}
 
 	//模态框事件
 	$(".choice").click(function() {
@@ -99,4 +119,44 @@ $(function() {
 			$(".count-box .count-num").val(1)
 		}
 	}
+	
+	{
+		//评论详情
+		$(".item-inte .com-btn").click(function(){
+			$('body').addClass('overhide');
+			$(".comment-dt").addClass('overscro')
+			$(".comment-dt").animate({
+				left:0
+			},function(){
+			})
+		})
+		$('.comment-dt .cross').click(function(){
+			$('body').removeClass('overhide');
+			$(".comment-dt").removeClass('overscro')
+			$(".comment-dt").animate({
+				left:'-100%'
+			},function(){
+				
+			})
+		})
+	}
+
+	{
+		//收藏购物车购买
+		$(".tot-ctr .collect").click(function() {
+			/*
+			 
+			 * */
+			if($(this).attr('data-type') == 0) {
+				$(".tot-ctr .collect i").css('background-image', 'url(../../img/innisfreeIco/collect1.png)')
+				$(this).attr('data-type','1')
+			}
+			else if($(this).attr('data-type') == 1){
+				$(".tot-ctr .collect i").css('background-image', 'url(../../img/innisfreeIco/collect0.png)')
+				$(this).attr('data-type','0')
+			}
+		})
+
+	}
+
 })
