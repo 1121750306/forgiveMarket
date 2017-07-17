@@ -166,7 +166,7 @@ db.once("open", function() {
 		versionKey: false
 	});
 	thumbModel = db.model("Thumb", thumbSchema);
-	
+
 	// 浏览历史表
 	historySchema = new mongoose.Schema({
 		//用户外键
