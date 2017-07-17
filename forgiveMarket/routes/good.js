@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var mongoose = require("mongoose");
 var good = require("../models/good");
 var goodtype = require("../models/goodtype");
 var goodInfo = require("../models/goodInfo");
@@ -48,8 +49,8 @@ router.post("/Add",function(req,res,next){
 	var lefts2=req.body.lefts2;
 	var priceoffset1=req.body.priceoffset1;
 	var priceoffset2=req.body.priceoffset2;
-	
-	var goodObj={gname:gname,pricebase:pricebase,typeid:typeid,discount:discount};
+	console.log(typeid);
+	var goodObj={gname:gname,pricebase:pricebase,typeid:mongoose.Types.ObjectId(typeid),discount:discount};
 	
 	good.addGood(goodObj,function(err,doc){
 		if(!err){
@@ -67,7 +68,7 @@ router.post("/Add",function(req,res,next){
 				realSmile=JSON.stringify(smile);
 			}
 			console.log(realSmile);
-			var goodInfoObj={gid:goodid,fitSkin:fitSkin,usage:usage,fitwhere:fitwhere,packing:packing,tip:tip,basis:basis,container:realContainer,smile:realSmile};
+			var goodInfoObj={gid:mongoose.Types.ObjectId(goodid),fitSkin:fitSkin,usage:usage,fitwhere:fitwhere,packing:packing,tip:tip,basis:basis,container:realContainer,smile:realSmile};
 			goodInfo.addGoodInfo(goodInfoObj,function(err2,doc2){
 				if(!err2){
 					console.log(doc2);
@@ -79,7 +80,7 @@ router.post("/Add",function(req,res,next){
 		
 			if(typeof(container)=="string"){
 				realContainer=container;
-				var goodsizeObj={gid:goodid,type:1,gsname:realContainer,priceoffset:priceoffset1,lefts:lefts1};
+				var goodsizeObj={gid:mongoose.Types.ObjectId(goodid),type:1,gsname:realContainer,priceoffset:priceoffset1,lefts:lefts1};
 				goodsize.addGoodSize(goodsizeObj,function(err3,doc3){
 					if(!err3){
 						console.log(doc3);
@@ -91,7 +92,7 @@ router.post("/Add",function(req,res,next){
 				realContainer=JSON.stringify(container);
 				console.log("len"+container.length);
 				for(var i=0;i<container.length;i++){
-					var gsObj={gid:goodid,type:1,gsname:container[i],priceoffset:priceoffset1[i],lefts:lefts1[i]};
+					var gsObj={gid:mongoose.Types.ObjectId(goodid),type:1,gsname:container[i],priceoffset:priceoffset1[i],lefts:lefts1[i]};
 					goodsizeObjs1.push(gsObj);
 				}
 				goodsize.addGoodSizes(goodsizeObjs1,function(err4,doc4){
@@ -105,7 +106,7 @@ router.post("/Add",function(req,res,next){
 			
 		    if(typeof(smile)=="string"){
 				realSmile=smile;
-				var goodsizeObj={gid:goodid,type:0,gsname:realSmile,priceoffset:priceoffset2,lefts:lefts2};
+				var goodsizeObj={gid:mongoose.Types.ObjectId(goodid),type:0,gsname:realSmile,priceoffset:priceoffset2,lefts:lefts2};
 				goodsize.addGoodSize(goodsizeObj,function(err5,doc5){
 					if(!err3){
 						console.log(doc3);
@@ -117,7 +118,7 @@ router.post("/Add",function(req,res,next){
 				realContainer=JSON.stringify(container);
 				console.log("len"+smile.length);
 				for(var i=0;i<smile.length;i++){
-					var gsObj={gid:goodid,type:0,gsname:smile[i],priceoffset:priceoffset2[i],lefts:lefts2[i]};
+					var gsObj={gid:mongoose.Types.ObjectId(goodid),type:0,gsname:smile[i],priceoffset:priceoffset2[i],lefts:lefts2[i]};
 					goodsizeObjs2.push(gsObj);
 				}
 				goodsize.addGoodSizes(goodsizeObjs2,function(err6,doc6){

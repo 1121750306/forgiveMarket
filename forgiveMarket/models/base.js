@@ -23,7 +23,7 @@ db.once("open", function() {
 	// 商品表
 	goodSchema = new mongoose.Schema({
 		//商品类型外键
-		typeif: {
+		typeid: {
 			type: mongoose.Schema.Types.ObjectId,
 			ref: 'Goodtype'
 		},
