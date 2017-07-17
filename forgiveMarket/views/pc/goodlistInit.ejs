@@ -75,9 +75,7 @@
                     formatter:function(value,row,index){return row.photo;}
                },
                {field:'typeid',title:'类型',width:100,
-                    formatter:function(value,row,index){
-                    	getTypeName(row.typeid);
-                    }
+                    formatter:getTypeName
                 }
             ]],
             toolbar:[{
@@ -105,8 +103,8 @@
         });
     });
     
-       function getTypeName(typeid){
-       	  return "ss"
+       function getTypeName(value,row,index){
+       	  console.log(row._id)
        }
         </script>
 	</body>
