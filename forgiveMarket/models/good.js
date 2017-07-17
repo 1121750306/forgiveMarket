@@ -21,6 +21,17 @@ function queryGoodList(cb){
 	var query=goodModel.find({});
 	query.exec(cb);
 }
+
+/**
+ * 通过id查询商品
+ * @param {Object} id
+ * @param {Object} callback
+ */
+function getGoodById(id, callback){
+	goodModel.find({_id:id},callback);
+}
+
 module.exports.initModel = initModel;
 module.exports.addGood = addGood;
 module.exports.queryGoodList = queryGoodList;
+module.exports.getGoodById = getGoodById;

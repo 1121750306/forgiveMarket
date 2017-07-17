@@ -4,7 +4,12 @@ function initModel(models) {
     orderModel =  models.order;
 }
 
-
+/**
+ * 添加订单
+ * @param {Object} uid
+ * @param {Object} flag
+ * @param {Object} callback
+ */
 function addOrder (uid, flag, callback) {
 	switch (flag){
 		//购物车

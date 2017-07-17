@@ -13,6 +13,7 @@ function addGoodSize(obj,cb){
 	var goodSizeEntity=new goodsizeModel(obj);
 	goodSizeEntity.save(cb);
 }
+
 /**
  * 添加多个商品规格
  * @param {Object} objs
@@ -25,6 +26,17 @@ function addGoodSizes(objs,cb){
 		goodSizeEntity.save(cb);
 	}
 }
+
+/**
+ * 通过id查找商品规格
+ * @param {Object} id
+ * @param {Object} callback
+ */
+function getGoodSizeById (id, callback) {
+	goodsizeModel.find({_id:id},callback);
+}
+
 module.exports.initModel = initModel;
 module.exports.addGoodSize = addGoodSize;
 module.exports.addGoodSizes = addGoodSizes;
+module.exports.getGoodSizeById = getGoodSizeById;

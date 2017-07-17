@@ -111,6 +111,8 @@ db.once("open", function() {
 		oid: String,
 		//商品外键
 		gid: String,
+		//商品规格外键
+		gsid: String,
 		num: Number
 	}, {
 		versionKey: false
