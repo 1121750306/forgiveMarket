@@ -59,7 +59,7 @@ function getOrderItem1 (oid, callback) {
 	}).populate({
 		path: 'gid' 
 	}).populate({
-		path: 'gsid'
+		path: 'gsids.gsid'
 	}).exec(callback);
 }
 

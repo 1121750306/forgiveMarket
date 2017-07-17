@@ -1,3 +1,5 @@
+var mongoose = require("mongoose");
+
 //注册models监听
 function initModel(models) {
 	//订单模型
@@ -15,7 +17,7 @@ function addOrder (uid, flag, callback) {
 		//购物车
 		case 0:
 			var orderEntity = new orderModel({
-				uid: uid,
+				uid: mongoose.Types.ObjectId(uid),
 				flag: 0,
 				date: new Date()
 			});
@@ -43,12 +45,12 @@ function addOrder (uid, flag, callback) {
 }
 
 /**
- * 查找订单
+ * 通过id和flag查找订单
  * @param {Object} uid
  * @param {Object} flag
  * @param {Object} callback
  */
-function getOrder (uid, flag, callback) {
+function getOrderByIdAndFlag (uid, flag, callback) {
 	orderModel.find({
 		uid: uid,
 		flag: flag
@@ -58,4 +60,4 @@ function getOrder (uid, flag, callback) {
 
 module.exports.initModel = initModel;
 module.exports.addOrder = addOrder;
-module.exports.getOrder = getOrder;
+module.exports.getOrderByIdAndFlag = getOrderByIdAndFlag;

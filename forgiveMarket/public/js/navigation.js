@@ -7,8 +7,8 @@ $(function() {
 		//请求购物车数据
 		$.ajax({
 			type:"get",
-			url:"/order/cart/getgoods/"+"1",
-//			url:"/order/cart/getgoods/"+user._id,
+//			url:"/order/cart/getgoods/"+"1",
+			url:"/order/cart/getgoods/"+user._id,
 			async:true,
 			success:function(data){
 				//修改导航栏购物车商品数量

@@ -134,10 +134,12 @@ db.once("open", function() {
 			ref: 'Good'
 		},
 		//商品规格外键
-		gsid: {
-			type: mongoose.Schema.Types.ObjectId,
-			ref: 'Goodsize'
-		},
+		gsids: [{
+			gsid: {
+				type: mongoose.Schema.Types.ObjectId,
+				ref: 'Goodsize'
+			}
+		}],
 		num: Number
 	}, {
 		versionKey: false

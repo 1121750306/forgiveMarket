@@ -26,7 +26,7 @@ router.get('/cart/getgoods/:uid', function(req, res, next) {
 	console.log("cart getgoods router get"+uid);
 	
 	//查询是否已经创建购物车订单
-	order.getOrder(uid, 0,function(err_getorder, data_getorder){
+	order.getOrderByIdAndFlag(uid, 0,function(err_getorder, data_getorder){
 		if (!err_getorder) {
 			if (data_getorder.length == 0) {
 				//未创建
@@ -83,52 +83,36 @@ router.get('/cart/getgoods/:uid', function(req, res, next) {
 //										})
 				
 //				orderitem.addOrderItem({oid:"596c7fb3806c5204cc6a0b03",gid:mongoose.Types.ObjectId("596c7fb7806c5204cc6a0b04"),gsid:mongoose.Types.ObjectId("596c8155693f4621c0da48e0"),num:"1"})
-//				orderitem.addOrderItems([{oid:mongoose.Types.ObjectId("596c7fb3806c5204cc6a0b03"),gid:mongoose.Types.ObjectId("596c7fb7806c5204cc6a0b04"),gsid:mongoose.Types.ObjectId("596c8155693f4621c0da48e0"),num:"1"},
-//										{oid:mongoose.Types.ObjectId("596c7fb3806c5204cc6a0b03"),gid:mongoose.Types.ObjectId("222c7fb7806c5204cc6a0b04"),gsid:mongoose.Types.ObjectId("596c8155693f4621c0da48e2"),num:"1"},
-//										{oid:mongoose.Types.ObjectId("596c7fb3806c5204cc6a0b03"),gid:mongoose.Types.ObjectId("333c7fb7806c5204cc6a0b04"),gsid:mongoose.Types.ObjectId("596c8155693f4621c0da48e3"),num:"1"},
-//										{oid:mongoose.Types.ObjectId("596c7fb3806c5204cc6a0b03"),gid:mongoose.Types.ObjectId("444c7fb7806c5204cc6a0b04"),gsid:mongoose.Types.ObjectId("596c8155693f4621c0da48e4"),num:"1"},
-//										{oid:mongoose.Types.ObjectId("596c7fb3806c5204cc6a0b03"),gid:mongoose.Types.ObjectId("555c7fb7806c5204cc6a0b04"),gsid:mongoose.Types.ObjectId("596c8155693f4621c0da48e5"),num:"1"},
-//										{oid:mongoose.Types.ObjectId("596c7fb3806c5204cc6a0b03"),gid:mongoose.Types.ObjectId("666c7fb7806c5204cc6a0b04"),gsid:mongoose.Types.ObjectId("596c8155693f4621c0da48e6"),num:"1"},
-//										{oid:mongoose.Types.ObjectId("596c7fb3806c5204cc6a0b03"),gid:mongoose.Types.ObjectId("777c7fb7806c5204cc6a0b04"),gsid:mongoose.Types.ObjectId("596c8155693f4621c0da48e7"),num:"1"},
-//										{oid:mongoose.Types.ObjectId("596c7fb3806c5204cc6a0b03"),gid:mongoose.Types.ObjectId("888c7fb7806c5204cc6a0b04"),gsid:mongoose.Types.ObjectId("596c8155693f4621c0da48e8"),num:"1"}],
+//				orderitem.addOrderItems([{oid:mongoose.Types.ObjectId("596ca7ec8fea524744e7cdcc"),gid:mongoose.Types.ObjectId("596c7fb7806c5204cc6a0b04"),gsids:[{gsid:mongoose.Types.ObjectId("596c8155693f4621c0da48e0")},{gsid:mongoose.Types.ObjectId("596c8155693f4621c0da48e1")}],num:"1"},
+//										{oid:mongoose.Types.ObjectId("596ca7ec8fea524744e7cdcc"),gid:mongoose.Types.ObjectId("222c7fb7806c5204cc6a0b04"),gsids:[{gsid:mongoose.Types.ObjectId("596c8155693f4621c0da48e2")}],num:"1"},
+//										{oid:mongoose.Types.ObjectId("596ca7ec8fea524744e7cdcc"),gid:mongoose.Types.ObjectId("333c7fb7806c5204cc6a0b04"),gsids:[{gsid:mongoose.Types.ObjectId("596c8155693f4621c0da48e3")}],num:"1"},
+//										{oid:mongoose.Types.ObjectId("596ca7ec8fea524744e7cdcc"),gid:mongoose.Types.ObjectId("444c7fb7806c5204cc6a0b04"),gsids:[{gsid:mongoose.Types.ObjectId("596c8155693f4621c0da48e4")}],num:"1"},
+//										{oid:mongoose.Types.ObjectId("596ca7ec8fea524744e7cdcc"),gid:mongoose.Types.ObjectId("555c7fb7806c5204cc6a0b04"),gsids:[{gsid:mongoose.Types.ObjectId("596c8155693f4621c0da48e5")}],num:"1"},
+//										{oid:mongoose.Types.ObjectId("596ca7ec8fea524744e7cdcc"),gid:mongoose.Types.ObjectId("666c7fb7806c5204cc6a0b04"),gsids:[{gsid:mongoose.Types.ObjectId("596c8155693f4621c0da48e6")}],num:"1"},
+//										{oid:mongoose.Types.ObjectId("596ca7ec8fea524744e7cdcc"),gid:mongoose.Types.ObjectId("777c7fb7806c5204cc6a0b04"),gsids:[{gsid:mongoose.Types.ObjectId("596c8155693f4621c0da48e7")}],num:"1"},
+//										{oid:mongoose.Types.ObjectId("596ca7ec8fea524744e7cdcc"),gid:mongoose.Types.ObjectId("888c7fb7806c5204cc6a0b04"),gsids:[{gsid:mongoose.Types.ObjectId("596c8155693f4621c0da48e8")}],num:"1"}],
 //										function(err){
 //											if(!err){
 //												console.log("success");
 //											}else{
 //												console.log("fail");
 //											}
-//										})
+//										});
 				
 				
-				var items = [];
+				var goods = [];
 				
 				//获取所有订单项
 				orderitem.getOrderItem1(data_getorder[0]._id, function(err_getorderitem, data_getorderitem){
 					if (!err_getorderitem) {
-						console.log("result:" + data_getorderitem[0].gid);
-//						for (var i = 0; i < data_getorderitem.length; i++) {
-//							var item = {};
-//							var gid = data_getorderitem[i].gid;
-//							var gsid = data_getorderitem[i].gsid;
-//							
-//							good.getGoodById(gid, function(err_getgood, data_getgood){
-////								console.log(data_getgood);
-//								item.gname = data_getgood[0].gname;
-////								console.log(data_getgood[0].gname);
-//								
-//								
-//								goodsize.getGoodSizeById(gsid, function(err_getgoodsize, data_getgoodsize){
-//	//								console.log(data_getgoodsize);
-//									item.gsname = data_getgoodsize[0].gsname;
-////									console.log(data_getgoodsize[0].gsname);
-//
-//									items.push(item);
-//									console.log(item);
-//								});
-//							});
-//							
-////							console.log(item);
-//						}
+//						console.log("result:" + data_getorderitem[0]);
+						
+						for (var i = 0; i < data_getorderitem.length; i++) {
+							var orderitem = data_getorderitem[i];
+							console.log(orderitem.gsids);
+//							var good = {name:orderitem.gid.gname, size:};
+							
+						}
 					} else{
 						console.log(new Date() + "ERROR: " + err_getorderitem);
 					}
