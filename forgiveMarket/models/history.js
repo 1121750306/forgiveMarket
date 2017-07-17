@@ -2,6 +2,7 @@
 function initModel(models) {
 	//浏览历史模型
 	historyModel = models.history;
+	goodModel = models.good;
 }
 
 /**
@@ -13,19 +14,32 @@ function initModel(models) {
  */
 function addHistory(uid, gid, date, cb) {
 	console.log("date:" + date);
-	historyEntity = new historyModel({
-		uid: uid,
-		gid: gid,
-		date: date.getTime()
+	good = new goodModel({
+		typeid: '1',
+		gname: '洗面奶',
+		pricebase: 20,
+		discount: 15
 	});
-	//保存
-	historyEntity.save(function(err, data) {
+	good.save(function(err, data) {
 		if (!err) {
-			cb(1, null, data);
+			historyEntity = new historyModel({
+				uid: uid,
+				gid: data,
+				date: date.getTime()
+			});
+			//保存
+			historyEntity.save(function(err, data) {
+				if (!err) {
+					cb(1, null, data);
+				} else {
+					cb(0, err, null);
+				}
+			});
 		} else {
 			cb(0, err, null);
 		}
 	});
+
 }
 
 /**
@@ -38,6 +52,10 @@ function queryHistory(uid, index, cb) {
 	console.log("进入register");
 	historyModel.find({
 			uid: uid
+		})
+		.populate({
+			path: 'gid',
+			select: 'gname pricebase'
 		})
 		.limit(10)
 		.skip(index * 10)
