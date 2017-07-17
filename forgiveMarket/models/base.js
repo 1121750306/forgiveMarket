@@ -118,7 +118,7 @@ db.once("open",function(){
         //评论外键
         cid:String,
         content:String,
-        date:String
+        date:Date
     },{versionKey:false});
 
     // 浏览历史表
@@ -128,7 +128,7 @@ db.once("open",function(){
         //商品外键
         gid:String,
         //浏览时间
-        date:Date
+        date:String
     },{versionKey:false});
 
     // 收藏表
