@@ -193,7 +193,7 @@ db.once("open", function() {
 	historyModel = db.model("History", historySchema);
 	collectModel = db.model("Collect", collectSchema);
 	goodInfoModel = db.model("GoodInfo", collectSchema);
-	thumbSchema = db.model("Thumb", thumbSchema);
+	thumbModel = db.model("Thumb", thumbSchema);
 	//models回调map
 	listener({
 		user: userModel,
@@ -209,7 +209,7 @@ db.once("open", function() {
 		history: historyModel,
 		collect: collectModel,
 		goodInfo: goodInfoModel,
-		thumbSchema:thumbSchema
+		thumb:thumbModel
 	});
 })
 
