@@ -30,6 +30,7 @@ router.post('/register', function(req, res, next) {
 				msg: "已存在该用户"
 			};
 		} else if(flag == 2) {
+			console.log("注册成功","result:" + result);
 			req.session.user = result;
 			json = {
 				flag: 200,
@@ -98,7 +99,7 @@ router.post("/changeavatar", function(req, res, next) {
 		console.log("fields:" + fields)
 		console.log('err:' + err);
 		console.log('files:' + files);
-		var uname = fields.uname != undefined ? fields.uname[0] : null;
+		var uname = fields.uname != undefined && fields.uname != "" ? fields.uname[0] : null;
 		var inputFile = files.photo != undefined ? files.photo[0] : null;
 		var uploadedPath = inputFile != null ? inputFile.path : null;
 		console.log("uname:" + uname)

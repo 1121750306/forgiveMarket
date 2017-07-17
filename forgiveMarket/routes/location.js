@@ -17,7 +17,7 @@ function guid() {
 }
 router.get('/', function(req, res, next) {
 	//测试用法TODO
-  req.session.user={"_id":3,"uname":"13614004325","psw":"424123","phone":"13614004325","balance":0,"avatar":"/img/innisfreeIcon/avatar.png"};
+  req.session.user={"_id":"10003","uname":"13614004325","psw":"424123","phone":"13614004325","balance":0,"avatar":"/img/innisfreeIcon/avatar.png"};
   res.render('locationManagers', { title: 'Express' });
 });
 router.get('/addinit', function(req, res, next) {
@@ -37,11 +37,22 @@ router.post('/add', function(req, res, next) {
     //uid 从session中获取
     var uid=req.session.user._id;
     console.log(uid);
-    var obj={_id:guid(),uid:uid,province:province,city:city,district:district,address:address,phone:phone,shname:shname,postcode:postcode,flag:0};
+    var obj={uid:uid,province:province,city:city,district:district,address:address,phone:phone,shname:shname,postcode:postcode,flag:0};
     locations.addLocation(obj,function(err,docs){
     	if(!err){
     		console.log("location added");
 			console.log(docs);
+			locations.getLocation(uid,function(err1,data){
+				if(data.length=="1"){
+					locations.updateFlag2(data[0]._id,function(err2,doc){
+						if(!err2){
+							console.log(doc)
+						}else{
+							console.log(err2);
+						}
+					})
+				}
+			})
     	}else{
     		console.log(err.message);
     	}
@@ -53,8 +64,9 @@ router.get('/getLocation', function(req, res, next){
     console.log(req.session.user._id);
 	 locations.getLocation(uid,function(err,docs){
 	 	if(!err){
-    		console.log("location get");
-			res.send(docs);
+    		console.log("location get"+docs.length);
+    		res.send(docs);
+			
     	}else{
     		console.log(err.message);
     	}
@@ -87,20 +99,26 @@ router.post('/update',function(req,res,next){
 	locations.updateLocation(obj,function(err){
 		console.log(err);
 	});
-	var uid=req.session.user._id;
-	locations.getLocation(uid,function(err,docs){
-		if(!err){
-			for (var i = 0; i < docs.length; i++) {			
-				 if(docs[i]._id!=_id){
-				 	locations.updateFlag(docs[i]._id,function(errs){
-				 		console.log(errs);
-				 	})
-				 }
-			}
-		}else{
-				console.log(err);
-		}	
+	locations.getLocationById(_id,function(e,data){
+		console.log(flag+"==="+data.flag);
+		if(data.flag!=flag&&flag!=undefined){
+			console.log("flag!!!!");
+			locations.getLocation(uid,function(err,docs){
+				if(!err){
+					for (var i = 0; i < docs.length; i++) {			
+						 if(docs[i]._id!=_id){
+						 	locations.updateFlag(docs[i]._id,function(errs){
+						 		console.log(errs);
+						 	})
+						 }
+					}
+				}else{
+						console.log(err);
+				}	
+			})		
+		}
 	})
+	
 	res.render("locationManagers");
 });
 router.get('/delete/:id',function(req,res,next){	

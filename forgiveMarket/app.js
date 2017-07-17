@@ -14,10 +14,12 @@ var goodtype = require('./routes/goodtype');
 var order = require('./routes/order');
 var locations=require('./routes/location');
 var admin=require("./routes/admin");
+var history = require("./routes/history");
 
 //传递models
 base.initModels(function(models) {
 	users.callback(models);
+	history.callback(models);
 })
 
 var app = express();
@@ -51,6 +53,7 @@ app.use('/goodtype',goodtype);
 app.use('/order', order);
 app.use('/location',locations);
 app.use('/admin',admin);
+app.use('/history',history);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
 	var err = new Error('Not Found');

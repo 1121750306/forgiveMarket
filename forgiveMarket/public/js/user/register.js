@@ -47,7 +47,7 @@ function register() {
 			if (data.flag == 200) {
 				//注册成功
 				var result = data.result;
-				sessionStorage.user = JSON.stringify(result[0]);
+				sessionStorage.user = JSON.stringify(result);
 				window.location.assign("/views/user/user.html");
 			} else if(data.flag == 300){
 				$("#error").css("opacity", "1");

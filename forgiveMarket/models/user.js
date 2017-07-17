@@ -12,7 +12,7 @@ function addUser(_id, phone, password, cb) {
 		psw: password,
 		phone: phone,
 		balance: 0,
-		avatar: "/img/innisfreeIcon/avatar.png" //默认头像
+		avatar: "/img/innisfreeIco/avatar.png" //默认头像
 	});
 
 	//保存

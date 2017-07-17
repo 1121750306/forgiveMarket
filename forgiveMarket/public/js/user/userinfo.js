@@ -6,8 +6,11 @@ $(document).ready(function() {
 	$("#uid .content").text(user._id);
 	$("#uname").click(function() {
 		var newuname = prompt("请输入用户名", user.uname);
-		$("#uname .content").text(newuname);
-		$("#uname input").attr("value", newuname);
+		console.log(newuname)
+		if (newuname) {
+			$("#uname .content").text(newuname);
+			$("#uname input").attr("value", newuname);
+		}
 	});
 	$("#avatar input")[0].addEventListener("change", readData, false);
 	$("#submit").click(function() {
@@ -26,7 +29,7 @@ $(document).ready(function() {
 			async: true,
 			success: function(data) {
 				console.log(data)
-				if(data.flag == 200){
+				if (data.flag == 200) {
 					console.log(data.result);
 					sessionStorage.user = JSON.stringify(data.result);
 				}
