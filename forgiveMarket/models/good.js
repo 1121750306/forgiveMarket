@@ -56,9 +56,25 @@ function queryGoodList(cb){
 function getGoodById(id, callback){
 	goodModel.find({_id:id},callback);
 }
-
+/**
+ * 通过id删除商品
+ * @param {Object} id
+ * @param {Object} cb
+ */
+function deleteGood(id){
+	goodModel.findById(id,function(err,doc){
+		if(!err){
+			console.log(doc);
+			doc.remove();
+		}else{
+			console.log(err);
+		}
+		
+	})
+}
 module.exports.initModel = initModel;
 module.exports.addGood = addGood;
 module.exports.addGoods = addGoods;
 module.exports.queryGoodList = queryGoodList;
 module.exports.getGoodById = getGoodById;
+module.exports.deleteGood = deleteGood;
