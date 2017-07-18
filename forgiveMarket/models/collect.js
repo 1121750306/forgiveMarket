@@ -2,8 +2,8 @@ var mongoose = require("mongoose");
 //注册models监听
 function initModel(models) {
 	//收藏模型
-    collectModel =  models.collect;
-    goodModel = models.good;
+	collectModel = models.collect;
+	goodModel = models.good;
 }
 
 /**
@@ -43,8 +43,8 @@ function queryCollect(uid, index, cb) {
 		})
 		.populate({
 			path: 'gid',
-			populate:{
-				path:'typeid'
+			populate: {
+				path: 'typeid'
 			}
 		})
 		//		.limit(10)
@@ -61,6 +61,24 @@ function queryCollect(uid, index, cb) {
 		});
 }
 
+function queryGoodWithCollect(uid, cb) {
+	goodModel
+		.find({})
+		.where({
+			populate: {
+				path: 'collect',
+				select: '_id'
+			}
+		}).exec(function(err, docs) {
+			if (!err) {
+				cb(1, null, docs);
+			} else {
+				cb(0, err, null);
+			}
+		});
+}
+
 module.exports.initModel = initModel;
 module.exports.addCollect = addCollect;
 module.exports.queryCollect = queryCollect;
+module.exports.queryGoodWithCollect = queryGoodWithCollect;
