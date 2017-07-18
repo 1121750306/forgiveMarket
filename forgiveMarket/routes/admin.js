@@ -34,9 +34,11 @@ router.post("/upload",function(req,res,next){
 		var inputFile = files.photo != undefined ? files.photo[0] : null;
 		var uploadedPath = inputFile != null ? inputFile.path : null;
 		var types=uploadedPath.split(".")[1];
-		var type;
+		var flag;
 		if(types.toLowerCase()=="jpg"){
-			type=
+			flag=1;
+		}else{
+			flag=0;
 		}
 		console.log('inputFile:' + inputFile);
 		console.log('uploadedPath:' + uploadedPath);
@@ -48,6 +50,8 @@ router.post("/upload",function(req,res,next){
 			if(!err){
 				console.log(files.photo[0].originalFilename);
 				var urls=files.photo[0].originalFilename;
+				var obj={}
+				goodphoto.addphoto(gid:)
 				res.send({msg:"success"});
 			}else{
 				res.send({msg:"fail"});
