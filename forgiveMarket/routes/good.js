@@ -146,63 +146,25 @@ router.post("/Add",function(req,res,next){
 	
 	
 })
-/**
- * 添加商品   模拟数据
- */
-router.get("/addGood",function(req,res,next){
-	 var obj={gname:"男士霸王沐浴露",pricebase:100,typeid:"1",discount:0.8};
-	 good.addGood(obj,function(err,doc){
-	 	if(!err){
-	 		console.log("添加 成功");
-	 		console.log(doc);
-	 	}else{
-	 		console.log(err);
-	 	}
-	 })
-})
-/**
- * 添加商品详细信息  模拟数据
- */
-router.get("/addGoodInfo",function(req,res,next){
-	 var obj={_id:guid(),gid:"1",container:"100ml",fitSkin:"洁面与卸妆",usage:"洁面",fitwhere:"脸部",packing:"9盒装",tip:"洗澡后使用",basis:
-                    "甘油、水、硬脂酸、肉豆蔻酸、聚乙二醇-32、氢氧化钾、高岭土、月桂酸、丁二醇、甘油硬脂酸酯、茶叶提取物、胭脂仙人掌果提取物、温州蜜柑果皮提取物、山茶叶提取物、兰科植物提取物、海藻糖、乙基己基甘油、PEG-100"+
-                   "硬脂酸酯、椰油酰胺丙基甜菜碱、EDTA 二钠、氯化钠、苯氧乙醇、苯甲酸钠、香精"};
-      goodInfo.addGoodInfo(obj,function(err,doc){
-      	if(!err){
-      		console.log(doc);console.log("添加成功");
-      	}else{
-      		console.log(err);
-      	}
-      })
-})
-/**
- * 添加商品规格类型  模拟数据
- */
-router.get("/addGoodSizeType",function(req,res,next){
-	 var obj={_id:guid(),gstname:"气味"};
-	 goodsizetype.addGoodSizeType(obj,function(err,doc){
-	 	if(!err){
-      		console.log(doc);console.log("添加成功");
-      	}else{
-      		console.log(err);
-      	}
-	 })
-})
 
-/**
- * 添加商品规格 模拟数据
- */
-router.get("/addGoodSize",function(req,res,next){
-	 var obj={_id:guid(),gsname:"原味",gstid:"8d43787e-8e3d-4044-9629-a124809fbd62",priceoffset:30,lefts:90,sales:12};
-	 goodsize.addGoodSize(obj,function(err,doc){
-	 	if(!err){
-      		console.log(doc);console.log("添加成功");
-      	}else{
-      		console.log(err);
-      	}
-	 })
-	 
-})
+
+
+//删除商品
+ router.all("/deleteGood",function(req,res,next){
+ 	 var id=req.body.id||req.query.id;
+ 	 console.log(id);
+	 if(typeof(id)=='string'){
+	 	good.deleteGood(id);
+	 }
+	 else{
+	 	for (var i=0;i<id.length;i++) {
+	    	console.log(id[i]);
+	 	    good.deleteGood(id);
+	   }
+	 }
+	 res.render("pc/goodlistInit");
+ })
+
 /**
  * 查询商品列表
  */

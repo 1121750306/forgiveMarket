@@ -66,7 +66,6 @@
 				    </div><!-- /.modal-content -->
 				  </div><!-- /.modal-dialog -->
 				</div><!-- /.modal -->
-        
      <script>
        $(document).ready(function () {
         $("#GoodTable").datagrid({
@@ -116,7 +115,7 @@
                 text:"删除",
                 iconCls:'icon-remove',
                 handler:function () {
-                        deleteUser();
+                        deleteGood();
                 }
             },'-',{
                 text:"跟新",
@@ -156,10 +155,32 @@
        	 	height:'500',
        	 	href:'/good/addInit',
        	 	onLoad:function(){
-       	 		
+       	 		$("#goodForm").form('clear');
        	 	}
        	 })
        };
+       
+       function deleteGood(){
+	       	$.messager.confirm("温馨提示","确定要删除吗",function(result){
+	    		if(result){
+	    			var rows=$("#GoodTable").datagrid('getSelections');
+	    			var ps="";
+	    			$.each(rows, function(i,n) {
+	    				if(i==0){
+	    					ps+="?id="+n._id;
+	    				}
+	    				else{
+	    					ps+="&id="+n._id;
+	    				}
+	    			});
+	    			$.post('/good/deleteGood'+ps,function(data){
+	    				console.log(data);
+	    				$("#GoodTable").datagrid('reload');
+	    				$.messager.alert("提示","删除成功",'info');
+	    			})
+	    		}
+	    	})
+       }
       function Uploads(value,row,index){
       	 var goodid=row._id;
          return "<button type='button' data-index='"+index+"' data-goodid='"+goodid+"' class='btn btn-primary btn-sm Uploads' >上传</button>"+
@@ -167,14 +188,9 @@
          ;
       };
       function Upload(){
-      	$("#myModal").modal();
-      	 
+      	$("#myModal").modal(); 	 
       	var goodid=$(this).attr("data-goodid");
       	$("#goodid").val(goodid);
-      	var index=$(this).attr("data-index");
-      	console.log(goodid);
-      	console.log(index);
-        /*return  goodid;*/
       }
      initFileInput("file-Portrait", "/admin/upload");
     function initFileInput(ctrlName, uploadUrl) {    
@@ -182,7 +198,7 @@
      control.fileinput({
         language: 'zh', //设置语言
         uploadUrl: uploadUrl, //上传的地址
-        allowedFileExtensions : ['jpg', 'png','gif'],//接收的文件后缀
+        allowedFileExtensions : ['jpg', 'png'],//接收的文件后缀
         showUpload: true, //是否显示上传按钮
         showCaption: false,//是否显示标题
          maxFileCount: 100,
@@ -194,7 +210,6 @@
                     var obj = {};
                     var gid=$("#goodid").val()
                     obj.goodid = gid;
-                    console.log(obj);
                     return obj;
                 }
         
@@ -202,9 +217,13 @@
 }
       $("#file-Portrait").on("fileuploaded", function (event, data, previewId, index) {
         $("#myModal").modal("hide");
-        var data = data.response.msg;
-        console.log("msg"+data+"index"+index);
-        
+         var data = data.response.msg;
+         console.log("msg"+data+"index"+index);
+         if(data=="success"){
+            $.messager.alert("提示","上传成功",'info');
+         }else{
+         	 $.messager.alert("提示","上传失败",'info');
+         }
     });
         </script>
 	</body>

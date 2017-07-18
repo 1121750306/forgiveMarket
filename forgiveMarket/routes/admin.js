@@ -30,7 +30,7 @@ router.post("/upload",function(req,res,next){
 		uploadDir: './public/img/upload'
 	});
 	form.parse(req,function(err, fields, files){
-		var goodid=fields.goodid;
+		var goodid=String(fields.goodid);
 		console.log("goodid"+goodid);
 		var inputFile = files.photo != undefined ? files.photo[0] : null;
 		var uploadedPath = inputFile != null ? inputFile.path : null;
@@ -47,7 +47,6 @@ router.post("/upload",function(req,res,next){
 			uploadedPath = uploadedPath.substr(uploadedPath.indexOf("\\"), uploadedPath.length);
 		};
 		fs.rename(files.photo[0].path,'./public/img/upload/'+files.photo[0].originalFilename,function(err){
-			/*console.log(err);*/
 			if(!err){
 				console.log(files.photo[0].originalFilename);
 				var urls=files.photo[0].originalFilename;
