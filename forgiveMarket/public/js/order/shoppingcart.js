@@ -423,10 +423,7 @@ $(function(){
 		//遍历所有被勾选的商品
 		for (var i = 0; i < item.length; i++) {
 			if (item.eq(i).find(".item_check input")[0].checked) {
-				//获得订单项id
-				otids.push(item.eq(i).css("otid"));
-				
-				
+				otids.push(item.eq(i).attr("otid"));
 			}
 		}
 		
