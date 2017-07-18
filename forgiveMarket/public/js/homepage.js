@@ -15,8 +15,22 @@ $(function() {
 	
 	$(".searchhistory-li-closeimg").click(function(){
 		var i = $(".searchhistory-li-closeimg").index(this)+1;
-		console.log(i)
 		$(".searchhistory-ul").find("li")[i-1].remove()
+	})
+	
+	$(".search-textbox").focus(function(){
+		$(document).keypress(function(e){
+			if(e.which == 13)
+			{
+				var searchtext = $(".search-textbox").val();
+				 if ( searchtext) 
+				 {
+				 	$(".searchhistory-ul").prepend('<li class="searchhistory-li">' + searchtext + '<img class="searchhistory-li-closeimg" src="../img/innisfreeIco/close.png"/></li>')
+					$(".search-textbox").val(null);
+					$(".searchhistory-ul").find("li")[5].remove()
+				 }
+			}
+		})
 	})
 	/*------------------------------------------广告轮播*/
 	var i = 0;
