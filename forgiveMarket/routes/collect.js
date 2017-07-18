@@ -7,6 +7,7 @@ function callback(models) {
 	collect.initModel(models);
 }
 
+
 router.get('/addcollect', function(req, res, next) {
 //	if (req.session.user == null) {
 //		res.send({
