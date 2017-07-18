@@ -242,6 +242,21 @@ router.get("/queryAllType",function(req,res,next){
 		}
 	})
 })
+/**
+ * 根据goodid查询商品信息
+ */
+router.post('/queryGoodInfoByid',function(req,res,next){
+	var id=req.body.id;
+	goodInfo.getGoodInfoId(id,function(err,doc){
+		if(!err){
+			res.send(doc);
+			console.log(doc);
+		}else{
+			console.log(err);
+		}
+	})
+})
+
 //查询商品规格类型
 router.get("/queryAllGoodSizeType",function(req,res,next){
 	goodsizetype.getGoodSizeTypes(function(err,docs){
