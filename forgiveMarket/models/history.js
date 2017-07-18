@@ -15,32 +15,19 @@ function initModel(models) {
  */
 function addHistory(uid, gid, date, cb) {
 	console.log("date:" + date);
-	good = new goodModel({
-		typeid: '2',
-		gname: '洗面奶',
-		pricebase: 20,
-		discount: 15
+	historyEntity = new historyModel({
+		uid: uid,
+		gid: mongoose.Types.ObjectId(gid),
+		date: date.getTime()
 	});
-	good.save(function(err, data) {
+	//保存
+	historyEntity.save(function(err, data) {
 		if (!err) {
-			historyEntity = new historyModel({
-				uid: uid,
-				gid: mongoose.Types.ObjectId(data._id),
-				date: date.getTime()
-			});
-			//保存
-			historyEntity.save(function(err, data) {
-				if (!err) {
-					cb(1, null, data);
-				} else {
-					cb(0, err, null);
-				}
-			});
+			cb(1, null, data);
 		} else {
 			cb(0, err, null);
 		}
 	});
-
 }
 
 /**
@@ -50,7 +37,7 @@ function addHistory(uid, gid, date, cb) {
  * @param {Object} cb 回调
  */
 function queryHistory(uid, index, cb) {
-	console.log("进入register");
+	console.log("进入queryHistory");
 	historyModel.find({
 			uid: uid
 		})
@@ -58,8 +45,8 @@ function queryHistory(uid, index, cb) {
 			path: 'gid',
 			select: 'gname pricebase'
 		})
-		.limit(10)
-		.skip(index * 10)
+		//		.limit(10)
+		//		.skip(index * 10)
 		.sort({
 			date: -1
 		})
