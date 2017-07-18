@@ -56,6 +56,7 @@ app.use('/order', order);
 app.use('/location',locations);
 app.use('/admin',admin);
 app.use('/history',history);
+app.use('/collect',collect);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
 	var err = new Error('Not Found');
