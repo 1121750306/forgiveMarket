@@ -12,3 +12,95 @@
 	font-size: 2rem;
 	margin: 0;
 }
+
+#collect_content {
+	background-color: #ededed;
+	overflow: auto;
+}
+
+#collect_content>ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	position: relative;
+}
+
+#collect_content>ul>li {
+	width: 98%;
+	border-radius: 5px;
+	border: 1px solid #dcdcdc;
+	height: auto;
+	position: relative;
+	display: block;
+	float: left;
+	margin: 1%;
+	padding: 0;
+	background-color: #fff;
+	border-bottom: 1px solid #ededed;
+}
+
+/*#collect_content>ul>li:active {
+	background-color: #dcdcdc;
+}*/
+
+#collect_content>ul>.collect_type:active {
+	background-color: transparent;
+}
+
+#collect_content>ul>li>img {
+	width: 20%;
+	margin: 5px;
+}
+#collect_content>ul>li>div{
+	width:70%;
+	position: absolute;
+	top: 5%;
+	left: 22%;
+}
+#collect_content>ul>li>div>h2 {
+	width: 80%;
+	line-height: 20px;
+	font-size: 2rem;
+	color: #000;
+	margin: 10px 0 0 0;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+#collect_content>ul>li>div>span {
+	display: block;
+}
+
+#collect_content>ul>li>div>.collect_type {
+	font-size: 0.5rem;
+	color: #666;
+	margin: 5px 0 0 5px;
+}
+
+#collect_content>ul>li>.collect_price {
+	font-size: 1.5rem;
+	color: red;
+	position: absolute;
+	bottom: 10%;
+	left: 22%;
+}
+#collect_content>ul>li>.collect_date {
+	font-size: 1.5rem;
+	position: absolute;
+	bottom: 10%;
+	right: 5%;
+}
+#collect_content>ul>li>.collect_delete{
+	display: block;
+	width: 15px;
+	height: 15px;
+	position: absolute;
+	top: 10%;
+	right: 5%;
+	background-image: url("/img/innisfreeIco/btn_delete.png");
+	background-size: 15px 15px;
+}
+#collect_content>ul>li>.collect_delete:active{
+	background-image: url("/img/innisfreeIco/btn_delete_press.png");
+}

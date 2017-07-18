@@ -31,7 +31,7 @@ router.post('/register', function(req, res, next) {
 				msg: "已存在该用户"
 			};
 		} else if(flag == 2) {
-			console.log("注册成功","result:" + result);
+			console.log("注册成功", "result:" + result);
 			req.session.user = result;
 			json = {
 				flag: 200,
@@ -52,12 +52,23 @@ router.post('/login', function(req, res, next) {
 	console.log("phone:" + phone + ",password:" + password);
 	user.login(phone, password, function(flag, err, result) {
 		var json;
-		if(flag == 0 || flag == 1) {
+		if(flag == 0) {
 			json = {
 				flag: 300,
 				msg: "登录失败"
 			};
+		} else if(flag == 1) {
+			json = {
+				flag: 300,
+				msg: "密码错误"
+			};
 		} else if(flag == 2) {
+			req.session.user = result;
+			json = {
+				flag: 300,
+				msg: "账号不存在"
+			};
+		} else if(flag == 3) {
 			req.session.user = result;
 			json = {
 				flag: 200,

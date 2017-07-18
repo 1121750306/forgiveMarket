@@ -5,7 +5,8 @@ $(document).ready(function() {
 	$("#uname .content").text(user.uname);
 	$("#uid .content").text(user._id);
 	$("#uname").click(function() {
-		var newuname = prompt("请输入用户名", user.uname);
+		var muser = JSON.parse(sessionStorage.user);
+		var newuname = prompt("请输入用户名", muser.uname);
 		console.log(newuname)
 		if (newuname) {
 			$("#uname .content").text(newuname);

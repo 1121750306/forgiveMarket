@@ -3,12 +3,12 @@
 	height: 100%;
 	position: absolute;
 	top: 0;
-	left:-100%;
+	left: -100%;
 	background-color: #fff;
 	z-index: 100;
 }
 
-#login_close{
+#login_close {
 	background-image: url(../../img/innisfreeIco/close.png);
 	position: absolute;
 	top: 30px;
@@ -25,7 +25,7 @@
 	display: block;
 }
 
-.login_content  .input {
+.login_content .input {
 	background-color: #fff;
 	border: 1px solid #dedede;
 	border-radius: 2px;
@@ -34,37 +34,41 @@
 	margin-top: 10px;
 }
 
-.login_content  .login {
+.login_content .login {
 	width: 80%;
 	background-color: green;
 	border: 1px solid green;
 	border-radius: 5px;
 	margin-left: 10%;
-	margin-top: 30px;
+	margin-top: 10px;
 	color: #fff;
+	font-size: 1.5rem;
 }
 
-.login_content  .word a {
+.login_content .word a {
 	color: green;
 	font-family: "arial, helvetica, sans-serif";
 	font-size: 1rem;
 }
 
-.login_content  .word a:active {
+.login_content .word a:active {
 	text-decoration: none;
 }
 
-.login_content  .word_div {
+.login_content .word_div {
 	width: 80%;
 	margin-left: 10%;
 	margin-top: 10px;
 }
-#forget{
+
+#forget {
 	float: left;
+	font-size: 1rem;
 }
 
 #register {
 	float: right;
+	font-size: 1rem;
 }
 
 #error {

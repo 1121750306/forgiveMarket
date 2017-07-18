@@ -4,10 +4,9 @@ function initModel(models) {
 	userModel = models.user;
 }
 
-function addUser(_id, phone, password, cb) {
+function addUser(phone, password, cb) {
 
 	var userEntity = new userModel({
-//		_id: _id,
 		uname: phone, //默认为电话
 		psw: password,
 		phone: phone,
@@ -45,15 +44,7 @@ function register(phone, password, cb) {
 			if(docs.length == 0) {
 				//没有注册
 				console.log("没有注册");
-				userModel.find({}).exec(function(err, docs) {
-					//获取用户数量
-					if(err) {
-						cb(0, err, null);
-					} else {
-						var _id = docs.length + 1;
-						addUser(_id, phone, password, cb);
-					}
-				});
+				addUser(phone, password, cb);
 			} else {
 				//已经注册
 				cb(1, err, null);
@@ -66,7 +57,7 @@ function register(phone, password, cb) {
  * 登录
  * @param {Object} phone
  * @param {Object} password
- * @param {Function(flag,err,result)} cb flag（0：出错，1：无法登录，2：可以登录）,err(错误信息),result(用户对象)
+ * @param {Function(flag,err,result)} cb flag（0：出错，1：密码错误，2：账号不存在，3：可以登录）,err(错误信息),result(用户对象)
  */
 function login(phone, password, cb) {
 	userModel.find({
@@ -79,15 +70,14 @@ function login(phone, password, cb) {
 			console.log("错误1");
 		} else {
 			if(docs.length == 0 || docs == null) {
-				cb(1, "不存在该用户", null);
+				cb(2, "不存在该用户", null);
 			} else {
 				console.log("pas:" + password + ",psw:" + docs[0]);
 				if(password != docs[0].psw) {
 					console.log("pas:" + password + ",psw:" + docs.psw);
 					cb(1, "密码不正确", null);
 				} else {
-
-					cb(2, null, docs);
+					cb(3, null, docs);
 				}
 			}
 		}
