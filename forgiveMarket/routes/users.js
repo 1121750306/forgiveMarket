@@ -4,6 +4,7 @@ var user = require("../models/user")
 var multiparty = require('multiparty');
 var util = require('util');
 var fs = require('fs');
+
 //注册models监听并传递models
 function callback(models) {
 	user.initModel(models);
