@@ -61,7 +61,7 @@ router.post("/Add",function(req,res,next){
 				realContainer=JSON.stringify(container);
 			}
 			
-			console.log("smile"+smile);
+			console.log("smile"+typeof(smile));
 			if(typeof(smile)=="string"){
 				realSmile=smile;
 			}else if(typeof(smile)=="object"){
@@ -77,58 +77,62 @@ router.post("/Add",function(req,res,next){
 				}
 			})
 			/*************************************************************************************/
-		
-			if(typeof(container)=="string"){
-				realContainer=container;
-				var goodsizeObj={gid:mongoose.Types.ObjectId(goodid),type:1,gsname:realContainer,priceoffset:priceoffset1,lefts:lefts1};
-				goodsize.addGoodSize(goodsizeObj,function(err3,doc3){
-					if(!err3){
-						console.log(doc3);
-					}else{
-						console.log(err3);
+		    if(container.length!=0){
+				if(typeof(container)=="string"){
+					realContainer=container;
+					var goodsizeObj={gid:mongoose.Types.ObjectId(goodid),type:1,gsname:realContainer,priceoffset:priceoffset1,lefts:lefts1};
+					goodsize.addGoodSize(goodsizeObj,function(err3,doc3){
+						if(!err3){
+							console.log(doc3);
+						}else{
+							console.log(err3);
+						}
+					})
+				}else if(typeof(container)=="object"){
+					realContainer=JSON.stringify(container);
+					console.log("len"+container.length);
+					for(var i=0;i<container.length;i++){
+						var gsObj={gid:mongoose.Types.ObjectId(goodid),type:1,gsname:container[i],priceoffset:priceoffset1[i],lefts:lefts1[i]};
+						goodsizeObjs1.push(gsObj);
 					}
-				})
-			}else if(typeof(container)=="object"){
-				realContainer=JSON.stringify(container);
-				console.log("len"+container.length);
-				for(var i=0;i<container.length;i++){
-					var gsObj={gid:mongoose.Types.ObjectId(goodid),type:1,gsname:container[i],priceoffset:priceoffset1[i],lefts:lefts1[i]};
-					goodsizeObjs1.push(gsObj);
-				}
-				goodsize.addGoodSizes(goodsizeObjs1,function(err4,doc4){
-					if(!err4){
-						console.log(doc4);
-					}else{
-						console.log(err4);
-					}
-				})
+					goodsize.addGoodSizes(goodsizeObjs1,function(err4,doc4){
+						if(!err4){
+							console.log(doc4);
+						}else{
+							console.log(err4);
+						}
+					})
+				}		    	
+		   }
+			if(smile.length!=0){
+				console.log("smilebuweikong"+smile);
+		         if(typeof(smile)=="string"){
+						realSmile=smile;
+						var goodsizeObj={gid:mongoose.Types.ObjectId(goodid),type:0,gsname:realSmile,priceoffset:priceoffset2,lefts:lefts2};
+						goodsize.addGoodSize(goodsizeObj,function(err5,doc5){
+							if(!err5){
+								console.log(doc5);
+							}else{
+								console.log(err5);
+							}
+						})
+					}else if(typeof(smile)=="object"){
+						realContainer=JSON.stringify(container);
+						console.log("len"+smile.length);
+						for(var i=0;i<smile.length;i++){
+							var gsObj={gid:mongoose.Types.ObjectId(goodid),type:0,gsname:smile[i],priceoffset:priceoffset2[i],lefts:lefts2[i]};
+							goodsizeObjs2.push(gsObj);
+						}
+						goodsize.addGoodSizes(goodsizeObjs2,function(err6,doc6){
+							if(!err6){
+								console.log(doc6);
+							}else{
+								console.log(err6);
+							}
+						})
+					}				
 			}
-			
-		    if(typeof(smile)=="string"){
-				realSmile=smile;
-				var goodsizeObj={gid:mongoose.Types.ObjectId(goodid),type:0,gsname:realSmile,priceoffset:priceoffset2,lefts:lefts2};
-				goodsize.addGoodSize(goodsizeObj,function(err5,doc5){
-					if(!err3){
-						console.log(doc3);
-					}else{
-						console.log(err3);
-					}
-				})
-			}else if(typeof(smile)=="object"){
-				realContainer=JSON.stringify(container);
-				console.log("len"+smile.length);
-				for(var i=0;i<smile.length;i++){
-					var gsObj={gid:mongoose.Types.ObjectId(goodid),type:0,gsname:smile[i],priceoffset:priceoffset2[i],lefts:lefts2[i]};
-					goodsizeObjs2.push(gsObj);
-				}
-				goodsize.addGoodSizes(goodsizeObjs2,function(err6,doc6){
-					if(!err6){
-						console.log(doc6);
-					}else{
-						console.log(err6);
-					}
-				})
-			}
+		   
 					
 		}else{
 			console.log(err);
