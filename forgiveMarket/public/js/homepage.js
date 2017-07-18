@@ -1,10 +1,6 @@
 $(function() {
 	/*------------------------------------------头部*/
-	/*--------------------------------------------搜索栏*/
-	$(".search-textbox").focus(function(){
-		$(".searchhistorycontainer").css("display","inline-block")
-	})
-	
+	/*--------------------------------------------搜索栏*/	
 	$(".clearsearchhistory").click(function(){
 		$(".searchhistory-ul").html("");
 	})
@@ -13,24 +9,31 @@ $(function() {
 		$(".searchhistorycontainer").css("display","none")
 	})
 	
-	$(".searchhistory-li-closeimg").click(function(){
-		var i = $(".searchhistory-li-closeimg").index(this)+1;
-		$(".searchhistory-ul").find("li")[i-1].remove()
-	})
+	var i;
 	
 	$(".search-textbox").focus(function(){
+		$(".searchhistorycontainer").css("display","inline-block")
 		$(document).keypress(function(e){
 			if(e.which == 13)
 			{
+				$(".searchhistorycontainer").css("display","none")
 				var searchtext = $(".search-textbox").val();
-				 if ( searchtext) 
+				 if ( searchtext)
 				 {
+				 	
 				 	$(".searchhistory-ul").prepend('<li class="searchhistory-li">' + searchtext + '<img class="searchhistory-li-closeimg" src="../img/innisfreeIco/close.png"/></li>')
 					$(".search-textbox").val(null);
-					$(".searchhistory-ul").find("li")[5].remove()
+					$(".searchhistory-ul").find("li")[6].remove()
 				 }
+				
 			}
 		})
+		
+		$(".searchhistory-li-closeimg").click(function(){
+		i = $(".searchhistory-li-closeimg").index(this);
+		console.log(i)
+		$(".searchhistory-ul").find("li")[i].remove()
+	})
 	})
 	/*------------------------------------------广告轮播*/
 	var i = 0;
