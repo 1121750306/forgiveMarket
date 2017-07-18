@@ -34,7 +34,10 @@ $(document).ready(function() {
 					var li = $(this);
 					li.click(function() {
 						console.log($(this).attr("gid"));
-						window.location.assign("/views/goodInfo/goodInfo.html?gid=" + $(this).attr("gid"));
+						var gid = $(this).attr("gid");
+						if (gid != undefined) {
+							window.location.assign("/views/goodInfo/goodInfo.html?gid=" + $(this).attr("gid"));
+						}
 					})
 				})
 			} else {

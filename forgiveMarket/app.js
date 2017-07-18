@@ -15,11 +15,13 @@ var order = require('./routes/order');
 var locations=require('./routes/location');
 var admin=require("./routes/admin");
 var history = require("./routes/history");
+var collect = require("./routes/collect");
 
 //传递models
 base.initModels(function(models) {
 	users.callback(models);
 	history.callback(models);
+	collect.callback(models);
 })
 
 var app = express();
@@ -54,6 +56,7 @@ app.use('/order', order);
 app.use('/location',locations);
 app.use('/admin',admin);
 app.use('/history',history);
+app.use('/collect',collect);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
 	var err = new Error('Not Found');

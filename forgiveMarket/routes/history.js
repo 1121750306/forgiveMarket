@@ -45,7 +45,7 @@ router.post('/queryhistory', function(req, res, next) {
 		return;
 	}
 	var uid = req.session.user[0]._id;
-	var uid = "596c1006b78c401434acd7f0";
+//	var uid = "596c1006b78c401434acd7f0";
 	//	var index = req.body.index;
 	var index = 0;
 	history.queryHistory(uid, index, function(flag, err, result) {
