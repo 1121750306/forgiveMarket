@@ -13,5 +13,9 @@ function addGoodInfo(obj,cb){
 	 goodInfoEntity.save(cb);
 }
 
+function deleteGoodInfo(id,cb){
+	goodInfoModel.find({gid:id}).remove(cb);
+}
 module.exports.initModel = initModel;
 module.exports.addGoodInfo = addGoodInfo;
+module.exports.deleteGoodInfo = deleteGoodInfo;

@@ -42,15 +42,7 @@ function getGoodSizeById (id, callback) {
  * @param {Object} cb
  */
 function deleteGoodSize(id,cb){
-	goodsizeModel.findById(id,function(err,doc){
-		if(!err){
-			doc.remove();
-			console.log(doc);
-		}else{
-			console.log(err);
-		}
-			
-	})
+	goodsizeModel.find({gid:id}).remove(cb);
 }
 module.exports.initModel = initModel;
 module.exports.addGoodSize = addGoodSize;

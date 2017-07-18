@@ -162,16 +162,47 @@ router.post("/Add",function(req,res,next){
 	 			console.log(err);
 	 		}
 	 	});
+	 	goodinfo.deleteGoodInfo(id,function(err,doc){
+	 		if(!err){
+	 			console.log(doc);
+	 		}else{
+	 			console.log(err);
+	 		}
+	 	});
+	 	
 	 }
 	 else{
 	 	for (var i=0;i<id.length;i++) {
 	    	console.log(id[i]);
-	 	    good.deleteGood(id);
+	 	    good.deleteGood(id[i]); 	    
+	 	    goodsize.deleteGoodSize(id[i],function(err,doc){
+	 		if(!err){
+	 			console.log(doc);
+	 		}else{
+	 			console.log(err);
+	 		}
+		 	});
+		 	goodinfo.deleteGoodInfo(id[i],function(err,doc){
+		 		if(!err){
+		 			console.log(doc);
+		 		}else{
+		 			console.log(err);
+		 		}
+		 	});
 	   }
 	 }
 	 res.render("pc/goodlistInit");
  })
+ 
+ /**
+  * 跟新商品初始化
+  */
 
+router.get('/updateInit/:id',function(req,res,next){
+	var goodid=req.params.id;
+	console.log("goodid"+goodid);
+    res.render("pc/updategood",{goodid:goodid});
+})
 /**
  * 查询商品列表
  */
@@ -217,6 +248,21 @@ router.get("/queryAllGoodSizeType",function(req,res,next){
 		if(!err){
 			console.log(docs);
 			res.send(docs);
+		}else{
+			console.log(err);
+		}
+	})
+})
+
+/**
+ * 根据id查询商品
+ */
+router.post('/queryGoodByid',function(req,res,next){
+	var id=req.body.id;
+	good.getGoodById(id,function(err,doc){
+		if(!err){
+			console.log(doc);
+			res.send(doc);
 		}else{
 			console.log(err);
 		}

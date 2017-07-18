@@ -121,7 +121,7 @@
                 text:"跟新",
                 iconCls:'icon-edit',
                 handler:function () {
-                      updateUser();
+                      updateGood();
                 }
             },'-'],
             onLoadSuccess:function () {
@@ -181,6 +181,27 @@
 	    		}
 	    	})
        }
+       function updateGood(){
+       	 var rows=$("#GoodTable").datagrid("getSelections");
+       	 if(rows.length==0){
+       	 	$.messager.alert('提示','请选择你要跟新的商品','info');
+       	 	return;
+       	 }
+       	 if(rows.length>1){
+       	 	$.messager.alert('提示','只能选择一件商品进行跟新','info');
+       	 	return;
+       	 }
+       	 console.log(rows[0]._id);
+       	 showWindow({
+       	 	title:"商品跟新",
+       	 	width:800,
+       	 	height:500,
+       	 	href:"/good/updateInit/"+rows[0]._id,
+       	 	onLoad:function(){
+       	 		
+       	 	}
+       	 })
+       }
       function Uploads(value,row,index){
       	 var goodid=row._id;
          return "<button type='button' data-index='"+index+"' data-goodid='"+goodid+"' class='btn btn-primary btn-sm Uploads' >上传</button>"+
@@ -212,7 +233,7 @@
                     obj.goodid = gid;
                     return obj;
                 }
-        
+         
     });
 }
       $("#file-Portrait").on("fileuploaded", function (event, data, previewId, index) {

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>商城管理</title>
+    <link rel="stylesheet" href="/jquery-easyui/themes/default/easyui.css" />
+    <link rel="stylesheet" href="/jquery-easyui/themes/icon.css" />
+    <script type="text/javascript" src="/jquery-easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="/jquery-easyui/jquery.easyui.min.js" ></script>
+  </head>
+  <body>
+  	
+	 <form action="/good/Add" method="post" id="updateForm">
+	  <input type="hidden" value="<%=goodid%>" id="_goodid">
+	  <div class="form-group" style="width: 45%;display: inline-block;margin:5px">
+	    <label for="gname">商品名</label>
+	    <input type="text" class="form-control" id="gname" name="gname" placeholder="商品名">
+	  </div>
+	  <div class="form-group" style="width: 45%;display: inline-block;margin:5px">
+	    <label for="pricebase">基础价格</label>
+	    <input type="text" class="form-control" id="pricebase" name="pricebase" placeholder="基础价格">
+	  </div>
+	   <div class="form-group" style="width: 45%;display: inline-block;margin:5px">
+	    <label for="discount">折扣</label>
+	    <input type="text" class="form-control" id="discount" name="discount" placeholder="折扣">
+	  </div>
+	  </div>
+	   <div class="form-group" style="width: 45%;display: inline-block;margin:5px">
+	    <label for="typeid">类型</label>
+	    <input name="typeid" id="typeid" class="easyui-combobox" 
+               data-options="
+					url:'/good/queryAllType',
+					method:'get',
+					valueField:'_id',
+					textField:'tname',
+					panelHeight:'auto'
+			"/>
+	  </div>
+	  <div class="form-group" style="width: 45%;display: inline-block;margin:5px">
+	    <label for="fitSkin">适用肤质</label>
+	    <input type="text" class="form-control" id="fitSkin" name="fitSkin" placeholder="适用肤质">
+	  </div>
+	  <div class="form-group" style="width: 45%;display: inline-block;margin:5px">
+	    <label for="usage">主要功效</label>
+	    <input type="text" class="form-control" id="usage" name="usage" placeholder="主要功效">
+	  </div>	 
+	  <div class="form-group" style="width: 45%;display: inline-block;margin:5px">
+	    <label for="packing">包装规格</label>
+	    <input type="text" class="form-control" id="packing" name="packing" placeholder="包装规格">
+	  </div>
+	  <div class="form-group" style="width: 45%;display: inline-block;margin:5px">
+	    <label for="tip">注意事项</label>
+	    <input type="text" class="form-control" id="tip" name="tip" placeholder="注意事项">
+	  </div>
+	   <div class="form-group" style="width: 94%;display: inline-block;margin:5px">
+	    <label for="fitwhere">适用部位</label>
+	    <input type="text" class="form-control" id="fitwhere" name="fitwhere" placeholder="适用部位">
+	  </div>
+	  <div class="form-group" style="width: 94%;display: inline-block;margin:5px">
+	    <label for="basis">主要成分</label>
+	    <input type="text" class="form-control" id="basis" name="basis" placeholder="主要成分">
+	  </div>
+	  <div class="form-group" style="width: 94%;display: inline-block;margin:5px;" id="containerFirst">
+	     <label>容量</label>
+	     <input type="text" class="form-control" name="container" placeholder="容量" style="width: 20%;display: inline-block;">
+	     <label>库存</label>
+	     <input type="text" class="form-control" name="lefts1" placeholder="库存" style="width: 20%;display: inline-block;">
+	     <label>价格偏移</label>
+	     <input type="text" class="form-control" name="priceoffset1" placeholder="价格偏移" style="width: 20%;display: inline-block;">
+	     <a href="#" class="btn btn-default btn-sm active" id="addContainer" role="button" style="width: 10%;display: inline-block;margin-top: -3px;">附加</a>
+	  </div>
+	  <div class="form-group" style="width: 94%;display: inline-block;margin:5px;" id="smileFirst">
+	     <label>气味</label>
+	     <input type="text" class="form-control" name="smile" placeholder="气味" style="width: 20%;display: inline-block;">
+	     <label>库存</label>
+	     <input type="text" class="form-control" name="lefts2" placeholder="库存" style="width: 20%;display: inline-block;">
+	     <label>价格偏移</label>
+	    <input type="text" class="form-control" name="priceoffset2" placeholder="价格偏移" style="width: 20%;display: inline-block;">
+	     <a href="#" class="btn btn-default btn-sm active" id="addSmile" role="button" style="width: 10%;display: inline-block;margin-top: -3px;">附加</a>
+	  </div>
+	  <button type="submit" class="btn btn-default"style="width: 94%;margin:5px">Submit</button>
+	</form>
+	
+
+	
+	<script>
+		var goodid=$("#_goodid").val();
+		$(function(){
+			$.ajax({
+				type:"post",
+				url:"/good/queryGoodByid",
+				data:{id:goodid},
+				async:true,
+				success:function(data){
+					console.log(data[0].typeid);
+					$('#gname').val(data[0].gname);
+					$('#pricebase').val(data[0].pricebase);
+					$('#discount').val(data[0].discount);
+					$('#typeid').val(data[0].typeid);
+				}
+			});
+		})
+	</script>
+  </body>
+</html>
