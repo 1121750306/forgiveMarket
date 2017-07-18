@@ -42,8 +42,7 @@ function queryHistory(uid, index, cb) {
 			uid: uid
 		})
 		.populate({
-			path: 'gid',
-			select: 'gname pricebase'
+			path: 'gid'
 		})
 		//		.limit(10)
 		//		.skip(index * 10)
