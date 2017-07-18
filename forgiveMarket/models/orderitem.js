@@ -48,10 +48,6 @@ function addOrderItems (objs, callback) {
  * @param {Object} callback
  */
 function getOrderItem (oid, callback) {
-	orderitemModel.find({oid:oid},callback);
-}
-
-function getOrderItem1 (oid, callback) {
 	orderitemModel.find({
 		oid:oid
 	}).populate({
@@ -63,8 +59,17 @@ function getOrderItem1 (oid, callback) {
 	}).exec(callback);
 }
 
+/**
+ * 通过id删除订单项
+ * @param {Object} id
+ * @param {Object} callback
+ */
+function deleteOrderItemById(id, callback){
+	orderitemModel.find({_id:id},callback);
+}
+
 module.exports.initModel = initModel;
 module.exports.addOrderItem = addOrderItem;
 module.exports.addOrderItems = addOrderItems;
 module.exports.getOrderItem = getOrderItem;
-module.exports.getOrderItem1 = getOrderItem1;
+module.exports.deleteOrderItemById = deleteOrderItemById;
