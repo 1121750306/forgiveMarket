@@ -23,6 +23,7 @@ router.post('/', function(req, res, next) {
   	res.render("/views/orderpay");
 });
 
+
 //购物车界面
 router.get('/cart', function(req, res, next) {
 	console.log("cart router get");
