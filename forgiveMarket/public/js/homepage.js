@@ -1,6 +1,23 @@
 $(function() {
 	/*------------------------------------------头部*/
 	/*--------------------------------------------搜索栏*/
+	$(".search-textbox").focus(function(){
+		$(".searchhistorycontainer").css("display","inline-block")
+	})
+	
+	$(".clearsearchhistory").click(function(){
+		$(".searchhistory-ul").html("");
+	})
+	
+	$(".closesearchhistory").click(function(){
+		$(".searchhistorycontainer").css("display","none")
+	})
+	
+	$(".searchhistory-li-closeimg").click(function(){
+		var i = $(".searchhistory-li-closeimg").index(this)+1;
+		console.log(i)
+		$(".searchhistory-ul").find("li")[i-1].remove()
+	})
 	/*------------------------------------------广告轮播*/
 	var i = 0;
 	var j = 1;

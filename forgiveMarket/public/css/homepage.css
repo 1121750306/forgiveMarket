@@ -40,6 +40,67 @@ body
 	margin-top: 58px;
 	margin-left: 8%;
 }
+.searchhistorycontainer
+{
+	display: none;
+	z-index: 40;
+	width: 90%;
+	height: 130px;
+	margin-top: 0px;
+	margin-left: 8%;
+}
+.searchhistory
+{
+	position: relative;
+	z-index: 40;
+	background-color: white;
+	opacity: 0.8;
+	width: 90%;
+	height: 100px;
+	overflow-y: auto;
+	margin-top: -30px;
+	margin-left: 8%;
+}
+
+.searchhistory-ul
+{
+	list-style: none;
+	margin-top: 10px;
+	font-size: 16px;
+}
+
+.searchhistory-li
+{
+	width: 90%;
+	height: 20px;
+	line-height: 20px;
+	
+}
+.searchhistory-li-closeimg
+{
+	float: right;
+	height: 16px;
+	
+}
+
+.searchhistory-bottom
+{
+	position: relative;
+	z-index: 40;
+	height: 30px;
+	width: 90%;
+	margin-left: 8%;
+	opacity: 0.8;
+	background-color: white;
+	font-size: 16px;
+	text-align: right;
+}
+.searchhistory-bottom>a
+{
+	color: black;
+	margin-right: 4%;
+}
+
 /*------------------------------------------广告轮播图*/
 .adturn
 {
