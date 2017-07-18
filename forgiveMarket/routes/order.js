@@ -47,7 +47,7 @@ router.get('/cart/getgoods/:uid', function(req, res, next) {
 				console.log(new Date() + "SUCCESS: 购物车订单已创建");
 				
 				//测试数据
-//				good.addGood({typeid:"1",gname:"商品1",pricebase:"200.1",discount:"0.8"},function(err){
+//				good.addGoods([{typeid:"1",gname:"商品1",pricebase:"200.1",discount:"0.8"}],function(err){
 //					if(!err){
 //						console.log("success");
 //					}else{
@@ -105,9 +105,6 @@ router.get('/cart/getgoods/:uid', function(req, res, next) {
 				//获取所有订单项
 				orderitem.getOrderItem1(data_getorder[0]._id, function(err_getorderitem, data_getorderitem){
 					if (!err_getorderitem) {
-						console.log("result:" + data_getorderitem[0]);
-						console.log("result:" + data_getorderitem[0].gsids);
-						
 						//遍历每个订单项
 						for (var i = 0; i < data_getorderitem.length; i++) {
 							var orderitem = data_getorderitem[i];
@@ -139,7 +136,7 @@ router.get('/cart/getgoods/:uid', function(req, res, next) {
 							
 						}
 						
-  						res.send(goods);
+						res.send(goods);
 						
 					} else{
 						console.log(new Date() + "ERROR: " + err_getorderitem);

@@ -8,11 +8,37 @@ function initModel(models) {
  * @param {Object} obj 商品对象
  * @param {Object} cb  回调函数
  */
- function addGood(obj,cb){
+function addGood(obj,cb){
  	var goodEntity=new goodModel(obj);	
  	goodEntity.save(cb);
- }
+}
 
+/**
+ * 批量添加商品
+ * @param {Object} objs
+ * @param {Object} callback
+ */
+function addGoods (objs, callback) {
+	
+	var err_callback;
+
+	for (var i = 0; i < objs.length; i++) {
+		
+		var goodEntity = new goodModel(objs[i]);
+		
+		goodEntity.save(function(err){
+			if (err) {
+				err_callback = err;
+			}
+		});
+		
+		if (err_callback) {
+			break;
+		}
+	}
+	
+	callback(err_callback);
+}
 /**
  * 
  * @param {Object} cb 回调函数
