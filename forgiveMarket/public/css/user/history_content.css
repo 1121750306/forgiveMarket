@@ -1,0 +1,95 @@
+#history_content {
+	background-color: #ededed;
+	overflow: auto;
+}
+
+#history_content>ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	position: relative;
+}
+
+#history_content>ul>li {
+	width: 48.5%;
+	border-radius: 5px;
+	height: auto;
+	position: relative;
+	display: block;
+	float: left;
+	margin: 1% 0 0 1%;
+	padding: 0;
+	background-color: #fff;
+	border-bottom: 1px solid #ededed;
+}
+
+#history_content>ul>.date_year {
+	width: 100%;
+	margin: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: transparent;
+}
+
+#history_content>ul>.date_year>p {
+	margin: 0;
+	text-align: center;
+	padding: 5px;
+	line-height: 20px;
+	height: 30px;
+}
+
+#history_content>ul>li:active {
+	background-color: #dcdcdc;
+}
+
+#history_content>ul>.date_year:active {
+	background-color: transparent;
+}
+
+#history_content>ul>li>img {
+	width: 40%;
+	height: 100%;
+	margin: 5px;
+}
+
+#history_content>ul>li>h2 {
+	width: 50%;
+	height: 20px;
+	line-height: 20px;
+	font-size: 1.5rem;
+	margin: 0;
+	position: absolute;
+	top: 20%;
+	left: 45%;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+#history_content>ul>li>span {
+	display: block;
+}
+
+#history_content>ul>li>.price {
+	color: green;
+	height: 20px;
+	line-height: 20px;
+	font-size: 1.5rem;
+	margin: 0;
+	position: absolute;
+	top: 50%;
+	left: 45%;
+	color: red;
+}
+
+#history_content>ul>li>.date {
+	height: 20px;
+	line-height: 20px;
+	font-size: 1.5rem;
+	margin: 0;
+	position: absolute;
+	top: 60px;
+	left: 100px;
+}

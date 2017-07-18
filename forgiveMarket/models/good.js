@@ -59,5 +59,6 @@ function getGoodById(id, callback){
 
 module.exports.initModel = initModel;
 module.exports.addGood = addGood;
+module.exports.addGoods = addGoods;
 module.exports.queryGoodList = queryGoodList;
 module.exports.getGoodById = getGoodById;

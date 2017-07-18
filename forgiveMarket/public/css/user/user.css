@@ -29,7 +29,7 @@
 
 #user_photo {
 	margin-top: 10%;
-	margin-left: 10%;
+	margin-left: 20%;
 	border-radius: 50px;
 	float: left;
 }
@@ -41,15 +41,14 @@
 }
 
 #user_info_content {
-	width: 60%;
+	width: 50%;
 	margin-top: 10%;
 	float: right;
 }
 
 #username {
 	font-size: 2rem;
-	margin: 0;
-	fon
+	color:#333;
 }
 
 #message {
@@ -84,6 +83,7 @@
     background: url(../../img/innisfreeIco/error.gif) 50% 0 no-repeat;
     background-size: auto 80px;
     display: block;
+    
 }
 #unlogin button {
 	display: block;
@@ -100,6 +100,7 @@
 	border: 1px solid green;
 	border-radius: 2px;
 	padding: 5px 15px 5px 15px;
+	font-size: 2rem;
 }
 
 /*功能列表*/
@@ -116,24 +117,27 @@
 
 #user_function>ul>li {
 	border-bottom: 1px solid #dddddd;
-	background: url(../../img/innisfreeIco/arrow_right.png) no-repeat 97.5% 16px;
-	background-size: 8px;
+	
 }
 
 #user_function>ul>li>a {
 	display: block;
 	padding: 14px 0 14px 10px;
 	color: #222222;
+	font-size: 1.5rem;
+	background: url(../../img/innisfreeIco/arrow_right.png) no-repeat 97.5% 16px;
+	background-size: 8px;
 }
 
 #user_function>ul>li>a:active {
-	background-color: #dcdcdc;
+	background-color: #ededed;
 }
 
 #user_function>ul>li>a>span {
 	padding-left: 20px;
 	display: inline-block;
 	line-height: 1.6;
+	font-size: 1.5rem;
 }
 
 #order>a>span {
@@ -203,6 +207,7 @@
 	color: #666;
 	background-size: 42px;
 	padding-top: 48px;
+	font-size: 1.5rem;
 }
 
 #order>div>ul>li>span {
@@ -217,6 +222,7 @@
 	color: #fff;
 	top: 8px;
 	right: 0px;
+	font-size: 1rem;
 }
 
 #unpay>a {

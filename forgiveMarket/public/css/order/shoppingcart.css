@@ -94,10 +94,6 @@ body{
 	padding-right: 20px;
 	box-sizing: border-box;
 	border-bottom: 0.1rem lightgrey solid;
-}
-
-.cart .cart_item form{
-	height: 100%;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -174,13 +170,19 @@ body{
 	margin: 0;
 }
 
-.cart .cart_item .item_info .info_bottom span{
+.cart .cart_item .item_info .info_bottom .num_ctrl{
+	width: 100px;
+	height: 30px;
+}
+
+.cart .cart_item .item_info .info_bottom .num_ctrl span{
 	width: 30px;
 	height: 30px;
 	background: gainsboro;
+	float: left;
 }
 
-.cart .cart_item .item_info .info_bottom .item_add{
+.cart .cart_item .item_info .info_bottom .num_ctrl .item_add{
 	width: 100%;
 	height: 100%;
 	display: block;
@@ -188,7 +190,7 @@ body{
 	background-size: 20px 20px;
 }
 
-.cart .cart_item .item_info .info_bottom .item_sub{
+.cart .cart_item .item_info .info_bottom .num_ctrl .item_sub{
 	width: 100%;
 	height: 100%;
 	display: block;
@@ -196,10 +198,11 @@ body{
 	background-size: 20px 20px;
 }
 
-.cart .cart_item .item_info .info_bottom .item_num{
+.cart .cart_item .item_info .info_bottom .num_ctrl .item_num{
 	font-size: 1.5rem;
 	width: 40px;
 	height: 30px;
+	float: left;
 	text-align: center;
 	margin: 0;
 	padding: 0;
