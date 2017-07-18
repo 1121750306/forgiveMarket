@@ -28,7 +28,7 @@ body{
 	line-height: 40px;
 }
 
-.banner{
+/*.banner{
 	width: 100%;
 	height: 40px;
 	background-color: lightgrey;
@@ -48,7 +48,7 @@ body{
 	background: yellowgreen;
 	color: white;
 	font-weight: bold;
-	display: none;
+	display: none;*/
 }
 
 .cart_search{
@@ -77,7 +77,7 @@ body{
 }
 
 .content{
-	margin-bottom: 60px;
+	margin-bottom: 80px;
 }
 
 .cart{
@@ -166,6 +166,7 @@ body{
 
 .cart .cart_item .item_info .info_bottom .item_price{
 	font-size: 1.5rem;
+	color: red;
 	flex: 1;
 	margin: 0;
 }
@@ -212,11 +213,11 @@ body{
 	border-bottom: 1px lightgrey solid;
 }
 
-.attention{
+.content .attention{
 	display: none;
 }
 
-.attention i{
+.content .attention i{
 	height: 80px;
 	margin-top: 80px;
 	background: url(../../img/innisfreeIco/error.gif) 50% 0 no-repeat;
@@ -224,7 +225,7 @@ body{
 	display: block;
 }
 
-.attention p{
+.content .attention p{
 	height: 40px;
 	width: 45%;
 	margin: auto;
@@ -232,7 +233,7 @@ body{
 	text-align: center;
 }
 
-.attention .no_login{
+.content .attention .no_login{
 	font-size: 1.25rem;
 	margin-top: 20px;
 	background: green;
@@ -241,7 +242,7 @@ body{
 	display: none;
 }
 
-.attention .cart_empty{
+.content .attention .cart_empty{
 	margin-top: 10px;
 	font-size: 1.5rem;
 	display: none;
@@ -280,11 +281,11 @@ body{
 .footer .totalprice{
 	line-height: 60px;
 	float: right;
-	margin-right: 5px;
+	margin-right: 10px;
 }
 
 .footer .goodscheck{
-	width: 35%;
+	width: 30%;
 	height: 100%;
 	float: right;
 	border: none;

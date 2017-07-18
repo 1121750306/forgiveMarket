@@ -26,6 +26,17 @@ function getLocation(uid,cb){
 	query.sort({flag:'desc'});
 	query.exec(cb);
 }
+
+/**
+ * 获取该用户的默认收货地址
+ * @param {Object} uid
+ * @param {Object} cb
+ */
+function getDefaultLocation(uid,cb){
+	var query=locationModel.find({uid:uid,flag:1});
+	query.exec(cb);
+}
+
 /**
  *   查询某条收获地址
  * @param {Object} id 收货地址id
@@ -101,6 +112,7 @@ function deleteLocation(id,cb){
 module.exports.initModel = initModel;
 module.exports.addLocation=addLocation;
 module.exports.getLocation=getLocation;
+module.exports.getDefaultLocation=getDefaultLocation;
 module.exports.getLocationById=getLocationById;
 module.exports.updateLocation=updateLocation;
 module.exports.updateFlag=updateFlag;

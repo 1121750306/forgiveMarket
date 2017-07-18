@@ -17,7 +17,7 @@ function guid() {
 }
 router.get('/', function(req, res, next) {
 	//测试用法TODO
-  req.session.user={"_id":"10003","uname":"13614004325","psw":"424123","phone":"13614004325","balance":0,"avatar":"/img/innisfreeIcon/avatar.png"};
+//req.session.user={"_id":"10003","uname":"13614004325","psw":"424123","phone":"13614004325","balance":0,"avatar":"/img/innisfreeIcon/avatar.png"};
   res.render('locationManagers', { title: 'Express' });
 });
 router.get('/addinit', function(req, res, next) {
@@ -35,7 +35,7 @@ router.post('/add', function(req, res, next) {
     var postcode=req.body.postcode;
     console.log("province"+province+"="+city+"="+district+"="+address+"="+phone+"="+shname+"="+postcode);  
     //uid 从session中获取
-    var uid=req.session.user._id;
+    var uid=req.session.user[0]._id;
     console.log(uid);
     var obj={uid:uid,province:province,city:city,district:district,address:address,phone:phone,shname:shname,postcode:postcode,flag:0};
     locations.addLocation(obj,function(err,docs){
@@ -60,9 +60,25 @@ router.post('/add', function(req, res, next) {
      res.render('locationManagers', {});
 });
 router.get('/getLocation', function(req, res, next){
-	var uid=req.session.user._id;
-    console.log(req.session.user._id);
+	var uid=req.session.user[0]._id;
+    console.log(req.session.user[0]._id);
 	 locations.getLocation(uid,function(err,docs){
+	 	if(!err){
+    		console.log("location get"+docs.length);
+    		res.send(docs);
+			
+    	}else{
+    		console.log(err.message);
+    	}
+	 })
+});
+
+//获得默认收货地址
+router.get('/getDefaultLocation', function(req, res, next){
+	console.log("in");
+	var uid=req.session.user[0]._id;
+    console.log(uid);
+	 locations.getDefaultLocation(uid,function(err,docs){
 	 	if(!err){
     		console.log("location get"+docs.length);
     		res.send(docs);

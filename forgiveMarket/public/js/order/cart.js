@@ -9,7 +9,7 @@ $(function(){
 		showLogin();
 		
 	}else {
-		//从session中获得用户数据和购物车数据
+		//从session中获得用户数据
 		var user = JSON.parse(sessionStorage.getItem("user"));
 		
 		//请求购物车数据
@@ -421,7 +421,7 @@ $(function(){
 	//结算控制
 	$(".goodscheck").click(function(){
 		var item = $(".cart_item");
-		var url = "/views/order/pay.html";
+		var url = "";
 		//是否有已勾选的商品
 		var exist = false;
 		
@@ -433,7 +433,7 @@ $(function(){
 				var num = parseInt(item.eq(i).find(".item_num").val());
 				
 				//拼接url
-				if (i == 0) {
+				if (url == "") {
 					url = url + "?otids=" + otid;
 				}else {
 					url = url + "&" + otid;
@@ -462,7 +462,7 @@ $(function(){
 		}
 		
 		if (exist) {
-			location.assign(url);
+			location.assign("/views/order/pay.html" + url);
 		}
 		
 	});

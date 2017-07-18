@@ -1,119 +1,117 @@
-body
-{
-	overflow-x: hidden;
-}
-.header
-{
-	position: fixed;
-	top: 0px;
-	z-index: 99;
-}
-.content
-{
-	position: relative;
-	margin-top: 100px;
-}
-.userinfo
-{
-	position: relative;
+.banner{
 	width: 100%;
-	height: 150px;
-	font-size: 16px;
-	margin-top: 10px;
+	height: 130px;
+	position: relative;
+	margin-top: 30px;
+	border-bottom: 5px rgba(5, 83, 33, 1) solid;
+	margin-bottom: 5px;
 }
 
-.username
-{
-	position: absolute;
-	font-size: 18px;
-	margin-left: 15%;
-	margin-top: 4%;
-}
-.userphone
-{
-	position: absolute;
-	margin-left: 69%;
-	margin-top:4%;
-}
-.useraddress
-{
-	position: absolute;
-	margin-left: 15%;
-	margin-top: -8%;
-	margin-right: 4%;
-	font-size: 14px;
-}
-.order
-{
-	position: relative;
+.banner .banner_top{
 	width: 100%;
-	margin-top: 10px;
+	height: 30px;
+	padding: 0 30px 0 50px;
+	justify-content: space-between;
+	align-items: flex-end;
+	display: none;
 }
 
-.cart
-{
+.banner .banner_top .username{
+	float:left;
+}
+
+.banner .banner_top .phone{
+	float: right;
+}
+
+.banner .banner_bottom{
+	width: 100%;
+	height: 100px;
+	padding: 0 15px;
+	justify-content: space-between;
+	align-items: center;
+	display: none;
+}
+
+.banner .banner_bottom img{
+	width: 30px;
+	height: auto;
 	display: block;
 }
-.img
-{
-	position: absolute;
-	margin-left: 5%;
-}
-.item_info
-{
-	position: absolute;
-	margin-left: 38%;
-}
-.money
-{
-	position: absolute;
-	font-size: 16px;
-	color: red;
-	background: white;
-	margin-left: 0%;
+
+.banner .banner_bottom .address{
+	margin: 0 10px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	flex:1;
 }
 
-.mount
-{
-	position: absolute;
-	font-size: 16px;
-	color: black;
-	background: white;
-	margin-left: 80%;
-}
-.totalcount
-{
-	position: absolute;
-	font-size: 16px;
-	margin-left: 20%;
-	margin-top: 20px;
-}
-.totalpay
-{
-	position: absolute;
-	font-size: 16px;
-	margin-left: 40%;
-	margin-top: 20px;
+.banner .banner_bottom img{
+	width: auto;
+	height: 30px;
 }
 
-.footer>button
-{
-	position: absolute;
-	width: 30%;
-	background-color: greenyellow;
-	font-size: 20px;
-	color: black;
-	border: none;
-	margin-left: 69%;
-	height: 100%;
+.banner .banner_attention{
+	width: 100%;
+	height: 90px;
+	padding: 10px 7% 0 0;
+	justify-content: space-between;
+	align-items: center;
+	display: none;
 }
 
-.usermsg
-{
-	position: relative;
-	margin-top: 20px;
-	margin-left: 4%;
+.banner .banner_attention img:first-of-type{
+	height: 80px;
+}
+
+.cart{
+	display: block;
+}
+
+.cart .cart_item{
+	height: 170px;
+	padding: 0;
+	display: block;
+	border-top: 6px rgba(0,0,0,0.1) solid;
+	border-bottom: none;
+}
+
+.cart .cart_item .item_top{
+	width: 100%;
+	height: 120px;
+	padding: 5px 20px;
+	border-bottom: 0.1rem lightgrey solid;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.cart .cart_item .item_top .item_info{
+	width: 65%;
+}
+
+.cart .cart_item .item_top .item_info .item_num{
+	font-size: 1.75rem;
+}
+
+.cart .cart_item .item_bottom{
 	width: 100%;
 	height: 50px;
-	font-size: 16px;
+}
+
+.cart .cart_item .item_bottom p{
+	margin-right: 10px;
+	float: right;
+	line-height: 45px;
+}
+
+.cart .cart_item .item_bottom .item_totalprice{
+	font-size: 1.5rem;
+}
+
+.cart .cart_item .item_bottom .item_totalnum{
+	font-size: 1.25rem;
 }
