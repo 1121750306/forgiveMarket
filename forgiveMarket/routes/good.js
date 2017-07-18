@@ -155,6 +155,13 @@ router.post("/Add",function(req,res,next){
  	 console.log(id);
 	 if(typeof(id)=='string'){
 	 	good.deleteGood(id);
+	 	goodsize.deleteGoodSize(id,function(err,doc){
+	 		if(!err){
+	 			console.log(doc);
+	 		}else{
+	 			console.log(err);
+	 		}
+	 	});
 	 }
 	 else{
 	 	for (var i=0;i<id.length;i++) {

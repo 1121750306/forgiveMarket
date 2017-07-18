@@ -36,7 +36,24 @@ function getGoodSizeById (id, callback) {
 	goodsizeModel.find({_id:id},callback);
 }
 
+/**
+ * 通过id删除商品规格
+ * @param {Object} id
+ * @param {Object} cb
+ */
+function deleteGoodSize(id,cb){
+	goodsizeModel.findById(id,function(err,doc){
+		if(!err){
+			doc.remove();
+			console.log(doc);
+		}else{
+			console.log(err);
+		}
+			
+	})
+}
 module.exports.initModel = initModel;
 module.exports.addGoodSize = addGoodSize;
 module.exports.addGoodSizes = addGoodSizes;
 module.exports.getGoodSizeById = getGoodSizeById;
+module.exports.deleteGoodSize = deleteGoodSize;
