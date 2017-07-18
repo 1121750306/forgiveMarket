@@ -75,7 +75,6 @@ router.get('/getLocation', function(req, res, next){
 
 //获得默认收货地址
 router.get('/getDefaultLocation', function(req, res, next){
-	console.log("in");
 	var uid=req.session.user[0]._id;
     console.log(uid);
 	 locations.getDefaultLocation(uid,function(err,docs){

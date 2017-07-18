@@ -13,31 +13,15 @@ function callback(models) {
 	user.initModel(models);
 }
 
-//结算界面
-router.post('/', function(req, res, next) {
-	//获取表单数据
-	var otids = req.body.otids;
-	
-	console.log(otids);
-	
-  	res.render("/views/orderpay");
-});
-
-
-//购物车界面
-router.get('/cart', function(req, res, next) {
-	console.log("cart router get");
-  	res.render("order/shoppingcart");
-});
-
 //购物车获得商品内容
-router.get('/cart/getgoods/:uid', function(req, res, next) {
+router.get('/getgoods/:uid/:flag', function(req, res, next) {
 	var uid = req.params.uid;
+	var flag = req.params.flag;
 	var goods = [];
 	console.log("cart getgoods router get"+uid);
 	
 	//查询是否已经创建购物车订单
-	order.getOrderByIdAndFlag(uid, 0,function(err_getorder, data_getorder){
+	order.getOrderByIdAndFlag(uid, flag, function(err_getorder, data_getorder){
 		if (!err_getorder) {
 			if (data_getorder.length == 0) {
 				//未创建
