@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		
+		<title>购物车</title>
+		
+		<link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css" />
+		
+		<link rel="stylesheet" type="text/css" href="/css/style.css"/>		
+		<link rel="stylesheet" type="text/css" href="/css/user/login.css" />
+		<link rel="stylesheet" type="text/css" href="/css/navigation.css"/>
+		<link rel="stylesheet" type="text/css" href="/css/user/history_content.css" />
+		<link rel="stylesheet" type="text/css" href="/css/order/cart.css"/>
+		
+	</head>
+	<body>
+		<div class="nav">
+			<span class="nav_menu"></span>
+			<a href="/views/homepage.html" class="nav_logo"></a>
+			<a href="/views/user/user.html" class="nav_user"></a>
+			<a href="/views/order/cart.html" class="nav_cart">
+				<p class="nav_cartnum">0</p>
+			</a>
+			
+			<div class="nav_modal">
+				<div class="nav_modal_content">
+					<div class="nav_modal_title">
+						<span class="nav_modal_logo"></span>
+						<span class="nav_modal_close">
+							<i></i>
+						</span>
+					</div>
+					<ul class="nav_modal_tab">
+						<li>产品类别</li>
+						<li>浏览历史</li>
+					</ul>
+					<div class="nav_modal_page">
+						<ul class="nav_modal_type">
+						</ul>
+					</div>
+					<div id="history_content" class="nav_modal_page"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="header">
+			<h1>购物车</h1>
+		</div>
+		
+		<div class="banner">
+			<div class="cart_search">
+				<img src="../../img/innisfreeIco/search.png"/>
+				<input type="text" class="search_text" placeholder="搜索购物车"/>
+			</div>
+			<h2 onmousedown="cartsearch()">搜索</h2>
+		</div>
+		
+		<div class="content">
+			<ul class="cart">
+			</ul>
+			<div class="attention">
+				<i></i>
+				<p class="no_login">请登录</p>
+				<p class="cart_empty">您的购物车里还没有商品</p>
+			</div>
+		</div>
+		
+		<div class="footer">
+			<div class="item_check item_allcheck">
+				<input type="checkbox"/>
+			</div>
+			<h3>全选</h3>
+			
+			<span class="check_delete">删除选中</span>
+			
+			<button class="goodscheck" type="button">去结算(0)</button>
+			
+			<h2 class="totalprice">总价￥:0.00</h2>
+			
+		</div>
+		
+		<div id="div_login">
+			<span id="login_close"></span>
+			<div class="login_content">
+				<input type="phone" class="form-control input" id="phone" placeholder="用户名">
+				<div id="div_show_pwd"><input type="password" class="form-control input" id="password" placeholder="密码">
+					<i id="show_pwd"></i></div>
+				<button type="button" class="btn login" id="btn_login">登录</button>
+				<div id="error"></div>
+				<div class="word_div">
+					<span id="forget" class="word"><a href="">忘记密码？</a></span>
+					<span id="register" class="word"><a href="/views/user/regiter.html">注册新用户</a></span>
+				</div>
+			</div>
+		</div>
+		
+	</body>
+	
+	<script type="text/javascript" src="/jquery/dist/jquery.min.js" ></script>	
+	
+	<script src="/js/user/login.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/js/navigation.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/js/user/history.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/js/order/cart.js" type="text/javascript" charset="utf-8"></script>
+	
+</html>

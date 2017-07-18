@@ -5,7 +5,7 @@ $(function() {
 		var user = JSON.parse(sessionStorage.getItem("user"));
 		
 		//判断是否已在购物车页面中
-		if ($(".cart").length == 0) {
+		if ($("title").html() != "购物车") {
 			//请求购物车数据
 			$.ajax({
 				type:"get",

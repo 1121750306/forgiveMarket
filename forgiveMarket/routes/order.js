@@ -16,9 +16,9 @@ function callback(models) {
 //结算界面
 router.post('/', function(req, res, next) {
 	//获取表单数据
-	var oids = req.body.oids;
+	var otids = req.body.otids;
 	
-	console.log(oids);
+	console.log(otids);
 	
   	res.render("/views/orderpay");
 });
@@ -111,19 +111,19 @@ router.get('/cart/getgoods/:uid', function(req, res, next) {
 				var goods = [];
 				
 				//获取所有订单项
-				orderitem.getOrderItem(data_getorder[0]._id, function(err_getorderitem, data_getorderitem){
+				orderitem.getOrderItemsByOid(data_getorder[0]._id, function(err_getorderitem, data_getorderitem){
 					if (!err_getorderitem) {
 						//遍历每个订单项
 						for (var i = 0; i < data_getorderitem.length; i++) {
-							var orderitem = data_getorderitem[i];
+							var item = data_getorderitem[i];
 							
 							//取得订单项的商品价格基数
-							var price = orderitem.gid.pricebase;
+							var price = item.gid.pricebase;
 							
 							//取得订单项的商品规格数组
 							var sizes = [];
-							for (var j = 0; j < orderitem.gsids.length; j++) {
-								var sizeitem = orderitem.gsids[j].gsid;
+							for (var j = 0; j < item.gsids.length; j++) {
+								var sizeitem = item.gsids[j].gsid;
 								
 								//计算商品在此规格下价格偏移后的结果
 								price = price + sizeitem.priceoffset;
@@ -133,15 +133,15 @@ router.get('/cart/getgoods/:uid', function(req, res, next) {
 							}
 							
 							//计算订单项商品折扣
-							price = (price*orderitem.gid.discount).toFixed(2);
+							price = (price*item.gid.discount).toFixed(2);
 							
 							//拼接每个订单项中所需数据
-							var good = {otid: orderitem._id,
-										gid: orderitem.gid._id,
-										gname: orderitem.gid.gname,
+							var good = {otid: item._id,
+										gid: item.gid._id,
+										gname: item.gid.gname,
 										gsizes: sizes,
 										price: price,
-										num: orderitem.num};
+										num: item.num};
 										
 							//加入商品列表
 							goods.push(good);
@@ -164,14 +164,70 @@ router.get('/cart/getgoods/:uid', function(req, res, next) {
 	
 });
 
-//购物车删除商品订单项
+//获得商品订单项
+router.get('/getorderitem/:otid', function(req, res, next) {
+	var otid = req.params.otid;
+	
+	orderitem.getOrderItemById(otid, function(err, data){
+		if (!err) {
+			if (data.length != 0) {
+				//获得订单项
+				var item = data[0];
+				
+  				res.send(item);
+			} else{
+				console.log(new Date() + "ERROR: 订单项id有误");
+				res.send("error");
+			}
+		}else {
+			console.log(new Date() + "ERROR: " + err);
+			res.send("error");
+		}
+	})
+});
+
+//修改订单项数量
+router.post('/updateorderitem', function(req, res, next) {
+	//获取表单数据
+	var otid = req.body.otid;
+	var num = req.body.num;
+	
+	orderitem.getOrderItemById(otid, function(err, data){
+		if (!err) {
+			if (data.length != 0) {
+				//获得订单项
+				var item = data[0];
+				
+				//修改订单项数量
+				item.num = num;
+				
+				item.save(function(err){
+					if (!err) {
+  						res.send("success");
+					} else{
+						res.send("error");
+					}
+				});
+			} else{
+				console.log(new Date() + "ERROR: 订单项id有误");
+				res.send("error");
+			}
+		}else {
+			console.log(new Date() + "ERROR: " + err);
+			res.send("error");
+		}
+	})
+	
+});
+
+//删除商品订单项
 router.get('/cart/deletegood/:otid', function(req, res, next) {
 	var otid = req.params.otid;
 	
 	orderitem.deleteOrderItemById(otid, function(err, data){
 		if (!err) {
 			if (data.length != 0) {
-				data.remove();
+				data[0].remove();
 			} else{
 				console.log(new Date() + "ERROR: 订单项id有误");
 			}

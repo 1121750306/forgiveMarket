@@ -43,11 +43,28 @@ function addOrderItems (objs, callback) {
 }
 
 /**
- * 查找订单项
+ * 通过id查找订单项
+ * @param {Object} id
+ * @param {Object} callback
+ */
+function getOrderItemById (id, callback) {
+	orderitemModel.find({
+		_id:id
+	}).populate({
+		path: 'oid' 
+	}).populate({
+		path: 'gid' 
+	}).populate({
+		path: 'gsids.gsid'
+	}).exec(callback);
+}
+
+/**
+ * 通过oid查找订单项
  * @param {Object} oid
  * @param {Object} callback
  */
-function getOrderItem (oid, callback) {
+function getOrderItemsByOid (oid, callback) {
 	orderitemModel.find({
 		oid:oid
 	}).populate({
@@ -59,17 +76,28 @@ function getOrderItem (oid, callback) {
 	}).exec(callback);
 }
 
+///**
+// * 通过id修改订单项数量
+// * @param {Object} oid
+// * @param {Object} num
+// * @param {Object} callback
+// */
+//function updateOrderItemNumById (oid, num, callback) {
+//	orderitemModel.find({oid:oid}, callback);
+//}
+
 /**
  * 通过id删除订单项
  * @param {Object} id
  * @param {Object} callback
  */
 function deleteOrderItemById(id, callback){
-	orderitemModel.find({_id:id},callback);
+	orderitemModel.find({_id:id}, callback);
 }
 
 module.exports.initModel = initModel;
 module.exports.addOrderItem = addOrderItem;
 module.exports.addOrderItems = addOrderItems;
-module.exports.getOrderItem = getOrderItem;
+module.exports.getOrderItemById = getOrderItemById;
+module.exports.getOrderItemsByOid = getOrderItemsByOid;
 module.exports.deleteOrderItemById = deleteOrderItemById;

@@ -358,7 +358,9 @@ $(function(){
         }
 
         if (i == tar.length){
-			location.assign("/views/goodInfo/goodInfo.html");
+        	var gid = $(this).attr("gid");
+        	
+			location.assign("/views/goodInfo/goodInfo.html?gid=" + gid);
 		}
 
 	})
@@ -419,27 +421,50 @@ $(function(){
 	//结算控制
 	$(".goodscheck").click(function(){
 		var item = $(".cart_item");
-		var otids;
+		var url = "/views/order/pay.html";
+		//是否有已勾选的商品
+		var exist = false;
+		
 		//遍历所有被勾选的商品
 		for (var i = 0; i < item.length; i++) {
 			if (item.eq(i).find(".item_check input")[0].checked) {
-				otids.push(item.eq(i).attr("otid"));
+				//获得otid
+				var otid = item.eq(i).attr("otid");
+				var num = parseInt(item.eq(i).find(".item_num").val());
+				
+				//拼接url
+				if (i == 0) {
+					url = url + "?otids=" + otid;
+				}else {
+					url = url + "&" + otid;
+				}
+				
+				//提交勾选订单项数据
+				$.ajax({
+					type:"post",
+					url:"/order/updateorderitem",
+					data:{
+						otid:otid,
+						num:num
+					},
+					async:true,
+					success:function(data){
+						console.log(data);
+					},
+					error:function(err){
+						console.log(err);
+					}
+				});
+				
+				//有已勾选的商品
+				exist = true;
 			}
 		}
 		
-		//提交勾选订单项
-		$.ajax({
-			type:"post",
-			url:"/order",
-			async:true,
-			success:function(data){
-				console.log(data);
-			},
-			error:function(err){
-				//失败刷新页面
-				location.reload();
-			}
-		});
+		if (exist) {
+			location.assign(url);
+		}
+		
 	});
 	
 	//请登录按钮控制
