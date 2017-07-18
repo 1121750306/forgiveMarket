@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var user = require("../models/user");
+var mongoose = require("mongoose");
 var goodphoto = require("../models/goodphoto");
 var multiparty = require('multiparty');
 var fs=require('fs');
@@ -50,8 +51,14 @@ router.post("/upload",function(req,res,next){
 			if(!err){
 				console.log(files.photo[0].originalFilename);
 				var urls=files.photo[0].originalFilename;
-				var obj={}
-				goodphoto.addphoto(gid:)
+				var obj={gid:mongoose.Types.ObjectId(goodid),url:urls,flag:flag};
+				goodphoto.addphoto(obj,function(err,doc){
+					if(!err){
+						console.log(doc);
+					}else{
+						consoel.log(err);
+					}
+				})
 				res.send({msg:"success"});
 			}else{
 				res.send({msg:"fail"});
