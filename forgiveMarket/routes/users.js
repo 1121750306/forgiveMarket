@@ -198,21 +198,34 @@ router.post("/searchgood", function(req, res, next) {
 	console.log("content:" + content);
 	user.searchGood(content, function(err, docs) {
 		console.log(err);
-		if(!err){
+		if(!err) {
 			res.send({
-				flag:200,
-				msg:"搜索成功",
-				result:docs
+				flag: 200,
+				msg: "搜索成功",
+				result: docs
 			});
 		} else {
 			res.send({
-				flag:300,
-				msg:"搜索失败",
+				flag: 300,
+				msg: "搜索失败",
 			});
 		}
-		
+
 	})
 });
 
+router.all("/gettopgoods", function(req, res, next) {
+	var content = req.body.content;
+	console.log("content:" + content);
+	user.getTopGoods(function(err, docs) {
+		console.log(err);
+		res.send({
+			flag: 200,
+			msg: "推荐成功",
+			result: docs
+		});;
+	})
+
+});
 module.exports = router;
 module.exports.callback = callback;

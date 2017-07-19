@@ -22,6 +22,16 @@ $(function() {
 					$(".searchhistory-ul").prepend('<li class="searchhistory-li">' + searchtext + '<img class="searchhistory-li-closeimg" src="../img/innisfreeIco/close.png"/></li>')
 					$(".search-textbox").val(null);
 					$(".searchhistory-ul").find("li")[6].remove()
+					//历史记录跳转
+					$("#searchhistory li").each(function() {
+						var li = $(this);
+						li.click(function() {
+							var content = li.text();
+							console.log(content);
+							//跳转
+							window.location.assign("/views/goodinfo/goodlist.html?content=" + content);
+						});
+					});
 				}
 
 			}
@@ -233,10 +243,10 @@ $(function() {
 		if(e.wheelDelta < 0) {
 			var scrollh = document.body.scrollTop || document.documentElement.scrollTop;
 			if(scrollh > 1600 && scrollh < 1800) {
-				$(".popdiv").slideDown();
-				$(".popdiv-close").click(function() {
-					$(".popdiv").slideUp();
-				})
+				//				$(".popdiv").slideDown();
+				//				$(".popdiv-close").click(function() {
+				//					$(".popdiv").slideUp();
+				//				})
 			}
 		}
 	}
@@ -255,8 +265,51 @@ $(function() {
 		//跳转
 		window.location.assign("/views/goodinfo/goodlist.html?content=" + content);
 	});
-	
-	//历史记录跳转
+
+	//获取推荐列表
+	$.ajax({
+		type: "post",
+		url: "/users/gettopgoods",
+		async: true,
+		success: function(data) {
+			console.log(data)
+			if(data.flag == 200) {
+				for(var i = 0; i < data.result.length; i++) {
+					var html = `<div class="hotgood top2" gid='${data.result[i].good._id}'>\
+									<div>\
+										<img src="/img/innisfreeIco/pic_loading.png" />\
+										<span class="good_name">${data.result[i].good.gname}</span>\
+										<span class="good_price">¥${data.result[i].good.pricebase}</span>
+									</div>\
+									<i class="buyer"></i>\
+								</div>`;
+					$("#hotgoods-container").append(html);
+				}
+				//跳转商品详情
+				$("#hotgoods-container .hotgood div").each(function() {
+					var div = $(this);
+					div.click(function() {
+						var gid = div.parent().attr("gid");
+						console.log(gid);
+						if (gid != undefined) {
+							window.location.assign("/views/goodInfo/goodInfo.html?gid=" + gid);
+						}
+					})
+				});
+				//跳转购物车
+				$("#hotgoods-container .hotgood .buyer").each(function() {
+					var buyer = $(this);
+					buyer.click(function() {
+						var gid = buyer.parent().attr("gid");
+						console.log(gid);
+						if (gid != undefined) {
+//							window.location.assign("/views/goodInfo/goodInfo.html?gid=" + gid);
+						}
+					})
+				});
+			}
+		}
+	});
 });
 
 /**

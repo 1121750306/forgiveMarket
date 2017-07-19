@@ -173,7 +173,7 @@ function searchGood(content, cb) {
 			for(var i = 0; i < docs.length; i++) {
 				if(docs[i].gname.match(content) || docs[i].typeid.tname.match(content)) {
 					result[result.length] = {
-						gid:docs[i]._id,
+						gid: docs[i]._id,
 						gname: docs[i].gname,
 						type: docs[i].typeid.tname,
 						price: docs[i].pricebase,
@@ -187,9 +187,73 @@ function searchGood(content, cb) {
 		}
 	});
 }
+
+/**
+ * 获取推荐商品TOP6
+ * @param {Object} cb
+ */
+function getTopGoods(cb) {
+	var promise = goodModel.find({}).exec();
+	promise.then(function(result) {
+		console.log(result);
+		if(result == null || result.length == 0) {
+			//若没有商品则直接返回null
+			return new Promise(function(resolve, reject) {
+				resolve(null);
+			});
+		}
+		var promises = [];
+		for(var i = 0; i < result.length; i++) {
+			console.log("data:" + result[i]);
+			promises.push(goodsizeModel.find({
+				gid: result[i]._id
+			}));
+		};
+		//返回商品信息
+		promises.push(new Promise(function(resolve, reject) {
+			resolve(result);
+		}))
+		return Promise.all(promises);
+	}, function(err) {
+		console.log(err);
+	}).then(function(result) {
+		if(result == null || result.lenght == 0) {
+			cb(null, result);
+			return;
+		}
+		var goods = result[result.length - 1];
+		var goodinfos = [];
+		for(var i = 0; i < goods.length; i++) {
+			var sales = 0;
+			for(var j = 0; j < result[i].length; j++) {
+				sales += result[i][j].sales;
+			}
+			console.log("goods" + goods[i].gname + ",sale:" + sales);
+			goodinfos[goodinfos.length] = {
+				good: goods[i],
+				sales: sales
+			};
+		}
+		//排序
+		goodinfos.sort(function(x, y) {
+			if(x.sales < y.sales) {
+				return 1;
+			} else if(x.sales > y.sales) {
+				return -1;
+			} else {
+				return 0;
+			}
+		})
+		cb(null, goodinfos);
+		console.log(result);
+	}, function(err) {
+		cb(err, null);
+	});
+}
 module.exports.initModel = initModel;
 module.exports.register = register;
 module.exports.login = login;
 module.exports.changeUserInfo = changeUserInfo;
 module.exports.changePwd = changePwd;
 module.exports.searchGood = searchGood;
+module.exports.getTopGoods = getTopGoods;

@@ -49,7 +49,7 @@ body {
 	width: 100%;
 	position: absolute;
 	top: 50px;
-	left:0;
+	left: 0;
 	/*height: 130px;*/
 }
 
@@ -75,7 +75,7 @@ body {
 	font-size: 1.5rem;
 }
 
-.searchhistory-li:active{
+.searchhistory-li:active {
 	background-color: #ACBD93;
 }
 
@@ -94,6 +94,7 @@ body {
 	text-align: right;
 	border-top: 1px solid #dcdcdc;
 }
+
 .searchhistory-bottom>a {
 	color: #333;
 	font-size: 1rem;
@@ -335,7 +336,7 @@ body {
 .hotgoods-topline {
 	position: relative;
 	width: 100%;
-	padding-bottom: 20px;
+	/*padding-bottom: 20px;*/
 }
 
 .hotgoods-nav {
@@ -350,6 +351,7 @@ body {
 	color: #CCD9BB;
 	padding: 2px 6px;
 	margin: 0px 5px;
+	font-size: 1.5rem;
 }
 
 .hotgoods-nav-li1 {
@@ -369,6 +371,8 @@ body {
 	margin-bottom: 10px;
 }
 
+
+/*
 .hotgoods-container-img {
 	position: relative;
 	width: 20%;
@@ -380,6 +384,61 @@ body {
 	width: 30px;
 	margin-top: 0px;
 	margin-left: -80px;
+}*/
+
+.hotgoods h2{
+	font-size: 2rem;
+	margin: 0 0 20px 20px;
+	color: #222;
+}
+.hotgoods-container {}
+
+.hotgoods-container>.hotgood {
+	width: 50%;
+	float: left;
+	padding-bottom: 15px;
+}
+
+.hotgoods-container>.hotgood>div {
+	position: relative;
+}
+
+.hotgoods-container>.hotgood>div>img {
+	width: 80%;
+	margin-left: 10%;
+}
+
+.hotgoods-container>.hotgood>div>.good_name {
+	width: 80%;
+	margin-left: 10%;
+	margin-top: 10px;
+	display: block;
+	font-size: 1.5rem;
+	text-align: center;
+}
+
+.hotgoods-container>.hotgood>div>.good_price {
+	width: 80%;
+	margin-left: 10%;
+	margin-top: 10px;
+	display: block;
+	font-size: 1.5rem;
+	color: red;
+	text-align: center;
+}
+
+.hotgoods-container>.hotgood>.buyer {
+	display: block;
+	position: relative;
+	left: 50%;
+	width: 26px;
+	height: 26px;
+	margin-left: -13px;
+	margin-top: 5px;
+	padding: 0;
+	border-radius: 13px;
+	background: #055321 url(/img/innisfreeIco//btn_cart_w.png) no-repeat 50% 50%;
+	background-size: 15px;
 }
 
 .hotgoods-inni {
