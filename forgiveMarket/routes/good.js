@@ -433,6 +433,20 @@ router.post('/queryGoodByid',function(req,res,next){
 			console.log(err);
 		}
 	})
+});
+
+/**
+ * 根据商品类型id查询商品
+ */
+router.get('/getGoodsByTypeid',function(req,res,next){
+	var typeid=req.query.typeid;
+	good.queryGoodsByType(typeid,function(err,doc){
+		if(!err){
+			res.send(doc);		
+		}else{
+			console.log(err);
+		}
+	})
 })
 module.exports = router;
 module.exports.callback = callback;

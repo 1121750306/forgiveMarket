@@ -40,8 +40,10 @@ function addGoods (objs, callback) {
 	callback(err_callback);
 }
 /**
- * 
- * @param {Object} cb 回调函数
+ *  
+ * @param {Object} page      分页查找商品列表
+ * @param {Object} rows
+ * @param {Object} cb
  */
 function queryGoodList(page,rows,cb){
 	var query=goodModel.find({});
@@ -50,7 +52,14 @@ function queryGoodList(page,rows,cb){
 	query.skip(Number((page-1)*rows));  //跳过几条开始数
 	query.exec(cb);
 }
-
+/**
+ *通过类型id查找商品列表 
+ * @param {Object} typeid
+ * @param {Object} cb
+ */
+function queryGoodsByType(typeid,cb){
+	goodModel.find({typeid:typeid},cb);
+}
 /**
  *获取所有的商品 
  * @param {Object} cb
@@ -102,3 +111,5 @@ module.exports.getGoodById = getGoodById;
 module.exports.deleteGood = deleteGood;
 module.exports.updateGood = updateGood;
 module.exports.countGoodList=countGoodList;
+module.exports.queryGoodsByType=queryGoodsByType;
+
