@@ -237,10 +237,10 @@ router.post('/Update',function(req,res,next){
 	var priceoffset2=req.body.priceoffset2;
 	
 	if(smile==undefined){
-		smile=" ";
+		smile="";
 	}
 	if(container==undefined){
-		container=" ";
+		container="";
 	}
 	var goodObj={_id:goodid,gname:gname,pricebase:pricebase,discount:discount};
 	good.updateGood(goodObj,function(err,doc){
@@ -264,21 +264,21 @@ router.post('/Update',function(req,res,next){
 	
 	//该商品有气味规格
 	if(smile.length!=0){
+		console.log("smile.length"+smile.length);
 		 //只有一条容量规格
 		 if(typeof(smile)=="string"){
 		 	var goodsizeObj={gid:mongoose.Types.ObjectId(goodid),gsname:smile,priceoffset:priceoffset2,lefts:lefts2};
 		 	  var objs2=[];
 			 objs2.push(goodsizeObj);
-		 	/* goodsize.UpdateGoodSizes(objs2,function(err,doc){
+		 	 goodsize.UpdateGoodSizes(objs2,function(err,doc){
 		 		if(!err){
 		 			console.log(doc);
 					console.log("商品规格修改成功");
 		 		}else{
 		 			consoel.log(err);
 		 		}
-		 	});*/
-		 }//有多条容量规格
-		 else if(typeof(smile)=="object"){
+		 	});
+		 }else if(typeof(smile)=="object"){
 		 	for(var i=0;i<smile.length;i++){
 		 		var gsObj={gid:mongoose.Types.ObjectId(goodid),gsname:smile[i],priceoffset:priceoffset2[i],lefts:lefts2[i]};
 		 		goodsizeObjs2.push(gsObj);
@@ -302,16 +302,15 @@ router.post('/Update',function(req,res,next){
 			 	  var goodsizeObj={gid:mongoose.Types.ObjectId(goodid),gsname:container,priceoffset:priceoffset1,lefts:lefts1};
 			 	  var objs=[];
 			 	  objs.push(goodsizeObj);
-			 	/*goodsize.UpdateGoodSizes(objs,function(err,doc){
+			 	goodsize.UpdateGoodSizes(objs,function(err,doc){
 			 		if(!err){
 			 			console.log(doc);
 						console.log("商品规格修改成功");
 			 		}else{
 			 			consoel.log(err);
 			 		}
-			 	});*/
-			 }//有多条容量规格
-			 else if(typeof(container)=="object"){
+			 	});
+			 }else if(typeof(container)=="object"){
 			 	
 			 	for(var i=0;i<container.length;i++){
 			 		console.log("进来了==========="+container[i]);
