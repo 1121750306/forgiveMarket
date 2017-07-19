@@ -50,7 +50,9 @@ function deleteGoodSize(id,cb){
  * @param {Object} cb
  */
 function QuerySizeByid(id,cb){
-	goodsizeModel.find({gid:id},cb);
+	var query=goodsizeModel.find({gid:id});
+	query.sort({type:'desc'});
+	query.exec(cb);
 }
 module.exports.initModel = initModel;
 module.exports.addGoodSize = addGoodSize;

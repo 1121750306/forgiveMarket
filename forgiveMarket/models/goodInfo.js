@@ -59,6 +59,20 @@ function getGoodInfoId(gid,cb){
 function deleteGoodInfo(id,cb){
 	goodInfoModel.find({gid:id}).remove(cb);
 }
+
+function updateGoodInfo(obj,cb){
+	goodInfoModel.find({gid:obj.gid},function(err,doc){
+		if(!err){
+			doc.packing=obj.packing;
+			doc.tip=obj.tip;
+			doc.basis=obj.basis;
+			doc.fitwhere=obj.fitwhere;
+			doc.save(obj);
+		}else{
+			console.log(err);
+		}
+	})
+}
 module.exports.initModel = initModel;
 module.exports.addGoodInfo = addGoodInfo;
 module.exports.getTest = getTest;
@@ -66,3 +80,4 @@ module.exports.getGoodInfo = getGoodInfo;
 module.exports.getGoodSize = getGoodSize;
 module.exports.getGoodInfoId = getGoodInfoId;
 module.exports.deleteGoodInfo = deleteGoodInfo;
+module.exports.updateGoodInfo = updateGoodInfo;

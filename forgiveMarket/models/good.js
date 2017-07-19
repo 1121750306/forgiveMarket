@@ -64,6 +64,24 @@ function getGoodById(id, callback){
 function deleteGood(id,cb){
 	goodModel.find({_id:id}).remove(cb);
 }
+/**
+ * 跟新商品信息 
+ * @param {Object} obj
+ * @param {Object} cb
+ */
+function updateGood(obj,cb){
+	goodModel.findById(obj._id,function(err,doc){
+		if(!err){
+			doc.gname=obj.gname;
+			doc.pricebase=obj.pricebase;
+			doc.discount=obj.discount;
+			doc.save(cb);
+		}else{
+			console.log(err);
+		}
+		
+	})
+}
 module.exports.initModel = initModel;
 module.exports.addGood = addGood;
 module.exports.addGoods = addGoods;
