@@ -1,4 +1,21 @@
 $(function(){
+	$.ajax({
+		type:"post",
+		url:"/order/addtocart",
+		data:{
+			uid:JSON.parse(sessionStorage.getItem("user"))._id,
+			gid:"596c7fb7806c5204cc6a0b04",
+			gsids:JSON.stringify(["596c8155693f4621c0da48e0", "596c8155693f4621c0da48e1"]),
+			num: "2"
+		},
+		async:true,
+		success:function(result){
+			console.log(result);
+		},
+		error:function(err){
+			console.log(err);
+		}
+	});
 	//排序方式控制
 	$(".goodorder").click(function(){
 		$(".orderby").slideToggle(300);

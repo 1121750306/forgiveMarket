@@ -8,58 +8,56 @@ var order = require("../models/order");
 var orderitem = require("../models/orderitem");
 var multiparty = require("multiparty");
 
-//添加关于用户的订单项
-router.post('/addorderitembyuser', function(req, res, next) {
+//添加商品至用户购物车
+router.post('/addtocart', function(req, res, next) {
 	//获取表单数据
 	var uid = req.body.uid;
-	var flag = req.body.flag;
 	var gid = req.body.gid;
-	var gsids = req.body.gsids;
+	var gsids = JSON.parse(req.body.gsids);
 	var num = req.body.num;
 	
-	order.getOrderByIdAndFlag(uid, flag, function(err_getorder, data_getorder){
+	order.getOrderByIdAndFlag(uid, 0, function(err_getorder, data_getorder){
 		if (!err_getorder) {
-			if (data_getorder.length == 0) {
-				//未创建
-				console.log(new Date() + "SUCCESS: 订单未创建");
-				order.addOrder(uid, 0,function(err_addorder){
-					if (!err_addorder) {
-						console.log(new Date() + "SUCCESS: 订单创建成功");
-					} else{
-						console.log(new Date() + "ERROR: 订单创建失败");
-						console.log(new Date() + "ERROR CONTENT: " + err_addorder);						
-					}
-				});
-				
-				res.send("error");
-				
-			} else{
-				//已创建
-				//获得订单id
+			if (data_getorder.length != 0) {
+				//已创建购物车
+				//获得购物车id
 				var oid = data_getorder[0]._id;
-				console.log(new Date() + "SUCCESS: 订单已创建");
-							
-				//在此订单下添加订单项
+				
+				//封装商品规格信息
+				var temp = [];
+				for (var i = 0; i < gsids.length; i++) {
+					temp.push({gsid:mongoose.Types.ObjectId(gsids[i])})
+				}
+				gsids = temp;
+				
+				//添加商品订单项
 				orderitem.addOrderItem({
 					oid:mongoose.Types.ObjectId(oid),
 					gid:mongoose.Types.ObjectId(gid),
 					gsids:gsids,
 					num:num
-				},function(err){
-					if (!err) {
-						//添加成功
-						res.send("success");
+				},function(err_addorder){
+					if (!err_addorder) {
+						//添加成功	
+						res.send({type:"success",message: "商品订单项添加成功" });
 					} else{
-						res.send("error");
+						console.log(new Date() + "ERROR: 商品订单项添加失败");
+						console.log(new Date() + "ERROR CONTENT: " + err_addorder);	
+						res.send({type:"error",message: "商品订单项添加失败" });
 					}
 				});
+				
+			} else{
+				//未创建购物车
+				res.send({type:"error",message: "购物车未创建" });
 				
 			}
 		} else{
 			console.log(new Date() + "ERROR: " + err_getorder);
-			res.send("error");
+			res.send({type:"error",message: "购物车搜索错误" });
 		}
 	});
+	
 });
 
 //获得关于用户的订单项
