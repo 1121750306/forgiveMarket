@@ -15,19 +15,39 @@ function initModel(models) {
  */
 function addHistory(uid, gid, date, cb) {
 	console.log("date:" + date);
-	historyEntity = new historyModel({
+	historyModel.findOne({
 		uid: uid,
-		gid: mongoose.Types.ObjectId(gid),
-		date: date.getTime()
-	});
-	//保存
-	historyEntity.save(function(err, data) {
-		if (!err) {
-			cb(1, null, data);
+		gid: gid
+	}).exec(function(err, doc) {
+		console.log("doc:" + doc);
+		if(!err && doc) {
+			//已存在
+			doc.date = date.getTime();
+			doc.save(function(err, data) {
+				if(!err) {
+					cb(1, null, data);
+				} else {
+					cb(0, err, null);
+				}
+			});
 		} else {
-			cb(0, err, null);
+			//不存在
+			historyEntity = new historyModel({
+				uid: uid,
+				gid: mongoose.Types.ObjectId(gid),
+				date: date.getTime()
+			});
+			//保存
+			historyEntity.save(function(err, data) {
+				if(!err) {
+					cb(1, null, data);
+				} else {
+					cb(0, err, null);
+				}
+			});
 		}
 	});
+
 }
 
 /**
@@ -50,7 +70,7 @@ function queryHistory(uid, index, cb) {
 			date: -1
 		})
 		.exec(function(err, docs) {
-			if (!err) {
+			if(!err) {
 				cb(1, null, docs);
 			} else {
 				cb(0, err, null);

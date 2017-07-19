@@ -16,7 +16,7 @@ function addUser(phone, password, cb) {
 
 	//保存
 	userEntity.save(function(err, data) {
-		if (!err) {
+		if(!err) {
 			cb(2, null, data);
 		} else {
 			cb(0, err, null);
@@ -37,11 +37,11 @@ function register(phone, password, cb) {
 	}).exec(function(err, docs) {
 		console.log("进入检查用户是否存在");
 		console.log("err:" + err + ",docs:" + docs)
-		if (err) {
+		if(err) {
 			cb(0, err, null);
 			console.log("错误1");
 		} else {
-			if (docs.length == 0) {
+			if(docs.length == 0) {
 				//没有注册
 				console.log("没有注册");
 				addUser(phone, password, cb);
@@ -65,15 +65,15 @@ function login(phone, password, cb) {
 	}).exec(function(err, docs) {
 		console.log("进入检查用户是否存在");
 		console.log("err:" + err + ",docs:" + docs)
-		if (err) {
+		if(err) {
 			cb(0, err, null);
 			console.log("错误1");
 		} else {
-			if (docs.length == 0 || docs == null) {
+			if(docs.length == 0 || docs == null) {
 				cb(2, "不存在该用户", null);
 			} else {
 				console.log("pas:" + password + ",psw:" + docs[0]);
-				if (password != docs[0].psw) {
+				if(password != docs[0].psw) {
 					console.log("pas:" + password + ",psw:" + docs.psw);
 					cb(1, "密码不正确", null);
 				} else {
@@ -95,19 +95,19 @@ function changeUserInfo(_id, uname, photo, cb) {
 	_id = String(_id);
 	console.log("changeUserInfo", "_id:" + _id + ",uname:" + uname + ",photo:" + photo);
 	userModel.findById(_id, function(err, docs) {
-		if (!err) {
+		if(!err) {
 			console.log("changeUserInfo", "docs:" + docs);
-			if (docs == null) {
+			if(docs == null) {
 				cb(2, null, null);
 			} else {
-				if (uname != null) {
+				if(uname != null) {
 					docs.uname = uname;
 				}
-				if (photo != null) {
+				if(photo != null) {
 					docs.avatar = photo;
 				}
 				docs.save(function(err, updatedTank) {
-					if (err) {
+					if(err) {
 						cb(3, err, null);
 					} else {
 						cb(1, null, updatedTank);
@@ -133,18 +133,18 @@ function changePwd(_id, nowPwd, newPwd, cb) {
 	userModel.findOne({
 		_id: _id
 	}, function(err, docs) {
-		if (!err) {
+		if(!err) {
 			console.log("changePwd", "docs:" + docs);
-			if (docs == null) {
+			if(docs == null) {
 				cb(2, null, null);
 			} else {
-				if (nowPwd != docs.psw) {
+				if(nowPwd != docs.psw) {
 					cb(3, "密码错误", null);
 					return;
 				}
 				docs.psw = newPwd;
 				docs.save(function(err, updatedTank) {
-					if (err) {
+					if(err) {
 						cb(3, err, null);
 					} else {
 						cb(1, null, updatedTank);
@@ -167,17 +167,26 @@ function searchGood(content, cb) {
 	goodModel.find({}).populate({
 		path: 'typeid',
 		select: 'tname'
-	}).exec(function(err, docs){
-		if(docs != null && docs.length != 0){
+	}).exec(function(err, docs) {
+		if(docs != null && docs.length != 0) {
 			var result = [];
-			for(var i = 0; i < docs.length; i++){
+			for(var i = 0; i < docs.length; i++) {
+				if(docs[i].gname.match(content) || docs[i].typeid.tname.match(content)) {
+					result[result.length] = {
+						gid:docs[i].gid,
+						gname: docs[i].gname,
+						type: docs[i].typeid.tname,
+						price: docs[i].pricebase,
+						discount: docs[i].discount
+					}
+				}
 			}
+			cb(err, result);
 		} else {
 			cb(err, []);
 		}
 	});
 }
-
 module.exports.initModel = initModel;
 module.exports.register = register;
 module.exports.login = login;
