@@ -86,8 +86,8 @@ router.post('/querycollect', function(req, res, next) {
 				var date = new Date(Number(result[i].date));
 				console.log("date:" + date);
 				var dateStr = date.getFullYear() + "年" + (date.getMonth() + 1) + "月" + date.getDate() + "日";
-				let isInsert = false;
-				resultjson[i].date = dateStr;
+				resultjson[i]={};
+				resultjson[i].time = dateStr;
 				resultjson[i].gid = result[i].gid._id;
 				resultjson[i].type = result[i].gid.typeid.tname;
 				resultjson[i].price = result[i].gid.pricebase;

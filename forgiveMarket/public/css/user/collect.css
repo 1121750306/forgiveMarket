@@ -27,7 +27,8 @@
 
 #collect_content>ul>li {
 	width: 100%;
-	border: 1px solid #dcdcdc;
+	border-top: 1px solid #dcdcdc;
+	border-bottom: 1px solid #dcdcdc;
 	height: auto;
 	position: relative;
 	display: block;
@@ -48,6 +49,8 @@
 
 #collect_content>ul>li>img {
 	width: 20%;
+	min-width: 80px;
+	min-height: 80px;
 	margin: 5px;
 }
 #collect_content>ul>li>div{
