@@ -111,10 +111,10 @@ router.post('/querycollect', function(req, res, next) {
 
 router.post('/iscollect', function(req, res, next) {
 	console.log("----")
-		//	var uid = req.session.user[0]._id;
-		//	var gid = req.body.gid;
-	var uid = "596b560f3db30f19d83b91ae";
-	var gid = '596e0b5a1e4c7c6df45749e1';
+			var uid = req.session.user[0]._id;
+			var gid = req.body.gid;
+//	var uid = "596b560f3db30f19d83b91ae";
+//	var gid = '596e0b5a1e4c7c6df45749e1';
 	collect.isCollect(uid, gid, function(err, result) {
 		if (result) {
 			res.send({

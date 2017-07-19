@@ -16,7 +16,7 @@ function callback(models) {
 router.post('/register', function(req, res, next) {
 	var phone = req.body.phone;
 	var password = req.body.password;
-	console.log("phone:" + phone + ",password:" + password + ",code:" + code);
+	console.log("phone:" + phone + ",password:" + password);
 	user.register(phone, password, function(flag, err, result) {
 		var json;
 		if(flag == 0) {
