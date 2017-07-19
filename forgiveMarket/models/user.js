@@ -171,7 +171,6 @@ function searchGood(content, cb) {
 		if(docs != null && docs.length != 0){
 			var result = [];
 			for(var i = 0; i < docs.length; i++){
-				if(docs[i].gname.test())
 			}
 		} else {
 			cb(err, []);
