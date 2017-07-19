@@ -119,9 +119,11 @@ body
 }
 .adpicture
 {
-	display: inline-block;
+	display: block;
+	float: left;
 	width: 412px;
-	
+    margin: 0px;
+    padding: 0px;
 }
 
 .adturnul

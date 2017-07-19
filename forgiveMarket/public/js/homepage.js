@@ -41,14 +41,15 @@ $(function() {
 	var _left;
 	var showimg;
 	var showlist;
+	var picwidth = $(".adpicture").width()
 
 	function showImg() {
 		i = i + 1;
-		_left = -(i * 416) + "px";
+		_left = -(i * picwidth) + "px";
 		$(".adcontainer").animate({
 			left: _left
 		}, 1500,function(){
-			if (parseInt($(".adcontainer").css("left")) == -6*416) {
+			if (parseInt($(".adcontainer").css("left")) == -6*picwidth) {
 				$(".adcontainer").css("left", "0px");
 				i = 0;
 			}
@@ -110,7 +111,7 @@ $(function() {
 				{
 					i = i+1;
 					$(".adcontainer").animate({
-					left: '-=416px'
+					left: '-='+picwidth+'px'
 				}, 1500);
 			
 				}
@@ -129,7 +130,7 @@ $(function() {
 				{
 					i = i-1;
 					$(".adcontainer").animate({
-					left: '+=416px'
+					left: '+='+picwidth+'px'
 				}, 1500);
 				}
 				if(j > 1)
