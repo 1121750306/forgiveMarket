@@ -93,3 +93,20 @@
 	top: 60px;
 	left: 100px;
 }
+
+//最后一个
+.last_li {
+	width: 98%;
+}
+
+.last_li>img {
+	width: 20%;
+}
+
+.last_li>h2 {
+	left: 22.5%;
+}
+
+.last_li>.price {
+	left: 22.5%;
+}

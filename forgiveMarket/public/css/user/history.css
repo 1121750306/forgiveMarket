@@ -1,3 +1,7 @@
+
+body{
+	background-color: #ededed;
+}
 .header {
 	width: 100%;
 	height: 40px;
@@ -11,4 +15,101 @@
 	line-height: 40px;
 	font-size: 2rem;
 	margin: 0;
+}
+
+#history_content_real {
+	background-color: #ededed;
+	overflow: auto;
+}
+
+#history_content_real>ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	position: relative;
+}
+
+#history_content_real>ul>li {
+	width: 48.5%;
+	border-radius: 5px;
+	height: auto;
+	position: relative;
+	display: block;
+	float: left;
+	margin: 1% 0 0 1%;
+	padding: 0;
+	background-color: #fff;
+	border-bottom: 1px solid #ededed;
+}
+
+#history_content_real>ul>.date_year {
+	width: 100%;
+	margin: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: transparent;
+}
+
+#history_content_real>ul>.date_year>p {
+	margin: 0;
+	text-align: center;
+	padding: 5px;
+	line-height: 20px;
+	height: 30px;
+	font-size: 1.5rem;
+}
+
+#history_content_real>ul>li:active {
+	background-color: #dcdcdc;
+}
+
+#history_content_real>ul>.date_year:active {
+	background-color: transparent;
+}
+
+#history_content_real>ul>li>img {
+	width: 40%;
+	height: 100%;
+	margin: 5px;
+}
+
+#history_content_real>ul>li>h2 {
+	width: 50%;
+	height: 20px;
+	line-height: 20px;
+	font-size: 1.5rem;
+	margin: 0;
+	position: absolute;
+	top: 20%;
+	left: 45%;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+#history_content_real>ul>li>span {
+	display: block;
+}
+
+#history_content_real>ul>li>.price {
+	color: green;
+	height: 20px;
+	line-height: 20px;
+	font-size: 1.5rem;
+	margin: 0;
+	position: absolute;
+	top: 50%;
+	left: 45%;
+	color: red;
+}
+
+#history_content_real>ul>li>.date {
+	height: 20px;
+	line-height: 20px;
+	font-size: 1.5rem;
+	margin: 0;
+	position: absolute;
+	top: 60px;
+	left: 100px;
 }

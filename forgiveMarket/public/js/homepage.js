@@ -1,85 +1,88 @@
 $(function() {
 	/*------------------------------------------头部*/
-	/*--------------------------------------------搜索栏*/	
-	$(".clearsearchhistory").click(function(){
+	/*--------------------------------------------搜索栏*/
+	$(".clearsearchhistory").click(function() {
 		$(".searchhistory-ul").html("");
 	})
-	
-	$(".closesearchhistory").click(function(){
-		$(".searchhistorycontainer").css("display","none")
+
+	$(".closesearchhistory").click(function() {
+		$(".searchhistorycontainer").css("display", "none")
 	})
-	
+
 	var i;
-	
-	$(".search-textbox").focus(function(){
-		$(".searchhistorycontainer").css("display","inline-block")
-		$(document).keypress(function(e){
-			if(e.which == 13)
-			{
-				$(".searchhistorycontainer").css("display","none")
+
+	$(".search-textbox").focus(function() {
+		$(".searchhistorycontainer").css("display", "inline-block");
+		$(document).keypress(function(e) {
+			if (e.which == 13) {
+				$(".searchhistorycontainer").css("display", "none")
 				var searchtext = $(".search-textbox").val();
-				 if ( searchtext)
-				 {
-				 	
-				 	$(".searchhistory-ul").prepend('<li class="searchhistory-li">' + searchtext + '<img class="searchhistory-li-closeimg" src="../img/innisfreeIco/close.png"/></li>')
+				if (searchtext) {
+
+					$(".searchhistory-ul").prepend('<li class="searchhistory-li">' + searchtext + '<img class="searchhistory-li-closeimg" src="../img/innisfreeIco/close.png"/></li>')
 					$(".search-textbox").val(null);
 					$(".searchhistory-ul").find("li")[6].remove()
-				 }
-				
+				}
+
 			}
-		})
-		
-		$(".searchhistory-li-closeimg").click(function(){
-		i = $(".searchhistory-li-closeimg").index(this);
-		console.log(i)
-		$(".searchhistory-ul").find("li")[i].remove()
-	})
-	})
+		});
+
+		$(".searchhistory-li-closeimg").click(function() {
+			i = $(".searchhistory-li-closeimg").index(this);
+			console.log(i)
+			$(".searchhistory-ul").find("li")[i].remove()
+		});
+	});
+//	$(".search-textbox").blur(function(){
+//		$(".searchhistorycontainer").css("display", "none");
+//	})
 	/*------------------------------------------广告轮播*/
 	var i = 0;
 	var j = 1;
 	var _left;
 	var showimg;
 	var showlist;
-	var picwidth = $(".adpicture").width()
+	//	var picwidth = $(".adpicture").width()
 
 	function showImg() {
+		var picwidth = $(".adpicture").width();
 		i = i + 1;
 		_left = -(i * picwidth) + "px";
 		$(".adcontainer").animate({
 			left: _left
-		}, 1500,function(){
-			if (parseInt($(".adcontainer").css("left")) == -6*picwidth) {
+		}, 1500, function() {
+			if (parseInt($(".adcontainer").css("left")) == -6 * picwidth) {
 				$(".adcontainer").css("left", "0px");
 				i = 0;
 			}
 		});
-		
+
 	}
 
 	function showList() {
-		j = j +1;
+		j = j + 1;
 		if (j > 6) {
 			j = 1;
 		}
 		$(".adturnullist").css("background-color", "#CED4D2")
 		$("#l" + j).css("background-color", "orange")
 	}
-	
-	function showimgCtrl(){
-		showimg = setTimeout(function(){
-			showImg();	
-			setTimeout(showimgCtrl,0)
-		},3000)
+
+	function showimgCtrl() {
+		showimg = setTimeout(function() {
+			showImg();
+			setTimeout(showimgCtrl, 0)
+		}, 3000)
 	}
 	showimgCtrl();
-	function showlistCtrl(){
-		showlist = setTimeout(function(){
+
+	function showlistCtrl() {
+		showlist = setTimeout(function() {
 			showList();
-			setTimeout(showlistCtrl(),0)
-		},3000)
+			setTimeout(showlistCtrl(), 0)
+		}, 3000)
 	}
-	showlistCtrl();	
+	showlistCtrl();
 	//在adcontainer中手指触屏停止轮播,获取触屏位置
 	var startX;
 	var startY;
@@ -103,46 +106,41 @@ $(function() {
 		//滑动距离超过半屏，触屏结束，adcontainer滑动412px，继续轮播
 
 	adturnctrl.addEventListener("touchend", function() {
+		var picwidth = $(".adpicture").width();
 		var dx = endX - startX;
-		
-			if (dx < -60) {
-				
-				if(parseInt($(".adcontainer").css("left")) > -2060 )
-				{
-					i = i+1;
-					$(".adcontainer").animate({
-					left: '-='+picwidth+'px'
+
+		if (dx < -60) {
+
+			if (parseInt($(".adcontainer").css("left")) > -2060) {
+				i = i + 1;
+				$(".adcontainer").animate({
+					left: '-=' + picwidth + 'px'
 				}, 1500);
-			
-				}
-				if(j < 6)
-				{
-					j = j+1;
-					$(".adturnullist").css("background-color", "#CED4D2")
-					$("#l" + j).css("background-color", "orange")
-				}
-				
-	
-			} 
-			else if (dx > 60) {
-				
-				if( parseInt($(".adcontainer").css("left")) < 0 )
-				{
-					i = i-1;
-					$(".adcontainer").animate({
-					left: '+='+picwidth+'px'
-				}, 1500);
-				}
-				if(j > 1)
-				{
-					j = j-1;
-					$(".adturnullist").css("background-color", "#CED4D2")
-					$("#l" + j).css("background-color", "orange")
-				}
-				
+
 			}
-			showimgCtrl();
-			showlistCtrl();	
+			if (j < 6) {
+				j = j + 1;
+				$(".adturnullist").css("background-color", "#CED4D2")
+				$("#l" + j).css("background-color", "orange")
+			}
+
+		} else if (dx > 60) {
+
+			if (parseInt($(".adcontainer").css("left")) < 0) {
+				i = i - 1;
+				$(".adcontainer").animate({
+					left: '+=' + picwidth + 'px'
+				}, 1500);
+			}
+			if (j > 1) {
+				j = j - 1;
+				$(".adturnullist").css("background-color", "#CED4D2")
+				$("#l" + j).css("background-color", "orange")
+			}
+
+		}
+		showimgCtrl();
+		showlistCtrl();
 	})
 
 	/*------------------------------------------新闻轮播*/
@@ -185,7 +183,7 @@ $(function() {
 	window.onscroll = function(e) {
 			var scrollh = document.body.scrollTop || document.documentElement.scrollTop;
 			if (scrollh > 0 && scrollh < 741) {
-				$(".yezi").css("margin-left","45%")
+				$(".yezi").css("margin-left", "45%")
 				$(".yezi").css("display", "inline-block")
 				$(".yezi").css("margin-top", "640px")
 			} else if (scrollh > 741 && scrollh < 800) {
@@ -224,11 +222,9 @@ $(function() {
 				$(".yezi").animate({
 					left: '60%'
 				}, 1000)
-			}
-			else if(scrollh >1800)
-			{
+			} else if (scrollh > 1800) {
 				$(".yezi").css("display", "none")
-				
+
 			}
 		}
 		/*--------------------------popdiv*/
@@ -249,5 +245,17 @@ $(function() {
 	$(".backtotop").click(function() {
 		scrollTo(0, 0);
 	})
-
+	scrllWidth = fixImage();
 });
+
+/**
+ * 动态设置图片宽度
+ */
+function fixImage() {
+	var width = $("#adturn").width();
+	console.log(width);
+	$("#adturn .adcontainer .adpicture").each(function() {
+		$(this).width(width);
+	});
+	return width;
+}

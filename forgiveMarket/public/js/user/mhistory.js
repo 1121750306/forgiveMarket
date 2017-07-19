@@ -26,10 +26,8 @@ $(document).ready(function() {
 								<span class="price">￥${result[i].goods[j].goodprice}</span>\
 							</li>`;
 							$(ul).append(html);
-							//判断最后一个
-
 						}
-						$("#history_content")[0].appendChild(ul);
+						$("#history_content_real").append(ul);
 						if (result[i].goods.length % 2 == 1) {
 							$(ul).children().last().width("98%");
 							$(ul).children().last().children().eq(0).width("20%");
@@ -38,7 +36,7 @@ $(document).ready(function() {
 						}
 					}
 				}
-				$("#history_content ul li").each(function() {
+				$("#history_content_real ul li").each(function() {
 					var li = $(this);
 					li.click(function() {
 						console.log($(this).attr("gid"));
