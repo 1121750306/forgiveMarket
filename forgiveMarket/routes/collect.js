@@ -80,45 +80,25 @@ router.post('/querycollect', function(req, res, next) {
 	var index = 0;
 	collect.queryCollect(uid, index, function(flag, err, result) {
 		console.log("result:" + result);
-		//		var resultjson = null;
-		//		if (result != null) {
-		//			resultjson = [];
-		//			for (var i = 0; i < result.length; i++) {
-		//				var date = new Date(Number(result[i].date));
-		//				console.log("date:" + date);
-		//				var dateStr = date.getFullYear() + "年" + (date.getMonth() + 1) + "月" + date.getDate() + "日";
-		//				let isInsert = false;
-		//				for (var j = 0; j < resultjson.length; j++) {
-		//					if (resultjson[j].date == dateStr) {
-		//						resultjson[j].goods[resultjson[j].goods.length] = {
-		//							goodname: result[i].gid.gname,
-		//							goodprice: result[i].gid.pricebase,
-		//							gid:result[i].gid._id,
-		//							type:result[i].gid.typeid.tname
-		//						};
-		//						isInsert = true;
-		//					}
-		//				}
-		//				if (!isInsert) {
-		//					resultjson[resultjson.length] = {
-		//						date: dateStr,
-		//						goods: [{
-		//							goodname: result[i].gid.gname,
-		//							goodprice: result[i].gid.pricebase,
-		//							gid:result[i].gid._id,
-		//							type:result[i].gid.typeid.tname
-		//						}]
-		//					};
-		//				}
-		//				console.log("dateStr:" + dateStr);
-		//				result[i].date = dateStr;
-		//			}
-		//		}
+		resultjson = [];
+		if (result != null) {
+			for (var i = 0; i < result.length; i++) {
+				var date = new Date(Number(result[i].date));
+				console.log("date:" + date);
+				var dateStr = date.getFullYear() + "年" + (date.getMonth() + 1) + "月" + date.getDate() + "日";
+				let isInsert = false;
+				resultjson[i].date = dateStr;
+				resultjson[i].gid = result[i].gid._id;
+				resultjson[i].type = result[i].gid.typeid.tname;
+				resultjson[i].price = result[i].gid.pricebase;
+				resultjson[i].name = result[i].gid.gname;
+			}
+		}
 		if (flag == 1) {
 			res.send({
 				flag: 200,
 				msg: "获取成功",
-				result: result
+				result: resultjson
 			});
 		} else {
 			res.send({
