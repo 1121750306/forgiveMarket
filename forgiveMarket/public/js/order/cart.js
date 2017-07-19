@@ -378,14 +378,14 @@ $(function(){
 					url:"/order/deleteorderitembyid/" + otid,
 					async:true,
 					success:function(result){
-						if (result.type != "success") {
-							//失败刷新页面
-							location.reload();
+						if (result.type == "success") {
+							toast("删除成功");
+						}else{
+							toast("删除失败", "/views/order/cart.html");
 						}
 					},
 					error:function(err){
-						//失败刷新页面
-						location.reload();
+						toast("删除失败", "/views/order/cart.html");
 					}
 				});
 				
