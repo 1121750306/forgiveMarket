@@ -65,8 +65,20 @@ $(function() {
 		$("#l" + j).css("background-color", "orange")
 	}
 	
-	showimg = setInterval(showImg, 3000);
-	showlist = setInterval(showList, 3000);
+	function showimgCtrl(){
+		showimg = setTimeout(function(){
+			showImg();	
+			setTimeout(showimgCtrl,0)
+		},3000)
+	}
+	showimgCtrl();
+	function showlistCtrl(){
+		showlist = setTimeout(function(){
+			showList();
+			setTimeout(showlistCtrl(),0)
+		},3000)
+	}
+	showlistCtrl();	
 	//在adcontainer中手指触屏停止轮播,获取触屏位置
 	var startX;
 	var startY;
@@ -74,14 +86,14 @@ $(function() {
 	var endY;
 	var adturnctrl = document.getElementById("adturn");
 	adturnctrl.addEventListener("touchstart", function(e) {
-			clearInterval(showimg);
-			clearInterval(showlist);
+			clearTimeout(showimg);
+			clearTimeout(showlist);
 			startX = e.changedTouches[0].pageX;
 			startY = e.changedTouches[0].pageY;
 			//滑动，获取滑动结束坐标
 			adturnctrl.addEventListener("touchmove", function(e) {
-				clearInterval(showimg);
-				clearInterval(showlist);
+				clearTimeout(showimg);
+				clearTimeout(showlist);
 				endX = e.changedTouches[0].pageX;
 				endY = e.changedTouches[0].pageY;
 			})
@@ -128,8 +140,8 @@ $(function() {
 				}
 				
 			}
-		showimg = setInterval(showImg, 3000);
-		showlist = setInterval(showList, 3000);
+			showimgCtrl();
+			showlistCtrl();	
 	})
 
 	/*------------------------------------------新闻轮播*/
