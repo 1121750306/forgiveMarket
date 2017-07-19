@@ -173,7 +173,7 @@ function searchGood(content, cb) {
 			for(var i = 0; i < docs.length; i++) {
 				if(docs[i].gname.match(content) || docs[i].typeid.tname.match(content)) {
 					result[result.length] = {
-						gid:docs[i].gid,
+						gid:docs[i]._id,
 						gname: docs[i].gname,
 						type: docs[i].typeid.tname,
 						price: docs[i].pricebase,
