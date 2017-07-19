@@ -16,6 +16,7 @@ var locations=require('./routes/location');
 var admin=require("./routes/admin");
 var history = require("./routes/history");
 var goodInfo = require("./routes/goodInfo");
+var goodphoto = require("./routes/goodphoto");
 var collect = require("./routes/collect");
 
 //传递models
@@ -59,6 +60,7 @@ app.use('/admin',admin);
 app.use('/history',history);
 app.use('/goodInfo',goodInfo);
 app.use('/collect',collect);
+app.use('/goodphoto',goodphoto);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
 	var err = new Error('Not Found');
