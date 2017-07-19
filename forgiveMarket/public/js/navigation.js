@@ -79,7 +79,7 @@ $(function() {
     	$(".nav_modal_page").eq($(this).index()).show().siblings(".nav_modal_page").hide();
     });
     
-    
+
 	//请求购物车数据
 	function getcartdata () {
 		$.ajax({
@@ -90,13 +90,13 @@ $(function() {
 				if (result.type == "success") {
 					//修改导航栏购物车商品数量
 					$(".nav_cartnum").html(result.message.length);
-					
+
 				}else {
 					//设置导航栏购物车商品数量为0
 					$(".nav_cartnum").html("0");
-					
+
 				}
-				
+
 			},
 			error:function(err){
 				//设置导航栏购物车商品数量为0
@@ -105,5 +105,5 @@ $(function() {
 			}
 		});
 	}
-    
+
 });

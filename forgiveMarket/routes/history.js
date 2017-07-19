@@ -57,7 +57,7 @@ router.post('/queryhistory', function(req, res, next) {
 				var date = new Date(Number(result[i].date));
 				console.log("date:" + date);
 				var dateStr = date.getFullYear() + "年" + (date.getMonth() + 1) + "月" + date.getDate() + "日";
-				let isInsert = false;
+				var isInsert = false;
 				for (var j = 0; j < resultjson.length; j++) {
 					if (resultjson[j].date == dateStr) {
 						resultjson[j].goods[resultjson[j].goods.length] = {

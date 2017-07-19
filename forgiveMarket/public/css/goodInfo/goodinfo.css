@@ -330,6 +330,9 @@
 	padding-top: 10px;
 	border-top: 2px solid yellowgreen;
 }
+.good-detail .detail-img{
+	padding: 0;
+}
 .good-detail table tr:last-child{
 	border-bottom: 1px solid #ddd;
 }

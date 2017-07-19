@@ -7,7 +7,9 @@ function toast(content, url) {
 		setTimeout(function(){location.assign(url);},1500);
 	} else {
 		setTimeout(function(){
-			$("#msg").fadeOut()
+			$("#msg").fadeOut(function(){
+                $("#msg").remove();
+            });
 		}, 500);
 	}
 }
