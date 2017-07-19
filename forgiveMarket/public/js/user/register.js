@@ -34,8 +34,7 @@ function register() {
 		async: true,
 		data: {
 			phone: phone,
-			password: password,
-			code: code
+			password: password
 		},
 		success: function(data) {
 			console.log(data);
