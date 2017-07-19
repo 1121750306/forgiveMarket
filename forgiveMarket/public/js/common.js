@@ -4,13 +4,14 @@ function toast(content, url) {
 	$("#msg").show();
 	$(".msg").html(content);
 	if(url) {
-		window.setTimeout("location.href='" + url + "'", 1500);
+		setTimeout(function(){location.assign(url);},1500);
 	} else {
 		setTimeout(function(){
 			$("#msg").fadeOut()
 		}, 500);
 	}
 }
+
 function isLogin(){
 	var user = sessionStorage.user;
 	if(user != null && user != 'null' && user != undefined && user != 'undefined' && user != ''){
