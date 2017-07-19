@@ -3,12 +3,13 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<title>历史记录</title>
+		<title>我的收藏</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.css" />
 		<link rel="stylesheet" href="/css/style.css" />
-		<link rel="stylesheet" type="text/css" href="../../css/navigation.css" />
+		<link rel="stylesheet" type="text/css" href="/css/navigation.css" />
 		<link rel="stylesheet" href="/css/user/collect.css" />
+		<link rel="stylesheet" href="/css/user/history_content.css" />
 	</head>
 
 	<body>
@@ -16,7 +17,7 @@
 			<span class="nav_menu"></span>
 			<a href="/views/homepage.html" class="nav_logo"></a>
 			<a href="/views/user/user.html" class="nav_user"></a>
-			<a href="/order/cart" class="nav_cart">
+			<a href="/views/order/cart.html" class="nav_cart">
 				<p class="nav_cartnum">0</p>
 			</a>
 
@@ -36,10 +37,7 @@
 						<ul class="nav_modal_type">
 						</ul>
 					</div>
-					<div class="nav_modal_page">
-						<ul class="nav_modal_history">
-						</ul>
-					</div>
+					<div id="history_content" class="nav_modal_page"></div>
 				</div>
 			</div>
 		</div>
@@ -51,13 +49,13 @@
 		</div>-->
 		<div id="collect_content">
 			<ul class="clear">
-				<li>
+				<!--<li>
 					<img src="../../img/innisfree-img/goods/1000000336_l.png" />
 					<div>
 						<h2>洗面奶</h2>
 						<span class="collect_type">脸部护理</span>
 					</div>
-					<span class="collect_price">￥20.0</span>
+					<span class="collect_price">20.0</span>
 					<span class="collect_date">2017年7月18日</span>
 					<i class="collect_delete"></i>
 				</li>
@@ -67,7 +65,7 @@
 						<h2>洗面奶</h2>
 						<span class="collect_type">脸部护理</span>
 					</div>
-					<span class="collect_price">￥20.0</span>
+					<span class="collect_price">20.0</span>
 					<span class="collect_date">2017年7月18日</span>
 					<i class="collect_delete"></i>
 				</li>
@@ -77,7 +75,7 @@
 						<h2>洗面奶</h2>
 						<span class="collect_type">脸部护理</span>
 					</div>
-					<span class="collect_price">￥20.0</span>
+					<span class="collect_price">20.0</span>
 					<span class="collect_date">2017年7月18日</span>
 					<i class="collect_delete"></i>
 				</li>
@@ -87,17 +85,18 @@
 						<h2>洗面奶</h2>
 						<span class="collect_type">脸部护理</span>
 					</div>
-					<span class="collect_price">￥20.0</span>
+					<span class="collect_price">20.0</span>
 					<span class="collect_date">2017年7月18日</span>
 					<i class="collect_delete"></i>
-				</li>
+				</li>-->
 			</ul>
 		</div>
 		<script src="/jquery/dist/jquery.js"></script>
-		<script src="../../js/user/mui.min.js"></script>
-		<script src="../../js/user/mui.picker.min.js"></script>
-		<script src="../../js/user/collect.js"></script>
-		<script src="../../js/navigation.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/js/user/mui.min.js"></script>
+		<script src="/js/user/mui.picker.min.js"></script>
+		<script src="/js/user/collect.js"></script>
+		<script src="/js/navigation.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/js/user/history.js"></script>
 	</body>
 
 </html>

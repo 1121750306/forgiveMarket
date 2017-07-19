@@ -61,16 +61,8 @@ function getGoodById(id, callback){
  * @param {Object} id
  * @param {Object} cb
  */
-function deleteGood(id){
-	goodModel.findById(id,function(err,doc){
-		if(!err){
-			console.log(doc);
-			doc.remove();
-		}else{
-			console.log(err);
-		}
-		
-	})
+function deleteGood(id,cb){
+	goodModel.find({_id:id}).remove(cb);
 }
 module.exports.initModel = initModel;
 module.exports.addGood = addGood;

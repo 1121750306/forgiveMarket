@@ -6,10 +6,10 @@
 		<title>个人信息</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.css" />
-		<link rel="stylesheet" href="../../css/style.css" />
-		<link rel="stylesheet" href="../../css/user/userinfo.css" />
-		<link rel="stylesheet" type="text/css" href="../../css/navigation.css" />
-		
+		<link rel="stylesheet" href="/css/style.css" />
+		<link rel="stylesheet" href="/css/user/userinfo.css" />
+		<link rel="stylesheet" type="text/css" href="/css/navigation.css" />
+		<link rel="stylesheet" href="/css/user/history_content.css" />
 
 	</head>
 
@@ -18,10 +18,10 @@
 			<span class="nav_menu"></span>
 			<a href="/views/homepage.html" class="nav_logo"></a>
 			<a href="/views/user/user.html" class="nav_user"></a>
-			<a href="/order/cart" class="nav_cart">
+			<a href="/views/order/cart.html" class="nav_cart">
 				<p class="nav_cartnum">0</p>
 			</a>
-			
+
 			<div class="nav_modal">
 				<div class="nav_modal_content">
 					<div class="nav_modal_title">
@@ -38,10 +38,7 @@
 						<ul class="nav_modal_type">
 						</ul>
 					</div>
-					<div class="nav_modal_page">
-						<ul class="nav_modal_history">
-						</ul>
-					</div>
+					<div id="history_content" class="nav_modal_page"></div>
 				</div>
 			</div>
 		</div>
@@ -73,7 +70,9 @@
 			</div>
 		</form>
 		<script src="/jquery/dist/jquery.js"></script>
-		<script src="../../js/user/userinfo.js"></script>
-		<script src="../../js/navigation.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/js/user/userinfo.js"></script>
+		<script src="/js/navigation.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/js/user/history.js"></script>
 	</body>
+
 </html>

@@ -26,14 +26,13 @@
 }
 
 #collect_content>ul>li {
-	width: 98%;
-	border-radius: 5px;
+	width: 100%;
 	border: 1px solid #dcdcdc;
 	height: auto;
 	position: relative;
 	display: block;
 	float: left;
-	margin: 1%;
+	margin: 3px 0 3px 0;
 	padding: 0;
 	background-color: #fff;
 	border-bottom: 1px solid #ededed;
@@ -74,16 +73,25 @@
 
 #collect_content>ul>li>div>.collect_type {
 	font-size: 0.5rem;
-	color: #666;
+	color: #bbb;
 	margin: 5px 0 0 5px;
+	padding-left: 15px;
+	background-image: url("/img/innisfreeIco/type.png");
+	background-repeat: no-repeat;
+	background-size: 16px 16px ;
 }
 
 #collect_content>ul>li>.collect_price {
-	font-size: 1.5rem;
+	font-size: 1.8rem;
 	color: red;
 	position: absolute;
 	bottom: 10%;
 	left: 22%;
+	background-image: url("/img/innisfreeIco/price.png");
+	background-repeat: no-repeat;
+	background-size: 16px 16px ;
+	background-position: 0 4px;
+	padding-left: 15px;
 }
 #collect_content>ul>li>.collect_date {
 	font-size: 1.5rem;

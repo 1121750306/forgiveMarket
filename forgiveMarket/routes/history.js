@@ -16,8 +16,8 @@ router.post('/addhistory', function(req, res, next) {
 		return;
 	}
 	var uid = req.session.user[0]._id;
-	//	var uid = "596c1006b78c401434acd7f0";
-	//	var gid = '596c6506367f6d14a02f305f';
+	//		var uid = "596c1006b78c401434acd7f0";
+	//		var gid = '596da1006c2c5d11249e9716';
 	var gid = req.body.gid;
 	var date = new Date();
 	history.addHistory(uid, gid, date, function(flag, err, result) {
@@ -45,7 +45,7 @@ router.post('/queryhistory', function(req, res, next) {
 		return;
 	}
 	var uid = req.session.user[0]._id;
-//	var uid = "596c1006b78c401434acd7f0";
+	//	var uid = "596c1006b78c401434acd7f0";
 	//	var index = req.body.index;
 	var index = 0;
 	history.queryHistory(uid, index, function(flag, err, result) {
@@ -63,7 +63,7 @@ router.post('/queryhistory', function(req, res, next) {
 						resultjson[j].goods[resultjson[j].goods.length] = {
 							goodname: result[i].gid.gname,
 							goodprice: result[i].gid.pricebase,
-							gid:result[i].gid._id
+							gid: result[i].gid._id
 						};
 						isInsert = true;
 					}
@@ -74,7 +74,7 @@ router.post('/queryhistory', function(req, res, next) {
 						goods: [{
 							goodname: result[i].gid.gname,
 							goodprice: result[i].gid.pricebase,
-							gid:result[i].gid._id
+							gid: result[i].gid._id
 						}]
 					};
 				}

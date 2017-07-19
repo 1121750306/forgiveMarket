@@ -28,19 +28,13 @@ function register() {
 		$("#error").text("请输入密码");
 		return;
 	}
-	if (code == null || code == undefined || code == "") {
-		$("#error").css("opacity", "1");
-		$("#error").text("请输入验证码");
-		return;
-	}
 	$.ajax({
 		type: "post",
 		url: "/users/register",
 		async: true,
 		data: {
 			phone: phone,
-			password: password,
-			code: code
+			password: password
 		},
 		success: function(data) {
 			console.log(data);

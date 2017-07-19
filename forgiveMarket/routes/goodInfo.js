@@ -19,7 +19,7 @@ router.get("/", function(req, res, next) {
 	//		console.log(docs)
 	//	})
 	goodInfo.getGoodInfoId(mongoose.Types.ObjectId("596d6258bc42ff1430576e08"), function(err0, docs0) {
-		
+
 		goodInfo.getGoodInfo(mongoose.Types.ObjectId(docs0[0]._id), function(err, docs) {
 			console.log(err);
 			console.log(docs);
@@ -40,18 +40,31 @@ router.get("/:gid", function(req, res, next) {
 	//	})
 	var gid = req.params.gid;
 	goodInfo.getGoodInfoId(mongoose.Types.ObjectId(gid), function(err0, docs0) {
-		
-		goodInfo.getGoodInfo(mongoose.Types.ObjectId(docs0[0]._id), function(err, docs) {
-			console.log(err);
-			console.log(docs);
-			goodInfo.getGoodSize(mongoose.Types.ObjectId(docs[0].gid._id), function(err2, docs2) {
-				console.log("err" + err2)
-				console.log("aaa" + docs2);
-				res.send({'info':docs, 'type':docs2})
+		if(!err0) {
+			goodInfo.getGoodInfo(mongoose.Types.ObjectId(docs0[0]._id), function(err, docs) {
+				if(!err) {
+					console.log(err);
+					console.log(docs);
+					goodInfo.getGoodSize(mongoose.Types.ObjectId(docs[0].gid._id), function(err2, docs2) {
+						if(!err2) {
+							console.log("err" + err2)
+							console.log("aaa" + docs2);
+							res.send({
+								'info': docs,
+								'type': docs2
+							})
+						}else{
+							console.log('size表错误')
+						}
+					})
+				}else{
+					console.log('goodinfo表')
+				}
 			})
-		})
+		}else{
+			console.log('goodinfo表找不到数据')
+		}
 	})
-
 })
 
 module.exports = router;

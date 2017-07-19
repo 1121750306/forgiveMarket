@@ -44,8 +44,17 @@ function getGoodSizeById (id, callback) {
 function deleteGoodSize(id,cb){
 	goodsizeModel.find({gid:id}).remove(cb);
 }
+/**
+ *通过goodid茶找商品规格 
+ * @param {Object} id
+ * @param {Object} cb
+ */
+function QuerySizeByid(id,cb){
+	goodsizeModel.find({gid:id},cb);
+}
 module.exports.initModel = initModel;
 module.exports.addGoodSize = addGoodSize;
 module.exports.addGoodSizes = addGoodSizes;
 module.exports.getGoodSizeById = getGoodSizeById;
+module.exports.QuerySizeByid = QuerySizeByid;
 module.exports.deleteGoodSize = deleteGoodSize;
