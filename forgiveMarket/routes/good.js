@@ -448,7 +448,23 @@ router.get('/getGoodsByTypeid',function(req,res,next){
 		}
 	})
 });
-
-
+/**
+ * 根据gid获取商品的销量
+ */
+router.get('/getGoodSales/:gid',function(req,res,next){
+	var gid=req.params.gid;
+	var sales=0;
+	goodsize.QuerySizeByid(gid,function(err,doc){
+		if(!err){
+			for(var i=0;i<doc.length;i++){
+				sales=sales+Number(doc[i].sales);
+			}
+			 console.log(sales);
+			 res.send(sales);
+		}else{
+			console.log(err);
+		}
+	})
+})
 module.exports = router;
 module.exports.callback = callback;
