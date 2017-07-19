@@ -18,6 +18,7 @@ var history = require("./routes/history");
 var goodInfo = require("./routes/goodInfo");
 var goodphoto = require("./routes/goodphoto");
 var collect = require("./routes/collect");
+var comment=require("./routes/comment");
 
 //传递models
 base.initModels(function(models) {
@@ -61,6 +62,7 @@ app.use('/history',history);
 app.use('/goodInfo',goodInfo);
 app.use('/collect',collect);
 app.use('/goodphoto',goodphoto);
+app.use('/comment',comment);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
 	var err = new Error('Not Found');
