@@ -17,52 +17,61 @@ $(function(){
 				type:"get",
 				url:"/order/getorderitembyuser/" + user._id + "/0",
 				async:true,
-				success:function(data){
-					//修改导航栏购物车商品数量
-					$(".nav_cartnum").html(data.length);
-					
-					if (data.length != 0) {
-						//购物车不为空
-						$(".cart").show();
+				success:function(result){
+					if (result.type == "success") {
+						var goods = result.message;
+						//修改导航栏购物车商品数量
+						$(".nav_cartnum").html(goods.length);
 						
-						//遍历商品列表
-						for (var i = 0; i < data.length; i++) {
-							var good = data[i];
+						if (goods.length != 0) {
+							//购物车不为空
+							$(".cart").show();
 							
-							//拼接商品规格
-							var goodsizeUl = "";
-							for (var j = 0; j < good.gsizes.length; j++) {
-								goodsizeUl = goodsizeUl + "<li><h3>" + good.gsizes[j] +"</h3></li>";
-							}
-							
-							//组合li
-							var li ='<li class="cart_item" gid="' + good.gid + '" otid="' + good.otid + '">\
-										<div class="item_check">\
-											<input type="checkbox" />\
-										</div>\
-										<img src="../../img/innisfree-img/goods/1000000311_l.png"/>\
-										<div class="item_info">\
-											<h2>' + good.gname + '</h2>\
-											<ul class="good_size">' + goodsizeUl + '</ul>\
-											<div class="info_bottom">\
-												<p class="item_price">￥' + good.price + '</p>\
-												<div class="num_ctrl">\
-													<span><i class="item_sub"></i></span>\
-													<input class="item_num" type="text" value="' + good.num + '"/>\
-													<span><i class="item_add"></i></span>\
+							//遍历商品列表
+							for (var i = 0; i < goods.length; i++) {
+								var good = goods[i];
+								
+								//拼接商品规格
+								var goodsizeUl = "";
+								for (var j = 0; j < good.gsizes.length; j++) {
+									goodsizeUl = goodsizeUl + "<li><h3>" + good.gsizes[j] +"</h3></li>";
+								}
+								
+								//组合li
+								var li ='<li class="cart_item" gid="' + good.gid + '" otid="' + good.otid + '">\
+											<div class="item_check">\
+												<input type="checkbox" />\
+											</div>\
+											<img src="../../img/innisfree-img/goods/1000000311_l.png"/>\
+											<div class="item_info">\
+												<h2>' + good.gname + '</h2>\
+												<ul class="good_size">' + goodsizeUl + '</ul>\
+												<div class="info_bottom">\
+													<p class="item_price">￥' + good.price + '</p>\
+													<div class="num_ctrl">\
+														<span><i class="item_sub"></i></span>\
+														<input class="item_num" type="text" value="' + good.num + '"/>\
+														<span><i class="item_add"></i></span>\
+													</div>\
 												</div>\
 											</div>\
-										</div>\
-									</li>';
-									
-							$(".cart").append(li);
+										</li>';
+										
+								$(".cart").append(li);
+							}
+							
+						}else{
+							//购物车为空
+							$(".attention").show();
+							$(".cart_empty").show();
 						}
 						
-					}else{
-						//购物车为空
-						$(".attention").show();
-						$(".cart_empty").show();
+					}else {
+						//设置导航栏购物车商品数量为0
+						$(".nav_cartnum").html("0");
+						
 					}
+					
 				},
 				error:function(err){
 					//设置导航栏购物车商品数量为0
@@ -368,8 +377,11 @@ $(function(){
 					type:"get",
 					url:"/order/deleteorderitembyid/" + otid,
 					async:true,
-					success:function(data){
-						console.log(data);
+					success:function(result){
+						if (result.type != "success") {
+							//失败刷新页面
+							location.reload();
+						}
 					},
 					error:function(err){
 						//失败刷新页面
@@ -436,8 +448,8 @@ $(function(){
 						num:num
 					},
 					async:true,
-					success:function(data){
-						console.log(data);
+					success:function(result){
+						console.log(result.type);
 					},
 					error:function(err){
 						console.log(err);

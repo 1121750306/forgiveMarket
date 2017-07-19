@@ -76,7 +76,7 @@
 
 #collect_content>ul>li>div>.collect_type {
 	font-size: 0.5rem;
-	color: #bbb;
+	color: #ccc;
 	margin: 5px 0 0 5px;
 	padding-left: 15px;
 	background-image: url("/img/innisfreeIco/type.png");
@@ -88,7 +88,7 @@
 	font-size: 1.8rem;
 	color: red;
 	position: absolute;
-	bottom: 10%;
+	bottom: 5%;
 	left: 22%;
 	background-image: url("/img/innisfreeIco/price.png");
 	background-repeat: no-repeat;
@@ -99,7 +99,7 @@
 #collect_content>ul>li>.collect_date {
 	font-size: 1.5rem;
 	position: absolute;
-	bottom: 10%;
+	bottom: 5%;
 	right: 5%;
 }
 #collect_content>ul>li>.collect_delete{
