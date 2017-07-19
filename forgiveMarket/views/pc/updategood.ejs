@@ -116,6 +116,16 @@
 					$("#basis").val(data[0].fitSkin);
 				}
 			});
+			
+			$.ajax({
+				type:"post",
+				url:"/good/queryGoodSizeByid",
+				async:true,
+				data:{id:goodid},
+				success:function(data){
+					console.log("len"+data[0]);
+				}
+			});
 		})
 	</script>
   </body>

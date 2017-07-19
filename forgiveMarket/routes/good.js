@@ -154,17 +154,23 @@ router.post("/Add",function(req,res,next){
  	 var id=req.body.id||req.query.id;
  	 console.log(id);
 	 if(typeof(id)=='string'){
-	 	good.deleteGood(id);
-	 	goodsize.deleteGoodSize(id,function(err,doc){
+	 	good.deleteGood(id,function(err,doc){
 	 		if(!err){
-	 			console.log(doc);
+	 			console.log("该商品删除成功");
 	 		}else{
 	 			console.log(err);
 	 		}
 	 	});
-	 	goodinfo.deleteGoodInfo(id,function(err,doc){
+	 	goodsize.deleteGoodSize(id,function(err,doc){
 	 		if(!err){
-	 			console.log(doc);
+	 			console.log("该商品规格删除成功");
+	 		}else{
+	 			console.log(err);
+	 		}
+	 	});
+	 	goodInfo.deleteGoodInfo(id,function(err,doc){
+	 		if(!err){
+	 			console.log("商品详情删除成功");
 	 		}else{
 	 			console.log(err);
 	 		}
@@ -182,7 +188,7 @@ router.post("/Add",function(req,res,next){
 	 			console.log(err);
 	 		}
 		 	});
-		 	goodinfo.deleteGoodInfo(id[i],function(err,doc){
+		 	goodInfo.deleteGoodInfo(id[i],function(err,doc){
 		 		if(!err){
 		 			console.log(doc);
 		 		}else{
@@ -190,6 +196,7 @@ router.post("/Add",function(req,res,next){
 		 		}
 		 	});
 	   }
+	 
 	 }
 	 res.render("pc/goodlistInit");
  })
@@ -251,6 +258,22 @@ router.post('/queryGoodInfoByid',function(req,res,next){
 		if(!err){
 			res.send(doc);
 			console.log(doc);
+		}else{
+			console.log(err);
+		}
+	})
+})
+
+
+/**
+ * 根据goodid查询商品规格
+ */
+router.post('/queryGoodSizeByid',function(req,res,next){
+	var id=req.body.id;
+	goodsize.QuerySizeByid(id,function(err,doc){
+		if(!err){
+			console.log(doc);
+			res.send(doc);
 		}else{
 			console.log(err);
 		}
