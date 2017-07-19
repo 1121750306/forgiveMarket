@@ -206,7 +206,7 @@ router.post("/searchgood", function(req, res, next) {
 			});
 		} else {
 			res.send({
-				flag:200,
+				flag:300,
 				msg:"搜索失败",
 			});
 		}
