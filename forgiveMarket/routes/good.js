@@ -447,6 +447,8 @@ router.get('/getGoodsByTypeid',function(req,res,next){
 			console.log(err);
 		}
 	})
-})
+});
+
+
 module.exports = router;
 module.exports.callback = callback;

@@ -9,8 +9,8 @@ function callback(models) {
 /**
  * 根据商品id获取图片
  */
-router.get('/getPhotobygid',function(req,res,next){
-	var gid=req.query.gid;
+router.post('/getPhotobygid',function(req,res,next){
+	var gid=req.body.gid;
 	console.log(gid);
 	goodphoto.getPhotoByGoodid(gid,function(err,doc){
 		if(!err){
