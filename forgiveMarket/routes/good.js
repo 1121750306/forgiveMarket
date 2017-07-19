@@ -334,14 +334,22 @@ router.post('/Update',function(req,res,next){
  * 查询商品列表
  */
 router.post("/queryGoodList",function(req,res,next){
-	 good.queryGoodList(function(err,docs){
-	 	console.log(docs.length);
-	 	if(!err){
-	 		res.send(docs);
-	 	}else{
-	 		console.log(err);
+	 var page=req.body.page;
+	 var rows=req.body.rows;
+	 console.log("page"+page+"===rows"+rows);
+	 good.countGoodList(function(errs,doc){
+	 	if(!errs){
+	 		good.queryGoodList(page,rows,function(err,docs){
+			 	console.log(docs.length);
+			 	if(!err){
+			 		res.send({rows:docs,total:doc.length});
+			 	}else{
+			 		console.log(err);
+			 	}
+			 });
 	 	}
-	 })
+	 });
+	 
 });
 /**
  * 查询商品类型
