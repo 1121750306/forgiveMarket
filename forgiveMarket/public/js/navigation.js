@@ -9,7 +9,7 @@ $(function() {
 			//请求购物车数据
 			$.ajax({
 				type:"get",
-				url:"/order/getgoods/" + user._id + "/0",
+				url:"/order/getorderitembyuser/" + user._id + "/0",
 				async:true,
 				success:function(data){
 					//修改导航栏购物车商品数量

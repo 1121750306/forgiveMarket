@@ -15,7 +15,7 @@ $(function(){
 		//请求购物车数据
 			$.ajax({
 				type:"get",
-				url:"/order/getgoods/" + user._id + "/0",
+				url:"/order/getorderitembyuser/" + user._id + "/0",
 				async:true,
 				success:function(data){
 					//修改导航栏购物车商品数量
@@ -366,7 +366,7 @@ $(function(){
 				//删除订单项数据
 				$.ajax({
 					type:"get",
-					url:"/order/deleteorderitem/" + otid,
+					url:"/order/deleteorderitembyid/" + otid,
 					async:true,
 					success:function(data){
 						console.log(data);

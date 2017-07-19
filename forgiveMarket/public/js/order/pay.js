@@ -40,7 +40,7 @@ $(function(){
 		//请求订单项数据
 		$.ajax({
 			type:"get",
-			url:"/order/getorderitem/" + otids[i],
+			url:"/order/getorderitembyid/" + otids[i],
 			async:true,
 			success:function(good){
 				//取得订单项的商品价格基数

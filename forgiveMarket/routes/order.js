@@ -8,29 +8,77 @@ var order = require("../models/order");
 var orderitem = require("../models/orderitem");
 var multiparty = require("multiparty");
 
-//注册models监听并传递models
-function callback(models) {
-	user.initModel(models);
-}
-
-//购物车获得商品内容
-router.get('/getgoods/:uid/:flag', function(req, res, next) {
-	var uid = req.params.uid;
-	var flag = req.params.flag;
-	var goods = [];
-	console.log("cart getgoods router get"+uid);
+//添加关于用户的订单项
+router.post('/addorderitembyuser', function(req, res, next) {
+	//获取表单数据
+	var uid = req.body.uid;
+	var flag = req.body.flag;
+	var gid = req.body.gid;
+	var gsids = req.body.gsids;
+	var num = req.body.num;
 	
-	//查询是否已经创建购物车订单
 	order.getOrderByIdAndFlag(uid, flag, function(err_getorder, data_getorder){
 		if (!err_getorder) {
 			if (data_getorder.length == 0) {
 				//未创建
-				console.log(new Date() + "SUCCESS: 购物车订单未创建");
+				console.log(new Date() + "SUCCESS: 订单未创建");
 				order.addOrder(uid, 0,function(err_addorder){
 					if (!err_addorder) {
-						console.log(new Date() + "SUCCESS: 购物车订单创建成功");
+						console.log(new Date() + "SUCCESS: 订单创建成功");
 					} else{
-						console.log(new Date() + "ERROR: 购物车订单创建失败");
+						console.log(new Date() + "ERROR: 订单创建失败");
+						console.log(new Date() + "ERROR CONTENT: " + err_addorder);						
+					}
+				});
+				
+				res.send("error");
+				
+			} else{
+				//已创建
+				//获得订单id
+				var oid = data_getorder[0]._id;
+				console.log(new Date() + "SUCCESS: 订单已创建");
+							
+				//在此订单下添加订单项
+				orderitem.addOrderItem({
+					oid:mongoose.Types.ObjectId(oid),
+					gid:mongoose.Types.ObjectId(gid),
+					gsids:gsids,
+					num:num
+				},function(err){
+					if (!err) {
+						//添加成功
+						res.send("success");
+					} else{
+						res.send("error");
+					}
+				});
+				
+			}
+		} else{
+			console.log(new Date() + "ERROR: " + err_getorder);
+			res.send("error");
+		}
+	});
+});
+
+//获得关于用户的订单项
+router.get('/getorderitembyuser/:uid/:flag', function(req, res, next) {
+	var uid = req.params.uid;
+	var flag = req.params.flag;
+	var goods = [];
+	
+	//查询是否已经创建订单
+	order.getOrderByIdAndFlag(uid, flag, function(err_getorder, data_getorder){
+		if (!err_getorder) {
+			if (data_getorder.length == 0) {
+				//未创建
+				console.log(new Date() + "SUCCESS: 订单未创建");
+				order.addOrder(uid, 0,function(err_addorder){
+					if (!err_addorder) {
+						console.log(new Date() + "SUCCESS: 订单创建成功");
+					} else{
+						console.log(new Date() + "ERROR: 订单创建失败");
 						console.log(new Date() + "ERROR CONTENT: " + err_addorder);						
 					}
 				});
@@ -39,7 +87,7 @@ router.get('/getgoods/:uid/:flag', function(req, res, next) {
 				//已创建
 				//获得订单id
 				var oid = data_getorder[0]._id;
-				console.log(new Date() + "SUCCESS: 购物车订单已创建");
+				console.log(new Date() + "SUCCESS: 订单已创建");
 				
 				//测试数据
 //				good.addGoods([{typeid:mongoose.Types.ObjectId("596d62d3c88ed10d0056f4e5"),gname:"商品1",pricebase:"100.1",discount:"0.1"},
@@ -149,7 +197,7 @@ router.get('/getgoods/:uid/:flag', function(req, res, next) {
 });
 
 //获得商品订单项
-router.get('/getorderitem/:otid', function(req, res, next) {
+router.get('/getorderitembyid/:otid', function(req, res, next) {
 	var otid = req.params.otid;
 	
 	orderitem.getOrderItemById(otid, function(err, data){
@@ -189,7 +237,7 @@ router.post('/updateorderitem', function(req, res, next) {
 });
 
 //删除商品订单项
-router.get('/deleteorderitem/:otid', function(req, res, next) {
+router.get('/deleteorderitembyid/:otid', function(req, res, next) {
 	var otid = req.params.otid;
 	
 	orderitem.deleteOrderItemById(otid, function(err){
@@ -205,4 +253,3 @@ router.get('/deleteorderitem/:otid', function(req, res, next) {
 });
 
 module.exports = router;
-module.exports.callback = callback;
