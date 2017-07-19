@@ -63,7 +63,7 @@ $(function() {
 			search();
 		}
 	}
-
+	
 })
 
 //搜索控制
@@ -77,7 +77,35 @@ function search() {
 		},
 		async: true,
 		success: function(data) {
-			console.log(data);
+			var items = data.result;
+			for (var i = 0; i < items.length; i++) {
+				var gid = items[i].gid;
+				var price = (items[i].price*items[i].discount).toFixed(2);
+				console.log(gid);
+				//获取照片
+				$.ajax({
+					type:"get",
+					url:"/goodphoto/getShowPhoto/" + gid,
+					async:true,
+					success:function(photo){
+						//获取商品规格
+						$.ajax({
+							type:"get",
+							url:"/" + gid,
+							async:true,
+							success:function(goodsizes){
+							},
+							error:function(err){
+								console.log(err);
+							}
+						});
+					},
+					error:function(err){
+						console.log(err);
+					}
+				});
+			}
+				
 		}
 	});
 }

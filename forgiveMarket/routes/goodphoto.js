@@ -33,8 +33,9 @@ router.post('/getPhotobygid',function(req,res,next){
 	})
 });
 
-router.get('/getShowPhoto',function(req,res,next){
-	var gid=req.query.gid;
+router.get('/getShowPhoto/:gid',function(req,res,next){
+	var gid=req.params.gid;
+	console.log(gid);
 	goodphoto.getShowPhoto(gid,function(err,doc){
 		if(!err){
 			res.send(doc[0].url);
