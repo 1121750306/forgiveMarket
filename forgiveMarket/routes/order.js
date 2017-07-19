@@ -39,22 +39,22 @@ router.post('/addtocart', function(req, res, next) {
 				},function(err_addorder){
 					if (!err_addorder) {
 						//添加成功	
-						res.send({type:"success",message: "商品订单项添加成功" });
+						res.send({type:"success", message: "商品订单项添加成功"});
 					} else{
 						console.log(new Date() + "ERROR: 商品订单项添加失败");
 						console.log(new Date() + "ERROR CONTENT: " + err_addorder);	
-						res.send({type:"error",message: "商品订单项添加失败" });
+						res.send({type:"error", message: "商品订单项添加失败"});
 					}
 				});
 				
 			} else{
 				//未创建购物车
-				res.send({type:"error",message: "购物车未创建" });
+				res.send({type:"error", message:"购物车未创建"});
 				
 			}
 		} else{
 			console.log(new Date() + "ERROR: " + err_getorder);
-			res.send({type:"error",message: "购物车搜索错误" });
+			res.send({type:"error", message: "购物车搜索错误" });
 		}
 	});
 	
@@ -71,13 +71,15 @@ router.get('/getorderitembyuser/:uid/:flag', function(req, res, next) {
 		if (!err_getorder) {
 			if (data_getorder.length == 0) {
 				//未创建
-				console.log(new Date() + "SUCCESS: 订单未创建");
-				order.addOrder(uid, 0,function(err_addorder){
+				order.addOrder(uid, flag, function(err_addorder){
 					if (!err_addorder) {
-						console.log(new Date() + "SUCCESS: 订单创建成功");
+						res.send({type:"error", message: "订单不存在，现已创建成功" });
+						
 					} else{
+						res.send({type:"error", message: "订单不存在，创建失败" });
 						console.log(new Date() + "ERROR: 订单创建失败");
-						console.log(new Date() + "ERROR CONTENT: " + err_addorder);						
+						console.log(new Date() + "ERROR CONTENT: " + err_addorder);	
+						
 					}
 				});
 				
@@ -85,7 +87,6 @@ router.get('/getorderitembyuser/:uid/:flag', function(req, res, next) {
 				//已创建
 				//获得订单id
 				var oid = data_getorder[0]._id;
-				console.log(new Date() + "SUCCESS: 订单已创建");
 				
 				//测试数据
 //				good.addGoods([{typeid:mongoose.Types.ObjectId("596d62d3c88ed10d0056f4e5"),gname:"商品1",pricebase:"100.1",discount:"0.1"},
@@ -178,10 +179,12 @@ router.get('/getorderitembyuser/:uid/:flag', function(req, res, next) {
 							
 						}
 						
-						res.send(goods);
+						res.send({type:"success", message:goods});
 						
 					} else{
 						console.log(new Date() + "ERROR: " + err_getorderitem);
+						res.send({type:"error", message:"获取订单项错误" });
+						
 					}
 					
 				});
@@ -189,6 +192,8 @@ router.get('/getorderitembyuser/:uid/:flag', function(req, res, next) {
 			}
 		} else{
 			console.log(new Date() + "ERROR: " + err_getorder);
+			res.send({type:"error", message: "获取订单错误" });
+			
 		}
 	});
 	
@@ -225,10 +230,10 @@ router.post('/updateorderitem', function(req, res, next) {
 	orderitem.updateOrderItemNumById(otid, num, function(err){
 		if (!err) {
 			console.log(new Date() + "SUCCESS: 修改订单项数量成功");
-			res.send("success");
+			res.send({type:"success", message:"修改订单项数量成功"});
 		}else {
 			console.log(new Date() + "ERROR: " + err);
-			res.send("error");
+			res.send({type:"error", message:"修改订单项数量失败" });
 		}
 	})
 	
@@ -241,10 +246,10 @@ router.get('/deleteorderitembyid/:otid', function(req, res, next) {
 	orderitem.deleteOrderItemById(otid, function(err){
 		if (!err) {
 			console.log(new Date() + "SUCCESS: 删除商品订单项成功");
-  			res.send("success");
+			res.send({type:"success", message:"删除商品订单项成功"});
 		}else {
 			console.log(new Date() + "ERROR: " + err);
-			res.send("error");
+			res.send({type:"error", message:"删除商品订单项失败" });
 		}
 	})
 	

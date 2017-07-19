@@ -11,9 +11,16 @@ $(function() {
 				type:"get",
 				url:"/order/getorderitembyuser/" + user._id + "/0",
 				async:true,
-				success:function(data){
-					//修改导航栏购物车商品数量
-					$(".nav_cartnum").html(data.length);
+				success:function(result){
+					if (result.type == "success") {
+						//修改导航栏购物车商品数量
+						$(".nav_cartnum").html(result.message.length);
+						
+					}else {
+						//设置导航栏购物车商品数量为0
+						$(".nav_cartnum").html("0");
+						
+					}
 					
 				},
 				error:function(err){
