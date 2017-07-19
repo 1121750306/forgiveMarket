@@ -1,0 +1,130 @@
+.header{
+	position: relative;
+	padding: 0 2%;
+}
+
+.header .goodtype,.goodorder,.orientation{
+	width: 33%;
+	height: 40px;
+	float: left;
+	line-height: 40px;
+	text-align: center;
+}
+
+.header .goodorder{
+	background: url(../../img/innisfreeIco/down.png) 85% 53% no-repeat;
+	background-size: 20px 20px;
+}
+
+.header .orientation{
+	background: url(../../img/innisfreeIco/orientation.png) 73.5% 52.5% no-repeat;
+	background-size: 18px 18px; 
+}
+
+.orderby{
+	width: 25%;
+	height: 80px;
+	margin: 0;
+	padding: 0 6px 4px 6px;
+	border: 1px lightgrey solid;
+	border-top: none;
+	box-shadow: 3px 3px 5px grey;
+	list-style: none;
+	background-color: white;
+	position: absolute;
+	top: 40px;
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 4;
+	display: none;
+}
+
+.orderby li{
+	width: 100%;
+	height: 38px;
+	border-bottom: 1px lightgrey solid;
+	font-size: 1.3rem;
+	line-height: 38px;
+	color: rgba(5, 83, 33, 1);
+	display: block;
+}
+
+.orderby li:nth-child(2){
+	color: grey;
+}
+
+.content{
+	position: relative;
+	width: 100%;
+}
+
+.banner{
+	width: 100%;
+	height: 40px;
+	background-color: lightgrey;
+	padding: 5px 0;
+	box-sizing: border-box;
+}
+
+.banner h2{
+	width: 14%;
+	float: right;
+	margin-right: 2%;
+	border-radius: 5px;
+	font-size: 1.5rem;
+	line-height: 30px;
+	text-align: center;
+	background: yellowgreen;
+	color: white;
+	font-weight: bold;
+	display: none;
+}
+
+.banner .search{
+	width: 96%;
+	height: 30px;
+	margin: 0 2%;
+	background-color: white;
+	border-radius: 5px;
+	box-sizing: border-box;
+	float: left;
+}
+
+.banner .search input{	
+	width: 80%;
+	height: 100%;
+	border: none;
+	outline: none;
+	float: left;
+	font-size: 1.5rem;
+}
+
+.banner .search img{
+	height: 20px;
+	margin: 5px;
+	float: left;
+}
+	
+.content{
+	margin-bottom: 30px;
+}	
+	
+.cart{
+	display: block;
+}
+
+.cart .cart_item{
+	padding: 5px 30px;
+}
+
+.cart .cart_item .item_info{
+	width: 65%;
+}
+
+.cart .cart_item .item_info .item_price{
+	font-size: 1.5rem !important;
+}
+
+.cart .cart_item .item_info .item_num{
+	font-size: 1rem;
+}
