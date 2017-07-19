@@ -24,8 +24,8 @@
 						setTimeout(function(){msg.style.display="none";},1000);
 						return false;
 					} 
-					 if(shname.length<1) {
-					 	msg.innerHTML = "姓名不能为空";
+					 if(shname.length<1||shname.length>8) {
+					 	msg.innerHTML = "姓名不超过8位";
 						msg.style.display="block";
 						setTimeout(function(){msg.style.display="none";},1000);
 						return false;
