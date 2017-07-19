@@ -90,7 +90,8 @@ function queryCollect(uid, index, cb) {
 	}).populate({
 		path: 'gid',
 		populate: {
-			path: 'typeid'
+			path: 'typeid',
+			select:'tname'
 		}
 	}).sort({
 		date: -1

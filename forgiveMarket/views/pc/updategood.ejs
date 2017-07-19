@@ -9,8 +9,8 @@
   </head>
   <body>
   	
-	 <form action="/good/Add" method="post" id="updateForm">
-	  <input type="hidden" value="<%=goodid%>" id="_goodid">
+	 <form action="/good/Update" method="post" id="updateForm">
+	  <input type="hidden" value="<%=goodid%>" id="_goodid" name="goodid">
 	  <div class="form-group" style="width: 45%;display: inline-block;margin:5px">
 	    <label for="gname">商品名</label>
 	    <input type="text" class="form-control" id="gname" name="gname" placeholder="商品名" >
@@ -51,24 +51,6 @@
 	  <div class="form-group" style="width: 94%;display: inline-block;margin:5px">
 	    <label for="basis">主要成分</label>
 	    <input type="text" class="form-control" id="basis" name="basis" placeholder="主要成分">
-	  </div>
-	  <div class="form-group" style="width: 94%;display: inline-block;margin:5px;" id="containerFirst">
-	     <label>容量</label>
-	     <input type="text" class="form-control" name="container" placeholder="容量" style="width: 20%;display: inline-block;">
-	     <label>库存</label>
-	     <input type="text" class="form-control" name="lefts1" placeholder="库存" style="width: 20%;display: inline-block;">
-	     <label>价格偏移</label>
-	     <input type="text" class="form-control" name="priceoffset1" placeholder="价格偏移" style="width: 20%;display: inline-block;">
-	     <a href="#" class="btn btn-default btn-sm active" id="addContainer" role="button" style="width: 10%;display: inline-block;margin-top: -3px;">附加</a>
-	  </div>
-	  <div class="form-group" style="width: 94%;display: inline-block;margin:5px;" id="smileFirst">
-	     <label>气味</label>
-	     <input type="text" class="form-control" name="smile" placeholder="气味" style="width: 20%;display: inline-block;">
-	     <label>库存</label>
-	     <input type="text" class="form-control" name="lefts2" placeholder="库存" style="width: 20%;display: inline-block;">
-	     <label>价格偏移</label>
-	    <input type="text" class="form-control" name="priceoffset2" placeholder="价格偏移" style="width: 20%;display: inline-block;">
-	     <a href="#" class="btn btn-default btn-sm active" id="addSmile" role="button" style="width: 10%;display: inline-block;margin-top: -3px;">附加</a>
 	  </div>
 	  <button type="submit" class="btn btn-default"style="width: 94%;margin:5px">Submit</button>
 	</form>
@@ -123,7 +105,32 @@
 				async:true,
 				data:{id:goodid},
 				success:function(data){
-					console.log("len"+data[0]);
+					console.log("len"+data.length);
+					for(var i=0;i<data.length;i++){
+						 if(data[i].type==1||data[i].type=="1"){
+						 	  $('#basis').after(
+										"<div class='form-group' style='width: 94%;display: inline-block;margin:5px;'>"+
+										"<label>容量  </label>"+
+										"<input type='text' class='form-control' value='"+data[i].gsname+"' name='container' placeholder='容量' style='width: 20%;display: inline-block;' readonly/>"+
+							      "<label>库存  </label>"+
+							      "<input type='text' class='form-control' value='"+data[i].lefts+"' name='lefts1' placeholder='库存' style='width: 20%;display: inline-block;' />"+
+							      "<label>价格偏移</label>"+
+							      "<input type='text' class='form-control' value='"+data[i].priceoffset+"' name='priceoffset1' placeholder='价格偏移' style='width: 20%;display: inline-block;' />"+
+							      "</div>"	
+									);
+						 }else if(data[i].type==0||data[i].type=="0"){
+								   $('#basis').after(
+											"<div class='form-group' style='width: 94%;display: inline-block;margin:5px;'>"+
+											"<label>气味  </label>"+
+											"<input type='text' class='form-control' value='"+data[i].gsname+"' name='smile' placeholder='气味' style='width: 20%;display: inline-block;' readonly/>"+
+								      "<label>库存  </label>"+
+								      "<input type='text' class='form-control' value='"+data[i].lefts+"' name='lefts2' placeholder='库存' style='width: 20%;display: inline-block;' />"+
+								      "<label>价格偏移</label>"+
+								      "<input type='text' class='form-control' value='"+data[i].priceoffset+"' name='priceoffset2' placeholder='价格偏移' style='width: 20%;display: inline-block;' />"+
+								      "</div>"	
+										);
+						 }
+					}
 				}
 			});
 		})

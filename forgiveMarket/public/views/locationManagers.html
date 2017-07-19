@@ -5,9 +5,38 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 		<title>管理收货地址</title>
 		<link rel="stylesheet" href="../css/locationManagers.css" />
+	    <link rel="stylesheet" type="text/css" href="/css/navigation.css"/>
+		<link rel="stylesheet" type="text/css" href="/css/user/history_content.css" />
 	</head>
 	<body>
-		
+		<div class="nav">
+			<span class="nav_menu"></span>
+			<a href="/views/homepage.html" class="nav_logo"></a>
+			<a href="/views/user/user.html" class="nav_user"></a>
+			<a href="/views/order/cart.html" class="nav_cart">
+				<p class="nav_cartnum">0</p>
+			</a>
+			
+			<div class="nav_modal">
+				<div class="nav_modal_content">
+					<div class="nav_modal_title">
+						<span class="nav_modal_logo"></span>
+						<span class="nav_modal_close">
+							<i></i>
+						</span>
+					</div>
+					<ul class="nav_modal_tab">
+						<li>产品类别</li>
+						<li>浏览历史</li>
+					</ul>
+					<div class="nav_modal_page">
+						<ul class="nav_modal_type">
+						</ul>
+					</div>
+					<div id="history_content" class="nav_modal_page"></div>
+				</div>
+			</div>
+		</div>
 		<div class="title">
 			<span class="back"></span>
 			<span class="titlename">管理收货地址</span>
@@ -92,6 +121,8 @@
 		</div>
 		
 		<script type="text/javascript" src="/jquery/dist/jquery.js" ></script>
+		<script src="/js/navigation.js" type="text/javascript" charset="utf-8"></script>
+	    <script src="/js/user/history.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 		$(function(){
 			$(".addressitem").click(function(){
