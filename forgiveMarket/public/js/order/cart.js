@@ -378,7 +378,7 @@ $(function(){
 				//删除订单项数据
 				$.ajax({
 					type:"get",
-					url:"/order/cart/deletegood/" + otid,
+					url:"/order/deleteorderitem/" + otid,
 					async:true,
 					success:function(data){
 						console.log(data);
