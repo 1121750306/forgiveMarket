@@ -50,23 +50,34 @@ router.post("/upload",function(req,res,next){
 			if(!err){
 				console.log(files.photo[0].originalFilename);
 				var urls=files.photo[0].originalFilename;
+				
 				var obj={gid:mongoose.Types.ObjectId(goodid),url:urls,flag:flag};
-				goodphoto.addphoto(obj,function(err,doc){
-					if(!err){
-						console.log(doc);
+				goodphoto.checkPhoto(goodid,urls,function(errs,result){
+					if(!errs){
+						if(result.length==0){
+						goodphoto.addphoto(obj,function(err,doc){
+								if(!err){
+									console.log(doc);
+								}else{
+									consoel.log(err);
+								}
+							});
+						}
 					}else{
-						consoel.log(err);
+						console.log(err);
 					}
 				})
-				res.send({msg:"success"});
+				
+				
 			}else{
 				res.send({msg:"fail"});
 				console.log(err);
 			}
 		});
 	    
-		
-	})
+		res.send({msg:"success"});
+	});
+	
 })
 module.exports = router;
 module.exports.callback = callback;

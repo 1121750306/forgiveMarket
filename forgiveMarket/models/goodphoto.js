@@ -23,9 +23,19 @@ function getPhotoByGoodid(id,cb){
  * @param {Object} cb
  */
 function getShowPhoto(id,cb){
-	goodphoto.find({gid:id,flag:0},cb);
+	goodphotoModel.find({gid:id,flag:0},cb);
+}
+/**
+ * 检查图片是否存在
+ * @param {Object} gid
+ * @param {Object} url
+ * @param {Object} cb
+ */
+function checkPhoto(gid,url,cb){
+	goodphotoModel.find({gid:gid,url:url},cb);
 }
 module.exports.initModel = initModel;
 module.exports.addphoto = addphoto;
 module.exports.getPhotoByGoodid = getPhotoByGoodid;
 module.exports.getShowPhoto = getShowPhoto;
+module.exports.checkPhoto = checkPhoto;
