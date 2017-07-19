@@ -44,11 +44,11 @@ $(function() {
 
 	function showImg() {
 		i = i + 1;
-		_left = i * (-412) + "px";
+		_left = -(i * 416) + "px";
 		$(".adcontainer").animate({
 			left: _left
 		}, 1500,function(){
-			if (parseInt($(".adcontainer").css("left")) == -2472) {
+			if (parseInt($(".adcontainer").css("left")) == -6*416) {
 				$(".adcontainer").css("left", "0px");
 				i = 0;
 			}
@@ -110,7 +110,7 @@ $(function() {
 				{
 					i = i+1;
 					$(".adcontainer").animate({
-					left: '-=412px'
+					left: '-=416px'
 				}, 1500);
 			
 				}
@@ -129,7 +129,7 @@ $(function() {
 				{
 					i = i-1;
 					$(".adcontainer").animate({
-					left: '+=412px'
+					left: '+=416px'
 				}, 1500);
 				}
 				if(j > 1)
