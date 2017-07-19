@@ -3,11 +3,11 @@ $(function(){
 		$(".orderby").toggle()	
 	})
 	
-	var goodarr =   $(".cart_item");
-	
-	$(".orderbyprice").click(function(){
-		
+	$(".goodorder-img-ud").click(function(){
+		$(".cart_item").reverse();
 	})
+	
+	
 	
 	
 })

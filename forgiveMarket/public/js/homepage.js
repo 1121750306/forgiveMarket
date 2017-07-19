@@ -48,7 +48,7 @@ $(function() {
 		$(".adcontainer").animate({
 			left: _left
 		}, 1500,function(){
-			if (parseInt($(".adcontainer").css("left")) < -2060) {
+			if (parseInt($(".adcontainer").css("left")) == -2472) {
 				$(".adcontainer").css("left", "0px");
 				i = 0;
 			}
