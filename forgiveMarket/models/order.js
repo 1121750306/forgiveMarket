@@ -13,7 +13,7 @@ function initModel(models) {
  * @param {Object} callback
  */
 function addOrder (uid, flag, callback) {
-	switch (flag){
+	switch (parseInt(flag)){
 		//购物车
 		case 0:
 			var orderEntity = new orderModel({
@@ -21,7 +21,6 @@ function addOrder (uid, flag, callback) {
 				flag: 0,
 				date: new Date()
 			});
-			
 			orderEntity.save(callback);
 			break;
 		//未付款

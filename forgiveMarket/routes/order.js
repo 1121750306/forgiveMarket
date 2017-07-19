@@ -8,6 +8,12 @@ var order = require("../models/order");
 var orderitem = require("../models/orderitem");
 var multiparty = require("multiparty");
 
+
+//注册models监听并传递models
+function callback(models) {
+	order.initModel(models);
+}
+
 //添加商品至用户购物车
 router.post('/addtocart', function(req, res, next) {
 	//获取表单数据
@@ -89,14 +95,14 @@ router.get('/getorderitembyuser/:uid/:flag', function(req, res, next) {
 				var oid = data_getorder[0]._id;
 				
 				//测试数据
-//				good.addGoods([{typeid:mongoose.Types.ObjectId("596d62d3c88ed10d0056f4e5"),gname:"商品1",pricebase:"100.1",discount:"0.1"},
-//								{typeid:mongoose.Types.ObjectId("596d62d3c88ed10d0056f4e5"),gname:"商品2",pricebase:"200.1",discount:"0.2"},
-//								{typeid:mongoose.Types.ObjectId("596d62d3c88ed10d0056f4e5"),gname:"商品3",pricebase:"300.1",discount:"0.3"},
-//								{typeid:mongoose.Types.ObjectId("596d62d3c88ed10d0056f4e5"),gname:"商品4",pricebase:"400.1",discount:"0.4"},
-//								{typeid:mongoose.Types.ObjectId("596d62d3c88ed10d0056f4e5"),gname:"商品5",pricebase:"500.1",discount:"0.5"},
-//								{typeid:mongoose.Types.ObjectId("596d62d3c88ed10d0056f4e5"),gname:"商品6",pricebase:"600.1",discount:"0.6"},
-//								{typeid:mongoose.Types.ObjectId("596d62d3c88ed10d0056f4e5"),gname:"商品7",pricebase:"700.1",discount:"0.7"},
-//								{typeid:mongoose.Types.ObjectId("596d62d3c88ed10d0056f4e5"),gname:"商品8",pricebase:"800.1",discount:"0.8"}],
+//				good.addGoods([{typeid:mongoose.Types.ObjectId("596e1772f99d950a343c352f"),gname:"商品1",pricebase:"100.1",discount:"0.1"},
+//								{typeid:mongoose.Types.ObjectId("596e1772f99d950a343c352f"),gname:"商品2",pricebase:"200.1",discount:"0.2"},
+//								{typeid:mongoose.Types.ObjectId("596e1773f99d950a343c3530"),gname:"商品3",pricebase:"300.1",discount:"0.3"},
+//								{typeid:mongoose.Types.ObjectId("596e1773f99d950a343c3530"),gname:"商品4",pricebase:"400.1",discount:"0.4"},
+//								{typeid:mongoose.Types.ObjectId("596e1773f99d950a343c3533"),gname:"商品5",pricebase:"500.1",discount:"0.5"},
+//								{typeid:mongoose.Types.ObjectId("596e1773f99d950a343c3533"),gname:"商品6",pricebase:"600.1",discount:"0.6"},
+//								{typeid:mongoose.Types.ObjectId("596e1773f99d950a343c3532"),gname:"商品7",pricebase:"700.1",discount:"0.7"},
+//								{typeid:mongoose.Types.ObjectId("596e1773f99d950a343c3532"),gname:"商品8",pricebase:"800.1",discount:"0.8"}],
 //								function(err){
 //									if(!err){
 //										console.log("商品批量添加成功");
@@ -148,6 +154,7 @@ router.get('/getorderitembyuser/:uid/:flag', function(req, res, next) {
 						for (var i = 0; i < data_getorderitem.length; i++) {
 							var item = data_getorderitem[i];
 							
+							console.log(item);
 							//取得订单项的商品价格基数
 							var price = item.gid.pricebase;
 							
@@ -256,3 +263,4 @@ router.get('/deleteorderitembyid/:otid', function(req, res, next) {
 });
 
 module.exports = router;
+module.exports.callback = callback;

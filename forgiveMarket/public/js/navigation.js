@@ -7,28 +7,7 @@ $(function() {
 		//判断是否已在购物车页面中
 		if ($("title").html() != "购物车") {
 			//请求购物车数据
-			$.ajax({
-				type:"get",
-				url:"/order/getorderitembyuser/" + user._id + "/0",
-				async:true,
-				success:function(result){
-					if (result.type == "success") {
-						//修改导航栏购物车商品数量
-						$(".nav_cartnum").html(result.message.length);
-						
-					}else {
-						//设置导航栏购物车商品数量为0
-						$(".nav_cartnum").html("0");
-						
-					}
-					
-				},
-				error:function(err){
-					//设置导航栏购物车商品数量为0
-					$(".nav_cartnum").html("0");
-					console.log(err);
-				}
-			});
+			getcartdata();
 		}
 			
 	}
@@ -99,5 +78,32 @@ $(function() {
     	$(this).css({"color":"rgba(5, 83, 33, 1)","background":"white"}).siblings("li").css({"color":"white","background":"rgba(5, 83, 33, 1)"});
     	$(".nav_modal_page").eq($(this).index()).show().siblings(".nav_modal_page").hide();
     });
+    
+    
+	//请求购物车数据
+	function getcartdata () {
+		$.ajax({
+			type:"get",
+			url:"/order/getorderitembyuser/" + user._id + "/0",
+			async:true,
+			success:function(result){
+				if (result.type == "success") {
+					//修改导航栏购物车商品数量
+					$(".nav_cartnum").html(result.message.length);
+					
+				}else {
+					//设置导航栏购物车商品数量为0
+					$(".nav_cartnum").html("0");
+					
+				}
+				
+			},
+			error:function(err){
+				//设置导航栏购物车商品数量为0
+				$(".nav_cartnum").html("0");
+				console.log(err);
+			}
+		});
+	}
     
 });

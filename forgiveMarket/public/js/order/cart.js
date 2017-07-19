@@ -69,6 +69,9 @@ $(function(){
 					}else {
 						//设置导航栏购物车商品数量为0
 						$(".nav_cartnum").html("0");
+						//购物车为空
+						$(".attention").show();
+						$(".cart_empty").show();
 						
 					}
 					
