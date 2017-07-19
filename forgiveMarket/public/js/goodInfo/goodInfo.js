@@ -227,6 +227,14 @@ $(function () {
             })
         })
     }
+    
+    {
+    	//判断登录情况
+    	$(".tot-ctr .goodbtn a").click(function(){
+    		showLogin();
+    	})
+    }
+    
 
     {
         //收藏购物车购买
@@ -245,5 +253,4 @@ $(function () {
         })
 
     }
-
 })
