@@ -75,6 +75,7 @@ function updateGood(obj,cb){
 			doc.gname=obj.gname;
 			doc.pricebase=obj.pricebase;
 			doc.discount=obj.discount;
+			console.log("=================="+doc);
 			doc.save(cb);
 		}else{
 			console.log(err);
@@ -88,3 +89,4 @@ module.exports.addGoods = addGoods;
 module.exports.queryGoodList = queryGoodList;
 module.exports.getGoodById = getGoodById;
 module.exports.deleteGood = deleteGood;
+module.exports.updateGood = updateGood;

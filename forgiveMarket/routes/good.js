@@ -211,7 +211,7 @@ router.get('/updateInit/:id',function(req,res,next){
     res.render("pc/updategood",{goodid:goodid});
 });
 
-router.post('/Update',function(req,res,next)){
+router.post('/Update',function(req,res,next){
 	var goodid=String(req.body.goodid);
 	
 	var gname=req.body.gname;
@@ -236,19 +236,101 @@ router.post('/Update',function(req,res,next)){
 	var priceoffset1=req.body.priceoffset1;
 	var priceoffset2=req.body.priceoffset2;
 	
-	
+	if(smile==undefined){
+		smile=" ";
+	}
+	if(container==undefined){
+		container=" ";
+	}
 	var goodObj={_id:goodid,gname:gname,pricebase:pricebase,discount:discount};
 	good.updateGood(goodObj,function(err,doc){
 		if(!err){
 			console.log(doc);
-			console.log("修改成功");
+			console.log("商品修改成功");
 		}else{
 			console.log(err);
 		}
 	});
 	
 	var goodinfoObj={gid:mongoose.Types.ObjectId(goodid),packing:packing,tip:tip,fitwhere:fitwhere,basis:basis};
-}
+	goodInfo.updateGoodInfo(goodinfoObj,function(err,doc){
+		if(!err){
+			console.log(doc);
+			console.log("商品信息修改成功");
+		}else{
+			console.log(err);
+		}
+	});
+	
+	//该商品有气味规格
+	if(smile.length!=0){
+		 //只有一条容量规格
+		 if(typeof(smile)=="string"){
+		 	var goodsizeObj={gid:mongoose.Types.ObjectId(goodid),gsname:smile,priceoffset:priceoffset2,lefts:lefts2};
+		 	  var objs2=[];
+			 objs2.push(goodsizeObj);
+		 	/* goodsize.UpdateGoodSizes(objs2,function(err,doc){
+		 		if(!err){
+		 			console.log(doc);
+					console.log("商品规格修改成功");
+		 		}else{
+		 			consoel.log(err);
+		 		}
+		 	});*/
+		 }//有多条容量规格
+		 else if(typeof(smile)=="object"){
+		 	for(var i=0;i<smile.length;i++){
+		 		var gsObj={gid:mongoose.Types.ObjectId(goodid),gsname:smile[i],priceoffset:priceoffset2[i],lefts:lefts2[i]};
+		 		goodsizeObjs2.push(gsObj);
+		 	}
+		 	goodsize.UpdateGoodSizes(goodsizeObjs2,function(err,doc){
+		 		if(!err){
+		 			console.log(doc);
+					console.log("商品规格修改成功");
+		 		}else{
+		 			consoel.log(err);
+		 		}
+		 	})
+		 }
+	}
+		
+			//该商品有容量规格
+	 if(container.length!=0){     
+			 //只有一条容量规格
+			 if(typeof(container)=="string"){
+			 	  console.log("进来了LLLLIIIIIIIIII===========");
+			 	  var goodsizeObj={gid:mongoose.Types.ObjectId(goodid),gsname:container,priceoffset:priceoffset1,lefts:lefts1};
+			 	  var objs=[];
+			 	  objs.push(goodsizeObj);
+			 	/*goodsize.UpdateGoodSizes(objs,function(err,doc){
+			 		if(!err){
+			 			console.log(doc);
+						console.log("商品规格修改成功");
+			 		}else{
+			 			consoel.log(err);
+			 		}
+			 	});*/
+			 }//有多条容量规格
+			 else if(typeof(container)=="object"){
+			 	
+			 	for(var i=0;i<container.length;i++){
+			 		console.log("进来了==========="+container[i]);
+			 		var gsObj={gid:mongoose.Types.ObjectId(goodid),gsname:container[i],priceoffset:priceoffset1[i],lefts:lefts1[i]};
+			 		goodsizeObjs1.push(gsObj);
+			 	}
+			 	goodsize.UpdateGoodSizes(goodsizeObjs1,function(err,doc){
+			 		console.log("进来了=====!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+			 		if(!err){
+			 			console.log(doc);
+						console.log("商品规格修改成功===");
+			 		}else{
+			 			consoel.log(err);
+			 		}
+			 	});
+			 }
+		}
+		res.render("pc/goodlistInit");
+});
 /**
  * 查询商品列表
  */

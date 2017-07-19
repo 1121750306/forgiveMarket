@@ -61,13 +61,15 @@ function deleteGoodInfo(id,cb){
 }
 
 function updateGoodInfo(obj,cb){
-	goodInfoModel.find({gid:obj.gid},function(err,doc){
+	goodInfoModel.findOne({gid:obj.gid},function(err,doc){
 		if(!err){
+		/*	doc.save();*/
 			doc.packing=obj.packing;
 			doc.tip=obj.tip;
 			doc.basis=obj.basis;
 			doc.fitwhere=obj.fitwhere;
-			doc.save(obj);
+			console.log("=================="+doc);
+			doc.save(cb);
 		}else{
 			console.log(err);
 		}
