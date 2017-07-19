@@ -43,9 +43,20 @@ function addGoods (objs, callback) {
  * 
  * @param {Object} cb 回调函数
  */
-function queryGoodList(cb){
+function queryGoodList(page,rows,cb){
 	var query=goodModel.find({});
+	
+	query.limit(Number(rows));//限制条数
+	query.skip(Number((page-1)*rows));  //跳过几条开始数
 	query.exec(cb);
+}
+
+/**
+ *获取所有的商品 
+ * @param {Object} cb
+ */
+function countGoodList(cb){
+	goodModel.find({}).exec(cb);
 }
 
 /**
@@ -64,9 +75,30 @@ function getGoodById(id, callback){
 function deleteGood(id,cb){
 	goodModel.find({_id:id}).remove(cb);
 }
+/**
+ * 跟新商品信息 
+ * @param {Object} obj
+ * @param {Object} cb
+ */
+function updateGood(obj,cb){
+	goodModel.findById(obj._id,function(err,doc){
+		if(!err){
+			doc.gname=obj.gname;
+			doc.pricebase=obj.pricebase;
+			doc.discount=obj.discount;
+			console.log("=================="+doc);
+			doc.save(cb);
+		}else{
+			console.log(err);
+		}
+		
+	})
+}
 module.exports.initModel = initModel;
 module.exports.addGood = addGood;
 module.exports.addGoods = addGoods;
 module.exports.queryGoodList = queryGoodList;
 module.exports.getGoodById = getGoodById;
 module.exports.deleteGood = deleteGood;
+module.exports.updateGood = updateGood;
+module.exports.countGoodList=countGoodList;

@@ -81,18 +81,6 @@ $(function(){
 		}
 	});
 	
-	//搜索按钮显示控制
-	$(".cart_search input").focus(function(){
-		$(".cart_search").animate({"width":"80%"},function(){
-			$(".banner h2").show();
-		});
-		
-	});
-	$(".cart_search input").blur(function(){
-		$(".banner h2").hide();
-		$(".cart_search").animate({"width":"96%"});
-	});
-	
 	//多选框控制
 	$(".cart").on("change", ".item_check input", function(){
 		
@@ -378,7 +366,7 @@ $(function(){
 				//删除订单项数据
 				$.ajax({
 					type:"get",
-					url:"/order/cart/deletegood/" + otid,
+					url:"/order/deleteorderitem/" + otid,
 					async:true,
 					success:function(data){
 						console.log(data);

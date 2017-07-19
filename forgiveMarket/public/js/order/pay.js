@@ -81,8 +81,8 @@ $(function(){
 								</div>\
 							</div>\
 							<div class="item_bottom">\
-								<p class="item_totalprice">小计：￥' + itemtotalprice.toFixed(2) + '</p>\
 								<p class="item_totalnum">共' + good.num + '件商品</p>\
+								<p class="item_totalprice">小计：￥' + itemtotalprice.toFixed(2) + '</p>\
 							</div>\
 						</li>';
 					

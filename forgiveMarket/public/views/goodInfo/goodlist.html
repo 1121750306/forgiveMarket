@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		
+		<title>shoppingcart</title>
+		
+		<link rel="stylesheet" type="text/css" href="/bootstrap/dist/css/bootstrap.min.css"/>
+		
+		<link rel="stylesheet" type="text/css" href="/css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="/css/navigation.css"/>
+		<link rel="stylesheet" type="text/css" href="/css/user/history_content.css" />	
+		<link rel="stylesheet" type="text/css" href="/css/order/cart.css"/>
+		<link rel="stylesheet" type="text/css" href="/css/goodInfo/goodlist.css" />
+		
+	</head>
+	<body>
+		<div class="nav">
+			<span class="nav_menu"></span>
+			<a href="/views/homepage.html" class="nav_logo"></a>
+			<a href="/views/user/user.html" class="nav_user"></a>
+			<a href="/views/order/cart.html" class="nav_cart">
+				<p class="nav_cartnum">0</p>
+			</a>
+			
+			<div class="nav_modal">
+				<div class="nav_modal_content">
+					<div class="nav_modal_title">
+						<span class="nav_modal_logo"></span>
+						<span class="nav_modal_close">
+							<i></i>
+						</span>
+					</div>
+					<ul class="nav_modal_tab">
+						<li>产品类别</li>
+						<li>浏览历史</li>
+					</ul>
+					<div class="nav_modal_page">
+						<ul class="nav_modal_type">
+						</ul>
+					</div>
+					<div id="history_content" class="nav_modal_page"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="header">
+			<h2 class="goodtype">商品类别</h2>
+			<h2 class="goodorder">销量排序</h2>
+			<h2 class="orientation">正序</h2>
+			<ul class="orderby">
+				<li class="orderbyprice">按销量排序</li>
+				<li class="orderbymount">按价格排序</li>
+			</ul>
+		</div>
+			
+		<div class="banner">
+			<div class="search">
+				<img src="../../img/innisfreeIco/search.png"/>
+				<input type="text" class="search_text" placeholder="搜索商品"/>
+			</div>
+			<h2 onmousedown="search()">搜索</h2>
+		</div>
+		
+		<div class="content">
+			<ul class="cart">
+				<li class="cart_item">
+					<img src="/img/innisfree-img/goods/1000000311_l.png"/>
+					<div class="item_info">
+						<h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium corporis at quas facere voluptas aliquam eos necessitatibus cupiditate officia aspernatur illum vel omnis totam in eaque odit quisquam tempore unde!</h2>
+						<ul class="good_size">
+							<li><h3>绿色</h3></li>
+							<li><h3>150ml</h3></li>	
+						</ul>
+						<div class="info_bottom">
+							<p class="item_price">￥100.00</p>		
+							<p class="item_num">80人付款</p>
+						</div>
+					</div>
+				</li>
+				<li class="cart_item">
+					<img src="/img/innisfree-img/goods/1000000311_l.png"/>
+					<div class="item_info">
+						<h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium corporis at quas facere voluptas aliquam eos necessitatibus cupiditate officia aspernatur illum vel omnis totam in eaque odit quisquam tempore unde!</h2>
+						<ul class="good_size">
+							<li><h3>绿色</h3></li>
+							<li><h3>150ml</h3></li>	
+						</ul>
+						<div class="info_bottom">
+							<p class="item_price">￥100.00</p>		
+							<p class="item_num">80人付款</p>
+						</div>
+					</div>
+				</li>
+				<li class="cart_item">
+					<img src="/img/innisfree-img/goods/1000000311_l.png"/>
+					<div class="item_info">
+						<h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium corporis at quas facere voluptas aliquam eos necessitatibus cupiditate officia aspernatur illum vel omnis totam in eaque odit quisquam tempore unde!</h2>
+						<ul class="good_size">
+							<li><h3>绿色</h3></li>
+							<li><h3>150ml</h3></li>	
+						</ul>
+						<div class="info_bottom">
+							<p class="item_price">￥100.00</p>		
+							<p class="item_num">80人付款</p>
+						</div>
+					</div>
+				</li>
+				<li class="cart_item">
+					<img src="/img/innisfree-img/goods/1000000311_l.png"/>
+					<div class="item_info">
+						<h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium corporis at quas facere voluptas aliquam eos necessitatibus cupiditate officia aspernatur illum vel omnis totam in eaque odit quisquam tempore unde!</h2>
+						<ul class="good_size">
+							<li><h3>绿色</h3></li>
+							<li><h3>150ml</h3></li>	
+						</ul>
+						<div class="info_bottom">
+							<p class="item_price">￥100.00</p>		
+							<p class="item_num">80人付款</p>
+						</div>
+					</div>
+				</li>
+				<li class="cart_item">
+					<img src="/img/innisfree-img/goods/1000000311_l.png"/>
+					<div class="item_info">
+						<h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium corporis at quas facere voluptas aliquam eos necessitatibus cupiditate officia aspernatur illum vel omnis totam in eaque odit quisquam tempore unde!</h2>
+						<ul class="good_size">
+							<li><h3>绿色</h3></li>
+							<li><h3>150ml</h3></li>	
+						</ul>
+						<div class="info_bottom">
+							<p class="item_price">￥100.00</p>		
+							<p class="item_num">80人付款</p>
+						</div>
+					</div>
+				</li>
+				<li class="cart_item">
+					<img src="/img/innisfree-img/goods/1000000311_l.png"/>
+					<div class="item_info">
+						<h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium corporis at quas facere voluptas aliquam eos necessitatibus cupiditate officia aspernatur illum vel omnis totam in eaque odit quisquam tempore unde!</h2>
+						<ul class="good_size">
+							<li><h3>绿色</h3></li>
+							<li><h3>150ml</h3></li>	
+						</ul>
+						<div class="info_bottom">
+							<p class="item_price">￥100.00</p>		
+							<p class="item_num">80人付款</p>
+						</div>
+					</div>
+				</li>
+				<li class="cart_item">
+					<img src="/img/innisfree-img/goods/1000000311_l.png"/>
+					<div class="item_info">
+						<h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium corporis at quas facere voluptas aliquam eos necessitatibus cupiditate officia aspernatur illum vel omnis totam in eaque odit quisquam tempore unde!</h2>
+						<ul class="good_size">
+							<li><h3>绿色</h3></li>
+							<li><h3>150ml</h3></li>	
+						</ul>
+						<div class="info_bottom">
+							<p class="item_price">￥100.00</p>		
+							<p class="item_num">80人付款</p>
+						</div>
+					</div>
+				</li>
+			</ul>
+			
+		</div>
+	</body>
+	
+	<script type="text/javascript" src="/jquery/dist/jquery.js" ></script>
+	<script src="/js/navigation.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/js/user/history.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="/js/goodInfo/goodlist.js"></script>
+	
+</html>

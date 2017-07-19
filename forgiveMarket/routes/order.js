@@ -176,26 +176,10 @@ router.post('/updateorderitem', function(req, res, next) {
 	var otid = req.body.otid;
 	var num = req.body.num;
 	
-	orderitem.getOrderItemById(otid, function(err, data){
+	orderitem.updateOrderItemNumById(otid, num, function(err){
 		if (!err) {
-			if (data.length != 0) {
-				//获得订单项
-				var item = data[0];
-				
-				//修改订单项数量
-				item.num = num;
-				
-				item.save(function(err){
-					if (!err) {
-  						res.send("success");
-					} else{
-						res.send("error");
-					}
-				});
-			} else{
-				console.log(new Date() + "ERROR: 订单项id有误");
-				res.send("error");
-			}
+			console.log(new Date() + "SUCCESS: 修改订单项数量成功");
+			res.send("success");
 		}else {
 			console.log(new Date() + "ERROR: " + err);
 			res.send("error");
@@ -205,22 +189,19 @@ router.post('/updateorderitem', function(req, res, next) {
 });
 
 //删除商品订单项
-router.get('/cart/deletegood/:otid', function(req, res, next) {
+router.get('/deleteorderitem/:otid', function(req, res, next) {
 	var otid = req.params.otid;
 	
-	orderitem.deleteOrderItemById(otid, function(err, data){
+	orderitem.deleteOrderItemById(otid, function(err){
 		if (!err) {
-			if (data.length != 0) {
-				data[0].remove();
-			} else{
-				console.log(new Date() + "ERROR: 订单项id有误");
-			}
+			console.log(new Date() + "SUCCESS: 删除商品订单项成功");
+  			res.send("success");
 		}else {
 			console.log(new Date() + "ERROR: " + err);
+			res.send("error");
 		}
 	})
 	
-  	res.send("success");
 });
 
 module.exports = router;

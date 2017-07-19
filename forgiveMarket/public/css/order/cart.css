@@ -28,54 +28,6 @@ body{
 	line-height: 40px;
 }
 
-/*.banner{
-	width: 100%;
-	height: 40px;
-	background-color: lightgrey;
-	padding: 5px 0;
-	box-sizing: border-box;
-	display: none;
-}
-
-.banner h2{
-	width: 14%;
-	float: right;
-	margin-right: 2%;
-	border-radius: 5px;
-	font-size: 1.5rem;
-	line-height: 30px;
-	text-align: center;
-	background: yellowgreen;
-	color: white;
-	font-weight: bold;
-	display: none;*/
-}
-
-.cart_search{
-	width: 96%;
-	height: 30px;
-	margin: 0 2%;
-	background-color: white;
-	border-radius: 5px;
-	box-sizing: border-box;
-	float: left;
-}
-
-.cart_search input{	
-	width: 80%;
-	height: 100%;
-	border: none;
-	outline: none;
-	float: left;
-	font-size: 1.5rem;
-}
-
-.cart_search img{
-	height: 20px;
-	margin: 5px;
-	float: left;
-}
-
 .content{
 	margin-bottom: 80px;
 }

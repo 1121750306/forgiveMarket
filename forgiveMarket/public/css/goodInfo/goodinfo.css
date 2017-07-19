@@ -83,11 +83,11 @@
 	border-radius: 5px;
 	display:inline-block;
 	margin: 0 5px;
-	background: #580;
+	background: #fff;
 	border: 1px solid #000000;
 }
 .good-ct .ct-imgList .img-ctr .on{
-	background: #fff;
+	background: #580;
 }
 .good-ct .ct-imgList .img-ctr div{
 	display: block;

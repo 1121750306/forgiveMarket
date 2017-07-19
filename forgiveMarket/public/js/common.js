@@ -11,3 +11,10 @@ function toast(content, url) {
 		}, 500);
 	}
 }
+function isLogin(){
+	var user = sessionStorage.user;
+	if(user != null && user != 'null' && user != undefined && user != 'undefined' && user != ''){
+		return true;
+	}
+	return false;
+}

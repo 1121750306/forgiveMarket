@@ -76,15 +76,28 @@ function getOrderItemsByOid (oid, callback) {
 	}).exec(callback);
 }
 
-///**
-// * 通过id修改订单项数量
-// * @param {Object} oid
-// * @param {Object} num
-// * @param {Object} callback
-// */
-//function updateOrderItemNumById (oid, num, callback) {
-//	orderitemModel.find({oid:oid}, callback);
-//}
+/**
+   * 通过id修改订单项数量
+   * @param {Object} id
+   * @param {Object} num
+   * @param {Object} callback
+   */
+function updateOrderItemNumById (id, num, callback) {
+	orderitemModel.find({_id:id},function(err, data){
+		if (!err) {
+			if (data.length != 0) {
+				
+				data[0].num = num;
+				
+				data[0].save(callback);
+			} else{
+				callback("订单项id有误");
+			}
+		}else {
+			callback(err);
+		}
+	});
+}
 
 /**
  * 通过id删除订单项
@@ -92,7 +105,17 @@ function getOrderItemsByOid (oid, callback) {
  * @param {Object} callback
  */
 function deleteOrderItemById(id, callback){
-	orderitemModel.find({_id:id}, callback);
+	orderitemModel.find({_id:id}, function(err, data){
+		if (!err) {
+			if (data.length != 0) {
+				data[0].remove(callback);
+			} else{
+				callback("订单项id有误");
+			}
+		}else {
+			callback(err);
+		}
+	});
 }
 
 module.exports.initModel = initModel;
@@ -100,4 +123,5 @@ module.exports.addOrderItem = addOrderItem;
 module.exports.addOrderItems = addOrderItems;
 module.exports.getOrderItemById = getOrderItemById;
 module.exports.getOrderItemsByOid = getOrderItemsByOid;
+module.exports.updateOrderItemNumById = updateOrderItemNumById;
 module.exports.deleteOrderItemById = deleteOrderItemById;

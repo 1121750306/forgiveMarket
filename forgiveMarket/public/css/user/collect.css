@@ -51,7 +51,7 @@
 	width: 20%;
 	min-width: 80px;
 	min-height: 80px;
-	margin: 5px;
+	padding: 5px;
 }
 #collect_content>ul>li>div{
 	width:70%;
