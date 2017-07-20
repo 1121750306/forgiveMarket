@@ -460,7 +460,7 @@ router.get('/getGoodSales/:gid',function(req,res,next){
 				sales=sales+Number(doc[i].sales);
 			}
 			 console.log(sales);
-			 res.send(sales);
+			 res.send(sales+"");
 		}else{
 			console.log(err);
 		}
