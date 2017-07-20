@@ -38,6 +38,7 @@ $(function() {
 		});
 
 		$(".searchhistory-li-closeimg").click(function() {
+			event.stopPropagation();
 			i = $(".searchhistory-li-closeimg").index(this);
 			console.log(i)
 			$(".searchhistory-ul").find("li")[i].remove()

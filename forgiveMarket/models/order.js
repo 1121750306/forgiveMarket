@@ -79,7 +79,42 @@ function updateOrder(oid, flag, cb) {
 	});
 }
 
+function createOrder(uid, otids, cb) {
+	var orderEntity = new orderModel({
+		uid: mongoose.Types.ObjectId(uid),
+		flag: 2,
+		date: new Date()
+	});
+	orderEntity.save()
+		.then(function(doc) {
+			//创建成功
+			console.log("创建成功：" + doc);
+			//获取订单项
+			promises = [];
+			for (var i = 0; i < otids.length; i++) {
+				promises.push(orderitemModel.findOneAndUpdate({
+					_id: otids[i]
+				}, {
+					oid: doc._id
+				}));
+			}
+			promises.push(new Promise(function(resolve, reject) {
+				resolve(doc);
+			}));
+			return Promise.all(promises);
+		}, function(err) {
+			//创建订单失败
+			cb("创建订单失败", null);
+		}).then(function(result) {
+			cb(null, "创建订单成功");
+		}, function(err) {
+			//创建订单失败
+			cb("创建订单失败", null);
+		});
+}
+
 module.exports.initModel = initModel;
 module.exports.addOrder = addOrder;
 module.exports.getOrderByIdAndFlag = getOrderByIdAndFlag;
 module.exports.updateOrder = updateOrder;
+module.exports.createOrder = createOrder;
