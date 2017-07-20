@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var user = require("../models/user");
+var orderitem = require("../models/orderitem");
 var mongoose = require("mongoose");
 var goodphoto = require("../models/goodphoto");
 var multiparty = require('multiparty');
@@ -78,6 +79,10 @@ router.post("/upload",function(req,res,next){
 		res.send({msg:"success"});
 	});
 	
+});
+
+router.get('/orderListInit',function(req,res,next){
+	res.render('pc/orderlistInit');
 })
 module.exports = router;
 module.exports.callback = callback;

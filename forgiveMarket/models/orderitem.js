@@ -58,7 +58,13 @@ function getOrderItemById (id, callback) {
 		path: 'gsids.gsid'
 	}).exec(callback);
 }
-
+/**
+ * 获取所有的订单项 
+ * @param {Object} cb
+ */
+function getAllOrderItem(cb){
+	orderitemModel.find({}).exec(cb);
+}
 /**
  * 通过oid查找订单项
  * @param {Object} oid
@@ -125,3 +131,4 @@ module.exports.getOrderItemById = getOrderItemById;
 module.exports.getOrderItemsByOid = getOrderItemsByOid;
 module.exports.updateOrderItemNumById = updateOrderItemNumById;
 module.exports.deleteOrderItemById = deleteOrderItemById;
+module.exports.getAllOrderItem = getAllOrderItem;
