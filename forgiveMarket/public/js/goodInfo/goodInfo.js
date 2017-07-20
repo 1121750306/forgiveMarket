@@ -477,19 +477,21 @@ $(function () {
     }
 
     function getcartdata() {
-        var user = sessionStorage.user;
+        var user = JSON.parse(sessionStorage.user);
         $.ajax({
             type: "get",
             url: "/order/getorderitembyuser/" + user._id + "/0",
             async: true,
             success: function (result) {
-            	console.log('购物车')
+            	console.log(result)
                 if (result.type == "success") {
                     //修改导航栏购物车商品数量
+                    console.log(result)
                     $(".nav_cartnum").html(result.message.length);
                 } else {
                     //设置导航栏购物车商品数量为0
                     $(".nav_cartnum").html("0");
+                    console.log(000)
 
                 }
 
