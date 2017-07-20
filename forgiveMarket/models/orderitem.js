@@ -63,7 +63,13 @@ function getOrderItemById (id, callback) {
  * @param {Object} cb
  */
 function getAllOrderItem(cb){
-	orderitemModel.find({}).exec(cb);
+	orderitemModel.find({}).populate({
+		path: 'oid' 
+	}).populate({
+		path: 'gid' 
+	}).populate({
+		path: 'gsids.gsid'
+	}).exec(cb);
 }
 /**
  * 通过oid查找订单项

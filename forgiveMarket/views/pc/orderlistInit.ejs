@@ -63,55 +63,65 @@
             rownumbers:true,
             columns:[[
                 {field:'ck',checkbox:true,width:10},
-                {field:'gname',title:'商品名',width:100,
-                    formatter:function(value,row,index){return row.gname;}
+                {field:'gname',title:'商品名',width:40,
+                    formatter:function(value,row,index){return row.gid.gname;}
                 },
-                {field:'pricebase',title:'基础价格',width:60,
-                    formatter:function(value,row,index){return row.pricebase;}
+                {field:'goodsize',title:'规格',width:40,
+                    formatter:function(value,row,index){return row.gsids[0].gsid.gsname;}
                },
-                {field:'discount',title:'折扣',width:100,
-                    formatter:function(value,row,index){return row.discount;}
-               },
-               {field:'typeid',title:'类型',width:100,
-                    formatter:getTypeName
-               },
-               {field:'opera',title:'详情',width:40,
+                {field:'uid',title:'用户',width:40,
+                    formatter:getUname
+                },
+                {field:'price',title:'价格',width:40,
                     formatter:function(value,row,index){
-                    	var a='<a class="details" href="javascript:void(0)"></a>'
-                    	return a;
+                    	return row.gid.pricebase+row.gsids[0].gsid.priceoffset;
                     }
                },
-               {field:'photo',title:'图片',width:40,
-                    formatter:Uploads
-                }
+               {field:'flag',title:'订单状态',width:60,
+                    formatter:getOrderItemState
+                    //function(value,row,index){return row.oid.flag;}
+              }
             ]],
-            toolbar:[{
-                text:"增加",
-                iconCls:'icon-add',
-                handler:function () {
-                      addRow();
-                }
-            },'-',{
-                text:"删除",
-                iconCls:'icon-remove',
-                handler:function () {
-                        deleteGood();
-                }
-            },'-',{
-                text:"跟新",
-                iconCls:'icon-edit',
-                handler:function () {
-                      updateGood();
-                }
-            },'-'],
             onLoadSuccess:function () {
-            	$(".details").linkbutton({text:'查看详情',plain:true,iconCls:'icon-more'});  
-            	$(".photo").linkbutton({text:'上传',plain:true});  
                 $("#GoodTable").datagrid('clearSelections');
             }
         });
     });
-    
+   function getOrderItemState(value,row,index){
+   	 switch (row.oid.flag){
+   	 	case 0:
+   	 	    return "购物车";
+   	 		break;
+   	    case 1:
+   	 	    return "未付款";
+   	 		break;
+   	 	case 2:
+   	 	    return "已付款";
+   	 		break;
+   	 	case 3:
+   	 	    return "已发货";
+   	 		break;
+   	 	case 4:
+   	 	    return "已收货";
+   	 		break;
+   	 	case 4:
+   	 	    return "已完成";
+   	 		break;
+   	 	default:
+   	 		break;
+   	 }
+   }
+   function getUname(value,row,index){
+   	 $.ajax({
+   	 	type:"post",
+   	 	url:"",
+   	 	data:{id:row.oid.uid},
+   	 	async:true,
+   	 	success:function(data){
+   	 		
+   	 	}
+   	 });
+   }
         </script>
 	</body>
 </html>

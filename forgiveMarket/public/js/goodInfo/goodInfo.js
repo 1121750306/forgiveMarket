@@ -487,7 +487,6 @@ $(function () {
                 if (result.type == "success") {
                     //修改导航栏购物车商品数量
                     $(".nav_cartnum").html(result.message.length);
-
                 } else {
                     //设置导航栏购物车商品数量为0
                     $(".nav_cartnum").html("0");
