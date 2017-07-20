@@ -22,7 +22,7 @@ router.get('/getunamebyid/:uid', function(req, res, next) {
 				flag:300
 			});
 		}
-	})
+	});
 });
 
 /**
