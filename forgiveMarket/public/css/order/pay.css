@@ -1,10 +1,24 @@
+html,body{
+	height: 100%;
+}
+
+body{
+	padding-top: 50px;
+	background: rgba(0,0,0,0.1);
+}
+
+.header{
+	margin: 0;
+}
+
 .banner{
 	width: 100%;
-	height: 130px;
+	height: 160px;
 	position: relative;
-	margin-top: 30px;
+	padding-top: 30px;
 	border-bottom: 5px rgba(5, 83, 33, 1) solid;
 	margin-bottom: 5px;
+	background: white;
 }
 
 .banner .banner_top{
@@ -72,18 +86,19 @@
 }
 
 .cart .cart_item{
+	width: auto;
 	height: 170px;
 	padding: 0;
+	margin: 0 5px 5px 5px;
+	background: white;
 	display: block;
-	border-top: 6px rgba(0,0,0,0.1) solid;
-	border-bottom: none;
 }
 
 .cart .cart_item .item_top{
 	width: 100%;
 	height: 120px;
 	padding: 5px 30px;
-	border-bottom: 0.1rem lightgrey solid;
+	border-bottom: 1px lightgrey solid;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;

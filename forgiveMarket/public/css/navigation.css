@@ -167,7 +167,6 @@
 .nav .nav_modal .nav_modal_content .nav_modal_page li{
 	width: 50%;
 	height: 40px;
-	padding-left: 15px;
 	float: left;
 	border-bottom:1px lightgrey solid;
 	border-right:1px lightgrey solid;	
@@ -180,4 +179,10 @@
 	border-right: none;
 }
 
+.nav .nav_modal .nav_modal_content .nav_modal_page li a{
+	width: 100%;
+	height: 40px;
+	padding-left: 15px;
+	display: block;
+}
 

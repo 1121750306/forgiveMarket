@@ -4,6 +4,19 @@ ul{
 	list-style: none;
 }
 
+html,body{
+	height: 100%;
+}
+
+body{
+	padding-top: 50px;
+	background: rgba(0,0,0,0.1);
+}
+
+.header{
+	margin: 0;
+}
+
 .banner {
 	width: 100%;
 	padding: 0;
@@ -31,7 +44,6 @@ ul{
 
 .content{
 	padding-top: 5px;
-	background: rgba(0,0,0,0.1);
 }
 
 .order_item{
@@ -88,3 +100,78 @@ ul{
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
+
+.attention .cart_empty{
+	display: block;
+}
+
+ ::-webkit-input-placeholder {
+	font-size: 1.4rem;
+}
+
+.comment{
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top:100%;
+	left:0%;
+	background: #fff;	
+}
+
+.com_content{
+	width: 100%;
+	height:93%;
+	margin-top:50px;
+}
+
+.com_content .com_txt{
+	width: 100%;
+	height: 43%; 
+}
+
+.com_content .com_txt form{
+	width: 100%;
+	height: 100%;
+	
+}
+
+.com_content .com_txt textarea{
+	width: 100%;
+	height: 70%;
+	border:none;
+	display: block;
+	border-bottom: 1px solid #8D8D8D;
+	font-size: 1.7rem;
+	text-align: left;
+	outline: none;
+	overflow-x: hidden;
+}
+
+.com_content .com_txt p{
+	width: 100%;
+	height: 15%;
+	font-size: 1rem;
+	margin: 0px;
+	cursor:pointer;
+}
+
+.com_content .com_txt p input{
+	width: 96%;
+	border:none;
+	height: 90%;
+	margin-left: 8px;
+	margin-top:3px ;
+	border-radius: 3px;
+	background:rgba(5, 83, 33, 1);
+	color: #fff;
+	font-size: 1.5rem;
+}
+
+.com_content .com_txt p:nth-child(2){
+	margin-top:10px;
+}
+
+.com_content .com_txt p:nth-child(3) input{
+    background:#404040 ;
+}
+

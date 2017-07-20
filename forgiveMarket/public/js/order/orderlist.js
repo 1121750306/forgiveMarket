@@ -16,12 +16,17 @@ $(function() {
 	//查看收货信息控制
 	$(".order_location").click(function(){
 		$(".order").empty();
+		reloadView(view);
 	});
 	
 	//商品评论控制
 	$(".item_comment").click(function(){
-		$(".order").empty();
+		$(".com_txt form input[name=gid]").val($(this).parents(".cart_item").attr("gid"));
+		$(".comment").animate({top:"0%"},500);
 	});
+	$(".com_cancel").click(function(){
+		$(".comment").animate({top:"100%"},500);
+	})
 	
 	//重载界面
 	function reloadView (index) {
@@ -45,8 +50,9 @@ $(function() {
 		if ($(".order").html() == "") {
 			console.log("empty")
 			$(".attention").show();
-			$(".attention .cart_empty").show();
 			$(".attention .cart_empty").html("您没有" + $(".order_type").find(".underline h3").html()+"的订单");
+		}else {
+			$(".attention").hide();
 		}
 		
 //		switch (index){

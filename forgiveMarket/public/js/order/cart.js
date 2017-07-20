@@ -19,7 +19,7 @@ $(function(){
 				async:true,
 				success:function(result){
 					if (result.type == "success") {
-						var goods = result.message;
+						let goods = result.message;
 						//修改导航栏购物车商品数量
 						$(".nav_cartnum").html(goods.length);
 						
@@ -28,36 +28,50 @@ $(function(){
 							$(".cart").show();
 							
 							//遍历商品列表
-							for (var i = 0; i < goods.length; i++) {
-								var good = goods[i];
+							for (let i = 0; i < goods.length; i++) {
+								let good = goods[i];
 								
-								//拼接商品规格
-								var goodsizeUl = "";
-								for (var j = 0; j < good.gsizes.length; j++) {
-									goodsizeUl = goodsizeUl + "<li><h3>" + good.gsizes[j] +"</h3></li>";
-								}
-								
-								//组合li
-								var li ='<li class="cart_item" gid="' + good.gid + '" otid="' + good.otid + '">\
-											<div class="item_check">\
-												<input type="checkbox" />\
-											</div>\
-											<img src="../../img/innisfree-img/goods/1000000311_l.png"/>\
-											<div class="item_info">\
-												<h2>' + good.gname + '</h2>\
-												<ul class="good_size">' + goodsizeUl + '</ul>\
-												<div class="info_bottom">\
-													<p class="item_price">￥' + good.price + '</p>\
-													<div class="num_ctrl">\
-														<span><i class="item_sub"></i></span>\
-														<input class="item_num" type="text" value="' + good.num + '"/>\
-														<span><i class="item_add"></i></span>\
-													</div>\
-												</div>\
-											</div>\
-										</li>';
+								//获取照片
+								$.ajax({
+									type:"get",
+									url:"/goodphoto/getShowPhoto/" + good.gid,
+									async:true,
+									success:function(photo){
+										//拼接商品规格
+										let goodsizeUl = "";
+										for (let j = 0; j < good.gsizes.length; j++) {
+											goodsizeUl = goodsizeUl + "<li><h3>" + good.gsizes[j] +"</h3></li>";
+										}
 										
-								$(".cart").append(li);
+										//组合li
+										let li ='<li class="cart_item" gid="' + good.gid + '" otid="' + good.otid + '">\
+													<div class="item_check">\
+														<input type="checkbox" />\
+													</div>\
+													<img src="/img/upload/' + photo + '"/>\
+													<div class="item_info">\
+														<h2>' + good.gname + '</h2>\
+														<ul class="good_size">' + goodsizeUl + '</ul>\
+														<div class="info_bottom">\
+															<p class="item_price">￥' + good.price + '</p>\
+															<div class="num_ctrl">\
+																<span><i class="item_sub"></i></span>\
+																<input class="item_num" type="text" value="' + good.num + '"/>\
+																<span><i class="item_add"></i></span>\
+															</div>\
+														</div>\
+													</div>\
+												</li>';
+												
+										$(".cart").append(li);
+										
+									},
+									error:function(err){
+										console.log(err);
+									}
+								});
+								
+								
 							}
 							
 						}else{
