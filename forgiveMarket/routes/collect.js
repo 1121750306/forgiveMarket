@@ -86,7 +86,7 @@ router.post('/querycollect', function(req, res, next) {
 				var date = new Date(Number(result[i].date));
 				console.log("date:" + date);
 				var dateStr = date.getFullYear() + "年" + (date.getMonth() + 1) + "月" + date.getDate() + "日";
-				resultjson[i]={};
+				resultjson[i] = {};
 				resultjson[i].time = dateStr;
 				resultjson[i].gid = result[i].gid._id;
 				resultjson[i].type = result[i].gid.typeid.tname;
@@ -110,11 +110,18 @@ router.post('/querycollect', function(req, res, next) {
 });
 
 router.post('/iscollect', function(req, res, next) {
+	if (req.session.user == null) {
+		res.send({
+			flag: 300,
+			msg: "未登录"
+		});
+		return;
+	}
 	console.log("----")
-			var uid = req.session.user[0]._id;
-			var gid = req.body.gid;
-//	var uid = "596b560f3db30f19d83b91ae";
-//	var gid = '596e0b5a1e4c7c6df45749e1';
+	var uid = req.session.user[0]._id;
+	var gid = req.body.gid;
+	//	var uid = "596b560f3db30f19d83b91ae";
+	//	var gid = '596e0b5a1e4c7c6df45749e1';
 	collect.isCollect(uid, gid, function(err, result) {
 		if (result) {
 			res.send({

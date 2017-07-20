@@ -20,12 +20,14 @@ $(document).ready(function() {
 						ul.appendChild(dateLi);
 
 						for (var j = 0; j < result[i].goods.length; j++) {
-							let html = `<li gid='${result[i].goods[j].gid}'>\
+							var liId = "good_li" + j;
+							let html = `<li id='${liId}' gid='${result[i].goods[j].gid}'>\
 								<img src="../../img/innisfree-img/goods/1000000336_l.png" />\
 								<h2>${result[i].goods[j].goodname}</h2>\
 								<span class="price">￥${result[i].goods[j].goodprice}</span>\
 							</li>`;
 							$(ul).append(html);
+							setImage($(ul).find("#" + liId), result[i].goods[j].gid);
 						}
 						$("#history_content_real").append(ul);
 						if (result[i].goods.length % 2 == 1) {
@@ -54,4 +56,19 @@ $(document).ready(function() {
 			console.log(err);
 		}
 	});
-})
+});
+
+
+function setImage(obj, gid) {
+	console.log(obj);
+	//获取图片路径
+	$.ajax({
+		type: "get",
+		url: "/goodphoto/getShowPhoto/" + gid,
+		async: true,
+		success: function(data) {
+			console.log(data);
+			obj.find("img").attr("src", '/img/upload/' + data);
+		}
+	});
+}
