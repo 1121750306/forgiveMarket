@@ -123,7 +123,7 @@ function pay() {
 			otids: JSON.stringify({
 				otid: otids
 			}),
-			flag: 200
+			locationid: locations._id
 		},
 		async: true,
 		success: function(data) {

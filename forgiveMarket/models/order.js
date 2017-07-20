@@ -79,10 +79,11 @@ function updateOrder(oid, flag, cb) {
 	});
 }
 
-function createOrder(uid, otids, cb) {
+function createOrder(uid, otids, locationid, cb) {
 	var orderEntity = new orderModel({
 		uid: mongoose.Types.ObjectId(uid),
 		flag: 2,
+		locationid: mongoose.Types.ObjectId(String(locationid)),
 		date: new Date()
 	});
 	orderEntity.save()

@@ -43,12 +43,13 @@ router.post('/addtocart', function(req, res, next) {
 					gid: mongoose.Types.ObjectId(gid),
 					gsids: gsids,
 					num: num
-				}, function(err_addorder) {
+				}, function(err_addorder, doc) {
 					if (!err_addorder) {
 						//添加成功	
 						res.send({
 							type: "success",
-							message: "商品订单项添加成功"
+							message: "商品订单项添加成功",
+							otid: doc._id
 						});
 					} else {
 						console.log(new Date() + "ERROR: 商品订单项添加失败");
@@ -328,13 +329,13 @@ router.post('/updateorder', function(req, res, next) {
 //创建订单
 router.post('/createorder', function(req, res, next) {
 	var uid = req.session.user[0]._id;
-	var flag = req.body.flag;
+	var locationid = req.body.locationid;
 	var otids = JSON.parse(req.body.otids);
 	otids = otids.otid;
-	console.log("flag:" + flag);
 	console.log("otids:" + otids);
-	order.createOrder(uid, otids, function(err, result) {
-		console.log()
+	console.log("locationid:" + locationid);
+	order.createOrder(uid, otids, locationid, function(err, result) {
+		console.log(result);
 		res.send({
 			flag: 200,
 			result: result

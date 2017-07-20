@@ -104,7 +104,29 @@ db.once("open", function() {
 		versionKey: false
 	});
 	goodsizeModel = db.model("Goodsize", goodsizeSchema);
-
+	
+	// 收货地址表
+	locationSchema = new mongoose.Schema({
+		//用户外键
+		uid: String,
+		//省
+		province: String,
+		//市
+		city: String,
+		//区、县
+		district: String,
+		address: String,
+		//收货人姓名
+		shname: String,
+		postcode: Number,
+		phone: String,
+		//0.非默认 1.默认
+		flag: Number
+	}, {
+		versionKey: false
+	});
+	locationModel = db.model("Location", locationSchema);
+	
 	// 订单表
 	orderSchema = new mongoose.Schema({
 		//用户外键
@@ -115,7 +137,11 @@ db.once("open", function() {
 		//0.购物车 1.未付款 2.已付款 3.已发货 4.已收货(待评价)5.已完成
 		flag: Number,
 		//订单时间
-		date: Date
+		date: Date,
+		locationid: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'Location'
+		}
 	}, {
 		versionKey: false
 	});
@@ -145,28 +171,6 @@ db.once("open", function() {
 		versionKey: false
 	});
 	orderitemModel = db.model("Orderitem", orderitemSchema);
-
-	// 收货地址表
-	locationSchema = new mongoose.Schema({
-		//用户外键
-		uid: String,
-		//省
-		province: String,
-		//市
-		city: String,
-		//区、县
-		district: String,
-		address: String,
-		//收货人姓名
-		shname: String,
-		postcode: Number,
-		phone: String,
-		//0.非默认 1.默认
-		flag: Number
-	}, {
-		versionKey: false
-	});
-	locationModel = db.model("Location", locationSchema);
 
 	// 评论表
 	commentSchema = new mongoose.Schema({
