@@ -71,7 +71,6 @@ router.get('/getorderitembyuser/:uid/:flag', function(req, res, next) {
 	var uid = req.params.uid;
 	var flag = req.params.flag;
 	var goods = [];
-	console.log("-----------------------------")
 	//查询是否已经创建订单
 	order.getOrderByIdAndFlag(uid, flag, function(err_getorder, data_getorder){
 		if (!err_getorder) {

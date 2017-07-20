@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var user = require("../models/user");
+var orderitem = require("../models/orderitem");
 var mongoose = require("mongoose");
 var goodphoto = require("../models/goodphoto");
 var multiparty = require('multiparty');
@@ -78,6 +79,22 @@ router.post("/upload",function(req,res,next){
 		res.send({msg:"success"});
 	});
 	
+});
+
+router.get('/orderListInit',function(req,res,next){
+	res.render('pc/orderlistInit');
+});
+router.post('/queryOrderList',function(req,res,next){
+	orderitem.getAllOrderItem(function(err,doc){
+		if(!err){		
+			console.log("订单项数量"+doc.length);
+			console.log("订单项"+doc[0].oid.uid);
+			console.log("订单项"+doc[0].gsids[0].gsid.gsname);
+			res.send(doc);
+		}else{
+			console.log(err);
+		}
+	})
 })
 module.exports = router;
 module.exports.callback = callback;
