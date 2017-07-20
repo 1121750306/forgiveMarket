@@ -78,6 +78,8 @@
             idFiled:'_id',
             sortName:'_id',
             sortOrder:'desc',
+            checkOnSelect: false,
+            selectOnCheck: true,
             queryParams:{},
             pagination:true,
             rownumbers:true,
@@ -128,7 +130,23 @@
             	$(".details").linkbutton({text:'查看详情',plain:true,iconCls:'icon-more'});  
             	$(".photo").linkbutton({text:'上传',plain:true});  
                 $("#GoodTable").datagrid('clearSelections');
-            }
+            },
+            onClickCell: function (rowIndex, field, value) {
+			        IsCheckFlag = false;
+			    },
+			onSelect: function (rowIndex, rowData) {
+			         if (!IsCheckFlag) {
+			             IsCheckFlag = true;
+			             $("#GoodTable").datagrid("unselectRow", rowIndex);
+			         }
+			     },                    
+		    onUnselect: function (rowIndex, rowData) {
+			         if (!IsCheckFlag) {
+			             IsCheckFlag = true;
+			            $("#GoodTable").datagrid("selectRow", rowIndex);
+			         }
+			     }            
+            
         });
     });
     

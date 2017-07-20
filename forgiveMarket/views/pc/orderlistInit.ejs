@@ -48,6 +48,7 @@
 	    <div id="MyPopWindow" modal="true" shadow="false" minimizable="false" cache="false" maximizable="false" collapsible="false" resizable="false" style="margin: 0px;padding: 0px; overflow-y: scroll;"></div>
      <script>
        $(document).ready(function () {
+       	var IsCheckFlag = true;
         $("#OrderTable").datagrid({
             title:"订单列表",
             method:'post',
@@ -58,12 +59,17 @@
             idFiled:'_id',
             sortName:'_id',
             sortOrder:'desc',
+            checkOnSelect: false,
+            selectOnCheck: true,
             queryParams:{},
             pagination:true,
             rownumbers:true,
             columns:[[
                 {field:'ck',checkbox:true,width:10},
-                {field:'gname',title:'商品名',width:40,
+                {field:'oid',title:'订单号',width:60,
+                    formatter:function(value,row,index){return row.oid._id;}
+                },
+                {field:'gname',title:'商品名',width:100,
                     formatter:function(value,row,index){return row.gid.gname;}
                 },
                 {field:'goodsize',title:'规格',width:40,
@@ -74,19 +80,60 @@
                 },
                 {field:'price',title:'价格',width:40,
                     formatter:function(value,row,index){
-                    	return row.gid.pricebase+row.gsids[0].gsid.priceoffset;
-                    }
+                    	return row.num*(row.gid.pricebase+row.gsids[0].gsid.priceoffset);
+                }
+               },
+               {field:'date',title:'交易时间',width:40,
+                    formatter:function(value,row,index){
+                    	var date = new Date(row.oid.date);
+						console.log("date:" + date);
+						var dateStr = date.getFullYear() + "年" + (date.getMonth() + 1) + "月" + date.getDate() + "日";
+                    	return dateStr;
+                }
                },
                {field:'flag',title:'订单状态',width:60,
-                    formatter:getOrderItemState
-                    //function(value,row,index){return row.oid.flag;}
-              }
+                    formatter:getOrderItemState  
+               }
             ]],
+            toolbar:[{
+                text:"跟改状态",
+                iconCls:'icon-edit',
+                handler:function () {
+                      updateOrder();
+                }
+            },'-'],
             onLoadSuccess:function () {
+            	$(".update").linkbutton({text:'跟换状态',plain:true});  
                 $("#GoodTable").datagrid('clearSelections');
-            }
-        });
+            },
+            onClickCell: function (rowIndex, field, value) {
+			        IsCheckFlag = false;
+			    },
+			onSelect: function (rowIndex, rowData) {
+			         if (!IsCheckFlag) {
+			             IsCheckFlag = true;
+			             $("#OrderTable").datagrid("unselectRow", rowIndex);
+			         }
+			     },                    
+		    onUnselect: function (rowIndex, rowData) {
+			         if (!IsCheckFlag) {
+			             IsCheckFlag = true;
+			            $("#OrderTable").datagrid("selectRow", rowIndex);
+			         }
+			     }
+		});
     });
+   function updateOrder(){
+   	  showWindow({
+   	  	width:400,
+   	  	height:250,
+   	  	title:"跟新状态",
+   	  	href:'/admin/updateOrderInit',
+   	  	onload:function(){
+   	  		
+   	  	}
+   	  })
+   }
    function getOrderItemState(value,row,index){
    	 switch (row.oid.flag){
    	 	case 0:
@@ -112,15 +159,19 @@
    	 }
    }
    function getUname(value,row,index){
+   	var typename="";
    	 $.ajax({
-   	 	type:"post",
-   	 	url:"",
-   	 	data:{id:row.oid.uid},
-   	 	async:true,
+   	 	type:"get",
+   	 	url:"/users/getunamebyid/"+row.oid.uid,
+   	 	async:false,
    	 	success:function(data){
-   	 		
+   	 		if(data.flag==200){
+   	 			console.log(data.result.uname);
+   	 			typename= data.result.uname;
+   	 		}
    	 	}
    	 });
+   	 return typename;
    }
         </script>
 	</body>

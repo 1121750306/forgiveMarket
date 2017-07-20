@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <link rel="stylesheet" href="/jquery-easyui/themes/default/easyui.css" />
+    <link rel="stylesheet" href="/jquery-easyui/themes/icon.css" />
+    <script type="text/javascript" src="/jquery-easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="/jquery-easyui/jquery.easyui.min.js" ></script>
+  </head>
+  <body>
+  	  <form>
+  	  	   <p style="height: 40px;margin: 10px;">
+  	  	   	    <label style="display: inline-block;">订单号</label>
+	  	  	    <input class="easyui-combobox" style="display: inline-block;width:35%"
+	  	  	   	data-options="valueFiled:'value',textFiled:'_id',url:'/admin/getAllOrder',method:'get'" />
+  	  	        <label style="display: inline-block;">状态</label>
+  	  	        <input id="cc2" class="easyui-combobox" style="display: inline-block;width:35%" data-options="url:'/admin/getjson',valueField:'id',textField:'text'">
+  	  	   </p>
+  	  </form>
+  </body>
+</html>

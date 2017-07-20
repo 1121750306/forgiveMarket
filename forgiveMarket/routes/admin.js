@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var user = require("../models/user");
 var orderitem = require("../models/orderitem");
+var order= require("../models/order");
 var mongoose = require("mongoose");
 var goodphoto = require("../models/goodphoto");
 var multiparty = require('multiparty');
@@ -85,6 +86,7 @@ router.get('/orderListInit',function(req,res,next){
 	res.render('pc/orderlistInit');
 });
 router.post('/queryOrderList',function(req,res,next){
+	
 	orderitem.getAllOrderItem(function(err,doc){
 		if(!err){		
 			console.log("订单项数量"+doc.length);
@@ -95,6 +97,37 @@ router.post('/queryOrderList',function(req,res,next){
 			console.log(err);
 		}
 	})
-})
+});
+/*router.get*/
+router.all('/updateOrderInit',function(req,res,next){
+	res.render("pc/updateOrderInit");
+});
+
+router.get('/getAllOrder',function(req,res,next){
+	
+});
+router.post('/getjson',function(req,res,next){
+	var a=[{
+    "id":0,
+    "text":"购物车"
+},{
+    "id":1,
+    "text":"未付款"
+},{
+    "id":2,
+    "text":"已付款",
+    "selected":true
+},{
+    "id":3,
+    "text":"已发货"
+},{
+    "id":4,
+    "text":"已收货"
+},{
+    "id":5,
+    "text":"已完成"
+}];
+  res.send(a);
+});
 module.exports = router;
 module.exports.callback = callback;
