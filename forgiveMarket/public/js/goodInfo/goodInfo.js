@@ -46,7 +46,8 @@ $(function () {
                     if (isLogin()) {
                         console.log(5);
                         saveHistory();
-                        isCollect()
+                        isCollect();
+                        getcartdata()
                     }
 
                     /*
@@ -482,6 +483,7 @@ $(function () {
             url: "/order/getorderitembyuser/" + user._id + "/0",
             async: true,
             success: function (result) {
+            	console.log('购物车')
                 if (result.type == "success") {
                     //修改导航栏购物车商品数量
                     $(".nav_cartnum").html(result.message.length);
