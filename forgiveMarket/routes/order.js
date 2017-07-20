@@ -344,5 +344,22 @@ router.post('/createorder', function(req, res, next) {
 	//	console.log("uid:" + uid);
 
 });
+
+router.get('/getallorders', function(req, res, next) {
+	order.getAllOrders(function(err, docs) {
+		if (!err) {
+			res.send({
+				flag: 200,
+				result: docs
+			});
+		} else {
+			res.send({
+				flag: 300,
+				result: null
+			});
+		}
+	})
+});
+
 module.exports = router;
 module.exports.callback = callback;

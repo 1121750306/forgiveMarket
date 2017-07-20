@@ -114,8 +114,13 @@ function createOrder(uid, otids, locationid, cb) {
 		});
 }
 
+function getAllOrders(cb) {
+	orderModel.find({}).exec(cb);
+}
+
 module.exports.initModel = initModel;
 module.exports.addOrder = addOrder;
 module.exports.getOrderByIdAndFlag = getOrderByIdAndFlag;
 module.exports.updateOrder = updateOrder;
 module.exports.createOrder = createOrder;
+module.exports.getAllOrders = getAllOrders;
