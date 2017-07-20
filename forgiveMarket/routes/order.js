@@ -261,5 +261,21 @@ router.get('/deleteorderitembyid/:otid', function(req, res, next) {
 	
 });
 
+//修改订单状态
+router.post('/updateorder', function(req, res, next) {
+	var otid = req.body.otid;
+	var flag = req.body.flag;
+	
+	order.updateOrder(otid, flag, function(err, doc){
+		if (!err) {
+			console.log(new Date() + "SUCCESS: 修改订单成功");
+			res.send({type:"success", message:"修改订单成功", result:doc});
+		}else {
+			console.log(new Date() + "ERROR: " + err);
+			res.send({type:"error", message:"删除商品订单项失败" });
+		}
+	})	
+});
+
 module.exports = router;
 module.exports.callback = callback;
