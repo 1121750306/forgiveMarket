@@ -50,6 +50,13 @@ $(function() {
 			"width": "96%"
 		});
 	});
+	
+	//商品页面跳转控制
+	$(".cart").on("mouseup", ".cart_item", function(e){
+    	var gid = $(this).attr("gid");
+    	
+		location.assign("/views/goodInfo/goodInfo.html?gid=" + gid);
+	})
 
 	//设置搜索内容
 	var searchContent = window.location.search;
@@ -63,6 +70,8 @@ $(function() {
 			search();
 		}
 	}
+	
+	
 	
 })
 
@@ -78,10 +87,11 @@ function search() {
 		async: true,
 		success: function(data) {
 			var items = data.result;
-			for (var i = 0; i < items.length; i++) {
-				var gid = items[i].gid;
-				var price = (items[i].price*items[i].discount).toFixed(2);
-				console.log(gid);
+			for (let i = 0; i < items.length; i++) {
+				let gid = items[i].gid;
+				let gname = items[i].gname;
+				let price = (items[i].price*items[i].discount).toFixed(2);
+				
 				//获取照片
 				$.ajax({
 					type:"get",
@@ -90,10 +100,44 @@ function search() {
 					success:function(photo){
 						//获取商品规格
 						$.ajax({
-							type:"get",
-							url:"/" + gid,
+							type:"post",
+							url:"/good/queryGoodSizeByid",
+							data:{id:gid},
 							async:true,
 							success:function(goodsizes){
+								
+								//遍历商品规格
+								let goodsizeUl = "";
+								for (let j = 0; j < goodsizes.length; j++) {
+									//拼接商品规格
+									goodsizeUl = goodsizeUl + "<li><h3>" + goodsizes[j].gsname +"</h3></li>";
+								}
+								
+								//获取销量
+								$.ajax({
+									type:"get",
+									url:"/good/getGoodSales/" + gid,
+									async:true,
+									success:function(sales){
+										//组合li
+										let li ='<li class="cart_item" gid="' + gid + '">\
+													<img src="/img/upload/' + photo + '"/>\
+													<div class="item_info">\
+														<h2>' + gname + '</h2>\
+														<ul class="good_size">' + goodsizeUl + '</ul>\
+														<div class="info_bottom">\
+															<p class="item_price">￥' + price + '</p>\
+															<p class="item_num">' + sales + '人付款</p>\
+														</div>\
+													</div>\
+												</li>';
+												
+										$(".cart").append(li);	
+									},
+									error:function(err){
+										console.log(err);
+									}
+								});
 							},
 							error:function(err){
 								console.log(err);
