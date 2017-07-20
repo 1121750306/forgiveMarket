@@ -116,6 +116,7 @@ function createOrder(uid, otids, locationid, cb) {
 
 function getAllOrders(cb) {
 	orderModel.find({}).exec(cb);
+	
 }
 
 module.exports.initModel = initModel;
