@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>我的订单</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.css" />
+		<link rel="stylesheet" href="/css/style.css" />
+		<link rel="stylesheet" href="/css/user/orderlist.css" />
+		<link rel="stylesheet" type="text/css" href="/css/navigation.css" />
+		<link rel="stylesheet" href="/css/user/history_content.css" />
+		<link rel="stylesheet" type="text/css" href="/css/order/cart.css"/>	
+		<link rel="stylesheet" type="text/css" href="/css/order/pay.css" /> 
+
+	</head>
+
+	<body>
+		<div class="nav">
+			<span class="nav_menu"></span>
+			<a href="/views/homepage.html" class="nav_logo"></a>
+			<a href="/views/user/user.html" class="nav_user"></a>
+			<a href="/views/order/cart.html" class="nav_cart">
+				<p class="nav_cartnum">0</p>
+			</a>
+
+			<div class="nav_modal">
+				<div class="nav_modal_content">
+					<div class="nav_modal_title">
+						<span class="nav_modal_logo"></span>
+						<span class="nav_modal_close">
+							<i></i>
+						</span>
+					</div>
+					<ul class="nav_modal_tab">
+						<li>产品类别</li>
+						<li>浏览历史</li>
+					</ul>
+					<div class="nav_modal_page">
+						<ul class="nav_modal_type">
+						</ul>
+					</div>
+					<div id="history_content" class="nav_modal_page"></div>
+				</div>
+			</div>
+		</div>
+		<div class="header">
+			<h1>我的订单</h1>
+		</div>
+		<div id="order_type">
+			<ul class="clear">
+				<li class="underline">未付款</li>
+				<li>已付款</li>
+				<li>已发货</li>
+				<li>已收货</li>
+				<li>已完成</li>
+			</ul>
+		</div>
+		<div id="order_list">
+			<ul class="cart">
+				<li class="cart_item">
+					<div class="item_top">
+						<img src="/img/innisfree-img/goods/1000000311_l.png" />
+						<div class="item_info">
+							<h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium corporis at quas facere voluptas aliquam eos necessitatibus cupiditate officia aspernatur illum vel omnis totam in eaque odit quisquam tempore unde!</h2>
+							<ul class="good_size">
+								<li>
+									<h3>绿色</h3></li>
+								<li>
+									<h3>150ml</h3></li>
+							</ul>
+							<div class="info_bottom">
+								<p class="item_price">￥100.00</p>
+								<p class="item_num">x1</p>
+							</div>
+						</div>
+					</div>
+					<!--<div class="item_bottom">
+						<p class="item_totalprice">小计：￥100.00</p>
+						<p class="item_totalnum">共1件商品</p>
+					</div>-->
+				</li>
+				<li class="cart_item">
+					<div class="item_top">
+						<img src="/img/innisfree-img/goods/1000000311_l.png" />
+						<div class="item_info">
+							<h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium corporis at quas facere voluptas aliquam eos necessitatibus cupiditate officia aspernatur illum vel omnis totam in eaque odit quisquam tempore unde!</h2>
+							<ul class="good_size">
+								<li>
+									<h3>绿色</h3></li>
+								<li>
+									<h3>150ml</h3></li>
+							</ul>
+							<div class="info_bottom">
+								<p class="item_price">￥100.00</p>
+								<p class="item_num">x1</p>
+							</div>
+						</div>
+					</div>
+					<!--<div class="item_bottom">
+						<p class="item_totalprice">小计：￥100.00</p>
+						<p class="item_totalnum">共1件商品</p>
+					</div>-->
+				</li>
+			</ul>
+		</div>
+	</body>
+	<script src="/jquery/dist/jquery.js"></script>
+	<script src="/js/user/orderlist.js"></script>
+	<script src="/js/navigation.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/js/user/history.js"></script>
+
+</html>
