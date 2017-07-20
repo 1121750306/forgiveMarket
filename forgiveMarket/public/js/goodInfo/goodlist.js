@@ -139,6 +139,7 @@ $(function() {
 //搜索控制
 function search() {
 	var content = $("#search_content").val();
+	$(".cart").empty();	
 	$.ajax({
 		type: "post",
 		url: "/users/searchgood",
