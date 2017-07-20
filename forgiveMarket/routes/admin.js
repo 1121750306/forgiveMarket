@@ -102,9 +102,29 @@ router.post('/queryOrderList',function(req,res,next){
 router.all('/updateOrderInit',function(req,res,next){
 	res.render("pc/updateOrderInit");
 });
-
-router.get('/getAllOrder',function(req,res,next){
+router.post('/updateOrder',function(req,res,next){
+	var oid=req.body.oid;
+	console.log(oid);
+	order.updateOrder(oid,3,function(err,doc){
+		if(!err){
+			console.log(doc);
+			res.render('pc/orderlistInit');
+		}else{
+			res.render('pc/orderlistInit');
+		}
+	})
 	
+});
+
+router.get('/getAllOrders',function(req,res,next){
+	order.getAllOrders(function(err,doc){
+		if(!err){
+			console.log(doc);
+			res.send(doc);
+		}else{
+			console.log(err);
+		}
+	})
 });
 router.post('/getjson',function(req,res,next){
 	var a=[{
@@ -129,5 +149,6 @@ router.post('/getjson',function(req,res,next){
 }];
   res.send(a);
 });
+
 module.exports = router;
 module.exports.callback = callback;

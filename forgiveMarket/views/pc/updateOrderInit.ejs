@@ -2,20 +2,53 @@
 <html>
   <head>
     <title></title>
-    <link rel="stylesheet" href="/jquery-easyui/themes/default/easyui.css" />
-    <link rel="stylesheet" href="/jquery-easyui/themes/icon.css" />
-    <script type="text/javascript" src="/jquery-easyui/jquery.min.js"></script>
-    <script type="text/javascript" src="/jquery-easyui/jquery.easyui.min.js" ></script>
   </head>
   <body>
-  	  <form>
   	  	   <p style="height: 40px;margin: 10px;">
   	  	   	    <label style="display: inline-block;">订单号</label>
-	  	  	    <input class="easyui-combobox" style="display: inline-block;width:35%"
-	  	  	   	data-options="valueFiled:'value',textFiled:'_id',url:'/admin/getAllOrder',method:'get'" />
-  	  	        <label style="display: inline-block;">状态</label>
-  	  	        <input id="cc2" class="easyui-combobox" style="display: inline-block;width:35%" data-options="url:'/admin/getjson',valueField:'id',textField:'text'">
+	  	  	    <input class="easyui-combobox" style="display: inline-block;width:50%" name="oid" id="otid"
+	  	  	   	data-options="
+							  	  url:'/admin/getAllOrders',
+										method:'get',
+										valueField:'_id',
+										textField:'_id',
+										panelHeight:'auto',
+										onSelect:function(rec){
+											  $('#cc2').combobox('setValue',(rec.flag));
+										}"/>
+  	  	     <label style="display: inline-block;">状态</label>
+  	  	        <input id="cc2" class="easyui-combobox" readonly style="display: inline-block;width:30%" data-options="url:'/admin/getjson',valueField:'id',textField:'text'">
   	  	   </p>
-  	  </form>
+  	  	   <button type="btn" class="btn btn-default" style="width: 90%;margin-left: 20px;" id="submit">发货</button>
+  <script>
+  	 $("#submit").click(function(){
+  	 	        var status=$('#cc2').val();
+  	 	        var oid=$("#otid").val();	 	        
+	  	  		 	/*alert(status);*/
+	  	  		 	 if(status<2){
+	  	  		 	 	$.messager.alert("提示","该订单还未付款",'info');
+	  	  		 	 }else if(status==2){
+	  	  		 	 	console.log("fukuanle"+oid+"===");
+	  	  		 	 	 $.ajax({
+	  	  		 	 	 	type:"post",
+	  	  		 	 	 	url:"/order/updateorder",
+	  	  		 	 	 	async:true,
+	  	  		 	 	 	data:{otid:oid,flag:3},
+	  	  		 	 	 	success:function(result){
+	  	  		 	 	 		 if(result.type=="success"){
+	  	  		 	 	 		 	 window.location.reload();
+	  	  		 	 	 		 }else{
+	  	  		 	 	 		 		$.messager.alert("提示","发货失败",'info');
+	  	  		 	 	 		 }
+	  	  		 	 	 	},
+	  	  		 	 	 	error:function(err){
+	  	  		 	 	 		console.log(err);
+	  	  		 	 	 	}
+	  	  		 	 	 });
+	  	  		 	 }else if(status>2){
+	  	  		 	 	$.messager.alert("提示","该订单已发货",'info');
+	  	  		 	 }
+  	 })
+  </script>
   </body>
 </html>

@@ -21,12 +21,19 @@
 	        function closeWindow(){
 	            $("#MyPopWindow").window('close');
 	        }
-	        $(function(){
-	        	$(".panel-tool-close").click(function(){
-	        		alert("asd")
-	        		closeWindow();
-	        	})
-	        })
+	       function checkStatus(){
+	  	  		 	var status=$('#cc2').val();
+	  	  		 	/*alert(status);*/
+	  	  		 	 if(status<2){
+	  	  		 	 	$.messager.alert("提示","该订单还未付款",'info');
+	  	  		 	 	 return false;
+	  	  		 	 }else if(status==2){
+	  	  		 	 	 return true;
+	  	  		 	 }else if(status>2){
+	  	  		 	 	$.messager.alert("提示","该订单已发货",'info');
+	  	  		 	 	return false;
+	  	  		 	 }
+  	  	  	 }
 	    </script>
 	</head>
 	<body style="height: 100%;">	
@@ -126,7 +133,7 @@
    function updateOrder(){
    	  showWindow({
    	  	width:400,
-   	  	height:250,
+   	  	height:180,
    	  	title:"跟新状态",
    	  	href:'/admin/updateOrderInit',
    	  	onload:function(){

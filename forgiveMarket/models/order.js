@@ -63,7 +63,7 @@ function getOrderByIdAndFlag(uid, flag, callback) {
  * @param {Object} cb
  */
 function updateOrder(oid, flag, cb) {
-	orderModel.findOneAndUpdate({
+	orderModel.findOne({
 		_id: oid
 	}, function(err, doc) {
 		if (!err) {
