@@ -266,6 +266,17 @@ $(function() {
 		window.location.assign("/views/goodinfo/goodlist.html?content=" + content);
 	});
 
+	//搜索记录跳转
+	$("#searchhistory li").each(function() {
+		var li = $(this);
+		li.click(function() {
+			var content = li.text();
+			console.log(content);
+			//跳转
+			window.location.assign("/views/goodinfo/goodlist.html?content=" + content);
+		})
+	})
+
 	//获取推荐列表
 	$.ajax({
 		type: "post",
@@ -294,17 +305,6 @@ $(function() {
 						console.log(gid);
 						if (gid != undefined) {
 							window.location.assign("/views/goodInfo/goodInfo.html?gid=" + gid);
-						}
-					})
-				});
-				//跳转购物车
-				$("#hotgoods-container .hotgood .buyer").each(function() {
-					var buyer = $(this);
-					buyer.click(function() {
-						var gid = buyer.parent().attr("gid");
-						console.log(gid);
-						if (gid != undefined) {
-							//							window.location.assign("/views/goodInfo/goodInfo.html?gid=" + gid);
 						}
 					})
 				});

@@ -36,6 +36,18 @@ $(function(){
 	//获取url中订单项数据
 	otids = location.search.substr(7).split("&");
 	
+	//修改订单状态
+	$.ajax({
+		type:"post",
+		url:"/order/updateorder",
+		async:true,
+		data:{
+		},
+		success:function(data){
+			
+		}
+	});
+	
 	for (var i = 0; i < otids.length; i++) {
 		//请求订单项数据
 		$.ajax({
