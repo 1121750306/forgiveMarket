@@ -20,21 +20,22 @@ $(document).ready(function() {
 						ul.appendChild(dateLi);
 
 						for (var j = 0; j < result[i].goods.length; j++) {
-							let html = `<li gid='${result[i].goods[j].gid}'>\
-								<img src="../../img/innisfree-img/goods/1000000336_l.png" />\
+							var liId = "good_li" + j;
+							let html = `<li id='${liId}' gid='${result[i].goods[j].gid}'>\
+								<img src="/img/innisfreeIco/pic_loading.png" />\
 								<h2>${result[i].goods[j].goodname}</h2>\
 								<span class="price">￥${result[i].goods[j].goodprice}</span>\
 							</li>`;
 							$(ul).append(html);
-							//判断最后一个
-
+							setImage($(ul).find("#" + liId), result[i].goods[j].gid);
 						}
 						$("#history_content")[0].appendChild(ul);
+						//判断最后一个
 						if (result[i].goods.length % 2 == 1) {
 							$(ul).children().last().width("98%");
 							$(ul).children().last().children().eq(0).width("20%");
-							$(ul).children().last().children().eq(1).css("left","22.5%");
-							$(ul).children().last().children().eq(2).css("left","22.5%");
+							$(ul).children().last().children().eq(1).css("left", "22.5%");
+							$(ul).children().last().children().eq(2).css("left", "22.5%");
 						}
 					}
 				}
@@ -56,4 +57,18 @@ $(document).ready(function() {
 			console.log(err);
 		}
 	});
-})
+});
+
+function setImage(obj, gid) {
+	console.log(obj);
+	//获取图片路径
+	$.ajax({
+		type: "get",
+		url: "/goodphoto/getShowPhoto/" + gid,
+		async: true,
+		success: function(data) {
+			console.log(data);
+			obj.find("img").attr("src", '/img/upload/' + data);
+		}
+	});
+}

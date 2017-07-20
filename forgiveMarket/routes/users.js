@@ -31,11 +31,11 @@ router.post('/register', function(req, res, next) {
 			};
 		} else if(flag == 2) {
 			console.log("注册成功", "result:" + result);
-			req.session.user = result;
+			req.session.user = [result];
 			json = {
 				flag: 200,
 				msg: "注册成功",
-				result: result
+				result: [result]
 			};
 		}
 		res.send(json);

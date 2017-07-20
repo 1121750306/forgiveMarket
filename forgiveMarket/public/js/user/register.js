@@ -40,7 +40,7 @@ function register() {
 			console.log(data);
 			if (data.flag == 200) {
 				//注册成功
-				var result = data.result;
+				var result = data.result[0];
 				sessionStorage.user = JSON.stringify(result);
 				window.location.assign("/views/user/user.html");
 			} else if(data.flag == 300){

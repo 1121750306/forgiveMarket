@@ -10,7 +10,8 @@ $(document).ready(function() {
 				var result = data.result;
 				if (result != null && result.length != 0) {
 					for (var i = 0; i < result.length; i++) {
-						let html = `<li gid='${result[i].gid}'>\
+						var liId = "good_li" + i;
+						let html = `<li id='${liId}' gid='${result[i].gid}'>\
 								<img src="/img/innisfreeIco/pic_loading.png" />\
 								<div>\
 									<h2>${result[i].name}</h2>\
@@ -21,6 +22,7 @@ $(document).ready(function() {
 								<i class="collect_delete"></i>\
 							</li>`;
 						$("#collect_content ul").append(html);
+						setImage($("#collect_content ul").find("#" + liId), result[i].gid);
 					}
 				}
 			}
@@ -67,4 +69,19 @@ $(document).ready(function() {
 			console.log(err);
 		}
 	});
-})
+});
+
+
+function setImage(obj, gid) {
+	console.log(obj);
+	//获取图片路径
+	$.ajax({
+		type: "get",
+		url: "/goodphoto/getShowPhoto/" + gid,
+		async: true,
+		success: function(data) {
+			console.log(data);
+			obj.find("img").attr("src", '/img/upload/' + data);
+		}
+	});
+}
