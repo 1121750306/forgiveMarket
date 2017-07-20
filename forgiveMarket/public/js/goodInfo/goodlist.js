@@ -1,3 +1,5 @@
+var goods = [];
+
 $(function() {
 	//	$.ajax({
 	//		type:"post",
@@ -23,16 +25,38 @@ $(function() {
 	$(".orderby li").click(function() {
 		$(this).css("color", "rgba(5, 83, 33, 1)").siblings("li").css("color", "grey");
 		$(".goodorder").html($(this).html().substr(1));
+		$(".orderby").slideUp();
 	});
+	
+	//按销量排序
+	$(".orderbysale").click(function(){
+		$(".orderby").attr("order","sales");
+		
+		goods.sort(reverse());
+		
+		//重载界面
+		reloadView();
+	})
+	
+	//按价格排序
+	$(".orderbyprice").click(function(){
+		$(".orderby").attr("order","price");
+		
+		goods.sort(reverse());
+		
+		//重载界面
+		reloadView();
+	})
 
 	//正逆序控制
 	$(".orientation").click(function() {
 		var orientation = $(this).html();
-		if(orientation == "正序") {
-			$(this).html("逆序");
-		} else {
-			$(this).html("正序");
-		}
+		$(this).html(orientation == "从小到大"?"从大到小":"从小到大").attr("order", orientation == "从小到大"?"-1":"1");
+		
+		goods.sort(reverse());
+		
+		//重载界面
+		reloadView();
 	});
 
 	//搜索按钮显示控制
@@ -71,7 +95,44 @@ $(function() {
 		}
 	}
 	
+	//排序
+	function reverse() {
+		var i = parseInt($(".orientation").attr("order"));
+		var n = $(".orderby").attr("order");
+		
+	    return function (q, w) {
+	        var a = parseFloat(q[n]);
+	        var b = parseFloat(w[n]);
 	
+	        return i*(a - b)
+	    };
+	}
+	
+	//重载内容
+	function reloadView () {
+		//清空
+		$(".cart").empty();	
+		
+		//遍历所有商品
+		for (var i = 0; i < goods.length; i++) {
+			var good = goods[i];
+			
+			//组合li
+			let li ='<li class="cart_item" gid="' + good.gid + '">\
+						<img src="/img/upload/' + good.photo + '"/>\
+						<div class="item_info">\
+							<h2>' + good.gname + '</h2>\
+							<ul class="good_size">' + good.goodsizeUl + '</ul>\
+							<div class="info_bottom">\
+								<p class="item_price">￥' + good.price + '</p>\
+								<p class="item_num">' + good.sales + '人付款</p>\
+							</div>\
+						</div>\
+					</li>';
+					
+			$(".cart").append(li);	
+		}
+	}
 	
 })
 
@@ -119,6 +180,10 @@ function search() {
 									url:"/good/getGoodSales/" + gid,
 									async:true,
 									success:function(sales){
+										
+										var item = {gid:gid, gname:gname, goodsizeUl:goodsizeUl, price:price, sales:sales, photo:photo};
+										goods.push(item);
+										
 										//组合li
 										let li ='<li class="cart_item" gid="' + gid + '">\
 													<img src="/img/upload/' + photo + '"/>\
@@ -153,3 +218,15 @@ function search() {
 		}
 	});
 }
+
+////i>0从小到大,n对象属性
+//function reverse(i, n) {
+//  return function (q, w) {
+//      //			console.log(parseInt(q[n]))
+//      var a = parseInt(q[n]);
+//      var b = parseInt(w[n]);
+//      console.log(a + "-" + b)
+//
+//      return i*(a - b)
+//  };
+//}

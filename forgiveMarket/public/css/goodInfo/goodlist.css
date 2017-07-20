@@ -17,7 +17,7 @@
 }
 
 .header .orientation{
-	background: url(../../img/innisfreeIco/orientation.png) 73.5% 52.5% no-repeat;
+	background: url(../../img/innisfreeIco/orientation.png) 85% 52.5% no-repeat;
 	background-size: 18px 18px; 
 }
 
@@ -45,12 +45,8 @@
 	border-bottom: 1px lightgrey solid;
 	font-size: 1.3rem;
 	line-height: 38px;
-	color: rgba(5, 83, 33, 1);
-	display: block;
-}
-
-.orderby li:nth-child(2){
 	color: grey;
+	display: block;
 }
 
 .content{
