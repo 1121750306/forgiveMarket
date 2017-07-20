@@ -34,9 +34,6 @@ ul{
 	background: rgba(0,0,0,0.1);
 }
 
-.order{
-}
-
 .order_item{
 	border-bottom: 1px rgba(0,0,0,0.1) solid;
 	border-top: 1px rgba(0,0,0,0.1) solid;
@@ -51,34 +48,35 @@ ul{
 .item_comment{
 	height: 20px;
 	margin-left: 10px;
-	padding: 0 10px;
+	padding: 0 5px;
 	border-radius: 5px;
 	background: rgba(5, 83, 33, 1);
 	font-size: 1.25rem;
 	line-height: 20px;
 	color: white;
+	display: none;
 }
 
 .order_bottom{
 	width: 100%;
 	height: 50px;
 	padding: 5px 15px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
-.order_btn{
+.order_location{
 	height: 30px;
-	margin: 5px 10px 0 5px;
-	padding: 0 15px;
-	float: left;
+	padding: 0 10px;
 	border-radius: 5px;
 	background: rgba(5, 83, 33, 1);
 	font-size: 1.25rem;
 	line-height: 30px;
 	color: white;
-}
-
-.order_info {
-	float: right;
+	white-space: nowrap;	
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .order_info p{
@@ -86,4 +84,7 @@ ul{
 	font-size: 1.25rem;
 	text-align: right;
 	line-height: 20px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }

@@ -165,11 +165,11 @@ body{
 	border-bottom: 1px lightgrey solid;
 }
 
-.content .attention{
+.attention{
 	display: none;
 }
 
-.content .attention i{
+.attention i{
 	height: 80px;
 	margin-top: 80px;
 	background: url(../../img/innisfreeIco/error.gif) 50% 0 no-repeat;
@@ -177,7 +177,7 @@ body{
 	display: block;
 }
 
-.content .attention p{
+.attention p{
 	height: 40px;
 	width: 45%;
 	margin: auto;
@@ -185,7 +185,7 @@ body{
 	text-align: center;
 }
 
-.content .attention .no_login{
+.attention .no_login{
 	font-size: 1.25rem;
 	margin-top: 20px;
 	background: green;
@@ -194,7 +194,7 @@ body{
 	display: none;
 }
 
-.content .attention .cart_empty{
+.attention .cart_empty{
 	margin-top: 10px;
 	font-size: 1.5rem;
 	display: none;
