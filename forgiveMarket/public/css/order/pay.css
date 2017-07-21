@@ -132,3 +132,14 @@ body{
 .cart .cart_item .item_bottom .item_totalnum{
 	font-size: 1.25rem;
 }
+
+
+/*支付模态框*/
+#pay{
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.5);
+	position: fixed;
+	top: 0;
+	left: 0;
+}

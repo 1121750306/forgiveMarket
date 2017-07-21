@@ -56,34 +56,34 @@ $(function() {
 			success: function(good) {
 				//获取照片
 				$.ajax({
-					type:"get",
-					url:"/goodphoto/getShowPhoto/" + good.gid._id,
-					async:true,
-					success:function(photo){
+					type: "get",
+					url: "/goodphoto/getShowPhoto/" + good.gid._id,
+					async: true,
+					success: function(photo) {
 						//取得订单项的商品价格基数
 						let price = good.gid.pricebase;
-		
+
 						//遍历商品规格
 						let goodsizeUl = "";
 						for (let j = 0; j < good.gsids.length; j++) {
 							//拼接商品规格
 							goodsizeUl = goodsizeUl + "<li><h3>" + good.gsids[j].gsid.gsname + "</h3></li>";
-		
+
 							//计算商品在此规格下价格偏移后的结果
 							price = price + good.gsids[j].gsid.priceoffset;
 						}
-		
+
 						//计算订单项商品折扣
 						price = price * good.gid.discount;
-		
+
 						//计算订单项商品总价格
 						let itemtotalprice = price * good.num;
-		
+
 						//加入总价
 						let totalprice = parseFloat($(".totalprice").html().substr(4));
 						totalprice = totalprice + itemtotalprice;
 						$(".totalprice").html("总计￥:" + totalprice.toFixed(2));
-		
+
 						//组合li
 						let li = '<li class="cart_item">\
 									<div class="item_top">\
@@ -102,16 +102,16 @@ $(function() {
 										<p class="item_totalprice">小计：￥' + itemtotalprice.toFixed(2) + '</p>\
 									</div>\
 								</li>';
-		
+
 						$(".cart").append(li);
-						
+
 					},
-					error:function(err){
+					error: function(err) {
 						console.log(err);
 					}
-					
+
 				});
-				
+
 			},
 			error: function(err) {
 				console.log(err);
@@ -127,25 +127,29 @@ $(function() {
 })
 
 function pay() {
-	console.log(locations);
-	$.ajax({
-		type: "post",
-		url: "/order/createorder",
-		datatype: "json",
-		data: {
-			otids: JSON.stringify({
-				otid: otids
-			}),
-			locationid: locations._id
-		},
-		async: true,
-		success: function(data) {
-			if (data.flag == 200) {
-				toast("购买成功", "/views/order/orderlist.html?flag=2");
-			} else {
-				toast("购买失败");
-			}
-			console.log(data);
-		}
-	});
+//	$("#pay").animate({
+//		top: 0
+//	}, 300);
+
+	//	console.log(locations);
+	//	$.ajax({
+	//		type: "post",
+	//		url: "/order/createorder",
+	//		datatype: "json",
+	//		data: {
+	//			otids: JSON.stringify({
+	//				otid: otids
+	//			}),
+	//			locationid: locations._id
+	//		},
+	//		async: true,
+	//		success: function(data) {
+	//			if (data.flag == 200) {
+	//				toast("购买成功", "/views/order/orderlist.html?flag=2");
+	//			} else {
+	//				toast("购买失败");
+	//			}
+	//			console.log(data);
+	//		}
+	//	});
 }

@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-		
+
 		<title>确认支付</title>
-		
-		<link rel="stylesheet" type="text/css" href="/bootstrap/dist/css/bootstrap.min.css"/>	
-		
-		<link rel="stylesheet" type="text/css" href="/css/style.css"/>
-		<link rel="stylesheet" type="text/css" href="/css/navigation.css"/>	
-		<link rel="stylesheet" type="text/css" href="/css/user/history_content.css" />	
-		<link rel="stylesheet" type="text/css" href="/css/order/cart.css"/>	
-		<link rel="stylesheet" type="text/css" href="/css/order/pay.css" /> 
+
+		<link rel="stylesheet" type="text/css" href="/bootstrap/dist/css/bootstrap.min.css" />
+
+		<link rel="stylesheet" type="text/css" href="/css/style.css" />
+		<link rel="stylesheet" type="text/css" href="/css/navigation.css" />
+		<link rel="stylesheet" type="text/css" href="/css/user/history_content.css" />
+		<link rel="stylesheet" type="text/css" href="/css/order/cart.css" />
+		<link rel="stylesheet" type="text/css" href="/css/order/pay.css" />
 	</head>
-	
+
 	<body>
 		<div class="nav">
 			<span class="nav_menu"></span>
@@ -23,7 +24,7 @@
 			<a href="/views/order/cart.html" class="nav_cart">
 				<p class="nav_cartnum">0</p>
 			</a>
-			
+
 			<div class="nav_modal">
 				<div class="nav_modal_content">
 					<div class="nav_modal_title">
@@ -44,11 +45,11 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<div class="header">
 			<h1>确认订单</h1>
 		</div>
-		
+
 		<div class="banner">
 			<div class="banner_top">
 				<h1 class="username">收货人：MMP</h1>
@@ -57,18 +58,18 @@
 			<div class="banner_bottom">
 				<img src="/img/innisfreeIco/icon_look.gif" />
 				<h1 class="address">收货地址：辽宁省沈阳市浑南新区东北大学浑南校区二舍AB</h1>
-				<img src="../../img/innisfreeIco/next.gif"/>
+				<img src="../../img/innisfreeIco/next.gif" />
 			</div>
 			<div class="banner_attention">
-				<img src="../../img/innisfreeIco/error.gif"/>
+				<img src="../../img/innisfreeIco/error.gif" />
 				<h1>默认收货地址未设置 </h1>
-				<img src="../../img/innisfreeIco/next.gif"/>
+				<img src="../../img/innisfreeIco/next.gif" />
 			</div>
 		</div>
-		
+
 		<div class="content">
-				<ul class="cart">
-					<!--<li class="cart_item">
+			<ul class="cart">
+				<!--<li class="cart_item">
 						<div class="item_top">
 							<img src="/img/innisfree-img/goods/1000000311_l.png"/>
 							<div class="item_info">
@@ -88,25 +89,47 @@
 							<p class="item_totalnum">共1件商品</p>	
 						</div>
 					</li>-->
-				</ul>
+			</ul>
 		</div>
-		
+
 		<div class="footer">
-			
+
 			<button class="goodscheck" type="button">确认支付</button>
-			
+
 			<h2 class="totalprice">合计￥:0.00</h2>
-					
+
 		</div>
-		
+
+		<div id="pay">
+			<div id="pay_info">
+				<div id="pay_title">
+					<i></i>
+					<span>付款详情</span>
+				</div>
+				<div id="order_id">
+					<span id="order_id_title">订单信息</span>
+					<span id="order_id_content">a65s4d6a5s4d6a5s4d65as4</span>
+				</div>
+				<div id="order_user">
+					<span id="order_user_title">支付账户</span>
+					<span id="order_user_content">18377709263</span>
+				</div>
+				<div id="order_total">
+					<span id="order_total_title">需付款</span>
+					<span id="order_total_content">18377709263</span>
+				</div>
+				<div id="pay_pwd"></div>
+			</div>
+		</div>
+
 	</body>
-	
+
 	<script src="/jquery/dist/jquery.min.js" type="text/javascript" charset="utf-8"></script>
-	
+
 	<script src="/js/user/login.js" type="text/javascript" charset="utf-8"></script>
 	<script src="/js/common.js" type="text/javascript" charset="utf-8"></script>
 	<script src="/js/navigation.js" type="text/javascript" charset="utf-8"></script>
 	<script src="/js/user/history.js" type="text/javascript" charset="utf-8"></script>
 	<script src="/js/order/pay.js" type="text/javascript" charset="utf-8"></script>
-	
+
 </html>

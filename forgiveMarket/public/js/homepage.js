@@ -311,6 +311,22 @@ $(function() {
 			});
 		}
 	})
+	
+	//滚动栏
+	$.ajax({
+		type:"get",
+		url:"/users/getrandomuser",
+		async:true,
+		success:function(data){
+			if(data.flag == 200){
+				var text = `恭喜${data.result.uname}(${data.result.phone.substring(0,3) + "******" + data.result.phone.substring(9,11)})获得男士护肤一套`;
+				console.log(text);
+				$(".newscontainer").empty();
+				$(".newscontainer").append(`<a href="">${text}</a>`)
+			}
+		}
+	});
+	
 });
 
 /**

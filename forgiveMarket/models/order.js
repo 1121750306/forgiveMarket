@@ -139,9 +139,12 @@ function getAllOrdersByFlag(uid, flag, cb) {
 		var orders = [];
 		var promises = [];
 		for (var i = 0; i < result.length; i++) {
+
+			var date = result[i].date.getFullYear() + "-" + (result[i].date.getMonth() - 1) + "-" + result[i].date.getDate() + " " + result[i].date.getHours() + ":" + result[i].date.getMinutes() + ":" + result[i].date.getSeconds();
+
 			orders[orders.length] = {
 				oid: result[i]._id,
-				date: result[i].date,
+				date: date,
 				locationid: result[i].locationid
 			}
 			promises[promises.length] = orderitemModel.find({
@@ -178,7 +181,7 @@ function getAllOrdersByFlag(uid, flag, cb) {
 
 			for (var j = 0; j < result[i].length; j++) {
 				orders[i].orderitem[j] = {
-						gid:result[i][j].gid._id,
+						gid: result[i][j].gid._id,
 						gname: result[i][j].gid.gname,
 						price: result[i][j].gid.pricebase + result[i][j].gsids[0].gsid.priceoffset,
 						type: result[i][j].gid.typeid.tname,

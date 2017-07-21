@@ -250,6 +250,7 @@ router.all("/gettopgoods", function(req, res, next) {
  * 获奖用户
  */
 router.all("/getrandomuser", function(req, res, next) {
+	
 	user.randowUser(function(err, result) {
 		if (!err) {
 			res.send({
