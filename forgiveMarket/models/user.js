@@ -163,6 +163,21 @@ function changePwd(_id, nowPwd, newPwd, cb) {
 	});
 }
 
+function randowUser(cb) {
+	userModel.find({}).then(function(docs) {
+		if (docs == null || docs.length == 0) {
+			cb("没有用户", null);
+			return;
+		}
+
+		var index = parseInt(Math.random() * docs.length);
+		var user = docs[index];
+		cb(null, user);
+	}, function(err) {
+		cb(err, null);
+	});
+}
+
 /**
  * 商品搜索
  * @param {Object} content 搜索关键字
@@ -259,6 +274,7 @@ function getTopGoods(cb) {
 		cb(err, null);
 	});
 }
+
 module.exports.initModel = initModel;
 module.exports.register = register;
 module.exports.login = login;
@@ -267,3 +283,4 @@ module.exports.changePwd = changePwd;
 module.exports.searchGood = searchGood;
 module.exports.getTopGoods = getTopGoods;
 module.exports.getUserNameById = getUserNameById;
+module.exports.randowUser = randowUser;

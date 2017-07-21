@@ -12,14 +12,14 @@ function callback(models) {
 router.get('/getunamebyid/:uid', function(req, res, next) {
 	var uid = req.params.uid;
 	user.getUserNameById(uid, function(err, doc) {
-		if(!err && doc != null){
+		if (!err && doc != null) {
 			res.send({
-				flag:200,
-				result:doc
+				flag: 200,
+				result: doc
 			});
 		} else {
 			res.send({
-				flag:300
+				flag: 300
 			});
 		}
 	});
@@ -229,6 +229,9 @@ router.post("/searchgood", function(req, res, next) {
 	})
 });
 
+/**
+ *获取Top6 
+ */
 router.all("/gettopgoods", function(req, res, next) {
 	var content = req.body.content;
 	console.log("content:" + content);
@@ -241,6 +244,25 @@ router.all("/gettopgoods", function(req, res, next) {
 		});;
 	})
 
+});
+
+/**
+ * 获奖用户
+ */
+router.all("/getrandomuser", function(req, res, next) {
+	user.randowUser(function(err, result) {
+		if (!err) {
+			res.send({
+				flag: 200,
+				result: result
+			});
+		} else {
+			res.send({
+				flag: 300,
+				msg: err
+			});
+		}
+	});
 });
 module.exports = router;
 module.exports.callback = callback;

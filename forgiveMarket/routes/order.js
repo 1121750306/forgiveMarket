@@ -375,7 +375,7 @@ router.post('/getallordersbyflag', function(req, res, next) {
 		});
 		return;
 	}
-	var uid = req.session.user[0]_id;
+	var uid = req.session.user[0]._id;
 	var flag = req.body.flag;
 	order.getAllOrdersByFlag(uid, flag, function(err, docs) {
 		if (!err) {
