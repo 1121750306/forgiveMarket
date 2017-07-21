@@ -192,6 +192,7 @@ $(function() {
 
 	/*-----------------------------------------------搞事情的叶子*/
 	window.onscroll = function(e) {
+		var lock = false;
 			var scrollh = document.body.scrollTop || document.documentElement.scrollTop;
 			if (scrollh > 0 && scrollh < 741) {
 				$(".yezi").css("margin-left", "45%")
@@ -232,7 +233,7 @@ $(function() {
 				$(".yezi").css("margin-left", "30%")
 				$(".yezi").animate({
 					left: '60%'
-				}, 1000)
+				}, 1200,function(){$(".innisinformation div").css('display','none')})
 			} else if (scrollh > 1800) {
 				$(".yezi").css("display", "none")
 

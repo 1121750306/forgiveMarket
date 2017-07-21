@@ -32,10 +32,10 @@ router.post('/addComment',function(req,res,next){
 })
 
 router.post('/addComToComment',function(req,res,next){
-//	req.session.user=[{_id:"596f4d3d3709ec1c447f01eb",uname:"13614004325",psw:"424123",phone:"13614004325",balance:0,avatar:"/img/innisfreeIcon/avatar.png"}];
-	var cid=String(req.body.cid);
+	req.session.user=[{_id:"596f4d3d3709ec1c447f01eb",uname:"13614004325",psw:"424123",phone:"13614004325",balance:0,avatar:"/img/innisfreeIcon/avatar.png"}];
+//	var cid=String(req.body.cid);
+	var cid = "5971584e0a43d30714050a8d";
 	//模拟
-//	var gid="596f4d3d3709ec1c447f01eb";
 	var uid=req.session.user[0]._id;
 	var content=req.body.content;
 	var date=new Date();
@@ -43,10 +43,10 @@ router.post('/addComToComment',function(req,res,next){
 	comment.addComment(obj,function(err,doc){
 		if(!err){
 			console.log(doc);
-			res.send({msg:"success"});
+			res.send({msg:"success",data:doc});
 		}else{
 			console.log(err);
-			res.send({msg:"fail"});
+			res.send({msg:"fail",data:doc});
 		}
 	})
 	/*var date = new Date(Number(result[i].date));

@@ -396,7 +396,7 @@
 	float: right;
 	margin-right: 2%;
 }
-.comment .item .item-right .item-rb .item-inte span{
+.comment .item .item-right .item-rb .item-inte>span{
 	display: inline-block;
 	width: 55px;
 	height:18px;

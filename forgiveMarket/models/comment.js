@@ -10,6 +10,7 @@ function initModel(models) {
  * @param {Object} cb
  */
 function addComment(obj, cb) {
+	console.log(obj)
 	var commentEntity = new commentModel(obj);
 	commentEntity.save(cb);
 }
@@ -34,11 +35,13 @@ function getCommentByCids(cids, cb) {
 				console.log('不是数组，转为数组');
 				cids = [cids[0]];
 			}else{
-				console.log(cids.length)
+//				console.log(cids.length)
 			}
-			console.log(cids)
-	console.log("//////////"+cids)
-	var docss = cids.map(function(value, index, arr) {
+//			console.log(cids)
+//	console.log("//////////"+cids);
+	
+	var docss = [];
+	cids.forEach(function(value, index, arr) {
 		commentModel.find({
 			cid: value._id
 		})
@@ -46,28 +49,29 @@ function getCommentByCids(cids, cb) {
 			path:'uid'
 		})
 		.exec(function(err,docs){
-			var obj = value;
+			var obj = JSON.stringify(value);
+			obj = JSON.parse(obj);
 			if(!err){
-				
-				obj.sonComment = docs[0];
+				console.log(docs)
+				obj.sonComment = docs;
 				obj.text = '11'
-				console.log('********'+value.content)
-				console.log('********'+obj)
-				
+//				console.log('********'+value)
+//				console.log('********'+obj)
+				docss.push(obj)
+//				console.log("------------------"+docss)
 			}else{
 				console.log('查找子评论错误');
 				errs = err;
 			}
 			time++;
 			
-			return obj;
 		})
 	});
 	var timet = 0;
 	var t = setTimeout(function(){
 		console.log(time+"   "+size);
 		if(time>=size){
-			console.log("----------"+docss)
+//			console.log("----------"+docss)
 			cb(errs,docss);
 		}else if(timet<100){
 			clearTimeout(t);
