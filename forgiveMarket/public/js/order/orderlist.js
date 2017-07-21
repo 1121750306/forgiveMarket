@@ -14,7 +14,40 @@ $(function() {
 	});
 	
 	//商品评论控制
+	$(".com_submit").click(function(){
+		var gid = $(".com_txt input[name=gid]").val();
+		var content = $(".com_txt textarea").val();
+		
+		$.ajax({
+			type:"post",
+			url:"/comment/addComment",
+			data:{
+				gid:gid,
+				content:content
+			},
+			async:true,
+			success:function(data){
+				if ($(".comment").attr("oid") != "") {
+					//将订单加入已完成
+					
+					
+					$(".comment").animate({top:"100%"},500,function(){
+						reloadView(3);
+					});
+				}else{
+					$(".comment").animate({top:"100%"},500,function(){
+						reloadView(3);
+					});
+				}
+			},
+			error:function(err){
+				console.log(err);
+			}
+		});
+		
+	})
 	$(".com_cancel").click(function(){
+		$(".comment").attr("oid","");
 		$(".comment").animate({top:"100%"},500);
 	})
 	
@@ -28,7 +61,10 @@ $(function() {
 		
 		//清空order
 		$(".order").empty();
-
+		
+		//评论oid删除
+		$(".comment").attr("oid","");
+		
 		$.ajax({
 			type:"post",
 			url:"/order/getallordersbyflag",
@@ -41,7 +77,6 @@ $(function() {
 					
 					for (let i = 0; i < data.result.length; i++) {
 						let order = data.result[i];
-						console.log(order);
 						
 						let location = order.locationid.province + order.locationid.city + 
 										order.locationid.district + order.locationid.address;
@@ -96,7 +131,6 @@ $(function() {
 						//遍历订单项li
 						for (let j = 0; j < orderitems.length; j++) {
 							let orderitem = orderitems[j];
-							console.log(orderitem);
 							//获取照片
 							$.ajax({
 								type:"get",
@@ -185,10 +219,17 @@ $(function() {
 	
 	//评论控制
 	function tocomment (e) {
-		$(".com_txt form input[name=gid]").val($(this).parents(".cart_item").attr("gid"));
+		var oid = $(e.target).parents(".order_item").attr("oid");
+		
+		//当前订单其他订单项都被评价时
+		var commentBtn =  $(e.target).parents(".cart_item").siblings("li").find(".item_comment");
+		if (commentBtn.length == 0) {
+			$(".comment").attr("oid",oid);
+		}
+		
+		$(".com_txt input[name=gid]").val($(this).parents(".cart_item").attr("gid"));
 		$(".comment").animate({top:"0%"},500);
-//		var oid = $(e.target).parents(".order_item").attr("oid");
-//		
+
 //		$.ajax({
 //			type:"post",
 //			url:"/order/updateorder",
