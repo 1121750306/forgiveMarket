@@ -49,7 +49,7 @@ body{
 .order_top{
 	width: 100%;
 	height: 25px;
-	border-bottom: 1px lightgrey solid;
+	border-bottom: 1px rgba(0,0,0,0.1) solid;
 	background: white;
 }
 
@@ -73,6 +73,42 @@ body{
 
 .cart .cart_item{
 	padding: 5px 20px;
+}
+
+.location_info{
+	width: 100%;
+	padding: 0 10px;
+	height: 75px;
+	border-bottom: 1px rgba(0,0,0,0.1) solid;
+	display: none;
+}
+
+.location_info li{
+	width: 100%;
+	height: 25px;
+	padding: 0 5px;
+	border-bottom: 1px rgba(0,0,0,0.1) solid;
+}
+
+.location_info li:last-of-type{
+	border: none;
+}
+
+.location_info li h4{
+	width: 20%;
+	height: 25px;
+	float: left;
+	line-height: 25px;
+	text-align: left;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.location_info li h4:last-of-type{
+	width: 80%;
+	float: right;
+	text-align: right;
 }
 
 .item_comment{
