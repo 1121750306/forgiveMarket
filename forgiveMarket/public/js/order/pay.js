@@ -131,25 +131,25 @@ function pay() {
 //		top: 0
 //	}, 300);
 
-	//	console.log(locations);
-	//	$.ajax({
-	//		type: "post",
-	//		url: "/order/createorder",
-	//		datatype: "json",
-	//		data: {
-	//			otids: JSON.stringify({
-	//				otid: otids
-	//			}),
-	//			locationid: locations._id
-	//		},
-	//		async: true,
-	//		success: function(data) {
-	//			if (data.flag == 200) {
-	//				toast("购买成功", "/views/order/orderlist.html?flag=2");
-	//			} else {
-	//				toast("购买失败");
-	//			}
-	//			console.log(data);
-	//		}
-	//	});
+		console.log(locations);
+		$.ajax({
+			type: "post",
+			url: "/order/createorder",
+			datatype: "json",
+			data: {
+				otids: JSON.stringify({
+					otid: otids
+				}),
+				locationid: locations._id
+			},
+			async: true,
+			success: function(data) {
+				if (data.flag == 200) {
+					toast("购买成功", "/views/order/orderlist.html?flag=2");
+				} else {
+					toast("购买失败");
+				}
+				console.log(data);
+			}
+		});
 }
