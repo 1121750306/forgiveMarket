@@ -345,6 +345,9 @@ router.post('/createorder', function(req, res, next) {
 
 });
 
+/**
+ * 获取所有订单（不关乎uid）
+ */
 router.get('/getallorders', function(req, res, next) {
 	order.getAllOrders(function(err, docs) {
 		if (!err) {
@@ -359,6 +362,34 @@ router.get('/getallorders', function(req, res, next) {
 			});
 		}
 	})
+});
+
+/**
+ * 根据订单状态获取当下状态的所有订单
+ */
+router.post('/getallordersbyflag', function(req, res, next) {
+	if (req.session.user == null) {
+		res.send({
+			flag: 300,
+			msg: "未登录"
+		});
+		return;
+	}
+	var uid = req.session.user[0]_id;
+	var flag = req.body.flag;
+	order.getAllOrdersByFlag(uid, flag, function(err, docs) {
+		if (!err) {
+			res.send({
+				flag: 200,
+				result: docs
+			});
+		} else {
+			res.send({
+				flag: 300,
+				result: null
+			});
+		}
+	});
 });
 
 module.exports = router;

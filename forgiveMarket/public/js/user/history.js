@@ -50,7 +50,8 @@ $(document).ready(function() {
 					})
 				})
 			} else {
-
+				//未登录
+				
 			}
 		},
 		fail: function(err) {

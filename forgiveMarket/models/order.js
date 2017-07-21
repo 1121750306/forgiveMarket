@@ -116,7 +116,86 @@ function createOrder(uid, otids, locationid, cb) {
 
 function getAllOrders(cb) {
 	orderModel.find({}).exec(cb);
-	
+}
+
+/**
+ * 获取某个状态的所有订单 
+ * @param {Object} uid
+ * @param {Object} flag
+ * @param {Object} cb
+ */
+function getAllOrdersByFlag(uid, flag, cb) {
+	orderModel.find({
+		uid: uid,
+		flag: flag
+	}).populate({
+		path: 'locationid'
+	}).then(function(result) {
+		console.log("result:" + result);
+		if (result == null || result.length == 0) {
+			cb("没有订单", null);
+			return;
+		}
+		var orders = [];
+		var promises = [];
+		for (var i = 0; i < result.length; i++) {
+			orders[orders.length] = {
+				oid: result[i]._id,
+				date: result[i].date,
+				locationid: result[i].locationid
+			}
+			promises[promises.length] = orderitemModel.find({
+				oid: result[i]._id
+			}).populate({
+				path: 'gid',
+				populate: {
+					path: 'typeid',
+					select: 'tname'
+				}
+			}).populate({
+				path: 'gsids.gsid'
+			});
+		}
+		promises[promises.length] = new Promise(function(resolve, reject) {
+			resolve(orders);
+		});
+		return Promise.all(promises);
+	}, function(err) {
+		console.log("err:" + err);
+		cb(err, null);
+	}).then(function(result) {
+		if (result == null || result.length == 0) {
+			cb("没有订单", null);
+			return;
+		}
+		var orders = result[result.length - 1];
+		for (var i = 0; i < orders.length; i++) {
+			orders[i].orderitem = [];
+			orders[i].total = 0;
+			if (result[i] == null || result[i].length == 0) {
+				continue;
+			}
+
+			for (var j = 0; j < result[i].length; j++) {
+				orders[i].orderitem[j] = {
+						gname: result[i][j].gid.gname,
+						price: result[i][j].gid.pricebase + result[i][j].gsids[0].gsid.priceoffset,
+						type: result[i][j].gid.typeid.tname,
+						number: result[i][j].num,
+						gsizetype: result[i][j].gsids[0].gsid.type,
+						gsizename: result[i][j].gsids[0].gsid.gsname
+					}
+					//计算总价
+				orders[i].total += orders[i].orderitem[j].price * orders[i].orderitem[j].number;
+			}
+
+		}
+		console.log("orders:" + orders);
+		cb(null, orders);
+	}, function(err) {
+		console.log("err:" + err);
+		cb(err, null);
+	});
 }
 
 module.exports.initModel = initModel;
@@ -125,3 +204,4 @@ module.exports.getOrderByIdAndFlag = getOrderByIdAndFlag;
 module.exports.updateOrder = updateOrder;
 module.exports.createOrder = createOrder;
 module.exports.getAllOrders = getAllOrders;
+module.exports.getAllOrdersByFlag = getAllOrdersByFlag;

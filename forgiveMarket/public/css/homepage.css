@@ -4,11 +4,9 @@ body {
 
 
 /*------------------------------------------头部*/
-.nav_modal_tab
-{
-	
-	
-}
+
+.nav_modal_tab {}
+
 
 /*--------------------------------------------搜索栏*/
 
@@ -390,60 +388,12 @@ body {
 	margin-left: -80px;
 }*/
 
-.hotgoods h2{
+.hotgoods h2 {
 	font-size: 2rem;
 	margin: 0 0 20px 20px;
 	color: #222;
 }
-.hotgoods-container {}
 
-.hotgoods-container>.hotgood {
-	width: 50%;
-	float: left;
-	padding-bottom: 15px;
-}
-
-.hotgoods-container>.hotgood>div {
-	position: relative;
-}
-
-.hotgoods-container>.hotgood>div>img {
-	width: 80%;
-	margin-left: 10%;
-}
-
-.hotgoods-container>.hotgood>div>.good_name {
-	width: 80%;
-	margin-left: 10%;
-	margin-top: 10px;
-	display: block;
-	font-size: 1.5rem;
-	text-align: center;
-}
-
-.hotgoods-container>.hotgood>div>.good_price {
-	width: 80%;
-	margin-left: 10%;
-	margin-top: 10px;
-	display: block;
-	font-size: 1.5rem;
-	color: red;
-	text-align: center;
-}
-
-.hotgoods-container>.hotgood>.buyer {
-	display: block;
-	position: relative;
-	left: 50%;
-	width: 26px;
-	height: 26px;
-	margin-left: -13px;
-	margin-top: 5px;
-	padding: 0;
-	border-radius: 13px;
-	background: #055321 url(/img/innisfreeIco//btn_cart_w.png) no-repeat 50% 50%;
-	background-size: 15px;
-}
 
 .hotgoods-inni {
 	margin-bottom: 20px;
