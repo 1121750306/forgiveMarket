@@ -178,6 +178,7 @@ function getAllOrdersByFlag(uid, flag, cb) {
 
 			for (var j = 0; j < result[i].length; j++) {
 				orders[i].orderitem[j] = {
+						gid:result[i][j].gid._id,
 						gname: result[i][j].gid.gname,
 						price: result[i][j].gid.pricebase + result[i][j].gsids[0].gsid.priceoffset,
 						type: result[i][j].gid.typeid.tname,
