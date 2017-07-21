@@ -2,7 +2,8 @@
 var otids;
 //默认收货地址
 var locations;
-
+//订单号
+var orderid = null;
 $(function() {
 	//请求默认收货地址数据
 	$.ajax({
@@ -34,8 +35,13 @@ $(function() {
 	});
 
 	//获取url中订单项数据
-	otids = location.search.substr(7).split("&");
-
+	var params = location.search.split("&&");
+	
+	otids = params[0].substr(7).split("&");
+	if(params.length == 2){
+		orderid = params[1].substr(4);
+	}
+	console.log("otids:" + otids + ",orderid:" + orderid);
 	//修改订单状态
 	$.ajax({
 		type: "post",
@@ -127,29 +133,213 @@ $(function() {
 })
 
 function pay() {
-//	$("#pay").animate({
-//		top: 0
-//	}, 300);
-
-		console.log(locations);
-		$.ajax({
-			type: "post",
-			url: "/order/createorder",
-			datatype: "json",
-			data: {
-				otids: JSON.stringify({
-					otid: otids
-				}),
-				locationid: locations._id
-			},
-			async: true,
-			success: function(data) {
-				if (data.flag == 200) {
-					toast("购买成功", "/views/order/orderlist.html?flag=2");
-				} else {
-					toast("购买失败");
-				}
-				console.log(data);
-			}
+	console.log(locations);
+	if (orderid == null) {
+		//未创建订单
+		createOrder(function(data) {
+			console.log(data);
+			orderid = data.result._id;
+			showPay();
 		});
+	} else {
+		showPay();
+	}
+
 }
+
+/**
+ * 显示支付页面
+ */
+function showPay() {
+	$("#order_id_content").text(orderid);
+	var userjson = sessionStorage.user;
+	var user = JSON.parse(userjson);
+	$("#order_user_content").text(user.phone);
+
+	var total = $(".totalprice").html().substr(4);
+	$("#order_total_content").text("￥" + total);
+
+	$("#btn_pay").click(function() {
+		$("#lodaing").css("display", "block");
+		console.log(getPassword())
+		if (getPassword() == "123456") {
+			//支付成功
+			buy();
+		} else {
+			errorPoint.style.display = "block";
+			this.value = "密码不正确";
+		}
+	});
+	$("#pay_title i").click(function() {
+		$("#pay").animate({
+			top: '100%'
+		}, 300);
+	});
+	$("#pay").animate({
+		top: 0
+	}, 300);
+}
+
+function createOrder(cb) {
+	$.ajax({
+		type: "post",
+		url: "/order/createorder",
+		datatype: "json",
+		data: {
+			otids: JSON.stringify({
+				otid: otids
+			}),
+			locationid: locations._id
+		},
+		async: true,
+		success: function(data) {
+			cb(data);
+		},
+		fail: function(err) {
+			toast("购买失败");
+			$("#lodaing").css("display", "none");
+		}
+	});
+}
+
+function buy() {
+	$.ajax({
+		type: "post",
+		url: "/order/updateorder",
+		async: true,
+		data: {
+			otid: orderid,
+			flag: 2
+		},
+		success: function(data) {
+			$("#lodaing").css("display", "none");
+			if (data.type == 'success') {
+				toast("购买成功", "/views/order/orderlist.html?flag=2");
+			} else {
+				toast("购买失败");
+			}
+		},
+		fail: function(err) {
+			toast("购买失败");
+			$("#lodaing").css("display", "none");
+		}
+	});
+}
+var box = document.getElementsByClassName("box")[0];
+
+function createDIV(num) {
+	for (var i = 0; i < num; i++) {
+		var pawDiv = document.createElement("div");
+		pawDiv.className = "pawDiv";
+		box.appendChild(pawDiv);
+		var paw = document.createElement("input");
+		paw.type = "password";
+		paw.className = "paw";
+		paw.maxLength = "1";
+		paw.readOnly = "readonly";
+		pawDiv.appendChild(paw);
+	}
+}
+createDIV(6);
+
+var pawDiv = document.getElementsByClassName("pawDiv");
+var paw = document.getElementsByClassName("paw");
+var pawDivCount = pawDiv.length;
+/*设置第一个输入框默认选中*/
+pawDiv[0].setAttribute("style", "border: 1px solid deepskyblue;");
+paw[0].readOnly = false;
+paw[0].focus();
+
+var errorPoint = document.getElementsByClassName("errorPoint")[0];
+/*绑定pawDiv点击事件*/
+
+function func() {
+	for (var i = 0; i < pawDivCount; i++) {
+		pawDiv[i].addEventListener("click", function() {
+			pawDivClick(this);
+		});
+		paw[i].onkeyup = function(event) {
+			console.log(event.keyCode);
+			if ((event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105)) {
+				/*输入0-9*/
+				changeDiv();
+				errorPoint.style.display = "none";
+
+			} else if (event.keyCode == "8") {
+				/*退格回删事件*/
+				firstDiv();
+
+			} else if (event.keyCode == "13") {
+				/*回车事件*/
+				getPassword();
+
+			} else {
+				/*输入非0-9*/
+				errorPoint.style.display = "block";
+				this.value = "";
+			}
+
+		};
+	}
+
+}
+func();
+
+/*定义pawDiv点击事件*/
+var pawDivClick = function(e) {
+	for (var i = 0; i < pawDivCount; i++) {
+		pawDiv[i].setAttribute("style", "border: 1px solid transparent;");
+	}
+	e.setAttribute("style", "border: 1px solid deepskyblue;");
+};
+
+/*定义自动选中下一个输入框事件*/
+var changeDiv = function() {
+	for (var i = 0; i < pawDivCount; i++) {
+		if (paw[i].value.length == "1") {
+			/*处理当前输入框*/
+			paw[i].blur();
+
+			/*处理上一个输入框*/
+			paw[i + 1].focus();
+			paw[i + 1].readOnly = false;
+			pawDivClick(pawDiv[i + 1]);
+		}
+	}
+};
+
+/*回删时选中上一个输入框事件*/
+var firstDiv = function() {
+	for (var i = 0; i < pawDivCount; i++) {
+		console.log(i);
+		if (paw[i].value.length == "0") {
+			/*处理当前输入框*/
+			console.log(i);
+			paw[i].blur();
+
+			/*处理上一个输入框*/
+			paw[i - 1].focus();
+			paw[i - 1].readOnly = false;
+			paw[i - 1].value = "";
+			pawDivClick(pawDiv[i - 1]);
+			break;
+		}
+	}
+};
+
+/*获取输入密码*/
+var getPassword = function() {
+	var n = "";
+	for (var i = 0; i < pawDivCount; i++) {
+		n += paw[i].value;
+	}
+	return n;
+};
+
+/*键盘事件*/
+document.onkeyup = function(event) {
+	if (event.keyCode == "13") {
+		/*回车事件*/
+		getPassword();
+	}
+};

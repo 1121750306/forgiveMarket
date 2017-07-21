@@ -82,7 +82,7 @@ function updateOrder(oid, flag, cb) {
 function createOrder(uid, otids, locationid, cb) {
 	var orderEntity = new orderModel({
 		uid: mongoose.Types.ObjectId(uid),
-		flag: 2,
+		flag: 1,
 		locationid: mongoose.Types.ObjectId(String(locationid)),
 		date: new Date()
 	});
@@ -107,7 +107,7 @@ function createOrder(uid, otids, locationid, cb) {
 			//创建订单失败
 			cb("创建订单失败", null);
 		}).then(function(result) {
-			cb(null, "创建订单成功");
+			cb(null, result[result.length - 1]);
 		}, function(err) {
 			//创建订单失败
 			cb("创建订单失败", null);

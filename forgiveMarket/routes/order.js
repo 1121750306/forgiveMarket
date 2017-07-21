@@ -336,10 +336,18 @@ router.post('/createorder', function(req, res, next) {
 	console.log("locationid:" + locationid);
 	order.createOrder(uid, otids, locationid, function(err, result) {
 		console.log(result);
-		res.send({
-			flag: 200,
-			result: result
-		});
+		if (!err) {
+			res.send({
+				flag: 200,
+				result: result
+			});
+		} else {
+			res.send({
+				flag: 300,
+				msg: err
+			});
+		}
+
 	});
 	//	console.log("uid:" + uid);
 
