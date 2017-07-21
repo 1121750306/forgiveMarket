@@ -18,6 +18,7 @@ $(function() {
 		var gid = $(".com_txt input[name=gid]").val();
 		var content = $(".com_txt textarea").val();
 		
+		//添加评论
 		$.ajax({
 			type:"post",
 			url:"/comment/addComment",
@@ -27,18 +28,35 @@ $(function() {
 			},
 			async:true,
 			success:function(data){
-				if ($(".comment").attr("oid") != "") {
-					//将订单加入已完成
-					
-					
-					$(".comment").animate({top:"100%"},500,function(){
-						reloadView(3);
+				var oid = $(".comment").attr("oid");
+				
+				if (oid) {
+					//订单内的其他订单项都已评论，将订单加入已完成订单表中
+					$.ajax({
+						type:"post",
+						url:"/order/updateorder",
+						data:{
+							otid:oid,
+							flag:5,
+						},
+						async:true,
+						success:function(data){
+							$(".comment").animate({top:"100%"},500,function(){
+								reloadView(3);
+							});
+						},
+						error:function(err){
+							console.log(err);
+						}
 					});
+					
 				}else{
+					//订单中存在未评论的订单项
 					$(".comment").animate({top:"100%"},500,function(){
 						reloadView(3);
 					});
 				}
+				
 			},
 			error:function(err){
 				console.log(err);
@@ -78,6 +96,7 @@ $(function() {
 					for (let i = 0; i < data.result.length; i++) {
 						let order = data.result[i];
 						
+						//拼接收货地址信息
 						let location = order.locationid.province + order.locationid.city + 
 										order.locationid.district + order.locationid.address;
 						
@@ -89,16 +108,16 @@ $(function() {
 									<ul class="cart"></ul>\
 									<ul class="location_info">\
 										<li>\
-											<h4>收货人：</h4>\
-											<h4 class="location_name">' + order.locationid.shname + '</h4>\
+											<h3>收货人：</h3>\
+											<h3 class="location_name">' + order.locationid.shname + '</h3>\
 										</li>\
 										<li>\
-											<h4>手机号：</h4>\
-											<h4 class="location_phone">' + order.locationid.phone + '</h4>\
+											<h3>手机号：</h3>\
+											<h3 class="location_phone">' + order.locationid.phone + '</h3>\
 										</li>\
 										<li>\
-											<h4>收货地址：</h4>\
-											<h4 class="location_address">' + location + '</h4>\
+											<h3>收货地址：</h3>\
+											<h3 class="location_address">' + location + '</h3>\
 										</li>\
 									</ul>\
 									<div class="order_bottom">\
@@ -138,7 +157,7 @@ $(function() {
 								async:true,
 								success:function(photo){
 									//拼接订单项li
-									let itemLi ='<li class="cart_item" gid= "' + orderitem.gid + '">\
+									let itemLi ='<li class="cart_item" gid= "' + orderitem.gid + '" otid="' + orderitem.otid + '">\
 												<img src="/img/upload/' + photo + '"/>\
 												<div class="item_info">\
 													<h2>' + orderitem.gname + '</h2>\
@@ -152,10 +171,13 @@ $(function() {
 											
 									$(".order .order_item").eq(i).children(".cart").append(itemLi);
 									
+									$(".order .order_item").eq(i).find(".cart .cart_item").eq(j).bind("mouseup",togoodinfo);
+									
 									//当在已收货界面时显示评价按钮
 									if (index == 3) {
 										$(".order .order_item").eq(i).find(".cart .cart_item").eq(j)
 											.find(".info_bottom").append("<span class='item_comment'>评价</span>");
+										//绑定事件
 										$(".order .order_item").eq(i).find(".cart .cart_item").eq(j)
 											.find(".item_comment").bind("click",tocomment);
 									}
@@ -179,8 +201,17 @@ $(function() {
 			}
 		});
 		
-		
-
+	}
+	
+	
+	
+	//商品页面跳转控制
+	function togoodinfo(e){
+		var commentBtn = $(e.target).parents(".cart_item").find(".item_comment")[0];
+        if (e.target != commentBtn){
+			var gid = $(e.target).parents(".cart_item").attr("gid");
+            location.assign("/views/goodInfo/goodInfo.html?gid=" + gid);
+        }
 	}
 	
 	//查看收货信息控制
@@ -192,8 +223,22 @@ $(function() {
 	}
 	
 	//去付款控制
-	function topay () {
-		alert("pay")
+	function topay (e) {
+		var url = "";
+		var oid = $(e.target).parents(".order_item").attr("oid");
+		var orderitems = $(e.target).parents(".order_item").find(".cart_item");
+		
+		//拼接url
+		for (var i = 0; i < orderitems.length; i++) {
+			if (url != "") {
+				url += "&" + orderitems.eq(i).attr("otid");
+			}else{
+				url += "?otids=" + orderitems.eq(i).attr("otid");
+			}
+		}
+		url += "&&oid=" + oid;
+		
+		location.assign("/views/order/pay.html" + url);
 	}
 	
 	//确认收货控制
@@ -227,24 +272,10 @@ $(function() {
 			$(".comment").attr("oid",oid);
 		}
 		
+		$(".com_txt textarea").val("");
 		$(".com_txt input[name=gid]").val($(this).parents(".cart_item").attr("gid"));
 		$(".comment").animate({top:"0%"},500);
 
-//		$.ajax({
-//			type:"post",
-//			url:"/order/updateorder",
-//			data:{
-//				otid:oid,
-//				flag:3,
-//			},
-//			async:true,
-//			success:function(data){
-//				reloadView(2);
-//			},
-//			error:function(err){
-//				console.log(err);
-//			}
-//		});
 	}
 	
 });

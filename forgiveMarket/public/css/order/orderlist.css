@@ -94,7 +94,7 @@ body{
 	border: none;
 }
 
-.location_info li h4{
+.location_info li h3{
 	width: 20%;
 	height: 25px;
 	float: left;
@@ -105,7 +105,7 @@ body{
 	text-overflow: ellipsis;
 }
 
-.location_info li h4:last-of-type{
+.location_info li h3:last-of-type{
 	width: 80%;
 	float: right;
 	text-align: right;

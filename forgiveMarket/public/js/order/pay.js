@@ -129,6 +129,14 @@ $(function() {
 	$(".banner").click(function() {
 		location.assign("/location");
 	});
+	
+	//商品页面跳转控制
+	$(".cart").on("mouseup", ".cart_item", function(e){
+    	var gid = $(this).attr("gid");
+    	
+		location.assign("/views/goodInfo/goodInfo.html?gid=" + gid);
+		
+	})
 
 })
 
