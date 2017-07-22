@@ -13,7 +13,7 @@ function initModel(models) {
  * @param {Object} callback
  */
 function addOrder(uid, flag, callback) {
-	switch (parseInt(flag)) {
+	switch(parseInt(flag)) {
 		//购物车
 		case 0:
 			var orderEntity = new orderModel({
@@ -66,8 +66,8 @@ function updateOrder(oid, flag, cb) {
 	orderModel.findOne({
 		_id: oid
 	}, function(err, doc) {
-		if (!err) {
-			if (doc != null) {
+		if(!err) {
+			if(doc != null) {
 				doc.flag = Number(flag);
 				doc.save(cb);
 			} else {
@@ -92,7 +92,7 @@ function createOrder(uid, otids, locationid, cb) {
 			console.log("创建成功：" + doc);
 			//获取订单项
 			promises = [];
-			for (var i = 0; i < otids.length; i++) {
+			for(var i = 0; i < otids.length; i++) {
 				promises.push(orderitemModel.findOneAndUpdate({
 					_id: otids[i]
 				}, {
@@ -132,13 +132,13 @@ function getAllOrdersByFlag(uid, flag, cb) {
 		path: 'locationid'
 	}).then(function(result) {
 		console.log("result:" + result);
-		if (result == null || result.length == 0) {
+		if(result == null || result.length == 0) {
 			cb("没有订单", null);
 			return;
 		}
 		var orders = [];
 		var promises = [];
-		for (var i = 0; i < result.length; i++) {
+		for(var i = 0; i < result.length; i++) {
 
 			var date = result[i].date.getFullYear() + "-" + (result[i].date.getMonth() - 1) + "-" + result[i].date.getDate() + " " + result[i].date.getHours() + ":" + result[i].date.getMinutes() + ":" + result[i].date.getSeconds();
 
@@ -167,30 +167,31 @@ function getAllOrdersByFlag(uid, flag, cb) {
 		console.log("err:" + err);
 		cb(err, null);
 	}).then(function(result) {
-		if (result == null || result.length == 0) {
+		if(result == null || result.length == 0) {
 			cb("没有订单", null);
 			return;
 		}
 		var orders = result[result.length - 1];
-		for (var i = 0; i < orders.length; i++) {
+		for(var i = 0; i < orders.length; i++) {
 			orders[i].orderitem = [];
 			orders[i].total = 0;
-			if (result[i] == null || result[i].length == 0) {
+			if(result[i] == null || result[i].length == 0) {
 				continue;
 			}
 
-			for (var j = 0; j < result[i].length; j++) {
+			for(var j = 0; j < result[i].length; j++) {
 				orders[i].orderitem[j] = {
-						otid:result[i][j]._id,
-						gid: result[i][j].gid._id,
-						gname: result[i][j].gid.gname,
-						price: result[i][j].gid.pricebase + result[i][j].gsids[0].gsid.priceoffset,
-						type: result[i][j].gid.typeid.tname,
-						number: result[i][j].num,
-						gsizetype: result[i][j].gsids[0].gsid.type,
-						gsizename: result[i][j].gsids[0].gsid.gsname
-					}
-					//计算总价
+					otid: result[i][j]._id,
+					gid: result[i][j].gid._id,
+					gname: result[i][j].gid.gname,
+					price: result[i][j].gid.pricebase + result[i][j].gsids[0].gsid.priceoffset,
+					type: result[i][j].gid.typeid.tname,
+					number: result[i][j].num,
+					gsizetype: result[i][j].gsids[0].gsid.type,
+					gsizename: result[i][j].gsids[0].gsid.gsname,
+					cid: result[i][j].cid == undefined ? null : result[i][j].cid
+				}
+				//计算总价
 				orders[i].total += orders[i].orderitem[j].price * orders[i].orderitem[j].number;
 			}
 

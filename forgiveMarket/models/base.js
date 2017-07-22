@@ -104,7 +104,7 @@ db.once("open", function() {
 		versionKey: false
 	});
 	goodsizeModel = db.model("Goodsize", goodsizeSchema);
-	
+
 	// 收货地址表
 	locationSchema = new mongoose.Schema({
 		//用户外键
@@ -126,7 +126,7 @@ db.once("open", function() {
 		versionKey: false
 	});
 	locationModel = db.model("Location", locationSchema);
-	
+
 	// 订单表
 	orderSchema = new mongoose.Schema({
 		//用户外键
@@ -166,7 +166,12 @@ db.once("open", function() {
 				ref: 'Goodsize'
 			}
 		}],
-		num: Number
+		num: Number,
+		//评论外键
+		cid: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'Comment'
+		}
 	}, {
 		versionKey: false
 	});
