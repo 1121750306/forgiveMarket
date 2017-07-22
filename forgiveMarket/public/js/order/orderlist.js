@@ -15,6 +15,7 @@ $(function() {
 	
 	//商品评论控制
 	$(".com_submit").click(function(){
+		var otid = $(".comment").attr("otid");
 		var gid = $(".com_txt input[name=gid]").val();
 		var content = $(".com_txt textarea").val();
 		
@@ -24,6 +25,7 @@ $(function() {
 			url:"/comment/addComment",
 			data:{
 				gid:gid,
+				otid:otid,
 				content:content
 			},
 			async:true,
@@ -66,6 +68,7 @@ $(function() {
 	})
 	$(".com_cancel").click(function(){
 		$(".comment").attr("oid","");
+		$(".comment").attr("otid","");
 		$(".comment").animate({top:"100%"},500);
 	})
 	
@@ -80,8 +83,9 @@ $(function() {
 		//清空order
 		$(".order").empty();
 		
-		//评论oid删除
+		//评论oid,otid删除
 		$(".comment").attr("oid","");
+		$(".comment").attr("otid","");
 		
 		$.ajax({
 			type:"post",
@@ -174,7 +178,7 @@ $(function() {
 									$(".order .order_item").eq(i).find(".cart .cart_item").eq(j).bind("mouseup",togoodinfo);
 									
 									//当在已收货界面时显示评价按钮
-									if (index == 3) {
+									if (index == 3 && !orderitem.cid) {
 										$(".order .order_item").eq(i).find(".cart .cart_item").eq(j)
 											.find(".info_bottom").append("<span class='item_comment'>评价</span>");
 										//绑定事件
@@ -265,6 +269,7 @@ $(function() {
 	//评论控制
 	function tocomment (e) {
 		var oid = $(e.target).parents(".order_item").attr("oid");
+		var otid = $(e.target).parents(".cart_item").attr("otid");
 		
 		//当前订单其他订单项都被评价时
 		var commentBtn =  $(e.target).parents(".cart_item").siblings("li").find(".item_comment");
@@ -272,7 +277,8 @@ $(function() {
 			$(".comment").attr("oid",oid);
 		}
 		
-		$(".com_txt textarea").val("");
+		$(".com_txt textarea").val("");		
+		$(".comment").attr("otid",otid);
 		$(".com_txt input[name=gid]").val($(this).parents(".cart_item").attr("gid"));
 		$(".comment").animate({top:"0%"},500);
 
