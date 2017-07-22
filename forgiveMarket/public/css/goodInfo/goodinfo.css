@@ -621,3 +621,11 @@
 	background: url("../../img/innisfreeIco/collect0.png") no-repeat;
 	background-size: 40px;
 }
+#hotgoods-container{
+	padding-bottom: 10px;
+}
+#hotgoods-container>h4{
+	margin-bottom: 10px;
+	padding-left: 10px;
+	color: darkgreen;
+}

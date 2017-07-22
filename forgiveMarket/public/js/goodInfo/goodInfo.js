@@ -6,8 +6,7 @@ $(function() {
 	{
 		var goodInfo;
 		var goodtype;
-		var url = location.search;
-		alert(5)
+		var url = location.search
 		if(url != '') {
 			url = url.substring(1);
 			var gid = url.split('&')[0].split('=')[1];
@@ -55,6 +54,7 @@ $(function() {
 					 * */
 
 					$("#load").css('display', 'none');
+					$('body').removeClass('overhide')
 					$("#main-ctr").css('display', 'block');
 					$(".tot-ctr").css('display', 'block');
 
@@ -294,26 +294,31 @@ $(function() {
 
 	{ //评论
 		var commentData;
+        // var gid = goodInfo[0].gid._id;
+		console.log(gid)
 		$.ajax({
 			type: "get",
-			url: "/comment/getgoodComment",
+			url: "/comment/getgoodComment"+gid,
 			async: true,
 			success: function(data) {
 				console.log(data);
 				commentData = data;
 				var l = data.length > 6 ? 6 : data.length;
 				var pageTotal = Math.ceil(data.length / 6);
+				if(pageTotal == 0) pageTotal = 1;
 				var pageCur = 1;
 				$(".comment .comment-ctr span strong").text(pageCur);
-				$(".comment .comment-ctr span span").text('/' + pageTotal);
-				for(var i = 0; i < data.length; i++) {
+				$(".comment .comment-ctr span span").text( pageTotal);
+				$("#main-ctr button span").text(commentData.length);
+				$(".comment .comment-hd h4 span").text(commentData.length)
+				for(var i = 0; i < l; i++) {
 					var str = '<div class="item" data-index=' + i + '>' +
-						//					'<img src="'+data[i].uid.avatar+'" />'+
-						'<img src="../../img/innisfreeIco/avatar.png" />' +
+											'<img src="'+data[i].uid.avatar+'" />'+
+						// '<img src="../../img/innisfreeIco/avatar.png" />' +
 						'<div class="item-right clearfix">' +
 						'<h5>' + data[i].content + '</h5>' +
 						'<div class="item-rb">' +
-						'<strong class="itemname">' + data[i].uid + '</strong> &nbsp;&nbsp;' +
+						'<strong class="itemname">' + data[i].uid.uname + '</strong> &nbsp;&nbsp;' +
 						'<span>(' + data[i].date.substring(0, 10) + ')</span>' +
 						'<div class="item-inte">' +
 						'<span class="com-btn clearfix"><i class="com-ico"></i><span>';
@@ -338,6 +343,44 @@ $(function() {
 			}
 		});
 
+		//评论翻页
+		$(".comment .comment-ctr .ctr").click(function(){
+			var dire = $(this).attr('data-dire');
+			var curpage = $(".comment .comment-ctr span strong").text();
+			var targetPage = parseInt(dire)+parseInt(curpage);
+			var totalPage = $(".comment .comment-ctr span span").text()
+			if(1<=targetPage&&targetPage<=parseInt(totalPage)){
+				$(".comment .comment-ct").empty();
+                var le = commentData.length-(targetPage-1)*6 > 6 ? 6*targetPage : commentData.length;
+                $(".comment .comment-ctr span strong").text(targetPage);
+                for(var i = 6*(targetPage-1); i < le; i++) {
+                    var str = '<div class="item" data-index=' + i + '>' +
+                        '<img src="'+commentData[i].uid.avatar+'" />'+
+                        // '<img src="../../img/innisfreeIco/avatar.png" />' +
+                        '<div class="item-right clearfix">' +
+                        '<h5>' + commentData[i].content + '</h5>' +
+                        '<div class="item-rb">' +
+                        '<strong class="itemname">' + commentData[i].uid.uname + '</strong> &nbsp;&nbsp;' +
+                        '<span>(' + commentData[i].date.substring(0, 10) + ')</span>' +
+                        '<div class="item-inte">' +
+                        '<span class="com-btn clearfix"><i class="com-ico"></i><span>';
+                    if(commentData[i].sonComment.length > 0) {
+                        str += commentData[i].sonComment.length;
+                    } else {
+                        str += '评论';
+                    }
+                    var str2 = '</span></span> ' +
+                        '<span class="thumb-btn clearfix"><i class="thumb-ico"></i>点赞</span>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>';
+                    str = str + str2;
+                    $(".comment .comment-ct").append(str);
+                }
+			}
+		})
+
 		//评论详情
 
 		$(".comment-ct").on('click', ' .item-inte .com-btn', function() {
@@ -347,9 +390,9 @@ $(function() {
 
 			$(".comment .dt-main").empty();
 			var s = '<div class="item" data-index=' + index + '>' +
-				'<img src="' + '../../img/innisfreeIco/avatar.png' + '" />' +
+				'<img src="' + commentData[index].uid.avatar + '" />' +
 				'<div class="item-right clearfix">' +
-				'<h4>' + commentData[index].uid + '</h4>' +
+				'<h4>' + commentData[index].uid.uname + '</h4>' +
 				'<h5>(' + commentData[index].date.substring(0, 10) + ')</h5>' +
 				'</div><h4 style="padding-left: 40px;">' + commentData[index].content + '</h4></div>'
 			$(".comment .dt-main").append(s)
@@ -357,10 +400,9 @@ $(function() {
 			$(".comment .son-comment .item").remove()
 			for(var i = 0; i < total; i++) {
 				var str = '<div class="item">' +
-					'<img src="' + '../../img/innisfreeIco/avatar.png' + '" />' +
+                    '<img src="' + arr[i].uid.avatar + '" />' +
 					'<div class="item-right clearfix">' +
-					'<h4>' + arr[i].uid + '</h4>' +
-					'<h5>(' + arr[i].date.substring(0, 10) + ')</h5>' +
+					'<h4>' + arr[i].uid.uname + '</h4>' +'<h5>' + arr[i].date.substring(0, 10) + '</h5>'+
 					'</div><h4 style="padding-left: 40px;">' + arr[i].content + '</h4></div>'
 				$(".comment .son-comment").append(str)
 			}
@@ -426,7 +468,9 @@ $(function() {
 							if(data.flag == 200) {
 								$(".tot-ctr .collect i").css('background-image', 'url(../../img/innisfreeIco/collect1.png)')
 								$(".tot-ctr .collect").attr('data-type', '1')
-							}
+                                toast("收藏成功")
+							};
+
 						}
 					});
 
@@ -443,6 +487,7 @@ $(function() {
 							if(data.flag == 200) {
 								$(".tot-ctr .collect i").css('background-image', 'url(../../img/innisfreeIco/collect0.png)')
 								$(".tot-ctr .collect").attr('data-type', '0')
+                                toast("移除收藏")
 							}
 						}
 					});
@@ -544,10 +589,12 @@ $(function() {
 			} else {
 				var content = $("#com-btn .com-input").val();
 				var user = sessionStorage.user;
+				var index = $(".comment-dt .dt-main .item").attr('data-index');
 				$.ajax({
 					type: "post",
 					url: "/comment/addComToComment",
 					data: {
+						cid:commentData[index]._id,
 						content: content
 					},
 					async: true,
@@ -573,6 +620,7 @@ $(function() {
 							d = parseInt(d) + 1;
 						}
 						$(".comment-ct .item[data-index='" + index + "'] .item-inte .com-btn span").text(d);
+						toast("评论成功")
 					},
 					error: function(data) {
 						console.log(data);
@@ -622,7 +670,8 @@ $(function() {
 			success: function(result) {
 				console.log(result);
 
-				$(".nav_cartnum").html(parseInt($(".nav_cartnum").html()) + 1)
+				$(".nav_cartnum").html(parseInt($(".nav_cartnum").html()) + 1);
+				toast("添加成功")
 			},
 			error: function(err) {
 				console.log(err);

@@ -9,10 +9,10 @@ function callback(models) {
 }
 
 router.post('/addComment',function(req,res,next){
-	req.session.user=[{_id:"596f4d3d3709ec1c447f01eb",uname:"13614004325",psw:"424123",phone:"13614004325",balance:0,avatar:"/img/innisfreeIcon/avatar.png"}];
-//	var gid=String(req.body.gid);
+	// req.session.user=[{_id:"596f4d3d3709ec1c447f01eb",uname:"13614004325",psw:"424123",phone:"13614004325",balance:0,avatar:"/img/innisfreeIcon/avatar.png"}];
+	var gid=String(req.body.gid);
 	//模拟
-	var gid="59700afda186ec08c06bc71c";
+	// var gid="59700afda186ec08c06bc71c";
 	var uid=req.session.user[0]._id;
 	var content=req.body.content;
 	var date=new Date();
@@ -32,9 +32,9 @@ router.post('/addComment',function(req,res,next){
 })
 
 router.post('/addComToComment',function(req,res,next){
-	req.session.user=[{_id:"596f4d3d3709ec1c447f01eb",uname:"13614004325",psw:"424123",phone:"13614004325",balance:0,avatar:"/img/innisfreeIcon/avatar.png"}];
-//	var cid=String(req.body.cid);
-	var cid = "5971584e0a43d30714050a8d";
+	// req.session.user=[{_id:"596f4d3d3709ec1c447f01eb",uname:"13614004325",psw:"424123",phone:"13614004325",balance:0,avatar:"/img/innisfreeIcon/avatar.png"}];
+	var cid=req.body.cid;
+	// var cid = "5971584e0a43d30714050a8d";
 	//模拟
 	var uid=req.session.user[0]._id;
 	var content=req.body.content;
@@ -54,9 +54,10 @@ router.post('/addComToComment',function(req,res,next){
 	var dateStr = date.getFullYear() + "年" + (date.getMonth() + 1) + "月" + date.getDate() + "日";*/
 })
 
-router.get('/getgoodComment',function(req,res,next){
-//	var gid = req.params.gid;
-	var gid = '59700afda186ec08c06bc71c';
+router.get('/getgoodComment:gid',function(req,res,next){
+	var gid = req.params.gid;
+	// var gid = '59700afda186ec08c06bc71c';
+	console.log(gid)
 	comment.getCommentByGid(gid,function(err,docs){
 		if(!err){
 			console.log(docs);
