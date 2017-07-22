@@ -1,3 +1,4 @@
+var mongoose = require("mongoose");
 //注册models监听
 function initModel(models) {
 	//订单模型
