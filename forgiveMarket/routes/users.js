@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var user = require("../models/user")
+var order = require("../models/order")
 var multiparty = require('multiparty');
 var util = require('util');
 var fs = require('fs');
@@ -12,7 +13,7 @@ function callback(models) {
 router.get('/getunamebyid/:uid', function(req, res, next) {
 	var uid = req.params.uid;
 	user.getUserNameById(uid, function(err, doc) {
-		if (!err && doc != null) {
+		if(!err && doc != null) {
 			res.send({
 				flag: 200,
 				result: doc
@@ -34,17 +35,17 @@ router.post('/register', function(req, res, next) {
 	console.log("phone:" + phone + ",password:" + password);
 	user.register(phone, password, function(flag, err, result) {
 		var json;
-		if (flag == 0) {
+		if(flag == 0) {
 			json = {
 				flag: 300,
 				msg: "注册失败"
 			};
-		} else if (flag == 1) {
+		} else if(flag == 1) {
 			json = {
 				flag: 300,
 				msg: "已存在该用户"
 			};
-		} else if (flag == 2) {
+		} else if(flag == 2) {
 			console.log("注册成功", "result:" + result);
 			req.session.user = [result];
 			json = {
@@ -66,23 +67,23 @@ router.post('/login', function(req, res, next) {
 	console.log("phone:" + phone + ",password:" + password);
 	user.login(phone, password, function(flag, err, result) {
 		var json;
-		if (flag == 0) {
+		if(flag == 0) {
 			json = {
 				flag: 300,
 				msg: "登录失败"
 			};
-		} else if (flag == 1) {
+		} else if(flag == 1) {
 			json = {
 				flag: 300,
 				msg: "密码错误"
 			};
-		} else if (flag == 2) {
+		} else if(flag == 2) {
 			req.session.user = result;
 			json = {
 				flag: 300,
 				msg: "账号不存在"
 			};
-		} else if (flag == 3) {
+		} else if(flag == 3) {
 			req.session.user = result;
 			json = {
 				flag: 200,
@@ -110,7 +111,7 @@ router.post("/logout", function(req, res, next) {
  *	修改资料 
  */
 router.post("/changeavatar", function(req, res, next) {
-	if (req.session.user == null) {
+	if(req.session.user == null) {
 		res.send({
 			flag: 300,
 			msg: "未登录"
@@ -131,18 +132,18 @@ router.post("/changeavatar", function(req, res, next) {
 		console.log("uname:" + uname)
 		console.log('inputFile:' + inputFile);
 		console.log('uploadedPath:' + uploadedPath);
-		if (uploadedPath != null) {
+		if(uploadedPath != null) {
 			uploadedPath = uploadedPath.substr(uploadedPath.indexOf("\\"), uploadedPath.length);
 		}
 		user.changeUserInfo(req.session.user[0]._id, uname, uploadedPath, function(flag, err, result) {
-			if (!err) {
-				if (flag == 1) {
+			if(!err) {
+				if(flag == 1) {
 					res.send({
 						flag: 200,
 						msg: "修改成功",
 						result: result
 					});
-				} else if (flag == 2) {
+				} else if(flag == 2) {
 					res.send({
 						flag: 300,
 						msg: "不存在该用户"
@@ -165,7 +166,7 @@ router.post("/changeavatar", function(req, res, next) {
 });
 
 router.post("/changepwd", function(req, res, next) {
-	if (req.session.user == null) {
+	if(req.session.user == null) {
 		res.send({
 			flag: 300,
 			msg: "未登录"
@@ -175,7 +176,7 @@ router.post("/changepwd", function(req, res, next) {
 	var _id = req.session.user[0]._id;
 	var nowpwd = req.body.nowpwd;
 	var password = req.body.password;
-	if (nowpwd == undefined || password == undefined) {
+	if(nowpwd == undefined || password == undefined) {
 		res.send({
 			flag: 300,
 			msg: "信息错误"
@@ -183,13 +184,13 @@ router.post("/changepwd", function(req, res, next) {
 		return;
 	}
 	user.changePwd(_id, nowpwd, password, function(flag, err, result) {
-		if (flag == 1) {
+		if(flag == 1) {
 			res.send({
 				flag: 200,
 				msg: "修改成功",
 				result: result
 			});
-		} else if (flag == 2) {
+		} else if(flag == 2) {
 			res.send({
 				flag: 300,
 				msg: "不存在该用户"
@@ -213,7 +214,7 @@ router.post("/searchgood", function(req, res, next) {
 	console.log("content:" + content);
 	user.searchGood(content, function(err, docs) {
 		console.log(err);
-		if (!err) {
+		if(!err) {
 			res.send({
 				flag: 200,
 				msg: "搜索成功",
@@ -250,9 +251,9 @@ router.all("/gettopgoods", function(req, res, next) {
  * 获奖用户
  */
 router.all("/getrandomuser", function(req, res, next) {
-	
+
 	user.randowUser(function(err, result) {
-		if (!err) {
+		if(!err) {
 			res.send({
 				flag: 200,
 				result: result
@@ -264,6 +265,21 @@ router.all("/getrandomuser", function(req, res, next) {
 			});
 		}
 	});
+});
+
+router.all("/getordernumber", function(req, res, next) {
+	if(req.session.user == null) {
+		res.send({
+			flag: 300,
+			msg: "未登录"
+		});
+		return;
+	}
+	var uid = req.session.user[0]._id;
+	order.getOrderNumber(uid, function(err, result) {
+		console.log("send:" + result);
+		res.send(result);
+	})
 });
 module.exports = router;
 module.exports.callback = callback;

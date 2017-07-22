@@ -1,7 +1,7 @@
 $(function() {
 	console.log(sessionStorage.user);
 	var userjson = sessionStorage.user;
-	if (userjson != null && userjson != "null" && userjson != undefined && userjson != "undefined") {
+	if(userjson != null && userjson != "null" && userjson != undefined && userjson != "undefined") {
 		var user = JSON.parse(userjson);
 		console.log(user);
 		//已经登录
@@ -31,11 +31,25 @@ $(function() {
 	})
 
 	addOnLoginListener(function(err, result) {
-		if (err) {
+		if(err) {
 
 		} else {
 			dismissLogin();
 			location.reload();
+		}
+	});
+
+	//订单数量
+	$.ajax({
+		type: "post",
+		url: "/users/getordernumber",
+		async: true,
+		success: function(data) {
+			$("#unpay span").text(data[0].number);
+			$("#paid span").text(data[1].number);
+			$("#send span").text(data[2].number);
+			$("#accept span").text(data[3].number);
+			$("#finish span").text(data[4].number);
 		}
 	});
 });

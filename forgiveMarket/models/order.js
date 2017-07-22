@@ -204,6 +204,29 @@ function getAllOrdersByFlag(uid, flag, cb) {
 	});
 }
 
+function getOrderNumber(uid, cb) {
+	var promises = [];
+	for(var i = 1; i <= 5; i++) {
+		promises[promises.length] = new Promise(function(resolve, reject) {
+			getAllOrdersByFlag(uid, i, function(err, orders) {
+				console.log("orders1:" + orders);
+				if(orders == null) {
+					resolve({number:0});
+				} else {
+					resolve(orders == null ? {number:0} : {number:orders.length});
+				}
+			});
+		});
+	}
+	Promise.all(promises).then(function(result) {
+		console.log("result1:" + result);
+		cb(null, result);
+	}, function(err) {
+		console.log('getOrderNumber-err:' + err);
+		cb(err, null);
+	})
+}
+
 module.exports.initModel = initModel;
 module.exports.addOrder = addOrder;
 module.exports.getOrderByIdAndFlag = getOrderByIdAndFlag;
@@ -211,3 +234,4 @@ module.exports.updateOrder = updateOrder;
 module.exports.createOrder = createOrder;
 module.exports.getAllOrders = getAllOrders;
 module.exports.getAllOrdersByFlag = getAllOrdersByFlag;
+module.exports.getOrderNumber = getOrderNumber;
