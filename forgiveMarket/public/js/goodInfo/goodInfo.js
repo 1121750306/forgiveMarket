@@ -41,6 +41,7 @@ $(function() {
 					var typeindex = $(".good-type .on").attr('data-typeindex');
 					$(".choice-box .type-price span").text((goodInfo[0].gid.pricebase + goodtype[typeindex].priceoffset))
 					$(".choice-box .type-lefts span").text(goodtype[typeindex].lefts)
+                    $(".choice-box .type-lefts sa").text(goodtype[typeindex].sales)
 
 					if(isLogin()) {
 						console.log(5);
@@ -167,6 +168,7 @@ $(function() {
 
 			$(".choice-box .type-price span").text((goodInfo[0].gid.pricebase + goodtype[typeindex].priceoffset))
 			$(".choice-box .type-lefts span").text(goodtype[typeindex].lefts);
+            $(".choice-box .type-lefts sa").text(goodtype[typeindex].sales);
 			$(".box-total .right span,.total-price .right span").text($(".choice-box-ct .right .type-price span").text() * parseInt($(".count-box .count-num").val()))
 
 		})
@@ -723,6 +725,7 @@ $(function() {
 					$(".good-ct .img-wrap").append('<img class="good-img center-block" src="/img/upload/' + data.bannerImg[i] + '" />')
 					$(".good-ct .img-ctr").append('<span></span>');
 				}
+                $(".choice-box .choice-box-ct .left .good-img").attr('src','/img/upload/'+data.bannerImg[0])
 				$(".good-ct .img-ctr span:first-of-type").addClass('on');
 				//开启轮播
 				var t = setTimeout(function() {
@@ -742,6 +745,7 @@ $(function() {
 					}, 1000)
 				};
 				//加载详情图片
+
 				$(".good-detail .detail-img").empty();
 				$(".good-detail .detail-img").append('<img id="ddd" width="100%" src="/img/upload/' + data.infoImg[0] + '" />');
 				$("#ddd")[0].onload = function() {
