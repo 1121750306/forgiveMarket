@@ -184,6 +184,22 @@ function deleteOrderItemById(id, callback){
 		}
 	});
 }
+/**
+ * 添加评论id 
+ * @param {Object} obj
+ * @param {Object} cb
+ */
+function updateOrderItem(obj,cb){
+	orderitemModel.findById(obj._id,function(err,doc){
+		if(!err){
+			doc.cid=obj.cid;
+			doc.save(cb);			
+		}else{
+			console.log(err);
+		}
+
+	})
+}
 
 module.exports.initModel = initModel;
 module.exports.addOrderItem = addOrderItem;
@@ -194,3 +210,4 @@ module.exports.getOrderItemByOidGIdGsids = getOrderItemByOidGIdGsids;
 module.exports.updateOrderItemNumById = updateOrderItemNumById;
 module.exports.deleteOrderItemById = deleteOrderItemById;
 module.exports.getAllOrderItem = getAllOrderItem;
+module.exports.updateOrderItem = updateOrderItem;

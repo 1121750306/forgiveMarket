@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require("mongoose");
 var comment = require("../models/comment")
-
+var orderitem = require("../models/orderitem")
 //注册models监听并传递models
 function callback(models) {
 	comment.initModel(models);
@@ -15,12 +15,24 @@ router.post('/addComment',function(req,res,next){
 	// var gid="59700afda186ec08c06bc71c";
 	var uid=req.session.user[0]._id;
 	var content=req.body.content;
+	var otid=req.body.otid;
 	var date=new Date();
 	var obj={gid:mongoose.Types.ObjectId(gid),uid:mongoose.Types.ObjectId(uid),content:content,date:date.getTime()};
 	comment.addComment(obj,function(err,doc){
 		if(!err){
 			console.log(doc);
-			res.send({msg:"success"});
+			var orderItemObj={_id:otid,cid:mongoose.Types.ObjectId(otid)};
+			orderitem.updateOrderItem(orderItemObj,function(errs,doc2){
+				if(!errs){
+					console.log(doc2);
+					res.send({msg:"success"});
+				}
+				else{
+					console.log(errs);
+		         	res.send({msg:"fail"});
+				}
+			})
+			
 		}else{
 			console.log(err);
 			res.send({msg:"fail"});
