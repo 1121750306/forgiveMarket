@@ -1,3 +1,5 @@
+
+var mongoose = require("mongoose");
 //注册models监听
 function initModel(models) {
 	//订单项模型
@@ -89,6 +91,59 @@ function getOrderItemsByOid (oid, callback) {
 }
 
 /**
+ * 通过oid,gid,gsids查找订单项
+ * @param {Object} oid
+ * @param {Object} gid
+ * @param {Object} gsids
+ * @param {Object} callback
+ */
+function getOrderItemByOidGIdGsids (oid, gid, gsids, callback) {
+	orderitemModel.find({
+		oid:oid,
+		gid:gid
+	}).populate({
+		path: 'oid' 
+	}).populate({
+		path: 'gid' 
+	}).populate({
+		path: 'gsids.gsid'
+	}).exec(function(err, data){
+		if (!err) {
+			var orderitem;
+			var founded = false;
+			for (var i = 0; i < data.length; i++) {
+				if (gsids.length == data[i].gsids.length) {
+					for (var j = 0; j < gsids.length; j++) {
+						founded = false;
+						for (var k = 0; k < data[i].gsids.length; k++) {
+							if (gsids[j].gsid == data[i].gsids[k].gsid._id.toString()) {
+								founded = true;
+								break;
+							}
+						}
+						if (!founded) {
+							break;
+						}
+					}
+					if (founded) {
+						orderitem = data[i];
+						break;
+					}
+				}
+			}
+			if (founded) {
+				callback(err, orderitem);
+			}else{
+				callback(err, "nofound");
+			}
+		} else{
+			callback(err, "error");
+		}
+	});
+	
+}
+
+/**
    * 通过id修改订单项数量
    * @param {Object} id
    * @param {Object} num
@@ -135,6 +190,7 @@ module.exports.addOrderItem = addOrderItem;
 module.exports.addOrderItems = addOrderItems;
 module.exports.getOrderItemById = getOrderItemById;
 module.exports.getOrderItemsByOid = getOrderItemsByOid;
+module.exports.getOrderItemByOidGIdGsids = getOrderItemByOidGIdGsids;
 module.exports.updateOrderItemNumById = updateOrderItemNumById;
 module.exports.deleteOrderItemById = deleteOrderItemById;
 module.exports.getAllOrderItem = getAllOrderItem;
