@@ -201,8 +201,10 @@ function getAllOrdersByFlag(uid, flag, cb) {
 			}
 
 			for(var j = 0; j < result[i].length; j++) {
-				var date = result[i][j].cid.date.getFullYear() + "-" + (result[i][j].cid.date.getMonth() - 1) + "-" + result[i][j].cid.date.getDate() + " " + result[i][j].cid.date.getHours() + ":" + result[i][j].cid.date.getMinutes() + ":" + result[i][j].cid.date.getSeconds();
-
+				var date = null;
+				if(result[i][j].cid != undefined && result[i][j].cid != null) {
+					date = result[i][j].cid.date.getFullYear() + "-" + (result[i][j].cid.date.getMonth() - 1) + "-" + result[i][j].cid.date.getDate() + " " + result[i][j].cid.date.getHours() + ":" + result[i][j].cid.date.getMinutes() + ":" + result[i][j].cid.date.getSeconds();
+				}
 				orders[i].orderitem[j] = {
 					otid: result[i][j]._id,
 					gid: result[i][j].gid._id,
