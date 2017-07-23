@@ -17,7 +17,7 @@ router.post('/addComment',function(req,res,next){
 	var content=req.body.content;
 	var otid=req.body.otid;
 	var date=new Date();
-	var obj={gid:mongoose.Types.ObjectId(gid),uid:mongoose.Types.ObjectId(uid),content:content,date:date.getTime()};
+	var obj={gid:mongoose.Types.ObjectId(gid),uid:mongoose.Types.ObjectId(uid),content:content,date:date.getTime(),thumb:[]};
 	comment.addComment(obj,function(err,doc){
 		if(!err){
 			console.log(doc);

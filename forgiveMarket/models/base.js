@@ -199,6 +199,12 @@ db.once("open", function() {
 			type: mongoose.Schema.Types.ObjectId,
 			ref: 'Comment'
 		},
+		thumb:[{
+			uid: {
+				type: mongoose.Schema.Types.ObjectId,
+				ref: 'User'
+			}
+		}],
 		content: String,
 		date: Date
 	}, {
