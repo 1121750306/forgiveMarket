@@ -37,7 +37,7 @@ function register() {
 			password: password
 		},
 		success: function(data) {
-			console.log(data);
+//			console.log(data);
 			if (data.flag == 200) {
 				//注册成功
 				var result = data.result[0];
@@ -52,7 +52,7 @@ function register() {
 			}
 		},
 		error: function(err) {
-			console.log(err);
+//			console.log(err);
 		}
 	});
 	//	console.log(phone + password)

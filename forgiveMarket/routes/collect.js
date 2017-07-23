@@ -79,12 +79,12 @@ router.post('/querycollect', function(req, res, next) {
 	//	var index = req.body.index;
 	var index = 0;
 	collect.queryCollect(uid, index, function(flag, err, result) {
-		console.log("result:" + result);
+//		console.log("result:" + result);
 		resultjson = [];
 		if (result != null) {
 			for (var i = 0; i < result.length; i++) {
 				var date = new Date(Number(result[i].date));
-				console.log("date:" + date);
+//				console.log("date:" + date);
 				var dateStr = date.getFullYear() + "年" + (date.getMonth() + 1) + "月" + date.getDate() + "日";
 				resultjson[i] = {};
 				resultjson[i].time = dateStr;

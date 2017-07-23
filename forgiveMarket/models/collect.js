@@ -14,7 +14,6 @@ function initModel(models) {
  * @param {Function(flag, err, result)} cb 回调(flag 0：失败  1：成功)
  */
 function addCollect(uid, gid, date, cb) {
-	console.log("date:" + date);
 	collectEntity = new collectModel({
 		uid: uid,
 		gid: mongoose.Types.ObjectId(gid),
@@ -43,10 +42,8 @@ function removeCollect(uid, gid, cb) {
 	}, function(err, doc) {
 		if(!err){
 			cb(err, true);
-			console.log(doc);
 		} else {
 			cb(err, false);
-			console.log(err);
 		}
 		
 	});
@@ -64,8 +61,6 @@ function isCollect(uid, gid, cb) {
 		gid: gid
 	}).exec(function(err, docs) {
 		if(!err) {
-			console.log("isCollect", docs);
-			console.log("isCollect", err);
 			if(docs == null) {
 				cb(null, false);
 			} else {

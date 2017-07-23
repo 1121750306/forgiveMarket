@@ -5,7 +5,7 @@ $(document).ready(function() {
 		async: true,
 		dataType: 'json',
 		success: function(data) {
-			console.log(data);
+//			console.log(data);
 			if (data.flag == 200) {
 				var result = data.result;
 				if (result != null && result.length != 0) {
@@ -54,7 +54,7 @@ $(document).ready(function() {
 							gid: gid
 						},
 						success: function(data) {
-							console.log(data);
+//							console.log(data);
 							if (data.flag == 200) {
 								window.location.reload();
 							} else {
@@ -66,7 +66,7 @@ $(document).ready(function() {
 			});
 		},
 		fail: function(err) {
-			console.log(err);
+//			console.log(err);
 		}
 	});
 });
@@ -80,7 +80,7 @@ function setImage(obj, gid) {
 		url: "/goodphoto/getShowPhoto/" + gid,
 		async: true,
 		success: function(data) {
-			console.log(data);
+//			console.log(data);
 			obj.find("img").attr("src", '/img/upload/' + data);
 		}
 	});

@@ -19,7 +19,6 @@ function addHistory(uid, gid, date, cb) {
 		uid: uid,
 		gid: gid
 	}).exec(function(err, doc) {
-		console.log("doc:" + doc);
 		if(!err && doc) {
 			//已存在
 			doc.date = date.getTime();
@@ -57,15 +56,12 @@ function addHistory(uid, gid, date, cb) {
  * @param {Object} cb 回调
  */
 function queryHistory(uid, index, cb) {
-	console.log("进入queryHistory");
 	historyModel.find({
 			uid: uid
 		})
 		.populate({
 			path: 'gid'
 		})
-		//		.limit(10)
-		//		.skip(index * 10)
 		.sort({
 			date: -1
 		})

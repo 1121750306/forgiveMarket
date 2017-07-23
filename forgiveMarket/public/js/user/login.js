@@ -43,7 +43,7 @@ function login() {
 			password: password,
 		},
 		success: function(data) {
-			console.log(data);
+//			console.log(data);
 			if(data.flag == 200) {
 				//登录成功
 				var result = data.result;
@@ -66,7 +66,7 @@ function login() {
 			}
 		},
 		error: function(err) {
-			console.log(err);
+//			console.log(err);
 		}
 	});
 	//	console.log(phone + password)

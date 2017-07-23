@@ -36,7 +36,7 @@ function changepwd() {
 			password: password
 		},
 		success: function(data) {
-			console.log(data);
+//			console.log(data);
 			if (data.flag == 200) {
 				//修改密码成功
 				var result = data.result;
@@ -50,7 +50,7 @@ function changepwd() {
 			}
 		},
 		error: function(err) {
-			console.log(err);
+//			console.log(err);
 		}
 	});
 	//	console.log(phone + password)
