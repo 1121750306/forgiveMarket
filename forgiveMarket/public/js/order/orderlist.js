@@ -162,16 +162,18 @@ $(function() {
 								success:function(photo){
 									//拼接订单项li
 									let itemLi ='<li class="cart_item" gid= "' + orderitem.gid + '" otid="' + orderitem.otid + '">\
-												<img src="/img/upload/' + photo + '"/>\
-												<div class="item_info">\
-													<h2>' + orderitem.gname + '</h2>\
-													<ul class="good_size"><li><h3>' + orderitem.gsizename + '</h3></li></ul>\
-													<div class="info_bottom">\
-														<p class="item_price">￥' + orderitem.price.toFixed(2) + '</p>\
-														<p class="item_num">x' + orderitem.number + '</p>\
+													<div class="item_top">\
+														<img src="/img/upload/' + photo + '"/>\
+														<div class="item_info">\
+															<h2>' + orderitem.gname + '</h2>\
+															<ul class="good_size"><li><h3>' + orderitem.gsizename + '</h3></li></ul>\
+															<div class="info_bottom">\
+																<p class="item_price">￥' + orderitem.price.toFixed(2) + '</p>\
+																<p class="item_num">x' + orderitem.number + '</p>\
+															</div>\
+														</div>\
 													</div>\
-												</div>\
-											</li>';
+												</li>';
 											
 									$(".order .order_item").eq(i).children(".cart").append(itemLi);
 									
@@ -184,6 +186,22 @@ $(function() {
 										//绑定事件
 										$(".order .order_item").eq(i).find(".cart .cart_item").eq(j)
 											.find(".item_comment").bind("click",tocomment);
+									}
+									
+									//当在已完成界面时显示查看评价按钮
+									if (index == 4) {
+										$(".order .order_item").eq(i).find(".cart .cart_item").eq(j)
+											.find(".info_bottom").append("<span class='item_comment'>查看评价</span>");
+										//绑定事件
+										$(".order .order_item").eq(i).find(".cart .cart_item").eq(j)
+											.find(".item_comment").bind("click",toviewcomment)
+										
+										//评论详情
+										$(".order .order_item").eq(i).find(".cart .cart_item").eq(j).append('\
+												<div class="item_bottom">\
+													<h3 class="comment_info">' + orderitem.cid.content + '</h3>\
+													<h3 class="comment_date">评论时间：' + orderitem.cid.date + '</h3>\
+												</div>');
 									}
 									
 								},
@@ -282,6 +300,11 @@ $(function() {
 		$(".com_txt input[name=gid]").val($(this).parents(".cart_item").attr("gid"));
 		$(".comment").animate({top:"0%"},500);
 
+	}
+	
+	//查看评论控制
+	function toviewcomment (e) {
+		$(e.target).parents(".cart_item").find(".item_bottom").slideToggle();
 	}
 	
 });
