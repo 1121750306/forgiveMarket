@@ -36,7 +36,7 @@ $(function() {
 
 						$(".nav_modal_type").empty();
 						for (var i = 0; i < goodtypes.length; i++) {
-							$(".nav_modal_type").append("<li style='background: url(../../img/innisfree-img/goodtype/1.jpg);' ><a href='/views/goodinfo/goodlist.html?content=" + goodtypes[i].tname + "'>" + goodtypes[i].tname + "</a></li>");
+							$(".nav_modal_type").append("<li><a href='/views/goodinfo/goodlist.html?content=" + goodtypes[i].tname + "'>" + goodtypes[i].tname + "</a></li>");
 						}
 					}
 				},
@@ -49,7 +49,8 @@ $(function() {
 
 			$(".nav_modal_type").empty();
 			for (var i = 0; i < goodtypes.length; i++) {
-				$(".nav_modal_type").append("<li style='background: url(../../img/innisfree-img/goodtype/1.jpg);' ><a href='/views/goodinfo/goodlist.html?content=" + goodtypes[i].tname + "'>" + goodtypes[i].tname + "</a></li>");
+//				$(".nav_modal_type").append("<li style='background: url(../../img/innisfree-img/goodtype/"+ (i+1) +".jpg);' ><a href='/views/goodinfo/goodlist.html?content=" + goodtypes[i].tname + "'>" + goodtypes[i].tname + "</a></li>");
+				$(".nav_modal_type").append("<li><a href='/views/goodinfo/goodlist.html?content=" + goodtypes[i].tname + "'>" + goodtypes[i].tname + "</a></li>");
 			}
 		}
 
