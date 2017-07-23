@@ -21,7 +21,7 @@ router.post('/addComment',function(req,res,next){
 	comment.addComment(obj,function(err,doc){
 		if(!err){
 			console.log(doc);
-			var orderItemObj={_id:otid,cid:mongoose.Types.ObjectId(otid)};
+			var orderItemObj={_id:otid,cid:mongoose.Types.ObjectId(doc._id)};
 			orderitem.updateOrderItem(orderItemObj,function(errs,doc2){
 				if(!errs){
 					console.log(doc2);

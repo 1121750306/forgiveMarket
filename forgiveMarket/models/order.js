@@ -85,32 +85,50 @@ function createOrder(uid, otids, locationid, cb) {
 		locationid: mongoose.Types.ObjectId(String(locationid)),
 		date: new Date()
 	});
-	orderEntity.save()
-		.then(function(doc) {
-			//创建成功
-			console.log("创建成功：" + doc);
-			//获取订单项
-			promises = [];
-			for(var i = 0; i < otids.length; i++) {
-				promises.push(orderitemModel.findOneAndUpdate({
-					_id: otids[i]
-				}, {
-					oid: doc._id
-				}));
-			}
-			promises.push(new Promise(function(resolve, reject) {
-				resolve(doc);
+	orderEntity.save().then(function(doc) {
+		//创建成功
+		//获取订单项
+		promises = [];
+		for(var i = 0; i < otids.length; i++) {
+			promises.push(orderitemModel.findOneAndUpdate({
+				_id: otids[i]
+			}, {
+				oid: doc._id
+			}).populate({
+				path: 'gsids.gsid'
 			}));
-			return Promise.all(promises);
-		}, function(err) {
-			//创建订单失败
-			cb("创建订单失败", null);
-		}).then(function(result) {
-			cb(null, result[result.length - 1]);
-		}, function(err) {
-			//创建订单失败
-			cb("创建订单失败", null);
-		});
+		}
+		promises.push(new Promise(function(resolve, reject) {
+			resolve(doc);
+		}));
+		return Promise.all(promises);
+	}, function(err) {
+		//创建订单失败
+		cb("创建订单失败", null);
+	}).then(function(result) {
+		//更新规格的库存和销量
+		promises = [];
+		for(var i = 0; i < result.length - 1; i++) {
+			promises.push(goodsizeModel.findOneAndUpdate({
+				_id: result[i].gsids[0].gsid
+			}, {
+				lefts: result[i].gsids[0].gsid.lefts - result[i].num,
+				sales: result[i].gsids[0].gsid.sales + result[i].num
+			}));
+		}
+		promises.push(new Promise(function(resolve, reject) {
+			resolve(result[result.length - 1]);
+		}));
+		return Promise.all(promises);
+	}, function(err) {
+		//创建订单失败
+		cb("创建订单失败", null);
+	}).then(function(result) {
+		cb(null, result[result.length - 1]);
+	}, function(err) {
+		//创建订单失败
+		cb("创建订单失败", null);
+	});
 }
 
 function getAllOrders(cb) {
@@ -129,8 +147,9 @@ function getAllOrdersByFlag(uid, flag, cb) {
 		flag: flag
 	}).populate({
 		path: 'locationid'
+	}).sort({
+		date: '-1'
 	}).then(function(result) {
-		console.log("result:" + result);
 		if(result == null || result.length == 0) {
 			cb("没有订单", null);
 			return;
@@ -155,6 +174,9 @@ function getAllOrdersByFlag(uid, flag, cb) {
 					select: 'tname'
 				}
 			}).populate({
+				path: 'cid',
+				select: 'content date'
+			}).populate({
 				path: 'gsids.gsid'
 			});
 		}
@@ -163,7 +185,6 @@ function getAllOrdersByFlag(uid, flag, cb) {
 		});
 		return Promise.all(promises);
 	}, function(err) {
-		console.log("err:" + err);
 		cb(err, null);
 	}).then(function(result) {
 		if(result == null || result.length == 0) {
@@ -188,17 +209,19 @@ function getAllOrdersByFlag(uid, flag, cb) {
 					number: result[i][j].num,
 					gsizetype: result[i][j].gsids[0].gsid.type,
 					gsizename: result[i][j].gsids[0].gsid.gsname,
-					cid: result[i][j].cid == undefined ? null : result[i][j].cid
+					cid: result[i][j].cid == undefined || result[i][j].cid == null ? null : {
+						cid: result[i][j].cid._id,
+						content: result[i][j].cid.content,
+						date: result[i][j].cid.date
+					}
 				}
 				//计算总价
 				orders[i].total += orders[i].orderitem[j].price * orders[i].orderitem[j].number;
 			}
 
 		}
-		console.log("orders:" + orders);
 		cb(null, orders);
 	}, function(err) {
-		console.log("err:" + err);
 		cb(err, null);
 	});
 }
@@ -208,20 +231,23 @@ function getOrderNumber(uid, cb) {
 	for(var i = 1; i <= 5; i++) {
 		promises[promises.length] = new Promise(function(resolve, reject) {
 			getAllOrdersByFlag(uid, i, function(err, orders) {
-				console.log("orders1:" + orders);
 				if(orders == null) {
-					resolve({number:0});
+					resolve({
+						number: 0
+					});
 				} else {
-					resolve(orders == null ? {number:0} : {number:orders.length});
+					resolve(orders == null ? {
+						number: 0
+					} : {
+						number: orders.length
+					});
 				}
 			});
 		});
 	}
 	Promise.all(promises).then(function(result) {
-		console.log("result1:" + result);
 		cb(null, result);
 	}, function(err) {
-		console.log('getOrderNumber-err:' + err);
 		cb(err, null);
 	})
 }
