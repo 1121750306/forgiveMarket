@@ -193,6 +193,7 @@ function getAllOrdersByFlag(uid, flag, cb) {
 		}
 		var orders = result[result.length - 1];
 		for(var i = 0; i < orders.length; i++) {
+
 			orders[i].orderitem = [];
 			orders[i].total = 0;
 			if(result[i] == null || result[i].length == 0) {
@@ -200,6 +201,8 @@ function getAllOrdersByFlag(uid, flag, cb) {
 			}
 
 			for(var j = 0; j < result[i].length; j++) {
+				var date = result[i][j].cid.date.getFullYear() + "-" + (result[i][j].cid.date.getMonth() - 1) + "-" + result[i][j].cid.date.getDate() + " " + result[i][j].cid.date.getHours() + ":" + result[i][j].cid.date.getMinutes() + ":" + result[i][j].cid.date.getSeconds();
+
 				orders[i].orderitem[j] = {
 					otid: result[i][j]._id,
 					gid: result[i][j].gid._id,
@@ -212,7 +215,7 @@ function getAllOrdersByFlag(uid, flag, cb) {
 					cid: result[i][j].cid == undefined || result[i][j].cid == null ? null : {
 						cid: result[i][j].cid._id,
 						content: result[i][j].cid.content,
-						date: result[i][j].cid.date
+						date: date
 					}
 				}
 				//计算总价
