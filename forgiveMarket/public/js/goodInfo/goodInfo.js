@@ -305,6 +305,12 @@ $(function() {
 			success: function(data) {
 				console.log(data);
 				commentData = data;
+				var loginsign= false;
+				var user;
+				if(sessionStorage.user){
+					loginsign = true;
+					user = JSON.parse(sessionStorage.user)
+				}
 				var l = data.length > 6 ? 6 : data.length;
 				var pageTotal = Math.ceil(data.length / 6);
 				if(pageTotal == 0) pageTotal = 1;
@@ -330,12 +336,28 @@ $(function() {
 						str += '评论';
 					}
 					var str2 = '</span></span> ' +
-						'<span class="thumb-btn clearfix"><i class="thumb-ico"></i>点赞</span>' +
-						'</div>' +
-						'</div>' +
-						'</div>' +
-						'</div>';
-					str = str + str2;
+						'<span class="thumb-btn clearfix"><i class="thumb';
+					var str3 = '0';
+					var s = commentData[i].thumb.some(function(value,index,arr){
+						return value._id==user._id;
+					})
+
+					if(loginsign){
+                        if(s){
+                        	str3 = '1';
+                        }
+					}
+					console.log(commentData[i].thumb[0])
+					console.log(user._id)
+					var str4 = '-ico"></i><span>';
+                    var str5 = '点赞';
+					if(data[i].thumb.length!=0){
+						str5 = data[i].thumb.length;
+					}
+
+					var str6 = '</span></span>' +
+						'</div></div></div></div>';
+					str = str + str2+str3+str4+str5;
 					$(".comment .comment-ct").append(str);
 				}
 
@@ -351,6 +373,12 @@ $(function() {
 			var curpage = $(".comment .comment-ctr span strong").text();
 			var targetPage = parseInt(dire)+parseInt(curpage);
 			var totalPage = $(".comment .comment-ctr span span").text()
+            var loginsign= false;
+            var user;
+            if(sessionStorage.user){
+                loginsign = true;
+                user = JSON.parse(sessionStorage.user)
+            }
 			if(1<=targetPage&&targetPage<=parseInt(totalPage)){
 				$(".comment .comment-ct").empty();
                 var le = commentData.length-(targetPage-1)*6 > 6 ? 6*targetPage : commentData.length;
@@ -372,16 +400,63 @@ $(function() {
                         str += '评论';
                     }
                     var str2 = '</span></span> ' +
-                        '<span class="thumb-btn clearfix"><i class="thumb-ico"></i>点赞</span>' +
-                        '</div>' +
-                        '</div>' +
-                        '</div>' +
-                        '</div>';
-                    str = str + str2;
+                        '<span class="thumb-btn clearfix"><i class="thumb';
+                    var str3 = '0';
+                    var s = commentData[i].thumb.some(function(value,index,arr){
+                        return value._id==user._id;
+                    })
+
+                    if(loginsign){
+                        if(s){
+                            str3 = '1';
+                        }
+                    }
+                    var str4 = '-ico"></i><span>';
+                    var str5 = '点赞';
+                    if(commentData[i].thumb.length>0){
+                        str5 = commentData[i].thumb.length;
+                    }
+
+                    var str6 = '</span></span>' +
+                        '</div></div></div></div>';
+                    str = str + str2+str3+str4+str5;
                     $(".comment .comment-ct").append(str);
                 }
 			}
 		})
+		//点赞
+        $(".comment-ct").on('click', ' .item-inte .thumb-btn', function() { //购物车
+            if(!isLogin()) {
+                showLogin();
+            } else {
+                var index = $(this).parent().parent().parent().parent().attr('data-index');
+                var state = $(this).children('i').hasClass('thumb0-ico');
+                if(state) {//点赞
+                    var user = JSON.parse(sessionStorage.user);
+                    $(this).children('i').removeClass('thumb0-ico');
+                    $(this).children('i').addClass('thumb1-ico');
+                    commentData[index].thumb.push(user);
+                    console.log(commentData);
+                    $(this).children('span').text(commentData[index].thumb.length)
+
+					$.ajax({
+						type:'post',
+						url:'/comment/addThumb',
+						data:{
+							uid:user._id,
+							cid:commentData[index]._id
+						},
+						success:function(data){
+							console.log(data)
+						},error:function(data){
+                            console.log(data)
+						}
+					})
+                }
+            }
+        })
+
+
 
 		//评论详情
 

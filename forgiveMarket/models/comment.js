@@ -15,6 +15,17 @@ function addComment(obj, cb) {
 	commentEntity.save(cb);
 }
 
+function addThumbById(cid,uid,cb){
+    commentModel.find({
+    	_id:cid
+	}).exec(function(err,docs){
+		console.log('点赞'+docs);
+		console.log(docs[0].thumb.length)
+		docs[0].thumb.push(uid);
+		docs[0].save(cb(err,docs));
+	})
+}
+
 function getCommentByGid(gid, cb) {
 	commentModel.find({
 			gid: gid
@@ -86,3 +97,4 @@ module.exports.initModel = initModel;
 module.exports.addComment = addComment;
 module.exports.getCommentByGid = getCommentByGid;
 module.exports.getCommentByCids = getCommentByCids;
+module.exports.addThumbById = addThumbById;

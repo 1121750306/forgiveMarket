@@ -422,8 +422,12 @@
 	background: url("../../img/innisfreeIco/comment.png") no-repeat;
 	background-size: 10px;
 }
-.comment .item .item-right .item-rb .item-inte .thumb-ico{
+.comment .item .item-right .item-rb .item-inte .thumb0-ico{
 	background: url("../../img/innisfreeIco/thumb0.png") no-repeat;
+	background-size: 10px;
+}
+.comment .item .item-right .item-rb .item-inte .thumb1-ico{
+	background: url("../../img/innisfreeIco/thumb1.png") no-repeat;
 	background-size: 10px;
 }
 .comment .comment-ctr{
