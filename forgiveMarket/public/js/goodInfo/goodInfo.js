@@ -696,6 +696,7 @@ $(function() {
 							d = parseInt(d) + 1;
 						}
 						$(".comment-ct .item[data-index='" + index + "'] .item-inte .com-btn span").text(d);
+						$(".son-comment .son-cmt-hd h4 span span").text(d);
 						toast("评论成功")
 					},
 					error: function(data) {
