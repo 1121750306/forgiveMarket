@@ -12,7 +12,7 @@
 										method:'get',
 										valueField:'_id',
 										textField:'_id',
-										panelHeight:'auto',
+										panelHeight:'300',
 										onSelect:function(rec){
 											  $('#cc2').combobox('setValue',(rec.flag));
 										}"/>
@@ -36,6 +36,7 @@
 	  	  		 	 	 	data:{otid:oid,flag:3},
 	  	  		 	 	 	success:function(result){
 	  	  		 	 	 		 if(result.type=="success"){
+	  	  		 	 	 		 	$.messager.alert("提示","发货成功",'info');
 	  	  		 	 	 		 	 window.location.reload();
 	  	  		 	 	 		 }else{
 	  	  		 	 	 		 		$.messager.alert("提示","发货失败",'info');

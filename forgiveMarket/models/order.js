@@ -132,7 +132,7 @@ function createOrder(uid, otids, locationid, cb) {
 }
 
 function getAllOrders(cb) {
-	orderModel.find({}).exec(cb);
+	orderModel.find({flag:2}).exec(cb);
 }
 
 /**

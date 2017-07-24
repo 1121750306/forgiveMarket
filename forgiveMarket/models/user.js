@@ -274,7 +274,6 @@ function getTopGoods(cb) {
 		cb(err, null);
 	});
 }
-
 module.exports.initModel = initModel;
 module.exports.register = register;
 module.exports.login = login;
@@ -284,3 +283,4 @@ module.exports.searchGood = searchGood;
 module.exports.getTopGoods = getTopGoods;
 module.exports.getUserNameById = getUserNameById;
 module.exports.randowUser = randowUser;
+module.exports.getAllUser = getAllUser;
