@@ -283,4 +283,3 @@ module.exports.searchGood = searchGood;
 module.exports.getTopGoods = getTopGoods;
 module.exports.getUserNameById = getUserNameById;
 module.exports.randowUser = randowUser;
-module.exports.getAllUser = getAllUser;
