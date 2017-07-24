@@ -121,9 +121,11 @@ $(function(){
 			
 			//当所有多选框确认时 全选框同时确认
 			$(".item_allcheck").css("background-image","url(../../img/innisfreeIco/checked.png)");
+			$(".item_allcheck")[0].checked = true;
 			for (var i = 0; i < itemChecks.length - 1; i++) {
 				if (!itemChecks.eq(i)[0].checked && itemChecks.eq(i)[0] != $(this).parent()[0]) {
 					$(".item_allcheck").css("background-image","url(../../img/innisfreeIco/unchecked.png)");
+					$(".item_allcheck")[0].checked = false;
 					break;
 				}
 			}
@@ -169,7 +171,7 @@ $(function(){
 			}
 		}
 	});
-	$(".item_check").children("input").on("change", function(){
+	$(".item_allcheck").children("input").on("change", function(){
 		
 		var itemChecks = $(".item_check").children("input");
 		
@@ -180,14 +182,16 @@ $(function(){
 			//删除按钮显示
 			$(".check_delete").show();
 			
-			//当所有多选框确认时 全选框同时确认
-			$(".item_allcheck").css("background-image","url(../../img/innisfreeIco/checked.png)");
-			for (var i = 0; i < itemChecks.length - 1; i++) {
-				if (!itemChecks.eq(i)[0].checked && itemChecks.eq(i)[0] != $(this).parent()[0]) {
-					$(".item_allcheck").css("background-image","url(../../img/innisfreeIco/unchecked.png)");
-					break;
-				}
-			}
+//			//当所有多选框确认时 全选框同时确认
+//			$(".item_allcheck").css("background-image","url(../../img/innisfreeIco/checked.png)");
+//			$(".item_allcheck")[0].checked = true;
+//			for (var i = 0; i < itemChecks.length - 1; i++) {
+//				if (!itemChecks.eq(i)[0].checked && itemChecks.eq(i)[0] != $(this).parent()[0]) {
+//					$(".item_allcheck").css("background-image","url(../../img/innisfreeIco/unchecked.png)");
+//					$(".item_allcheck")[0].checked = false;
+//					break;
+//				}
+//			}
 			
 			if ($(this).parent()[0] != $(".item_allcheck")[0]) {
 				
@@ -211,12 +215,6 @@ $(function(){
 					$(".check_delete").show();
 					break;
 				}
-			}
-			
-			//当一个多选框取消时 全选框同时取消
-			if ($(this).parent()[0] != $(".item_allcheck")[0]) {
-				$(".item_allcheck").css("background-image","url(../../img/innisfreeIco/unchecked.png)");
-				$(".item_allcheck").children("input")[0].checked = false;
 			}
 			
 			if ($(this).parent()[0] != $(".item_allcheck")[0]) {
@@ -256,6 +254,7 @@ $(function(){
 			for (var i = 0; i < checkBtn.length - 1; i++) {
 				checkBtn.eq(i).css("background-image","url(../../img/innisfreeIco/unchecked.png)");
 				checkBtn.eq(i).children("input")[0].checked = !checkBtn.eq(i).children("input")[0].checked ;
+				$(".item_allcheck").children("input")[0].checked = false;
 				
 				//商品总价和数量归0
 				$(".totalprice").html("总价￥:0.00");
