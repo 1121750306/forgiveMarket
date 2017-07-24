@@ -86,13 +86,20 @@ router.get('/orderListInit',function(req,res,next){
 	res.render('pc/orderlistInit');
 });
 router.post('/queryOrderList',function(req,res,next){
-	
-	orderitem.getAllOrderItem(function(err,doc){
+	   var page=req.body.page;
+	   var rows=req.body.rows;
+	   orderitem.getAllOrderItem(function(err,doc){
 		if(!err){		
-			console.log("订单项数量"+doc.length);
-			console.log("订单项"+doc[0].oid.uid);
-			console.log("订单项"+doc[0].gsids[0].gsid.gsname);
-			res.send(doc);
+			 
+			 orderitem.getAllOrderItemByRow(page,rows,function(errs,docs){
+			 	 if(!errs){
+			 	 	  res.send({rows:docs,total:doc.length});
+			 	 }else{
+			 	 	console.log(errs);
+			 	 }
+			 })
+			
+			
 		}else{
 			console.log(err);
 		}

@@ -73,6 +73,17 @@ function getAllOrderItem(cb){
 		path: 'gsids.gsid'
 	}).exec(cb);
 }
+
+
+function getAllOrderItemByRow(page,rows,cb){
+	orderitemModel.find({}).limit(Number(rows)).skip(Number((page-1)*rows)).populate({
+		path: 'oid' 
+	}).populate({
+		path: 'gid' 
+	}).populate({
+		path: 'gsids.gsid'
+	}).exec(cb);
+}
 /**
  * 通过oid查找订单项
  * @param {Object} oid
@@ -210,4 +221,6 @@ module.exports.getOrderItemByOidGIdGsids = getOrderItemByOidGIdGsids;
 module.exports.updateOrderItemNumById = updateOrderItemNumById;
 module.exports.deleteOrderItemById = deleteOrderItemById;
 module.exports.getAllOrderItem = getAllOrderItem;
+module.exports.getAllOrderItemByRow = getAllOrderItemByRow;
 module.exports.updateOrderItem = updateOrderItem;
+
