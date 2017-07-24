@@ -286,6 +286,7 @@ $(function() {
 			console.log(err);
 			return;
 		}
+		$("#hotgoods-container").empty();
 		if (data.flag == 200) {
 			for (var i = 0; i < data.result.length; i++) {
 				var divId = 'top' + i;
