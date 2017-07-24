@@ -90,6 +90,7 @@ body{
 	height: 50px;
 	margin-left: 30%;
 	padding: 5px;
+	padding-bottom: 0;
 	border-top: 1px rgba(0,0,0,0.1) solid;
 	display: none;
 }
@@ -109,9 +110,9 @@ body{
 
 .comment_date{
 	width: 100%;
-	height: 10px;
+	height: 15px;
 	margin-top: 5px;
-	line-height: 10px;
+	line-height: 15px;
 	text-align: right;
 	white-space: nowrap;
 	overflow: hidden;
