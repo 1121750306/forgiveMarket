@@ -7,7 +7,7 @@ $(document).ready(function() {
 	$("#uname").click(function() {
 		var muser = JSON.parse(sessionStorage.user);
 		var newuname = prompt("请输入用户名", muser.uname);
-//		console.log(newuname)
+		//		console.log(newuname)
 		if (newuname) {
 			$("#uname .content").text(newuname);
 			$("#uname input").attr("value", newuname);
@@ -29,10 +29,13 @@ $(document).ready(function() {
 			contentType: false,
 			async: true,
 			success: function(data) {
-//				console.log(data)
+				//				console.log(data)
 				if (data.flag == 200) {
 					console.log(data.result);
 					sessionStorage.user = JSON.stringify(data.result);
+					toast("修改成功");
+				} else {
+					toast("修改失败");
 				}
 			}
 		});
