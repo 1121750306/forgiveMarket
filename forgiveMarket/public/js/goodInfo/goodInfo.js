@@ -10,16 +10,16 @@ $(function() {
 		if (url != '') {
 			url = url.substring(1);
 			var gid = url.split('&')[0].split('=')[1];
-			console.log(gid);
+//			console.log(gid);
 			$.ajax({
 				type: "get",
 				url: "/goodInfo/" + gid,
 				async: true,
 				success: function(data) {
-					console.log(data);
+//					console.log(data);
 					goodInfo = data.info;
 					goodtype = data.type;
-					console.log(goodtype.sort(reverse(1, 'gsname')))
+//					console.log(goodtype.sort(reverse(1, 'gsname')))
 						/*修改数据*/
 					$(".good-name").text(goodInfo[0].gid.gname);
 					$(".good-usage").text(goodInfo[0].usage);
@@ -44,7 +44,7 @@ $(function() {
 					$(".choice-box .type-lefts sa").text(goodtype[typeindex].sales)
 
 					if (isLogin()) {
-						console.log(5);
+//						console.log(5);
 						saveHistory();
 						isCollect();
 						getcartdata()
@@ -83,13 +83,13 @@ $(function() {
 				},
 				success: function(data) {
 					if (data.flag == 200) {
-						console.log("历史记录添加成功");
+//						console.log("历史记录添加成功");
 					} else {
-						console.log("历史记录添加出错")
+//						console.log("历史记录添加出错")
 					}
 				},
 				error: function() {
-					console.log("ajax错误")
+//					console.log("ajax错误")
 				}
 			})
 
@@ -105,7 +105,7 @@ $(function() {
 					gid: goodInfo[0].gid._id
 				},
 				success: function(data) {
-					console.log(data)
+//					console.log(data)
 					if (data.flag == 200) {
 						$(".tot-ctr .collect i").css('background-image', 'url(../../img/innisfreeIco/collect1.png)')
 						$(".tot-ctr .collect").attr('data-type', '1')
@@ -127,7 +127,7 @@ $(function() {
 	ht.push(ctP);
 	ht.push(detailP);
 	ht.push(commentP);
-	console.log(ht)
+//	console.log(ht)
 		//滚轮事件
 	$(window).scroll(function(e) {
 		var t = $(document).scrollTop();
@@ -146,7 +146,7 @@ $(function() {
 		if (!mainlock) {
 			mainlock = true;
 			var index = $("#main-ctr .ctrbtn").index($(this));
-			console.log(ht[index] + 2 + "px");
+//			console.log(ht[index] + 2 + "px");
 			$('body').animate({
 				scrollTop: ht[index] + 2
 			}, function() {
@@ -224,7 +224,7 @@ $(function() {
 	$("#choice-bg").click(function(e) {
 		$(".choice .right span").eq(0).text($(".good-type ul .on span").text() + " * ")
 		$(".choice .right .good-num").text($(".count .count-box .count-num").val());
-		console.log($(".count .count-box .count-num").val() + "p")
+//		console.log($(".count .count-box .count-num").val() + "p")
 		$(".choice-box").animate({
 			bottom: '-500px'
 		}, '300', function() {
@@ -235,7 +235,7 @@ $(function() {
 	})
 	$(".choice-box .cross span").click(function() {
 			$(".choice .right .good-tp").text($(".good-type ul .on span").text() + "*");
-			console.log($(".count .count-box .count-num").val() + "p")
+//			console.log($(".count .count-box .count-num").val() + "p")
 			$(".choice .right .good-num").text($(".count .count-box .count-num").val());
 			$(".choice-box").animate({
 				bottom: '-500px'
@@ -280,7 +280,7 @@ $(function() {
 		var index = parseInt($(".good-type ul .on").attr('data-typeindex'));
 		if ($(".count-box .count-num").val() != '') {
 			$(".count-box .count-num").val($(".count-box .count-num").val().replace(/[^\d]/g, ''))
-			console.log(Number($(".count-box .count-num").val()))
+//			console.log(Number($(".count-box .count-num").val()))
 			if (Number($(".count-box .count-num").val()) > goodtype[index].lefts) {
 				$(".count-box .count-num").val(goodtype[index].lefts)
 			} else if (Number($(".count-box .count-num").val()) < 1) {
@@ -297,13 +297,13 @@ $(function() {
 	{ //评论
 		var commentData;
 		// var gid = goodInfo[0].gid._id;
-		console.log(gid)
+//		console.log(gid)
 		$.ajax({
 			type: "get",
 			url: "/comment/getgoodComment" + gid,
 			async: true,
 			success: function(data) {
-				console.log(data);
+//				console.log(data);
 				commentData = data;
 				var loginsign = false;
 				var user;
@@ -347,8 +347,8 @@ $(function() {
 							str3 = '1';
 						}
 					}
-					console.log(commentData[i].thumb[0])
-					console.log(user._id)
+//					console.log(commentData[i].thumb[0])
+//					console.log(user._id)
 					var str4 = '-ico"></i><span>';
 					var str5 = '点赞';
 					if (data[i].thumb.length != 0) {
@@ -363,7 +363,7 @@ $(function() {
 
 			},
 			error: function(data) {
-				console.log(data)
+//				console.log(data)
 			}
 		});
 
@@ -436,7 +436,7 @@ $(function() {
 					$(this).children('i').removeClass('thumb0-ico');
 					$(this).children('i').addClass('thumb1-ico');
 					commentData[index].thumb.push(user);
-					console.log(commentData);
+//					console.log(commentData);
 					$(this).children('span').text(commentData[index].thumb.length)
 
 					$.ajax({
@@ -447,10 +447,10 @@ $(function() {
 							cid: commentData[index]._id
 						},
 						success: function(data) {
-							console.log(data)
+//							console.log(data)
 						},
 						error: function(data) {
-							console.log(data)
+//							console.log(data)
 						}
 					})
 				}
@@ -540,7 +540,7 @@ $(function() {
 							gid: goodInfo[0].gid._id
 						},
 						success: function(data) {
-							console.log(data);
+//							console.log(data);
 							if (data.flag == 200) {
 								$(".tot-ctr .collect i").css('background-image', 'url(../../img/innisfreeIco/collect1.png)')
 								$(".tot-ctr .collect").attr('data-type', '1')
@@ -559,7 +559,7 @@ $(function() {
 							gid: goodInfo[0].gid._id
 						},
 						success: function(data) {
-							console.log(data);
+//							console.log(data);
 							if (data.flag == 200) {
 								$(".tot-ctr .collect i").css('background-image', 'url(../../img/innisfreeIco/collect0.png)')
 								$(".tot-ctr .collect").attr('data-type', '0')
@@ -575,7 +575,7 @@ $(function() {
 			if (!isLogin()) {
 				showLogin();
 			} else {
-				console.log(888)
+//				console.log(888)
 				addcart()
 
 			}
@@ -585,7 +585,7 @@ $(function() {
 					showLogin();
 				} else {
 					if ($(".choice .right .good-tp").text() != '' && $(".choice .right .good-num").text() != '') {
-						console.log(888)
+//						console.log(888)
 						addcart()
 					} else {
 						toast("请先选择类别数量")
@@ -598,7 +598,7 @@ $(function() {
 				showLogin();
 			} else {
 				if ($(".choice .right .good-tp").text() != '' && $(".choice .right .good-num").text() != '') {
-					console.log(888)
+//					console.log(888)
 
 					/*     购买接口*/
 					var index = $(".good-type ul .on").attr('data-typeindex');
@@ -630,7 +630,7 @@ $(function() {
 			if (!isLogin()) {
 				showLogin();
 			} else {
-				console.log(888)
+//				console.log(888)
 
 				/*购买接口*/
 				var index = $(".good-type ul .on").attr('data-typeindex');
@@ -675,7 +675,7 @@ $(function() {
 					},
 					async: true,
 					success: function(data) {
-						console.log(data);
+//						console.log(data);
 						$("#com-btn .com-input").val('');
 						var user = JSON.parse(sessionStorage.user);
 						var index = $(".comment-dt .dt-main .item").attr('data-index');
@@ -689,7 +689,7 @@ $(function() {
 						$(".comment .son-comment").append(str);
 						commentData[index].sonComment.push(data.data);
 						var d = $(".comment-ct .item[data-index='" + index + "'] .item-inte .com-btn span").text()
-						console.log(parseInt(d))
+//						console.log(parseInt(d))
 						if (isNaN(parseInt(d))) {
 							d = 1;
 						} else {
@@ -700,7 +700,7 @@ $(function() {
 						toast("评论成功")
 					},
 					error: function(data) {
-						console.log(data);
+//						console.log(data);
 					}
 				});
 			}
@@ -714,7 +714,7 @@ $(function() {
 				//			console.log(parseInt(q[n]))
 				var a = parseInt(q[n]);
 				var b = parseInt(w[n]);
-				console.log(a + "-" + b)
+//				console.log(a + "-" + b)
 
 				return (a - b)
 			};
@@ -745,13 +745,13 @@ $(function() {
 			},
 			async: true,
 			success: function(result) {
-				console.log(result);
+//				console.log(result);
 
 				$(".nav_cartnum").html(parseInt($(".nav_cartnum").html()) + 1);
 				toast("添加成功")
 			},
 			error: function(err) {
-				console.log(err);
+//				console.log(err);
 			}
 		});
 	}
@@ -763,29 +763,29 @@ $(function() {
 			url: "/order/getorderitembyuser/" + user._id + "/0",
 			async: true,
 			success: function(result) {
-				console.log(result)
+//				console.log(result)
 				if (result.type == "success") {
 					//修改导航栏购物车商品数量
-					console.log(result)
+//					console.log(result)
 					$(".nav_cartnum").html(result.message.length);
 				} else {
 					//设置导航栏购物车商品数量为0
 					$(".nav_cartnum").html("0");
-					console.log(000)
+//					console.log(000)
 				}
 
 			},
 			error: function(err) {
 				//设置导航栏购物车商品数量为0
 				$(".nav_cartnum").html("0");
-				console.log(err);
+//				console.log(err);
 			}
 		});
 	}
 
 	function getGoodPhoto() {
 		var gid = goodInfo[0].gid._id;
-		console.log(gid)
+//		console.log(gid)
 		$.ajax({
 			type: 'post',
 			url: '/goodphoto/getPhotobygid',
@@ -832,20 +832,20 @@ $(function() {
 					ht.push(ctP);
 					ht.push(detailP);
 					ht.push(commentP);
-					console.log(ht)
+//					console.log(ht)
 				}
 
 			},
 			error: function(data) {
-				console.log(data)
+//				console.log(data)
 			}
 		})
 	}
 
 	getTopSix(function(data, err) {
-		console.log(data)
+//		console.log(data)
 		if (err) {
-			console.log(err);
+//			console.log(err);
 			return;
 		}
 		if (data.flag == 200) {
@@ -866,7 +866,7 @@ $(function() {
 				var div = $(this);
 				div.click(function() {
 					var gid = div.parent().attr("gid");
-					console.log(gid);
+//					console.log(gid);
 					if (gid != undefined) {
 						window.location.assign("/views/goodInfo/goodInfo.html?gid=" + gid);
 					}

@@ -61,7 +61,7 @@ $(document).ready(function() {
 });
 
 function setImage(obj, gid) {
-	console.log(obj);
+//	console.log(obj);
 	//获取图片路径
 	$.ajax({
 		type: "get",
