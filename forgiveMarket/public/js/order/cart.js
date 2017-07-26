@@ -12,6 +12,9 @@ $(function(){
 		//从session中获得用户数据
 		var user = JSON.parse(sessionStorage.getItem("user"));
 		
+		//加载白幕控制
+		var loading = 0;
+		
 		//请求购物车数据
 			$.ajax({
 				type:"get",
@@ -26,6 +29,8 @@ $(function(){
 						if (goods.length != 0) {
 							//购物车不为空
 							$(".cart").show();
+							
+							loading = goods.length;
 							
 							//遍历商品列表
 							for (let i = 0; i < goods.length; i++) {
@@ -65,6 +70,12 @@ $(function(){
 												
 										$(".cart").append(li);
 										
+										loading--;
+										if (loading == 0) {
+											//清除加载白幕
+											$(".loading").hide();
+										}
+										
 									},
 									error:function(err){
 										console.log(err);
@@ -76,6 +87,9 @@ $(function(){
 							
 						}else{
 							//购物车为空
+							//清除加载白幕
+							$(".loading").hide();
+							
 							$(".attention").show();
 							$(".cart_empty").show();
 						}

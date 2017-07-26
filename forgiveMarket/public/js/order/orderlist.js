@@ -77,6 +77,9 @@ $(function() {
 		//订单页指向修改
 		view = index;
 		
+		//显示加载白页
+		$(".loading").show();
+		
 		//修改订单页类型
 		$(".order_type li").eq(index).addClass("underline").siblings("li").removeClass("underline");
 		
@@ -94,18 +97,24 @@ $(function() {
 			async:true,
 			success:function(data){
 				if (data.flag == "200") {
+					//去除加载白页
+					$(".loading").hide();
+					
 					//去除提示信息
 					$(".attention").hide();
 					
-					for (let i = 0; i < data.result.length; i++) {
-						let order = data.result[i];
+					//记录需要请求的照片总量
+					var photos = {num:0, detail:[]};
+					
+					for (var i = 0; i < data.result.length; i++) {
+						var order = data.result[i];
 						
 						//拼接收货地址信息
-						let location = order.locationid.province + order.locationid.city + 
+						var location = order.locationid.province + order.locationid.city + 
 										order.locationid.district + order.locationid.address;
 						
 						//组合订单li
-						let li ='<li class="order_item" oid="' + order.oid + '">\
+						var li ='<li class="order_item" oid="' + order.oid + '">\
 									<div class="order_top">\
 										<p class="order_date">订单时间：' + order.date + '</p>\
 									</div>\
@@ -149,73 +158,107 @@ $(function() {
 						}		
 						
 						//获得所有订单项
-						let orderitems = order.orderitem;
+						var orderitems = order.orderitem;
 						
 						//遍历订单项li
-						for (let j = 0; j < orderitems.length; j++) {
-							let orderitem = orderitems[j];
-							//获取照片
-							$.ajax({
-								type:"get",
-								url:"/goodphoto/getShowPhoto/" + orderitem.gid,
-								async:true,
-								success:function(photo){
-									//拼接订单项li
-									let itemLi ='<li class="cart_item" gid= "' + orderitem.gid + '" otid="' + orderitem.otid + '">\
-													<div class="item_top">\
-														<img src="/img/upload/' + photo + '"/>\
-														<div class="item_info">\
-															<h2>' + orderitem.gname + '</h2>\
-															<ul class="good_size"><li><h3>' + orderitem.gsizename + '</h3></li></ul>\
-															<div class="info_bottom">\
-																<p class="item_price">￥' + orderitem.price.toFixed(2) + '</p>\
-																<p class="item_num">x' + orderitem.number + '</p>\
-															</div>\
-														</div>\
+						for (var j = 0; j < orderitems.length; j++) {
+							var orderitem = orderitems[j];
+							
+							//拼接订单项li
+							var itemLi ='<li class="cart_item" gid= "' + orderitem.gid + '" otid="' + orderitem.otid + '">\
+											<div class="item_top">\
+												<img src=""/>\
+												<div class="item_info">\
+													<h2>' + orderitem.gname + '</h2>\
+													<ul class="good_size"><li><h3>' + orderitem.gsizename + '</h3></li></ul>\
+													<div class="info_bottom">\
+														<p class="item_price">￥' + orderitem.price.toFixed(2) + '</p>\
+														<p class="item_num">x' + orderitem.number + '</p>\
 													</div>\
-												</li>';
-											
-									$(".order .order_item").eq(i).children(".cart").append(itemLi);
+												</div>\
+											</div>\
+										</li>';
 									
-									$(".order .order_item").eq(i).find(".cart .cart_item").eq(j).bind("mouseup",togoodinfo);
-									
-									//当在已收货界面时显示评价按钮
-									if (index == 3 && !orderitem.cid) {
-										$(".order .order_item").eq(i).find(".cart .cart_item").eq(j)
-											.find(".info_bottom").append("<span class='item_comment'>评价</span>");
-										//绑定事件
-										$(".order .order_item").eq(i).find(".cart .cart_item").eq(j)
-											.find(".item_comment").bind("click",tocomment);
-									}
-									
-									//当在已完成界面时显示查看评价按钮
-									if (index == 4) {
-										$(".order .order_item").eq(i).find(".cart .cart_item").eq(j)
-											.find(".info_bottom").append("<span class='item_comment'>查看评价</span>");
-										//绑定事件
-										$(".order .order_item").eq(i).find(".cart .cart_item").eq(j)
-											.find(".item_comment").bind("click",toviewcomment)
-										
-										//评论详情
-										$(".order .order_item").eq(i).find(".cart .cart_item").eq(j).append('\
-												<div class="item_bottom">\
-													<h3 class="comment_info">' + orderitem.cid.content + '</h3>\
-													<h3 class="comment_date">评论时间：' + orderitem.cid.date + '</h3>\
-												</div>');
-									}
-									
-								},
-								error:function(err){
-									console.log(err);
-								}
+							$(".order .order_item").eq(i).children(".cart").append(itemLi);
+							
+							$(".order .order_item").eq(i).find(".cart .cart_item").eq(j).bind("mouseup",togoodinfo);
+							
+							//当在已收货界面时显示评价按钮
+							if (index == 3 && !orderitem.cid) {
+								$(".order .order_item").eq(i).find(".cart .cart_item").eq(j)
+									.find(".info_bottom").append("<span class='item_comment'>评价</span>");
+								//绑定事件
+								$(".order .order_item").eq(i).find(".cart .cart_item").eq(j)
+									.find(".item_comment").bind("click",tocomment);
+							}
+							
+							//当在已完成界面时显示查看评价按钮
+							if (index == 4) {
+								$(".order .order_item").eq(i).find(".cart .cart_item").eq(j)
+									.find(".info_bottom").append("<span class='item_comment'>查看评价</span>");
+								//绑定事件
+								$(".order .order_item").eq(i).find(".cart .cart_item").eq(j)
+									.find(".item_comment").bind("click",toviewcomment)
 								
-							});
+								//评论详情
+								$(".order .order_item").eq(i).find(".cart .cart_item").eq(j).append('\
+										<div class="item_bottom">\
+											<h3 class="comment_info">' + orderitem.cid.content + '</h3>\
+											<h3 class="comment_date">评论时间：' + orderitem.cid.date + '</h3>\
+										</div>');
+							}
+							
+							photos.num++;
+						}
+						
+						photos.detail.push(j);
+						
+					}
+					
+					//判断是否有图片需要加载
+					if (photos.num != 0) {
+						//显示加载白页
+						$(".loading").show();
+						
+						//获取照片
+						for (let i = 0; i < photos.detail.length; i++) {
+							for (let j = 0; j < photos.detail[i]; j++) {
+								let cartitem = $(".order .order_item").eq(i).find(".cart .cart_item").eq(j);
+								let gid = cartitem.attr("gid");
+								
+								$.ajax({
+									type:"get",
+									url:"/goodphoto/getShowPhoto/" + gid,
+									async:true,
+									success:function(photo){
+										cartitem.find("img").attr("src","/img/upload/" + photo);
+										
+										photos.num--;
+										if (photos.num == 0) {
+											//清除加载白页
+											$(".loading").hide();
+										}
+										
+									},
+									error:function(err){
+										console.log(err);
+									}
+									
+								});
+								
+							}
 						}
 					}
+					
+					
 				} else{
+					//去除加载白页
+					$(".loading").hide();
+					
 					//无数据时显示信息
 					$(".attention").show();
 					$(".attention .cart_empty").html("您没有" + $(".order_type").find(".underline h3").html()+"的订单");
+					
 				}
 			},
 			error:function(err){

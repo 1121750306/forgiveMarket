@@ -5,6 +5,9 @@ var locations;
 //订单号
 var orderid = null;
 $(function() {
+	//加载白幕控制
+	var loading = 2;
+	
 	//请求默认收货地址数据
 	$.ajax({
 		type: "get",
@@ -27,6 +30,12 @@ $(function() {
 				//默认收货地址未设置
 				$(".banner_attention").css("display", "flex");
 			}
+			
+			loading--;
+			if (loading == 0) {
+				//清除加载白幕
+				$(".loading").hide();
+			}
 
 		},
 		error: function(err) {
@@ -41,18 +50,10 @@ $(function() {
 	if(params.length == 2){
 		orderid = params[1].substr(4);
 	}
-	console.log("otids:" + otids + ",orderid:" + orderid);
-	//修改订单状态
-	$.ajax({
-		type: "post",
-		url: "/order/updateorder",
-		async: true,
-		data: {},
-		success: function(data) {
 
-		}
-	});
-
+	//记录需要请求的订单项总数量
+	var otnum = otids.length;
+	
 	for (let i = 0; i < otids.length; i++) {
 		//请求订单项数据
 		$.ajax({
@@ -91,7 +92,7 @@ $(function() {
 						$(".totalprice").html("总计￥:" + totalprice.toFixed(2));
 
 						//组合li
-						let li = '<li class="cart_item">\
+						let li = '<li class="cart_item" gid="' + good.gid._id + '">\
 									<div class="item_top">\
 										<img src="/img/upload/' + photo + '"/>\
 										<div class="item_info">\
@@ -110,6 +111,15 @@ $(function() {
 								</li>';
 
 						$(".cart").append(li);
+						
+						otnum--;
+						if (otnum == 0) {
+							loading--;
+							if (loading == 0) {
+								//清除加载白幕
+								$(".loading").hide();
+							}
+						}
 
 					},
 					error: function(err) {

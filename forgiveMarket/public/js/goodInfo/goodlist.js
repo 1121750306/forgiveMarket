@@ -122,6 +122,10 @@ $(function(){
 //搜索控制
 function search() {
 	var content = $("#search_content").val();
+	
+	//加载白幕控制
+	var loading = 0;
+	
 	$(".cart").empty();	
 	$.ajax({
 		type: "post",
@@ -132,6 +136,9 @@ function search() {
 		async: true,
 		success: function(data) {
 			var items = data.result;
+			
+			loading = items.length;
+			
 			for (let i = 0; i < items.length; i++) {
 				let gid = items[i].gid;
 				let gname = items[i].gname;
@@ -181,7 +188,13 @@ function search() {
 													</div>\
 												</li>';
 												
-										$(".cart").append(li);	
+										$(".cart").append(li);
+										
+										loading--;
+										if (loading == 0) {
+											//清除加载白幕
+											$(".loading").hide();
+										}
 									},
 									error:function(err){
 										console.log(err);
