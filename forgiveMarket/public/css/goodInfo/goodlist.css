@@ -1,23 +1,28 @@
 .header{
 	position: relative;
-	padding: 0 2%;
+	/*padding: 0 2%;*/
 }
 
 .header .goodtype,.goodorder,.orientation{
-	width: 33%;
+	width: 32%;
 	height: 40px;
 	float: left;
 	line-height: 40px;
 	text-align: center;
 }
 
+.header .goodtype{
+	margin-left: 2%;
+}
+
 .header .goodorder{
-	background: url(../../img/innisfreeIco/down.png) 85% 53% no-repeat;
+	background: url(../../img/innisfreeIco/down.png) 90% 53% no-repeat;
 	background-size: 20px 20px;
 }
 
 .header .orientation{
-	background: url(../../img/innisfreeIco/orientation.png) 85% 52.5% no-repeat;
+	margin-right: 2%;
+	background: url(../../img/innisfreeIco/orientation.png) 90% 52.5% no-repeat;
 	background-size: 18px 18px; 
 }
 

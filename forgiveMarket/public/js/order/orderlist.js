@@ -65,11 +65,17 @@ $(function() {
 			}
 		});
 		
+		//页面锁定取消
+		$("body").css("overflow", "auto");
+		
 	})
 	$(".com_cancel").click(function(){
 		$(".comment").attr("oid","");
 		$(".comment").attr("otid","");
 		$(".comment").animate({top:"100%"},500);
+		
+		//页面锁定取消
+		$("body").css("overflow", "auto");
 	})
 	
 	//重载界面
@@ -346,7 +352,9 @@ $(function() {
 		$(".comment").attr("otid",otid);
 		$(".com_txt input[name=gid]").val($(this).parents(".cart_item").attr("gid"));
 		$(".comment").animate({top:"0%"},500);
-
+		
+		//页面锁定
+		$("body").css("overflow", "hidden");
 	}
 	
 	//查看评论控制
