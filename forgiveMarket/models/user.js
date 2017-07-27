@@ -192,7 +192,18 @@ function searchGood(content, cb) {
 		if (docs != null && docs.length != 0) {
 			var result = [];
 			for (var i = 0; i < docs.length; i++) {
-				if (docs[i].gname.match(content) || docs[i].typeid.tname.match(content)) {
+				if (docs[i].gname.match(content)) {
+					result[result.length] = {
+						gid: docs[i]._id,
+						gname: docs[i].gname,
+						type: docs[i].typeid.tname,
+						price: docs[i].pricebase,
+						discount: docs[i].discount
+					}
+					continue;
+				}
+
+				if (docs[i].typeid != null && docs[i].typeid != undefined && docs[i].typeid.tname.match(content)) {
 					result[result.length] = {
 						gid: docs[i]._id,
 						gname: docs[i].gname,
