@@ -221,32 +221,36 @@ $(function() {
 						$(".loading").show();
 						
 						//获取照片
-						for (let i = 0; i < photos.detail.length; i++) {
-							for (let j = 0; j < photos.detail[i]; j++) {
-								let cartitem = $(".order .order_item").eq(i).find(".cart .cart_item").eq(j);
-								let gid = cartitem.attr("gid");
-								
-								$.ajax({
-									type:"get",
-									url:"/goodphoto/getShowPhoto/" + gid,
-									async:true,
-									success:function(photo){
-										cartitem.find("img").attr("src","/img/upload/" + photo);
+						for (var i = 0; i < photos.detail.length; i++) {
+							(function (i) {
+								for (var j = 0; j < photos.detail[i]; j++) {
+									(function (j) {
+										var cartitem = $(".order .order_item").eq(i).find(".cart .cart_item").eq(j);
+										var gid = cartitem.attr("gid");
 										
-										photos.num--;
-										if (photos.num == 0) {
-											//清除加载白页
-											$(".loading").hide();
-										}
+										$.ajax({
+											type:"get",
+											url:"/goodphoto/getShowPhoto/" + gid,
+											async:true,
+											success:function(photo){
+												cartitem.find("img").attr("src","/img/upload/" + photo);
+												
+												photos.num--;
+												if (photos.num == 0) {
+													//清除加载白页
+													$(".loading").hide();
+												}
+												
+											},
+											error:function(err){
+												console.log(err);
+											}
+										});
 										
-									},
-									error:function(err){
-										console.log(err);
-									}
-									
-								});
-								
-							}
+									})(j);
+								}
+							})(i);
+							
 						}
 					}
 					

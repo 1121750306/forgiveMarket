@@ -101,7 +101,7 @@ $(function(){
 			var good = goods[i];
 			
 			//组合li
-			let li ='<li class="cart_item" gid="' + good.gid + '">\
+			var li ='<li class="cart_item" gid="' + good.gid + '">\
 						<img src="/img/upload/' + good.photo + '"/>\
 						<div class="item_info">\
 							<h2>' + good.gname + '</h2>\
@@ -137,64 +137,71 @@ function search() {
 		success: function(data) {
 			var items = data.result;
 			
-			loading = items.length;
+			if (items.length != 0) {
+				loading = items.length;
 			
-			for (let i = 0; i < items.length; i++) {
-				let gid = items[i].gid;
-				let gname = items[i].gname;
-				let price = (items[i].price*items[i].discount).toFixed(2);
-				
-				//获取照片
-				$.ajax({
-					type:"get",
-					url:"/goodphoto/getShowPhoto/" + gid,
-					async:true,
-					success:function(photo){
-						//获取商品规格
+				for (var i = 0; i < items.length; i++) {
+					(function (i) {
+						var gid = items[i].gid;
+						var gname = items[i].gname;
+						var price = (items[i].price*items[i].discount).toFixed(2);
+						
+						//获取照片
 						$.ajax({
-							type:"post",
-							url:"/good/queryGoodSizeByid",
-							data:{id:gid},
+							type:"get",
+							url:"/goodphoto/getShowPhoto/" + gid,
 							async:true,
-							success:function(goodsizes){
-								
-								//遍历商品规格
-								let goodsizeUl = "";
-								for (let j = 0; j < goodsizes.length; j++) {
-									//拼接商品规格
-									goodsizeUl = goodsizeUl + "<li><h3>" + goodsizes[j].gsname +"</h3></li>";
-								}
-								
-								//获取销量
+							success:function(photo){
+								//获取商品规格
 								$.ajax({
-									type:"get",
-									url:"/good/getGoodSales/" + gid,
+									type:"post",
+									url:"/good/queryGoodSizeByid",
+									data:{id:gid},
 									async:true,
-									success:function(sales){
+									success:function(goodsizes){
 										
-										var item = {gid:gid, gname:gname, goodsizeUl:goodsizeUl, price:price, sales:sales, photo:photo};
-										goods.push(item);
-										
-										//组合li
-										let li ='<li class="cart_item" gid="' + gid + '">\
-													<img src="/img/upload/' + photo + '"/>\
-													<div class="item_info">\
-														<h2>' + gname + '</h2>\
-														<ul class="good_size">' + goodsizeUl + '</ul>\
-														<div class="info_bottom">\
-															<p class="item_price">￥' + price + '</p>\
-															<p class="item_num">' + sales + '人付款</p>\
-														</div>\
-													</div>\
-												</li>';
-												
-										$(".cart").append(li);
-										
-										loading--;
-										if (loading == 0) {
-											//清除加载白幕
-											$(".loading").hide();
+										//遍历商品规格
+										var goodsizeUl = "";
+										for (var j = 0; j < goodsizes.length; j++) {
+											//拼接商品规格
+											goodsizeUl = goodsizeUl + "<li><h3>" + goodsizes[j].gsname +"</h3></li>";
 										}
+										
+										//获取销量
+										$.ajax({
+											type:"get",
+											url:"/good/getGoodSales/" + gid,
+											async:true,
+											success:function(sales){
+												
+												var item = {gid:gid, gname:gname, goodsizeUl:goodsizeUl, price:price, sales:sales, photo:photo};
+												goods.push(item);
+												
+												//组合li
+												var li ='<li class="cart_item" gid="' + gid + '">\
+															<img src="/img/upload/' + photo + '"/>\
+															<div class="item_info">\
+																<h2>' + gname + '</h2>\
+																<ul class="good_size">' + goodsizeUl + '</ul>\
+																<div class="info_bottom">\
+																	<p class="item_price">￥' + price + '</p>\
+																	<p class="item_num">' + sales + '人付款</p>\
+																</div>\
+															</div>\
+														</li>';
+														
+												$(".cart").append(li);
+												
+												loading--;
+												if (loading == 0) {
+													//清除加载白幕
+													$(".loading").hide();
+												}
+											},
+											error:function(err){
+												console.log(err);
+											}
+										});
 									},
 									error:function(err){
 										console.log(err);
@@ -205,11 +212,12 @@ function search() {
 								console.log(err);
 							}
 						});
-					},
-					error:function(err){
-						console.log(err);
-					}
-				});
+					})(i);
+				}
+				
+			} else{
+				//清除加载白幕
+				$(".loading").hide();
 			}
 				
 		}
