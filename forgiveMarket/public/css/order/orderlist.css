@@ -233,6 +233,7 @@ body{
 .com_content .com_txt{
 	width: 100%;
 	height: 43%; 
+	position: relative;
 }
 
 .com_content .com_txt textarea{
@@ -246,7 +247,59 @@ body{
 	outline: none;
 	overflow-x: hidden;
 }
-
+.com_content .com_txt ul{
+	width: 100%;
+	height: 50px;
+	position: absolute;
+	top:130px;
+/*	border: 1px solid #000;*/
+}
+.com_content .com_txt ul li{
+	width: 50px;
+	height: 100%;
+	float: left;
+	margin: 0px;
+	padding:0px;
+	border: 2px dotted #888;
+	margin-left: 20px;
+	position: relative;
+	background:url("/img/camera.png")-2px 10px no-repeat;
+}
+.com_content .com_txt ul li label{
+	width: 100%;
+	height: 100%;
+	color: transparent;
+	margin: 0px;
+	padding:0px;
+	position: absolute;
+/*	z-index: 2;*/
+	top:0px;
+}
+.com_content .com_txt ul li  img{
+	position: absolute;
+	top:0px;
+	display: none;
+	background-color: #fff;
+}
+.com_content .com_txt ul li .delPhoto{
+	position: absolute;
+	width: 15px;
+	height: 15px;
+	top:-10px;
+	right: -10px;
+	background-color:#fff ;
+	z-index: 2;
+	display: none;
+	background: url("/img/delphoto.png") no-repeat;
+}
+/*.com_content .com_txt .com_pic .addPic{
+	width: 50px;
+	display: inline-block;
+	height: 100%;
+	margin-left: 20px;
+	border: 1px dotted #888;
+	background:url("/img/camera.png")-2px 10px no-repeat;
+}*/
 .com_content .com_txt p{
 	width: 100%;
 	height: 15%;

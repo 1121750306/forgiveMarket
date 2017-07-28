@@ -1,8 +1,11 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require("mongoose");
-var comment = require("../models/comment")
-var orderitem = require("../models/orderitem")
+var comment = require("../models/comment");
+var commentphoto = require("../models/commentPhoto");
+var multiparty = require('multiparty');
+var orderitem = require("../models/orderitem");
+var fs=require('fs');
 //注册models监听并传递models
 function callback(models) {
 	comment.initModel(models);
@@ -35,13 +38,127 @@ router.post('/addThumb',function(req,res,next){
 })
 router.post('/addComment',function(req,res,next){
 	// req.session.user=[{_id:"596f4d3d3709ec1c447f01eb",uname:"13614004325",psw:"424123",phone:"13614004325",balance:0,avatar:"/img/innisfreeIcon/avatar.png"}];
-	var gid=String(req.body.gid);
+	/*var gid=String(req.body.gid);
 	//模拟
 	// var gid="59700afda186ec08c06bc71c";
 	var uid=req.session.user[0]._id;
 	var content=req.body.content;
-	var otid=req.body.otid;
-	var date=new Date();
+	var otid=req.body.otid;*/
+	
+	var uid=req.session.user[0]._id;
+	var form = new multiparty.Form({
+		uploadDir: './public/img/upload'
+	});
+	form.parse(req,function(err, fields, files){
+		var content=fields.content;
+		var otid=fields.otid;
+		var gid=fields.gid.toString();
+		var imgpath=[];
+		var date=new Date();
+		var obj={gid:mongoose.Types.ObjectId(gid),uid:mongoose.Types.ObjectId(uid),content:content,date:date.getTime(),thumb:[]};
+		comment.addComment(obj,function(err,doc){
+			if(!err){
+				console.log(doc);
+				var orderItemObj={_id:otid,cid:mongoose.Types.ObjectId(doc._id)};
+				orderitem.updateOrderItem(orderItemObj,function(errs,doc2){
+					if(!errs){
+						console.log(doc2);
+						res.send({msg:"success"});
+					}
+					else{
+						console.log(errs);
+			         	res.send({msg:"fail"});
+					}
+				});
+				
+				if(files.photo0!=undefined){
+					console.log("files"+files.photo0[0].path);
+					fs.rename(files.photo0[0].path,'./public/img/upload/'+files.photo0[0].originalFilename,function(err){
+						if(!err){
+							imgpath.push(files.photo0[0].originalFilename);
+							var tempObj={cid:mongoose.Types.ObjectId(doc._id),imgpath:files.photo0[0].originalFilename};
+							commentphoto.addCommentPhoto(tempObj,function(e,d){
+								if(!e){
+									console.log(d);
+								}else{
+									console.log(e);
+								}
+							})
+						}
+					})
+				}
+				if(files.photo1!=undefined){
+					console.log("files"+files.photo1[0].path);
+					fs.rename(files.photo1[0].path,'./public/img/upload/'+files.photo1[0].originalFilename,function(err){
+						if(!err){
+							imgpath.push(files.photo1[0].originalFilename);
+							var tempObj={cid:mongoose.Types.ObjectId(doc._id),imgpath:files.photo1[0].originalFilename};
+							commentphoto.addCommentPhoto(tempObj,function(e,d){
+								if(!e){
+									console.log(d);
+								}else{
+									console.log(e);
+								}
+							})
+						}
+					})
+				}
+				if(files.photo2!=undefined){
+					console.log("files"+files.photo2[0].path);
+					fs.rename(files.photo2[0].path,'./public/img/upload/'+files.photo2[0].originalFilename,function(err){
+						if(!err){
+							imgpath.push(files.photo2[0].originalFilename);
+							var tempObj={cid:mongoose.Types.ObjectId(doc._id),imgpath:files.photo2[0].originalFilename};
+							commentphoto.addCommentPhoto(tempObj,function(e,d){
+								if(!e){
+									console.log(d);
+								}else{
+									console.log(e);
+								}
+							})
+						}
+					})
+				}
+				if(files.photo3!=undefined){
+					console.log("files"+files.photo3[0].path);
+					fs.rename(files.photo3[0].path,'./public/img/upload/'+files.photo3[0].originalFilename,function(err){
+						if(!err){
+							imgpath.push(files.photo3[0].originalFilename);
+							var tempObj={cid:mongoose.Types.ObjectId(doc._id),imgpath:files.photo3[0].originalFilename};
+							commentphoto.addCommentPhoto(tempObj,function(e,d){
+								if(!e){
+									console.log(d);
+								}else{
+									console.log(e);
+								}
+							})
+						}
+					})
+				}
+				if(files.photo4!=undefined){
+					console.log("files"+files.photo4[0].path);
+					fs.rename(files.photo4[0].path,'./public/img/upload/'+files.photo4[0].originalFilename,function(err){
+						if(!err){
+							imgpath.push(files.photo4[0].originalFilename);
+							var tempObj={cid:mongoose.Types.ObjectId(doc._id),imgpath:files.photo4[0].originalFilename};
+							commentphoto.addCommentPhoto(tempObj,function(e,d){
+								if(!e){
+									console.log(d);
+								}else{
+									console.log(e);
+								}
+							})
+						}
+					})
+				}
+						
+				
+			}else{
+				console.log(err);
+			}
+		})
+	})
+	/*var date=new Date();
 	var obj={gid:mongoose.Types.ObjectId(gid),uid:mongoose.Types.ObjectId(uid),content:content,date:date.getTime(),thumb:[]};
 	comment.addComment(obj,function(err,doc){
 		if(!err){
@@ -62,11 +179,11 @@ router.post('/addComment',function(req,res,next){
 			console.log(err);
 			res.send({msg:"fail"});
 		}
-	})
+	})*/
 	/*var date = new Date(Number(result[i].date));
 	console.log("date:" + date);
 	var dateStr = date.getFullYear() + "年" + (date.getMonth() + 1) + "月" + date.getDate() + "日";*/
-})
+});
 
 router.post('/addComToComment',function(req,res,next){
 	// req.session.user=[{_id:"596f4d3d3709ec1c447f01eb",uname:"13614004325",psw:"424123",phone:"13614004325",balance:0,avatar:"/img/innisfreeIcon/avatar.png"}];
@@ -86,9 +203,6 @@ router.post('/addComToComment',function(req,res,next){
 			res.send({msg:"fail",data:doc});
 		}
 	})
-	/*var date = new Date(Number(result[i].date));
-	console.log("date:" + date);
-	var dateStr = date.getFullYear() + "年" + (date.getMonth() + 1) + "月" + date.getDate() + "日";*/
 })
 
 router.get('/getgoodComment:gid',function(req,res,next){

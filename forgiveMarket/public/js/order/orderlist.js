@@ -15,19 +15,31 @@ $(function() {
 	
 	//商品评论控制
 	$(".com_submit").click(function(){
+		var formdata=new FormData();
 		var otid = $(".comment").attr("otid");
 		var gid = $(".com_txt input[name=gid]").val();
 		var content = $(".com_txt textarea").val();
-		
+		var imgNum=0;	    
+		for(var i=0;i<$(".compic li img").length;i++){
+		      if($(".compic li input")[i].files[0]!=undefined){
+		      	  imgNum++;
+		      	 console.log("==="+$(".compic li input")[i].files[0]);
+			     formdata.append("photo"+i,$(".compic li input")[i].files[0]);
+		      }  
+		}
+		formdata.append("gid",gid);
+		formdata.append("otid",otid);
+		formdata.append("imgNum",imgNum);
+		formdata.append("content",content);
 		//添加评论
 		$.ajax({
 			type:"post",
 			url:"/comment/addComment",
-			data:{
-				gid:gid,
-				otid:otid,
-				content:content
-			},
+			data:formdata,
+			// 告诉jQuery不要去处理发送的数据
+			processData: false,
+			// 告诉jQuery不要去设置Content-Type请求头
+			contentType: false,
 			async:true,
 			success:function(data){
 				var oid = $(".comment").attr("oid");

@@ -12,9 +12,39 @@
 		<link rel="stylesheet" type="text/css" href="/css/order/cart.css"/>	
 		<link rel="stylesheet" type="text/css" href="/css/goodInfo/goodlist.css"/>
 		<link rel="stylesheet" type="text/css" href="/css/order/orderlist.css" />
-
+    
 	</head>
-
+     <script>
+     	function selectPhoto(fileCtrl){
+			var file=new FileReader();
+			
+			file.onloadend=function(e){
+				/*callback(fileCtrl);*/
+				var liCtrl=fileCtrl.parentElement.parentElement;
+				var imgCtrl=liCtrl.getElementsByTagName("img");
+				var divCtrl=liCtrl.getElementsByTagName("div");
+				imgCtrl[0].src=e.target.result;	
+				imgCtrl[0].style.display="block";	
+				divCtrl[0].style.display="block";
+				var len=$(".compic li").length;
+				console.log(len);
+				if(len<5){
+					$(".compic").append(
+					"<li>"+
+					"<label class='choicpic'>"+
+					 "<input type='file' style='left:-9999px;position:absolute;' onchange='selectPhoto(this)' />"+
+					 "</label>"+
+					 "<img width='100%' height='100%' />"+
+					 "<div class='delPhoto'>"+
+					 "</div>"+
+					 "</li>"
+				);
+				}			
+			}
+			file.readAsDataURL(fileCtrl.files[0]);
+	 }
+     	
+     </script>
 	<body>
 		<div class="loading"></div>
 		
@@ -75,6 +105,15 @@
 		    	</div>
 		    	<div class="com_txt">
 	    		 	 <textarea name="content" placeholder="宝贝满足你的期待吗？说说你的使用心得,分享给想买的他们吧"></textarea>	
+		    		 <ul class="compic">
+		    		 	<li>
+		    		 		 <label class="choicpic">
+		    		 		    <input type="file" style="left:-9999px;position:absolute;"onchange="selectPhoto(this)"/>
+		    		 		 </label>	    		    
+		    		 		 <img  width="100%" height="100%" />
+		    		 		 <div class="delPhoto"></div>
+		    		 	</li>
+		    		 </ul>
 		    		 <p><input type="button" value="发布" class="com_submit" /></p>
 		    		 <p><input type="button" value="取消" class="com_cancel" /></p>
 		    		 <input type="hidden" name="gid" value=""/>

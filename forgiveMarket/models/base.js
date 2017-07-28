@@ -211,7 +211,18 @@ db.once("open", function() {
 		versionKey: false
 	});
 	commentModel = db.model("Comment", commentSchema);
-
+	//评论图片表
+    commentPhotoSchema=new mongoose.Schema({
+    	//评论外键
+		cid: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'Comment'
+		},
+		imgpath:String
+    },{
+		versionKey: false
+	});
+	commentPhotoModel=db.model("CommentPhoto",commentPhotoSchema);
 	//点赞表
 	thumbSchema = new mongoose.Schema({
 		//用户外键
@@ -276,7 +287,8 @@ db.once("open", function() {
 		history: historyModel,
 		collect: collectModel,
 		goodInfo: goodInfoModel,
-		thumb: thumbModel
+		thumb: thumbModel,
+		commentphoto:commentPhotoModel
 	});
 })
 
