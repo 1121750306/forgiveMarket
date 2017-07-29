@@ -373,5 +373,18 @@ $(function() {
 	function toviewcomment (e) {
 		$(e.target).parents(".cart_item").find(".item_bottom").slideToggle();
 	}
-	
+	$(".compic").on('click','li .delPhoto',function(){
+		var index=$(this).parent().index();
+     	console.log($(this).parent().index());
+     	if($(".compic li").length>1){
+     			$(".compic li").eq(index).remove();
+     	}else{  		
+     		$(".compic li").eq(index).find("input").val("");
+     		$(".compic li").eq(index).find("img").attr('src','');
+     		$(".compic li").eq(index).find("img").css('display','none');
+     	    $(".compic li").eq(index).find("div").css('display','none');
+     		
+     	}
+     
+     });
 });
