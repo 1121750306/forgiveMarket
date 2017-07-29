@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require("mongoose");
 var comment = require("../models/comment");
-var commentphoto = require("../models/commentPhoto");
 var multiparty = require('multiparty');
 var orderitem = require("../models/orderitem");
 var fs=require('fs');
