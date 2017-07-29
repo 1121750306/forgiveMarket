@@ -181,7 +181,7 @@ $(function() {
 						//遍历订单项li
 						for (var j = 0; j < orderitems.length; j++) {
 							var orderitem = orderitems[j];
-							
+							console.log(orderitem);
 							//拼接订单项li
 							var itemLi ='<li class="cart_item" gid= "' + orderitem.gid + '" otid="' + orderitem.otid + '">\
 											<div class="item_top">\
@@ -201,29 +201,40 @@ $(function() {
 							
 							$(".order .order_item").eq(i).find(".cart .cart_item").eq(j).bind("mouseup",togoodinfo);
 							
-							//当在已收货界面时显示评价按钮
-							if (index == 3 && !orderitem.cid) {
-								$(".order .order_item").eq(i).find(".cart .cart_item").eq(j)
-									.find(".info_bottom").append("<span class='item_comment'>评价</span>");
-								//绑定事件
-								$(".order .order_item").eq(i).find(".cart .cart_item").eq(j)
-									.find(".item_comment").bind("click",tocomment);
-							}
-							
-							//当在已完成界面时显示查看评价按钮
-							if (index == 4) {
-								$(".order .order_item").eq(i).find(".cart .cart_item").eq(j)
-									.find(".info_bottom").append("<span class='item_comment'>查看评价</span>");
-								//绑定事件
-								$(".order .order_item").eq(i).find(".cart .cart_item").eq(j)
-									.find(".item_comment").bind("click",toviewcomment)
-								
-								//评论详情
-								$(".order .order_item").eq(i).find(".cart .cart_item").eq(j).append('\
-										<div class="item_bottom">\
-											<h3 class="comment_info">' + orderitem.cid.content + '</h3>\
-											<h3 class="comment_date">评论时间：' + orderitem.cid.date + '</h3>\
-										</div>');
+							//当在已收货和已完成界面时显示评价控制按钮
+							if (index == 3 || index == 4) {
+								if (!orderitem.cid) {
+									//未评价
+									$(".order .order_item").eq(i).find(".cart .cart_item").eq(j)
+										.find(".info_bottom").append("<span class='item_comment'>评价</span>");
+									//绑定事件
+									$(".order .order_item").eq(i).find(".cart .cart_item").eq(j)
+										.find(".item_comment").bind("click",tocomment);
+										
+								} else{
+									//已评价
+									$(".order .order_item").eq(i).find(".cart .cart_item").eq(j)
+										.find(".info_bottom").append("<span class='item_comment'>查看评价</span>");
+									//绑定事件
+									$(".order .order_item").eq(i).find(".cart .cart_item").eq(j)
+										.find(".item_comment").bind("click",toviewcomment);
+										
+									//评论详情
+									$(".order .order_item").eq(i).find(".cart .cart_item").eq(j).append('\
+											<div class="item_bottom">\
+												<h3 class="comment_info">' + orderitem.cid.content + '</h3>\
+												<ul class="comment_photo"></ul>\
+												<h3 class="comment_date">评论时间：' + orderitem.cid.date + '</h3>\
+											</div>');
+											
+									//评论图片
+									var commentphotos = orderitem.cid.photo;
+									for (var k = 0; k < commentphotos.length; k++) {
+										$(".order .order_item").eq(i).find(".cart .cart_item").eq(j).find(".comment_photo")
+											.append('<li style="background: url(' + commentphotos[k].replace(/\\/g, "/") + ') 50% 50% no-repeat;background-size: 100% 100%;"></li>');
+									}
+									
+								}
 							}
 							
 							photos.num++;
@@ -294,11 +305,20 @@ $(function() {
 	
 	//商品页面跳转控制
 	function togoodinfo(e){
-		var commentBtn = $(e.target).parents(".cart_item").find(".item_comment")[0];
-        if (e.target != commentBtn){
-			var gid = $(e.target).parents(".cart_item").attr("gid");
-            location.assign("/views/goodInfo/goodInfo.html?gid=" + gid);
-        }
+		var gid;
+		if ($(e.target).hasClass("cart_item")) {
+			gid = $(e.target).attr("gid");
+	          location.assign("/views/goodInfo/goodInfo.html?gid=" + gid);
+			
+		}else {
+			var commentBtn = $(e.target).parents(".cart_item").find(".item_comment");
+			var commentContent = $(e.target).parents(".cart_item").find(".item_bottom");
+	        if (!commentBtn.is(e.target) && !commentContent.is(e.target) && commentContent.has(e.target).length === 0){
+				gid = $(e.target).parents(".cart_item").attr("gid");
+	          	location.assign("/views/goodInfo/goodInfo.html?gid=" + gid);
+	        }
+	        
+		}
 	}
 	
 	//查看收货信息控制
@@ -356,8 +376,12 @@ $(function() {
 		
 		//当前订单其他订单项都被评价时
 		var commentBtn =  $(e.target).parents(".cart_item").siblings("li").find(".item_comment");
-		if (commentBtn.length == 0) {
-			$(".comment").attr("oid",oid);
+		$(".comment").attr("oid",oid);
+		for (var i = 0; i < commentBtn.length; i++) {
+			if(commentBtn.eq(i).html() == "评价"){
+				$(".comment").attr("oid","");
+				break;
+			}
 		}
 		
 		$(".com_txt textarea").val("");		
@@ -372,7 +396,9 @@ $(function() {
 	//查看评论控制
 	function toviewcomment (e) {
 		$(e.target).parents(".cart_item").find(".item_bottom").slideToggle();
+		$(e.target).html($(e.target).html() == "查看评价"? "收起评价":"查看评价");
 	}
+	
 	$(".compic").on('click','li .delPhoto',function(){
 		var index=$(this).parent().index();
      	console.log($(this).parent().index());
