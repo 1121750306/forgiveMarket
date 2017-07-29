@@ -11,7 +11,9 @@ $(function() {
 		$("#username").text(user.uname);
 		$("#user_photo img").attr("src", user.avatar);
 		$("#balance").text("余额：￥" + user.balance);
+		$("#signal").text(user.signal);
 		$("#ubg").attr("src",user.ubg);
+		$("#ubg").css("display","block");
 	} else {
 		$("#login").css("display", "none");
 		$("#user_function").css("display", "none");
@@ -31,6 +33,9 @@ $(function() {
 		});
 	})
 
+	$("#login").click(function(){
+		window.location.assign("/views/user/userinfo.html");
+	})
 	addOnLoginListener(function(err, result) {
 		if(err) {
 
