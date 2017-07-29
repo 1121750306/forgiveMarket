@@ -2,23 +2,41 @@ $(document).ready(function() {
 	var user = JSON.parse(sessionStorage.user);
 	console.log(user)
 	$("#avatar img").attr("src", user.avatar);
+	$("#ubg img").attr("src", user.ubg);
 	$("#uname .content").text(user.uname);
 	$("#uid .content").text(user._id);
+	$("#sex .content").text(user.sex == 1 ? "男" : "女");
+	$("#signal .content").text(user.signal);
 	$("#uname").click(function() {
-		var muser = JSON.parse(sessionStorage.user);
-		var newuname = prompt("请输入用户名", muser.uname);
-		//		console.log(newuname)
-		if (newuname) {
-			$("#uname .content").text(newuname);
-			$("#uname input").attr("value", newuname);
-		}
+		$("#div_uname input").val(user.uname);
+		showEditUname();
 	});
-	$("#avatar input")[0].addEventListener("change", readData, false);
+
+	$("#sex").click(function() {
+		showSelectSex();
+	});
+
+	$("#signal").click(function() {
+		$("#div_signal textarea").val(user.signal);
+		showEditSignal();
+	});
+	
+	$("#avatar img").click(function(){
+		$("#input_avatar").click();
+	})
+	$("#ubg img").click(function(){
+		$("#input_ubg").click();
+	})
+	
+	$("#avatar input")[0].addEventListener("change", readDataByAvater, false);
+	$("#ubg input")[0].addEventListener("change", readDataByBg, false);
 	$("#submit").click(function() {
 		var formData = new FormData();
-		var name = $("#uname input").val();
 		formData.append("photo", $("#avatar input")[0].files[0]);
-		formData.append("uname", name);
+		formData.append("bgphoto", $("#ubg input")[0].files[0]);
+		formData.append("uname", user.uname);
+		formData.append("sex", user.sex);
+		formData.append("signal", user.signal);
 		$.ajax({
 			type: "post",
 			url: "/users/changeavatar",
@@ -30,23 +48,60 @@ $(document).ready(function() {
 			async: true,
 			success: function(data) {
 				//				console.log(data)
-				if (data.flag == 200) {
+				if(data.flag == 200) {
 					console.log(data.result);
 					sessionStorage.user = JSON.stringify(data.result);
 					toast("修改成功");
 				} else {
+					console.log("msg:"+data.flag);
 					toast("修改失败");
 				}
 			}
 		});
 	})
+
+	$("#boy").click(function() {
+		user.sex = 1;
+		$("#sex .content").text(user.sex == 1 ? "男" : "女");
+		dismissSelectSex();
+		event.stopPropagation();
+	});
+	$("#girl").click(function() {
+		user.sex = 2;
+		$("#sex .content").text(user.sex == 1 ? "男" : "女");
+		dismissSelectSex();
+		event.stopPropagation();
+	});
+	$("#div_sex").click(function() {
+		dismissSelectSex();
+	})
+	$("#sp_detemine").click(function() {
+		var content = $("#div_signal textarea").val();
+		console.log(content);
+		user.signal = content;
+		$("#signal .content").text(user.signal);
+		dismissEditSignal();
+	});
+	$("#cancel").click(function() {
+		dismissEditSignal();
+	});
+	$("#sp_uname_save").click(function() {
+		var content = $("#div_uname input").val();
+		console.log(content);
+		user.uname = content;
+		$("#uname .content").text(user.uname);
+		dismissEditUname();
+	});
+	$("#uname_cancel").click(function() {
+		dismissEditUname();
+	});
 });
 
-function readData(evt) {
+function readData(evt, obj) {
 	evt.stopPropagation();
 	evt.preventDefault();
 	var file = evt.dataTransfer !== undefined ? evt.dataTransfer.files[0] : evt.target.files[0];
-	if (!file.type.match(/image.*/)) {
+	if(!file.type.match(/image.*/)) {
 		return;
 	}
 	var reader = new FileReader();
@@ -63,9 +118,53 @@ function readData(evt) {
 				//重置canvans宽高 canvas.width = img.width; canvas.height = img.height;  
 				ctx.drawImage(img, 0, 0, canvas.width, canvas.height); // 将图像绘制到canvas上   
 				//				canvas.toDataURL("image/jpeg"); //必须等压缩完才读取canvas值，否则canvas内容是黑帆布  
-				$("#avatar img").attr("src", canvas.toDataURL("image/jpeg"));
+				obj.attr("src", canvas.toDataURL("image/jpeg"));
 			});
 		}
 	})(file);
 	reader.readAsDataURL(file);
+}
+
+function readDataByAvater(evt) {
+	readData(evt, $("#avatar img"));
+}
+
+function readDataByBg(evt) {
+	readData(evt, $("#ubg img"));
+}
+
+function showSelectSex() {
+	$("#div_sex").animate({
+		top: '0'
+	}, 300);
+}
+
+function dismissSelectSex() {
+	$("#div_sex").animate({
+		top: "100%"
+	}, 300);
+}
+
+function showEditSignal() {
+	$("#div_signal").animate({
+		top: '0'
+	}, 300);
+}
+
+function dismissEditSignal() {
+	$("#div_signal").animate({
+		top: "100%"
+	}, 300);
+}
+
+function showEditUname() {
+	$("#div_uname").animate({
+		top: '0'
+	}, 300);
+}
+
+function dismissEditUname() {
+	$("#div_uname").animate({
+		top: "100%"
+	}, 300);
 }

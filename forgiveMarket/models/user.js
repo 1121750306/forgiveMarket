@@ -17,12 +17,15 @@ function addUser(phone, password, cb) {
 		psw: password,
 		phone: phone,
 		balance: 0,
-		avatar: "/img/innisfreeIco/avatar.png" //默认头像
+		avatar: "/img/innisfreeIco/avatar.png", //默认头像
+		ubg: "/img/innisfreeIco/ubg.jpg",
+		sex: 1,
+		signal: "没有签名"
 	});
 
 	//保存
 	userEntity.save(function(err, data) {
-		if (!err) {
+		if(!err) {
 			cb(2, null, data);
 		} else {
 			cb(0, err, null);
@@ -43,11 +46,11 @@ function register(phone, password, cb) {
 	}).exec(function(err, docs) {
 		console.log("进入检查用户是否存在");
 		console.log("err:" + err + ",docs:" + docs)
-		if (err) {
+		if(err) {
 			cb(0, err, null);
 			console.log("错误1");
 		} else {
-			if (docs.length == 0) {
+			if(docs.length == 0) {
 				//没有注册
 				console.log("没有注册");
 				addUser(phone, password, cb);
@@ -71,15 +74,15 @@ function login(phone, password, cb) {
 	}).exec(function(err, docs) {
 		console.log("进入检查用户是否存在");
 		console.log("err:" + err + ",docs:" + docs)
-		if (err) {
+		if(err) {
 			cb(0, err, null);
 			console.log("错误1");
 		} else {
-			if (docs.length == 0 || docs == null) {
+			if(docs.length == 0 || docs == null) {
 				cb(2, "不存在该用户", null);
 			} else {
 				console.log("pas:" + password + ",psw:" + docs[0]);
-				if (password != docs[0].psw) {
+				if(password != docs[0].psw) {
 					console.log("pas:" + password + ",psw:" + docs.psw);
 					cb(1, "密码不正确", null);
 				} else {
@@ -97,24 +100,34 @@ function login(phone, password, cb) {
  * @param {Object} photo 需要修改的头像
  * @param {Function(flag, err, result)} cb flag(1修改成功，2不存在该用户，3修改失败)
  */
-function changeUserInfo(_id, uname, photo, cb) {
+function changeUserInfo(_id, uname, photo, sex, signal, ubg, cb) {
 	_id = String(_id);
 	console.log("changeUserInfo", "_id:" + _id + ",uname:" + uname + ",photo:" + photo);
 	userModel.findById(_id, function(err, docs) {
-		if (!err) {
+		if(!err) {
 			console.log("changeUserInfo", "docs:" + docs);
-			if (docs == null) {
+			if(docs == null) {
 				cb(2, null, null);
 			} else {
-				if (uname != null) {
+				if(uname != null) {
 					docs.uname = uname;
 				}
-				if (photo != null) {
+				if(photo != null) {
 					docs.avatar = photo;
 				}
+				if(sex == 1 || sex == 2) {
+					docs.sex = sex;
+				}
+				if(signal != null) {
+					docs.signal = signal;
+				}
+				if(ubg != null) {
+					docs.ubg = ubg;
+				}
 				docs.save(function(err, updatedTank) {
-					if (err) {
+					if(err) {
 						cb(3, err, null);
+						console.log("err:" + err);
 					} else {
 						cb(1, null, updatedTank);
 					}
@@ -139,18 +152,18 @@ function changePwd(_id, nowPwd, newPwd, cb) {
 	userModel.findOne({
 		_id: _id
 	}, function(err, docs) {
-		if (!err) {
+		if(!err) {
 			console.log("changePwd", "docs:" + docs);
-			if (docs == null) {
+			if(docs == null) {
 				cb(2, null, null);
 			} else {
-				if (nowPwd != docs.psw) {
+				if(nowPwd != docs.psw) {
 					cb(3, "密码错误", null);
 					return;
 				}
 				docs.psw = newPwd;
 				docs.save(function(err, updatedTank) {
-					if (err) {
+					if(err) {
 						cb(3, err, null);
 					} else {
 						cb(1, null, updatedTank);
@@ -165,7 +178,7 @@ function changePwd(_id, nowPwd, newPwd, cb) {
 
 function randowUser(cb) {
 	userModel.find({}).then(function(docs) {
-		if (docs == null || docs.length == 0) {
+		if(docs == null || docs.length == 0) {
 			cb("没有用户", null);
 			return;
 		}
@@ -189,10 +202,10 @@ function searchGood(content, cb) {
 		path: 'typeid',
 		select: 'tname'
 	}).exec(function(err, docs) {
-		if (docs != null && docs.length != 0) {
+		if(docs != null && docs.length != 0) {
 			var result = [];
-			for (var i = 0; i < docs.length; i++) {
-				if (docs[i].gname.match(content)) {
+			for(var i = 0; i < docs.length; i++) {
+				if(docs[i].gname.match(content)) {
 					result[result.length] = {
 						gid: docs[i]._id,
 						gname: docs[i].gname,
@@ -203,7 +216,7 @@ function searchGood(content, cb) {
 					continue;
 				}
 
-				if (docs[i].typeid != null && docs[i].typeid != undefined && docs[i].typeid.tname.match(content)) {
+				if(docs[i].typeid != null && docs[i].typeid != undefined && docs[i].typeid.tname.match(content)) {
 					result[result.length] = {
 						gid: docs[i]._id,
 						gname: docs[i].gname,
@@ -228,14 +241,14 @@ function getTopGoods(cb) {
 	var promise = goodModel.find({}).exec();
 	promise.then(function(result) {
 		console.log(result);
-		if (result == null || result.length == 0) {
+		if(result == null || result.length == 0) {
 			//若没有商品则直接返回null
 			return new Promise(function(resolve, reject) {
 				resolve(null);
 			});
 		}
 		var promises = [];
-		for (var i = 0; i < result.length; i++) {
+		for(var i = 0; i < result.length; i++) {
 			console.log("data:" + result[i]);
 			promises.push(goodsizeModel.find({
 				gid: result[i]._id
@@ -249,15 +262,15 @@ function getTopGoods(cb) {
 	}, function(err) {
 		console.log(err);
 	}).then(function(result) {
-		if (result == null || result.lenght == 0) {
+		if(result == null || result.lenght == 0) {
 			cb(null, result);
 			return;
 		}
 		var goods = result[result.length - 1];
 		var goodinfos = [];
-		for (var i = 0; i < goods.length; i++) {
+		for(var i = 0; i < goods.length; i++) {
 			var sales = 0;
-			for (var j = 0; j < result[i].length; j++) {
+			for(var j = 0; j < result[i].length; j++) {
 				sales += result[i][j].sales;
 			}
 			console.log("goods" + goods[i].gname + ",sale:" + sales);
@@ -268,15 +281,15 @@ function getTopGoods(cb) {
 		}
 		//排序
 		goodinfos.sort(function(x, y) {
-			if (x.sales < y.sales) {
+			if(x.sales < y.sales) {
 				return 1;
-			} else if (x.sales > y.sales) {
+			} else if(x.sales > y.sales) {
 				return -1;
 			} else {
 				return 0;
 			}
 		});
-		if (goodinfos.length > 6) {
+		if(goodinfos.length > 6) {
 			goodinfos.length = 6;
 		}
 		cb(null, goodinfos);

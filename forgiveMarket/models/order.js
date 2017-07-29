@@ -132,7 +132,9 @@ function createOrder(uid, otids, locationid, cb) {
 }
 
 function getAllOrders(cb) {
-	orderModel.find({flag:2}).exec(cb);
+	orderModel.find({
+		flag: 2
+	}).exec(cb);
 }
 
 /**
@@ -158,7 +160,7 @@ function getAllOrdersByFlag(uid, flag, cb) {
 		var promises = [];
 		for(var i = 0; i < result.length; i++) {
 
-			var date = result[i].date.getFullYear() + "-" + (result[i].date.getMonth() - 1) + "-" + result[i].date.getDate() + " " + result[i].date.getHours() + ":" + result[i].date.getMinutes() + ":" + result[i].date.getSeconds();
+			var date = result[i].date.getFullYear() + "-" + (result[i].date.getMonth() + 1) + "-" + result[i].date.getDate() + " " + result[i].date.getHours() + ":" + result[i].date.getMinutes() + ":" + result[i].date.getSeconds();
 
 			orders[orders.length] = {
 				oid: result[i]._id,
@@ -203,7 +205,7 @@ function getAllOrdersByFlag(uid, flag, cb) {
 			for(var j = 0; j < result[i].length; j++) {
 				var date = null;
 				if(result[i][j].cid != undefined && result[i][j].cid != null) {
-					date = result[i][j].cid.date.getFullYear() + "-" + (result[i][j].cid.date.getMonth() - 1) + "-" + result[i][j].cid.date.getDate() + " " + result[i][j].cid.date.getHours() + ":" + result[i][j].cid.date.getMinutes() + ":" + result[i][j].cid.date.getSeconds();
+					date = result[i][j].cid.date.getFullYear() + "-" + (result[i][j].cid.date.getMonth() + 1) + "-" + result[i][j].cid.date.getDate() + " " + result[i][j].cid.date.getHours() + ":" + result[i][j].cid.date.getMinutes() + ":" + result[i][j].cid.date.getSeconds();
 				}
 				orders[i].orderitem[j] = {
 					otid: result[i][j]._id,
@@ -217,7 +219,8 @@ function getAllOrdersByFlag(uid, flag, cb) {
 					cid: result[i][j].cid == undefined || result[i][j].cid == null ? null : {
 						cid: result[i][j].cid._id,
 						content: result[i][j].cid.content,
-						date: date
+						date: date,
+						photo:result[i][j].cid.photos
 					}
 				}
 				//计算总价

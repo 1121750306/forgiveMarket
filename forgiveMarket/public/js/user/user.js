@@ -3,7 +3,7 @@ $(function() {
 	var userjson = sessionStorage.user;
 	if(userjson != null && userjson != "null" && userjson != undefined && userjson != "undefined") {
 		var user = JSON.parse(userjson);
-//		console.log(user);
+		//		console.log(user);
 		//已经登录
 		$("#login").css("display", "block");
 		$("#user_function").css("display", "block");
@@ -11,6 +11,7 @@ $(function() {
 		$("#username").text(user.uname);
 		$("#user_photo img").attr("src", user.avatar);
 		$("#balance").text("余额：￥" + user.balance);
+		$("#ubg").attr("src",user.ubg);
 	} else {
 		$("#login").css("display", "none");
 		$("#user_function").css("display", "none");

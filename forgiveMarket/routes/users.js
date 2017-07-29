@@ -121,20 +121,26 @@ router.post("/changeavatar", function(req, res, next) {
 		uploadDir: './public/img/upload'
 	});
 	form.parse(req, function(err, fields, files) {
-		console.log("user:" + req.session.user[0])
-		console.log("fields:" + fields)
-		console.log('err:' + err);
-		console.log('files:' + files);
+		
 		var uname = fields.uname != undefined && fields.uname != "" ? fields.uname[0] : null;
-		var inputFile = files.photo != undefined ? files.photo[0] : null;
-		var uploadedPath = inputFile != null ? inputFile.path : null;
-//		console.log("uname:" + uname)
-//		console.log('inputFile:' + inputFile);
-//		console.log('uploadedPath:' + uploadedPath);
-		if(uploadedPath != null) {
-			uploadedPath = uploadedPath.substr(uploadedPath.indexOf("\\"), uploadedPath.length);
+		var sex = fields.sex != undefined && fields.sex != "" ? fields.sex[0] : 0;
+		var signal = fields.signal != undefined && fields.signal != "" ? fields.signal[0] : null;
+		var avatar = files.photo != undefined ? files.photo[0] : null;
+		var avatarPath = avatar != null ? avatar.path : null;
+		var ubg = files.bgphoto != undefined ? files.bgphoto[0] : null;
+		var ubgPath = ubg != null ? ubg.path : null;
+		console.log("uname:" + uname);
+		console.log("sex" + sex)
+		console.log('signal:' + signal);
+		console.log('avatarPath:' + avatarPath);
+		console.log('ubgPath:' + ubgPath);
+		if(avatarPath != null) {
+			avatarPath = avatarPath.substr(avatarPath.indexOf("\\"), avatarPath.length);
 		}
-		user.changeUserInfo(req.session.user[0]._id, uname, uploadedPath, function(flag, err, result) {
+		if(ubgPath != null) {
+			ubgPath = ubgPath.substr(ubgPath.indexOf("\\"), ubgPath.length);
+		}
+		user.changeUserInfo(req.session.user[0]._id, uname, avatarPath, sex, signal, ubgPath, function(flag, err, result) {
 			if(!err) {
 				if(flag == 1) {
 					res.send({

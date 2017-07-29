@@ -14,7 +14,10 @@ db.once("open", function() {
 		psw: String,
 		phone: String,
 		balance: Number,
-		avatar: String
+		avatar: String,
+		ubg:String,
+		sex:Number,
+		signal:String
 	}, {
 		versionKey: false
 	});

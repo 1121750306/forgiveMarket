@@ -56,32 +56,24 @@
 					<li id="avatar">
 						<span class="title">头像</span>
 						<img src="/img/innisfreeIco/avatar.png" />
-						<input type="file" accept="image/*" name="photo" />
+						<input type="file" accept="image/*" name="photo" id="input_avatar" />
 					</li>
 					<li id="uname">
 						<span class="title">昵称</span>
 						<span class="content">无</span>
-						<input type="text" name="uname" />
 					</li>
 					<li id="ubg">
 						<span class="title">个人主页背景</span>
 						<img src="/img/innisfreeIco/ubg.jpg" />
-						<input type="file" accept="image/*" name="photo" />
+						<input type="file" accept="image/*" name="bgphoto" id="input_ubg" />
 					</li>
 					<li id="sex">
 						<span class="title">性别</span>
 						<span class="content">无</span>
-						<input type="text" name="sex" />
-					</li>
-					<li id="birthday">
-						<span class="title">生日</span>
-						<span class="content">无</span>
-						<input type="text" name="birthday" />
 					</li>
 					<li id="signal">
 						<span class="title">签名</span>
 						<span class="content">无</span>
-						<input type="text" name="signal" />
 					</li>
 				</ul>
 				<div id="div_submit">
@@ -89,6 +81,32 @@
 				</div>
 			</div>
 		</form>
+		<div id="div_uname">
+			<div id="edit_uname">
+				<div id="uname_title">
+					<i id="uname_cancel"></i>
+					<span id="sp_uname">修改昵称</span>
+					<span id="sp_uname_save">保存</span>
+				</div>
+				<input type="text"/>
+			</div>
+		</div>
+		<div id="div_sex">
+			<div id="select_sex">
+				<p id="boy">男</p>
+				<p id="girl">女</p>
+			</div>
+		</div>
+		<div id="div_signal">
+			<div id="edit_signal">
+				<div id="signal_title">
+					<i id="cancel"></i>
+					<span id="sp_signal">修改签名</span>
+					<span id="sp_detemine">保存</span>
+				</div>
+				<textarea></textarea>
+			</div>
+		</div>
 		<script src="/jquery/dist/jquery.js"></script>
 		<script src="/js/common.js"></script>
 		<script src="/js/user/userinfo.js"></script>
