@@ -231,7 +231,7 @@ $(function() {
 									var commentphotos = orderitem.cid.photo;
 									for (var k = 0; k < commentphotos.length; k++) {
 										$(".order .order_item").eq(i).find(".cart .cart_item").eq(j).find(".comment_photo")
-											.append('<li class="qqqq" style="background: url(' + commentphotos[k].replace(/\\/g, "/") + ') 50% 50% no-repeat;background-size: 100% 100%;"></li>');
+											.append('<div style="position:relative"><li class="qqqq" style="background: url(' + commentphotos[k].replace(/\\/g, "/") + ') 50% 50% no-repeat;background-size: 100% 100%;"></li></div>');
 									}
 									
 								}
