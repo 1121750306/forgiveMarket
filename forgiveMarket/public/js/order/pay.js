@@ -7,7 +7,7 @@ var orderid = null;
 $(function() {
 	//加载白幕控制
 	var loading = 2;
-	
+
 	//请求默认收货地址数据
 	$.ajax({
 		type: "get",
@@ -16,7 +16,7 @@ $(function() {
 		success: function(data) {
 			locations = data[0];
 
-			if (locations != null) {
+			if(locations != null) {
 				//默认收货地址已设置
 				$(".banner_top").css("display", "flex");
 				$(".banner_bottom").css("display", "flex");
@@ -30,9 +30,9 @@ $(function() {
 				//默认收货地址未设置
 				$(".banner_attention").css("display", "flex");
 			}
-			
+
 			loading--;
-			if (loading == 0) {
+			if(loading == 0) {
 				//清除加载白幕
 				$(".loading").hide();
 			}
@@ -45,17 +45,17 @@ $(function() {
 
 	//获取url中订单项数据
 	var params = location.search.split("&&");
-	
+
 	otids = params[0].substr(7).split("&");
-	if(params.length == 2){
+	if(params.length == 2) {
 		orderid = params[1].substr(4);
 	}
 
 	//记录需要请求的订单项总数量
 	var otnum = otids.length;
-	
-	for (var i = 0; i < otids.length; i++) {
-		(function (i) {
+
+	for(var i = 0; i < otids.length; i++) {
+		(function(i) {
 			//请求订单项数据
 			$.ajax({
 				type: "get",
@@ -70,28 +70,28 @@ $(function() {
 						success: function(photo) {
 							//取得订单项的商品价格基数
 							var price = good.gid.pricebase;
-	
+
 							//遍历商品规格
 							var goodsizeUl = "";
-							for (var j = 0; j < good.gsids.length; j++) {
+							for(var j = 0; j < good.gsids.length; j++) {
 								//拼接商品规格
 								goodsizeUl = goodsizeUl + "<li><h3>" + good.gsids[j].gsid.gsname + "</h3></li>";
-	
+
 								//计算商品在此规格下价格偏移后的结果
 								price = price + good.gsids[j].gsid.priceoffset;
 							}
-	
+
 							//计算订单项商品折扣
 							price = price * good.gid.discount;
-	
+
 							//计算订单项商品总价格
 							var itemtotalprice = price * good.num;
-	
+
 							//加入总价
 							var totalprice = parseFloat($(".totalprice").html().substr(4));
 							totalprice = totalprice + itemtotalprice;
 							$(".totalprice").html("总计￥:" + totalprice.toFixed(2));
-	
+
 							//组合li
 							var li = '<li class="cart_item" gid="' + good.gid._id + '">\
 										<div class="item_top">\
@@ -110,31 +110,31 @@ $(function() {
 											<p class="item_totalprice">小计：￥' + itemtotalprice.toFixed(2) + '</p>\
 										</div>\
 									</li>';
-	
+
 							$(".cart").append(li);
-							
+
 							otnum--;
-							if (otnum == 0) {
+							if(otnum == 0) {
 								loading--;
-								if (loading == 0) {
+								if(loading == 0) {
 									//清除加载白幕
 									$(".loading").hide();
 								}
 							}
-	
+
 						},
 						error: function(err) {
 							console.log(err);
 						}
-	
+
 					});
-	
+
 				},
 				error: function(err) {
 					console.log(err);
 				}
 			});
-			
+
 		})(i);
 	}
 
@@ -142,25 +142,30 @@ $(function() {
 	$(".banner").click(function() {
 		location.assign("/location");
 	});
-	
+
 	//商品页面跳转控制
-	$(".cart").on("mouseup", ".cart_item", function(e){
-    	var gid = $(this).attr("gid");
-    	
+	$(".cart").on("mouseup", ".cart_item", function(e) {
+		var gid = $(this).attr("gid");
+
 		location.assign("/views/goodInfo/goodInfo.html?gid=" + gid);
-		
+
 	})
 
 })
 
 function pay() {
 	console.log(locations);
-	if (orderid == null) {
+	if(orderid == null) {
 		//未创建订单
 		createOrder(function(data) {
 			console.log(data);
-			orderid = data.result._id;
-			showPay();
+			if(data.flag == 200) {
+				orderid = data.result._id;
+				showPay();
+			} else {
+				toast(data.msg);
+			}
+
 		});
 	} else {
 		showPay();
@@ -183,7 +188,7 @@ function showPay() {
 	$("#btn_pay").click(function() {
 		$("#lodaing").css("display", "block");
 		console.log(getPassword())
-		if (getPassword() == "123456") {
+		if(getPassword() == "123456") {
 			//支付成功
 			buy();
 		} else {
@@ -234,7 +239,7 @@ function buy() {
 		},
 		success: function(data) {
 			$("#lodaing").css("display", "none");
-			if (data.type == 'success') {
+			if(data.type == 'success') {
 				toast("购买成功", "/views/order/orderlist.html?flag=2");
 			} else {
 				toast("购买失败");
@@ -249,7 +254,7 @@ function buy() {
 var box = document.getElementsByClassName("box")[0];
 
 function createDIV(num) {
-	for (var i = 0; i < num; i++) {
+	for(var i = 0; i < num; i++) {
 		var pawDiv = document.createElement("div");
 		pawDiv.className = "pawDiv";
 		box.appendChild(pawDiv);
@@ -275,22 +280,22 @@ var errorPoint = document.getElementsByClassName("errorPoint")[0];
 /*绑定pawDiv点击事件*/
 
 function func() {
-	for (var i = 0; i < pawDivCount; i++) {
+	for(var i = 0; i < pawDivCount; i++) {
 		pawDiv[i].addEventListener("click", function() {
 			pawDivClick(this);
 		});
 		paw[i].onkeyup = function(event) {
 			console.log(event.keyCode);
-			if ((event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105)) {
+			if((event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105)) {
 				/*输入0-9*/
 				changeDiv();
 				errorPoint.style.display = "none";
 
-			} else if (event.keyCode == "8") {
+			} else if(event.keyCode == "8") {
 				/*退格回删事件*/
 				firstDiv();
 
-			} else if (event.keyCode == "13") {
+			} else if(event.keyCode == "13") {
 				/*回车事件*/
 				getPassword();
 
@@ -308,7 +313,7 @@ func();
 
 /*定义pawDiv点击事件*/
 var pawDivClick = function(e) {
-	for (var i = 0; i < pawDivCount; i++) {
+	for(var i = 0; i < pawDivCount; i++) {
 		pawDiv[i].setAttribute("style", "border: 1px solid transparent;");
 	}
 	e.setAttribute("style", "border: 1px solid deepskyblue;");
@@ -316,8 +321,8 @@ var pawDivClick = function(e) {
 
 /*定义自动选中下一个输入框事件*/
 var changeDiv = function() {
-	for (var i = 0; i < pawDivCount; i++) {
-		if (paw[i].value.length == "1") {
+	for(var i = 0; i < pawDivCount; i++) {
+		if(paw[i].value.length == "1") {
 			/*处理当前输入框*/
 			paw[i].blur();
 
@@ -331,9 +336,9 @@ var changeDiv = function() {
 
 /*回删时选中上一个输入框事件*/
 var firstDiv = function() {
-	for (var i = 0; i < pawDivCount; i++) {
+	for(var i = 0; i < pawDivCount; i++) {
 		console.log(i);
-		if (paw[i].value.length == "0") {
+		if(paw[i].value.length == "0") {
 			/*处理当前输入框*/
 			console.log(i);
 			paw[i].blur();
@@ -351,7 +356,7 @@ var firstDiv = function() {
 /*获取输入密码*/
 var getPassword = function() {
 	var n = "";
-	for (var i = 0; i < pawDivCount; i++) {
+	for(var i = 0; i < pawDivCount; i++) {
 		n += paw[i].value;
 	}
 	return n;
@@ -359,7 +364,7 @@ var getPassword = function() {
 
 /*键盘事件*/
 document.onkeyup = function(event) {
-	if (event.keyCode == "13") {
+	if(event.keyCode == "13") {
 		/*回车事件*/
 		getPassword();
 	}

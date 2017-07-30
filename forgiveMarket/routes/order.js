@@ -22,25 +22,25 @@ router.post('/addtocart', function(req, res, next) {
 	var num = parseInt(req.body.num);
 
 	order.getOrderByIdAndFlag(uid, 0, function(err_getorder, data_getorder) {
-		if (!err_getorder) {
-			if (data_getorder.length != 0) {
+		if(!err_getorder) {
+			if(data_getorder.length != 0) {
 				//已创建购物车
 				//获得购物车id
 				var oid = data_getorder[0]._id;
 
 				//封装商品规格信息
 				var temp = [];
-				for (var i = 0; i < gsids.length; i++) {
+				for(var i = 0; i < gsids.length; i++) {
 					temp.push({
 						gsid: mongoose.Types.ObjectId(gsids[i])
 					})
 				}
 				gsids = temp;
-				
+
 				//查询该商品规格的商品是否已经存在于购物车中
-				orderitem.getOrderItemByOidGIdGsids(oid, gid, gsids, function(err, data){
-					if (!err) {
-						if (data == "nofound") {
+				orderitem.getOrderItemByOidGIdGsids(oid, gid, gsids, function(err, data) {
+					if(!err) {
+						if(data == "nofound") {
 							//不存在于购物车中
 							//添加商品订单项
 							orderitem.addOrderItem({
@@ -49,7 +49,7 @@ router.post('/addtocart', function(req, res, next) {
 								gsids: gsids,
 								num: num
 							}, function(err_addorder, doc) {
-								if (!err_addorder) {
+								if(!err_addorder) {
 									//添加成功	
 									res.send({
 										type: "success",
@@ -65,12 +65,12 @@ router.post('/addtocart', function(req, res, next) {
 									});
 								}
 							});
-							
-						}else{
+
+						} else {
 							//存在于购物车中		
 							//修改商品订单项
 							orderitem.updateOrderItemNumById(data._id, parseInt(data.num) + num, function(err) {
-								if (!err) {
+								if(!err) {
 									console.log(new Date() + "SUCCESS: 修改购物车订单项数量成功");
 									res.send({
 										type: "success",
@@ -85,15 +85,14 @@ router.post('/addtocart', function(req, res, next) {
 									});
 								}
 							});
-							
+
 						}
-						
-					}else{
+
+					} else {
 						console.log(err);
 					}
-					
-				});
 
+				});
 
 			} else {
 				//未创建购物车
@@ -121,11 +120,11 @@ router.get('/getorderitembyuser/:uid/:flag', function(req, res, next) {
 	var goods = [];
 	//查询是否已经创建订单
 	order.getOrderByIdAndFlag(uid, flag, function(err_getorder, data_getorder) {
-		if (!err_getorder) {
-			if (data_getorder.length == 0) {
+		if(!err_getorder) {
+			if(data_getorder.length == 0) {
 				//未创建
 				order.addOrder(uid, flag, function(err_addorder) {
-					if (!err_addorder) {
+					if(!err_addorder) {
 						res.send({
 							type: "error",
 							message: "订单不存在，现已创建成功"
@@ -150,9 +149,9 @@ router.get('/getorderitembyuser/:uid/:flag', function(req, res, next) {
 				var goods = [];
 				//获取所有订单项
 				orderitem.getOrderItemsByOid(data_getorder[0]._id, function(err_getorderitem, data_getorderitem) {
-					if (!err_getorderitem) {
+					if(!err_getorderitem) {
 						//遍历每个订单项
-						for (var i = 0; i < data_getorderitem.length; i++) {
+						for(var i = 0; i < data_getorderitem.length; i++) {
 							var item = data_getorderitem[i];
 
 							console.log(item);
@@ -161,7 +160,7 @@ router.get('/getorderitembyuser/:uid/:flag', function(req, res, next) {
 
 							//取得订单项的商品规格数组
 							var sizes = [];
-							for (var j = 0; j < item.gsids.length; j++) {
+							for(var j = 0; j < item.gsids.length; j++) {
 								var sizeitem = item.gsids[j].gsid;
 
 								//计算商品在此规格下价格偏移后的结果
@@ -223,8 +222,8 @@ router.get('/getorderitembyid/:otid', function(req, res, next) {
 	var otid = req.params.otid;
 
 	orderitem.getOrderItemById(otid, function(err, data) {
-		if (!err) {
-			if (data.length != 0) {
+		if(!err) {
+			if(data.length != 0) {
 				//获得订单项
 				var item = data[0];
 
@@ -247,7 +246,7 @@ router.post('/updateorderitem', function(req, res, next) {
 	var num = req.body.num;
 
 	orderitem.updateOrderItemNumById(otid, num, function(err) {
-		if (!err) {
+		if(!err) {
 			console.log(new Date() + "SUCCESS: 修改订单项数量成功");
 			res.send({
 				type: "success",
@@ -269,7 +268,7 @@ router.get('/deleteorderitembyid/:otid', function(req, res, next) {
 	var otid = req.params.otid;
 
 	orderitem.deleteOrderItemById(otid, function(err) {
-		if (!err) {
+		if(!err) {
 			console.log(new Date() + "SUCCESS: 删除商品订单项成功");
 			res.send({
 				type: "success",
@@ -292,7 +291,7 @@ router.post('/updateorder', function(req, res, next) {
 	var flag = req.body.flag;
 
 	order.updateOrder(otid, flag, function(err, doc) {
-		if (!err) {
+		if(!err) {
 			console.log(new Date() + "SUCCESS: 修改订单成功");
 			res.send({
 				type: "success",
@@ -311,15 +310,14 @@ router.post('/updateorder', function(req, res, next) {
 
 //创建订单
 router.post('/createorder', function(req, res, next) {
-	var uid = req.session.user[0]._id;
 	var locationid = req.body.locationid;
 	var otids = JSON.parse(req.body.otids);
 	otids = otids.otid;
 	console.log("otids:" + otids);
 	console.log("locationid:" + locationid);
-	order.createOrder(uid, otids, locationid, function(err, result) {
+	order.createOrder(req.session.user[0], otids, locationid, function(err, result) {
 		console.log(result);
-		if (!err) {
+		if(!err) {
 			res.send({
 				flag: 200,
 				result: result
@@ -337,11 +335,38 @@ router.post('/createorder', function(req, res, next) {
 });
 
 /**
+ * 未完成
+ */
+router.get('/pay', function(req, res, next) {
+	if(req.session.user == null) {
+		res.send({
+			flag: 300,
+			msg: "未登录"
+		});
+		return;
+	}
+	var user = req.session.user[0];
+	var uid = "597327cb01fe843674638410";
+	order.pay(user, uid, function(err, docs) {
+		if(!err) {
+			res.send({
+				flag: 200,
+				result: docs
+			});
+		} else {
+			res.send({
+				flag: 300,
+				result: null
+			});
+		}
+	});
+});
+/**
  * 获取所有订单（不关乎uid）
  */
 router.get('/getallorders', function(req, res, next) {
 	order.getAllOrders(function(err, docs) {
-		if (!err) {
+		if(!err) {
 			res.send({
 				flag: 200,
 				result: docs
@@ -359,7 +384,7 @@ router.get('/getallorders', function(req, res, next) {
  * 根据订单状态获取当下状态的所有订单
  */
 router.post('/getallordersbyflag', function(req, res, next) {
-	if (req.session.user == null) {
+	if(req.session.user == null) {
 		res.send({
 			flag: 300,
 			msg: "未登录"
@@ -369,7 +394,7 @@ router.post('/getallordersbyflag', function(req, res, next) {
 	var uid = req.session.user[0]._id;
 	var flag = req.body.flag;
 	order.getAllOrdersByFlag(uid, flag, function(err, docs) {
-		if (!err) {
+		if(!err) {
 			res.send({
 				flag: 200,
 				result: docs
