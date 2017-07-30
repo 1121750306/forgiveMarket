@@ -1,489 +1,502 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-		<title></title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title></title>
 
-		<link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css" />
-		<script type="text/javascript" src="/jquery/dist/jquery.min.js"></script>
-		<script type="text/javascript" src="/bootstrap/dist/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="/angular/angular.min.js"></script>
-		<script src="/js/common.js"></script>
-		<script src="/js/user/login.js"></script>
+    <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css"/>
+    <script type="text/javascript" src="/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/angular/angular.min.js"></script>
+    <script src="/js/common.js"></script>
+    <script src="/js/user/login.js"></script>
 
-		<script src="/js/navigation.js" type="text/javascript" charset="utf-8"></script>
-		<script src="/js/user/history.js" type="text/javascript" charset="utf-8"></script>
-		<link rel="stylesheet" href="/css/style.css" />
-		<link rel="stylesheet" href="/css/user/login.css" />
-		<link rel="stylesheet" type="text/css" href="/css/navigation.css" />
-		<link rel="stylesheet" type="text/css" href="/css/user/history_content.css" />
-		<link rel="stylesheet" href="/css/goodInfo/goodinfo.css" />
-		<link rel="stylesheet" href="/css/topsix.css" />
-		<style></style>
+    <script src="/js/navigation.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/js/user/history.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" href="/css/style.css"/>
+    <link rel="stylesheet" href="/css/user/login.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/navigation.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/user/history_content.css"/>
+    <link rel="stylesheet" href="/css/goodInfo/goodinfo.css"/>
+    <link rel="stylesheet" href="/css/topsix.css"/>
+    <style></style>
 
-	</head>
+</head>
 
-	<body class="overhide">
-		<div id="load">
+<body class="overhide">
 
-		</div>
-		<div class="nav">
-			<span class="nav_menu"></span>
-			<a href="/views/homepage.html" class="nav_logo"></a>
-			<a href="/views/user/user.html" class="nav_user"></a>
-			<a href="/views/order/cart.html" class="nav_cart">
-				<p class="nav_cartnum">0</p>
-			</a>
 
-			<div class="nav_modal">
-				<div class="nav_modal_content">
-					<div class="nav_modal_title">
-						<span class="nav_modal_logo"></span>
-						<span class="nav_modal_close">
+<div id="load">
+
+</div>
+<div class="nav">
+    <span class="nav_menu"></span>
+    <a href="/views/homepage.html" class="nav_logo"></a>
+    <a href="/views/user/user.html" class="nav_user"></a>
+    <a href="/views/order/cart.html" class="nav_cart">
+        <p class="nav_cartnum">0</p>
+    </a>
+
+    <div class="nav_modal">
+        <div class="nav_modal_content">
+            <div class="nav_modal_title">
+                <span class="nav_modal_logo"></span>
+                <span class="nav_modal_close">
 							<i></i>
 						</span>
-					</div>
-					<ul class="nav_modal_tab">
-						<li>产品类别</li>
-						<li>浏览历史</li>
-					</ul>
-					<div class="nav_modal_page">
-						<ul class="nav_modal_type">
-						</ul>
-					</div>
-					<div id="history_content" class="nav_modal_page"></div>
-				</div>
-			</div>
-		</div>
-		<div id="main-ctr" class="clearfix" role="group" aria-label="...">
-			<button type="button" class="ctrbtn on">商品</button>
-			<button type="button" class="ctrbtn">详情</button>
-			<button type="button" class="ctrbtn">评价(<span>100</span>)</button>
-		</div>
-		<div class="good-ct">
-			<h5 class="title text-center good-name">招牌洁面-绿茶精萃保湿洁面膏</h5>
-			<div class="ct-imgList clearfix">
-				<div class="img-ctr">
-					<!--<span class="on"></span>-->
-					<!--<span></span>-->
-					<!--<span></span>-->
-				</div>
-				<div class="img-wrap">
-					<!--<img class="good-img center-block" src="/img/innisfree-img/goods/1000000721_l.png" />-->
-					<!--<img class="good-img center-block" src="/img/innisfree-img/goods/1000000721_l.png" />-->
-					<!--<img class="good-img center-block" src="/img/innisfree-img/goods/1000000721_l.png" />-->
-				</div>
+            </div>
+            <ul class="nav_modal_tab">
+                <li>产品类别</li>
+                <li>浏览历史</li>
+            </ul>
+            <div class="nav_modal_page">
+                <ul class="nav_modal_type">
+                </ul>
+            </div>
+            <div id="history_content" class="nav_modal_page"></div>
+        </div>
+    </div>
+</div>
+<div id="main-ctr" class="clearfix" role="group" aria-label="...">
+    <button type="button" class="ctrbtn on">商品</button>
+    <button type="button" class="ctrbtn">详情</button>
+    <button type="button" class="ctrbtn">评价(<span>100</span>)</button>
+</div>
 
-			</div>
+<div class="good-ct">
+    <h5 class="title text-center good-name">招牌洁面-绿茶精萃保湿洁面膏</h5>
+    <div class="ct-imgList clearfix">
+        <div class="img-ctr">
+            <!--<span class="on"></span>-->
+            <!--<span></span>-->
+            <!--<span></span>-->
+        </div>
+        <div class="img-wrap">
+            <!--<img class="good-img center-block" src="/img/innisfree-img/goods/1000000721_l.png" />-->
+            <!--<img class="good-img center-block" src="/img/innisfree-img/goods/1000000721_l.png" />-->
+            <!--<img class="good-img center-block" src="/img/innisfree-img/goods/1000000721_l.png" />-->
+        </div>
 
-			<ul class="good-info list-unstyled">
-				<li class="clearfix">
-					<span class="left">产地</span>
-					<span class="right">中国</span>
-				</li>
-				<li class="clearfix">
-					<span class="left">使用部位</span>
-					<span class="right good-fitwhere">面部</span>
-				</li>
-				<li class="clearfix">
-					<span class="left">主要功效</span>
-					<span class="right good-usage">洁面</span>
-				</li>
-			</ul>
-			<div class="choice clearfix">
-				<h5 class="left">选择分类数量</h5>
-				<h5 class="right"><span class="good-tp"></span><span class="good-num"></span>&nbsp;>&nbsp;&nbsp;</h5>
-			</div>
-			<div class="total-price clearfix">
-				<h5 class="left">总计</h5>
-				<h5 class="right" style="font-size: 1.5rem;">￥<span>0</span></h5>
-			</div>
-			<div class="choice-box">
-				<div id="choice-bg"></div>
-				<div class="choice-box-ct">
-					<div class="clearfix">
-						<div class="left">
-							<img class="good-img img-thumbnail" src="/img/innisfree-img/goods/1000000721_l.png" />
-						</div>
-						<div class="right">
-							<h4 class="type-price">￥<span>55.0</span></h4>
-							<h5 class="type-lefts">库存<span>35</span>件&nbsp;&nbsp;销量:&nbsp;<sa>30</sa></h5>
-							<h5>选择分类</h5>
-						</div>
-						<div class="cross">
-							<span class=""><i class="cross-ico"></i></span>
-						</div>
-					</div>
-					<div class="good-type">
-						<h5>规格选择</h5>
-						<ul class="clearfix">
-							<!--<li class="on"><span>125ml</span></li>
-                    <li><span>125ml</span></li>
-                    <li><span>125ml</span></li>
-                    <li><span>125ml</span></li>
-                    <li><span>125ml</span></li>-->
-						</ul>
-					</div>
-					<div class="count clearfix">
-						<h5>购买数量</h5>
-						<div class="count-box">
-							<span class="count-ctr ctr-sub"><i class="sub"></i></span>
-							<!--<span class="count-num">1</span>-->
-							<input type="text" class="count-num" value="1" onkeyup="this.value=this.value.replace(/[^\d]/g,'') " onafterpaste="this.value=this.value.replace(/[^\d]/g,'') " />
-							<span class="count-ctr ctr-add"><i class="add"></i></span>
-						</div>
-					</div>
-					<div class="box-total clearfix">
-						<h5 class="left">总价</h5>
-						<h5 class="right">￥<span>55.0</span></h5>
-						<!--<h5 class="right" style="font-size: 1.5rem;">￥55.0</h5>-->
-					</div>
-					<div class="good-btn">
-						<a class="btn add-car" href="javascript:;">加入购物车</a>
-						<a class="btn buy" href="javascript:;">立即购买</a>
-					</div>
-				</div>
-			</div>
+    </div>
 
-			<!--<div class="ser-rec">-->
-			<!--&lt;!&ndash;-->
+    <ul class="good-info list-unstyled">
+        <li class="clearfix">
+            <span class="left">产地</span>
+            <span class="right">中国</span>
+        </li>
+        <li class="clearfix">
+            <span class="left">使用部位</span>
+            <span class="right good-fitwhere">面部</span>
+        </li>
+        <li class="clearfix">
+            <span class="left">主要功效</span>
+            <span class="right good-usage">洁面</span>
+        </li>
+    </ul>
+    <div class="choice clearfix">
+        <h5 class="left">选择分类数量</h5>
+        <h5 class="right"><span class="good-tp"></span><span class="good-num"></span>&nbsp;>&nbsp;&nbsp;</h5>
+    </div>
+    <div class="total-price clearfix">
+        <h5 class="left">总计</h5>
+        <h5 class="right" style="font-size: 1.5rem;">￥<span>0</span></h5>
+    </div>
+    <div class="choice-box">
+        <div id="choice-bg"></div>
+        <div class="choice-box-ct">
+            <div class="clearfix">
+                <div class="left">
+                    <img class="good-img img-thumbnail" src="/img/innisfree-img/goods/1000000721_l.png"/>
+                </div>
+                <div class="right">
+                    <h4 class="type-price">￥<span>55.0</span></h4>
+                    <h5 class="type-lefts">库存<span>35</span>件&nbsp;&nbsp;销量:&nbsp;
+                        <sa>30</sa>
+                    </h5>
+                    <h5>选择分类</h5>
+                </div>
+                <div class="cross">
+                    <span class=""><i class="cross-ico"></i></span>
+                </div>
+            </div>
+            <div class="good-type">
+                <h5>规格选择</h5>
+                <ul class="clearfix">
+                    <!--<li class="on"><span>125ml</span></li>
+            <li><span>125ml</span></li>
+            <li><span>125ml</span></li>
+            <li><span>125ml</span></li>
+            <li><span>125ml</span></li>-->
+                </ul>
+            </div>
+            <div class="count clearfix">
+                <h5>购买数量</h5>
+                <div class="count-box">
+                    <span class="count-ctr ctr-sub"><i class="sub"></i></span>
+                    <!--<span class="count-num">1</span>-->
+                    <input type="text" class="count-num" value="1" onkeyup="this.value=this.value.replace(/[^\d]/g,'') "
+                           onafterpaste="this.value=this.value.replace(/[^\d]/g,'') "/>
+                    <span class="count-ctr ctr-add"><i class="add"></i></span>
+                </div>
+            </div>
+            <div class="box-total clearfix">
+                <h5 class="left">总价</h5>
+                <h5 class="right">￥<span>55.0</span></h5>
+                <!--<h5 class="right" style="font-size: 1.5rem;">￥55.0</h5>-->
+            </div>
+            <div class="good-btn">
+                <a class="btn add-car" href="javascript:;">加入购物车</a>
+                <a class="btn buy" href="javascript:;">立即购买</a>
+            </div>
+        </div>
+    </div>
 
-			<!--&ndash;&gt;-->
-			<!--</div>-->
-		</div>
-		<div class="good-detail">
-			<div class="detail-img">
-				<!--<img width="100%" src="../../img/innisfree-img/goods/1000000721_mm.jpg" />-->
-			</div>
+    <!--<div class="ser-rec">-->
+    <!--&lt;!&ndash;-->
 
-			<h6>商品基本信息</h6>
-			<div>
-				<table width="100%" class="table">
-					<colgroup>
-						<col width="26%" />
-						<col width="74%" />
-					</colgroup>
-					<tr>
-						<th>
-							<h6>商品名称</h6></th>
-						<td>
-							<h6 class="good-name">招牌洁面-绿茶精萃保湿洁面膏</h6></td>
-					</tr>
-					<tr>
-						<th>
-							<h6>容量</h6></th>
-						<td>
-							<h6 class="good-container">150ml</h6></td>
-					</tr>
-					<tr>
-						<th>
-							<h6>类型</h6></th>
-						<td>
-							<h6 class="good-infotype"></h6></td>
-					</tr>
-					<tr>
-						<th>
-							<h6>适用肤质</h6></th>
-						<td>
-							<h6 class="good-fitskin">洁面与卸</h6></td>
-					</tr>
-					<tr>
-						<th>
-							<h6>主要功效</h6></th>
-						<td>
-							<h6 class="good-usage">洁面</h6></td>
-					</tr>
-					<tr>
-						<th>
-							<h6>使用部位</h6></th>
-						<td>
-							<h6 class="good-fitwhere">面</h6></td>
-					</tr>
-					<tr>
-						<th>
-							<h6>包装规格</h6></th>
-						<td>
-							<h6 class="good-packing"></h6></td>
-					</tr>
-					<!--<tr>-->
-					<!--<th>-->
-					<!--<h6>保质期</h6></th>-->
-					<!--<td>-->
-					<!--<h6></h6></td>-->
-					<!--</tr>-->
-					<tr>
-						<th>
-							<h6>注意事项</h6></th>
-						<td>
-							<h6 class="good-tip"></h6></td>
-					</tr>
-					<tr>
-						<th>
-							<h6>主要成分</h6></th>
-						<td>
-							<h6 class="good-basis">
-						、月桂甲酸钠、香精</h6></td>
-					</tr>
-				</table>
-			</div>
-		</div>
-		<div class="comment">
-			<div class="comment-hd">
-				<h4 class="text-center">评价(<span>100</span>)</h4>
-			</div>
-			<div class="comment-ct">
-				<!--<div class="item">
-					<img src="../../img/innisfreeIco/avatar.png" />
-					<div class="item-right clearfix">
-						<h5>挺可以的，性价比也很好，值得购买，而且发货的速度也很快，反正我还是挺满意的。</h5>
-						<div class="item-rb">
-							<strong class="itemname">小乔同学仔</strong> &nbsp;&nbsp;
-							<span>(2017-04-28)</span>
-							<div class="item-inte">
-								<span class="com-btn clearfix"><i class="com-ico"></i>评论</span>
-								<span class="thumb-btn clearfix"><i class="thumb-ico"></i>点赞</span>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="item">
-					<img src="../../img/innisfreeIco/avatar.png" />
-					<div class="item-right clearfix">
-						<h5>挺可以的，性价比也很好，值得购买，而且发货的速度也很快，反正我还是挺满意的。</h5>
-						<div class="item-rb">
-							<strong class="itemname">小乔同学仔</strong> &nbsp;&nbsp;
-							<span>(2017-04-28)</span>
-							<div class="item-inte">
-								<span class="com-btn clearfix"><i class="com-ico"></i>评论</span>
-								<span class="thumb-btn clearfix"><i class="thumb-ico"></i>点赞</span>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="item">
-					<img src="../../img/innisfreeIco/avatar.png" />
-					<div class="item-right clearfix">
-						<h5>挺可以的，性价比也很好，值得购买，而且发货的速度也很快，反正我还是挺满意的。</h5>
-						<div class="item-rb">
-							<strong class="itemname">小乔同学仔</strong> &nbsp;&nbsp;
-							<span>(2017-04-28)</span>
-							<div class="item-inte">
-								<span class="com-btn clearfix"><i class="com-ico"></i>评论</span>
-								<span class="thumb-btn clearfix"><i class="thumb-ico"></i>点赞</span>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="item">
-					<img src="../../img/innisfreeIco/avatar.png" />
-					<div class="item-right clearfix">
-						<h5>挺可以的，性价比也很好，值得购买，而且发货的速度也很快，反正我还是挺满意的。</h5>
-						<div class="item-rb">
-							<strong class="itemname">小乔同学仔</strong> &nbsp;&nbsp;
-							<span>(2017-04-28)</span>
-							<div class="item-inte">
-								<span class="com-btn clearfix"><i class="com-ico"></i>评论</span>
-								<span class="thumb-btn clearfix"><i class="thumb-ico"></i>点赞</span>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="item">
-					<img src="../../img/innisfreeIco/avatar.png" />
-					<div class="item-right clearfix">
-						<h5>挺可以的，性价比也很好，值得购买，而且发货的速度也很快，反正我还是挺满意的。</h5>
-						<div class="item-rb">
-							<strong class="itemname">小乔同学仔</strong> &nbsp;&nbsp;
-							<span>(2017-04-28)</span>
-							<div class="item-inte">
-								<span class="com-btn clearfix"><i class="com-ico"></i>评论</span>
-								<span class="thumb-btn clearfix"><i class="thumb-ico"></i>点赞</span>
-							</div>
-						</div>
-					</div>
-				</div>-->
-			</div>
-			<div class="comment-ctr">
-				<span data-dire="-1" class="prev ctr"><a href="javascript:;"></a> </span>
-				<span><strong>1</strong>/<span>5</span></span>
-				<span data-dire="1" class="next ctr"><a href="javascript:;"></a> </span>
-			</div>
-			<div class="comment-dt">
-				<div class="comment-hd">
-					<h4>评价详情</h4>
-					<div class="cross">
-						<span class=""><i class="cross-ico"></i></span>
-					</div>
-				</div>
-				<div class="dt-main">
-					<div class="item">
-						<img src="../../img/innisfreeIco/avatar.png" />
-						<div class="item-right clearfix">
-							<h4>小乔同学仔</h4>
-							<h5>(2017-04-28)</h5>
-						</div>
-						<h4 style="padding-left: 40px;">
-					挺可以的，性价比也很好，值得购买，而且发货的速度也很快，反正我还是挺满意的
-				</h4>
-					</div>
-				</div>
-				<div class="son-comment">
-					<div class="son-cmt-hd">
-						<h4><i></i>全部评论<span>&nbsp;(<span>8</span>)</span></h4>
-					</div>
-					<div class="item">
-						<img src="../../img/innisfreeIco/avatar.png" />
-						<div class="item-right clearfix">
-							<h4>小乔同学仔</h4>
-							<h5>(2017-04-28)</h5>
-						</div>
-						<h4>
-					挺可以的，性价比也很好，值得购买，而且发货的速度也很快，反正我还是挺满意的
-				</h4>
-					</div>
-					<div class="item">
-						<img src="../../img/innisfreeIco/avatar.png" />
-						<div class="item-right clearfix">
-							<h4>小乔同学仔</h4>
-							<h5>(2017-04-28)</h5>
-						</div>
-						<h4>
-					挺可以的，性价比也很好，值得购买，而且发货的速度也很快，反正我还是挺满意的
-				</h4>
-					</div>
-					<div class="item">
-						<img src="../../img/innisfreeIco/avatar.png" />
-						<div class="item-right clearfix">
-							<h4>小乔同学仔</h4>
-							<h5>(2017-04-28)</h5>
-						</div>
-						<h4>
-					挺可以的，性价比也很好，值得购买，而且发货的速度也很快，反正我还是挺满意的
-				</h4>
-					</div>
-					<!--<div class="item">
-						<img src="../../img/innisfreeIco/avatar.png" />
-						<div class="item-right clearfix">
-							<h4>小乔同学仔</h4>
-							<h5>(2017-04-28)</h5>
-						</div>
-						<h4>
-					挺可以的，性价比也很好，值得购买，而且发货的速度也很快，反正我还是挺满意的
-				</h4>
-					</div>
-					<div class="item">
-						<img src="../../img/innisfreeIco/avatar.png" />
-						<div class="item-right clearfix">
-							<h4>小乔同学仔</h4>
-							<h5>(2017-04-28)</h5>
-						</div>
-						<h4>
-					挺可以的，性价比也很好，值得购买，而且发货的速度也很快，反正我还是挺满意的
-				</h4>
-					</div>
-					<div class="item">
-						<img src="../../img/innisfreeIco/avatar.png" />
-						<div class="item-right clearfix">
-							<h4>小乔同学仔</h4>
-							<h5>(2017-04-28)</h5>
-						</div>
-						<h4>
-					挺可以的，性价比也很好，值得购买，而且发货的速度也很快，反正我还是挺满意的
-				</h4>
-					</div>
-					<div class="item">
-						<img src="../../img/innisfreeIco/avatar.png" />
-						<div class="item-right clearfix">
-							<h4>小乔同学仔</h4>
-							<h5>(2017-04-28)</h5>
-						</div>
-						<h4>
-					挺可以的，性价比也很好，值得购买，而且发货的速度也很快，反正我还是挺满意的
-				</h4>
-					</div>-->
-				</div>
-				<div class="tot-ctr" id="com-btn">
-					<div class="good-btn clearfix">
-						<input type="text" name="comment" class="com-input" />
-						<input type="button" name="subcom" class="subcom" value="发送" />
-					</div>
-				</div>
-			</div>
-		</div>
-		</div>
-		<div id="hotgoods-container" class="hotgoods-container clearfix">
-			<h4>销量推荐</h4>
-			<!--<div class="hotgood top1">-->
-				<!--<div>-->
-					<!--<img src="/img/innisfreeIco/pic_loading.png" />-->
-					<!--<span class="good_name">自然关爱日防赛霜</span>-->
-					<!--<span class="good_price">¥70.0</span>-->
-				<!--</div>-->
-			<!--</div>-->
-			<!--<div class="hotgood top2">-->
-				<!--<div>-->
-					<!--<img src="/img/innisfreeIco/pic_loading.png" />-->
-					<!--<span class="good_name">自然关爱日防赛霜</span>-->
-					<!--<span class="good_price">¥70.0</span>-->
-				<!--</div>-->
-			<!--</div>-->
-			<!--<div class="hotgood top3">-->
-				<!--<div>-->
-					<!--<img src="/img/innisfreeIco/pic_loading.png" />-->
-					<!--<span class="good_name">自然关爱日防赛霜</span>-->
-					<!--<span class="good_price">¥70.0</span>-->
-				<!--</div>-->
-			<!--</div>-->
-			<!--<div class="hotgood top4">-->
-				<!--<div>-->
-					<!--<img src="/img/innisfreeIco/pic_loading.png" />-->
-					<!--<span class="good_name">自然关爱日防赛霜</span>-->
-					<!--<span class="good_price">¥70.0</span>-->
-				<!--</div>-->
-			<!--</div>-->
-			<!--<div class="hotgood top5">-->
-				<!--<div>-->
-					<!--<img src="/img/innisfreeIco/pic_loading.png" />-->
-					<!--<span class="good_name">自然关爱日防赛霜</span>-->
-					<!--<span class="good_price">¥70.0</span>-->
-				<!--</div>-->
-			<!--</div>-->
-			<!--<div class="hotgood top6">-->
-				<!--<div>-->
-					<!--<img src="/img/innisfreeIco/pic_loading.png" />-->
-					<!--<span class="good_name">自然关爱日防赛霜</span>-->
-					<!--<span class="good_price">¥70.0</span>-->
-				<!--</div>-->
-			<!--</div>-->
-		</div>
-		<div class="tot-ctr">
-			<div class="good-btn clearfix">
-				<a data-type='0' class="btn collect" href="javascript:;"><i></i>加</a>
-				<a class="btn add-car" href="javascript:;">加入购物车</a>
-				<a class="btn buy" href="javascript:;">立即购买</a>
-			</div>
-		</div>
-		<div style="width: 100%;height: 60px"></div>
-		<div id="div_login">
-			<span id="login_close"></span>
-			<div class="login_content">
-				<input type="phone" class="form-control input" id="phone" placeholder="用户名">
-				<div id="div_show_pwd"><input type="password" class="form-control input" id="password" placeholder="密码">
-					<i id="show_pwd"></i></div>
-				<div id="error"></div>
-				<button type="button" class="btn login" id="btn_login">登录</button>
-				<div class="word_div">
-					<span id="forget" class="word"><a href="">忘记密码？</a></span>
-					<span id="register" class="word"><a href="/views/user/regiter.html">注册新用户</a></span>
-				</div>
-			</div>
-		</div>
+    <!--&ndash;&gt;-->
+    <!--</div>-->
+</div>
+<div style="position: relative;width: 100%;height: 100%">
+<img width="50px" class="qqqq" src="../../img/innisfree-img/goods/1000000311_l.png">
+</div>
+<div class="good-detail">
+    <div class="detail-img">
+        <!--<img width="100%" src="../../img/innisfree-img/goods/1000000721_mm.jpg" />-->
+    </div>
 
-	</body>
-	<script type="text/javascript" src="../../js/goodInfo/goodInfo.js"></script>
-	<script type="text/javascript" src="../../js/goodInfo/goodInfo1.js"></script>
-	<script type="text/javascript" src="/js/topsix.js"></script>
+    <h6>商品基本信息</h6>
+    <div>
+        <table width="100%" class="table">
+            <colgroup>
+                <col width="26%"/>
+                <col width="74%"/>
+            </colgroup>
+            <tr>
+                <th>
+                    <h6>商品名称</h6></th>
+                <td>
+                    <h6 class="good-name">招牌洁面-绿茶精萃保湿洁面膏</h6></td>
+            </tr>
+            <tr>
+                <th>
+                    <h6>容量</h6></th>
+                <td>
+                    <h6 class="good-container">150ml</h6></td>
+            </tr>
+            <tr>
+                <th>
+                    <h6>类型</h6></th>
+                <td>
+                    <h6 class="good-infotype"></h6></td>
+            </tr>
+            <tr>
+                <th>
+                    <h6>适用肤质</h6></th>
+                <td>
+                    <h6 class="good-fitskin">洁面与卸</h6></td>
+            </tr>
+            <tr>
+                <th>
+                    <h6>主要功效</h6></th>
+                <td>
+                    <h6 class="good-usage">洁面</h6></td>
+            </tr>
+            <tr>
+                <th>
+                    <h6>使用部位</h6></th>
+                <td>
+                    <h6 class="good-fitwhere">面</h6></td>
+            </tr>
+            <tr>
+                <th>
+                    <h6>包装规格</h6></th>
+                <td>
+                    <h6 class="good-packing"></h6></td>
+            </tr>
+            <!--<tr>-->
+            <!--<th>-->
+            <!--<h6>保质期</h6></th>-->
+            <!--<td>-->
+            <!--<h6></h6></td>-->
+            <!--</tr>-->
+            <tr>
+                <th>
+                    <h6>注意事项</h6></th>
+                <td>
+                    <h6 class="good-tip"></h6></td>
+            </tr>
+            <tr>
+                <th>
+                    <h6>主要成分</h6></th>
+                <td>
+                    <h6 class="good-basis">
+                        、月桂甲酸钠、香精</h6></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="comment">
+    <div class="comment-hd">
+        <h4 class="text-center">评价(<span>100</span>)</h4>
+    </div>
+    <div class="comment-ct">
+        <!--<div class="item">
+            <img src="../../img/innisfreeIco/avatar.png" />
+            <div class="item-right clearfix">
+                <h5>挺可以的，性价比也很好，值得购买，而且发货的速度也很快，反正我还是挺满意的。</h5>
+                <div class="item-rb">
+                    <strong class="itemname">小乔同学仔</strong> &nbsp;&nbsp;
+                    <span>(2017-04-28)</span>
+                    <div class="item-inte">
+                        <span class="com-btn clearfix"><i class="com-ico"></i>评论</span>
+                        <span class="thumb-btn clearfix"><i class="thumb-ico"></i>点赞</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <img src="../../img/innisfreeIco/avatar.png" />
+            <div class="item-right clearfix">
+                <h5>挺可以的，性价比也很好，值得购买，而且发货的速度也很快，反正我还是挺满意的。</h5>
+                <div class="item-rb">
+                    <strong class="itemname">小乔同学仔</strong> &nbsp;&nbsp;
+                    <span>(2017-04-28)</span>
+                    <div class="item-inte">
+                        <span class="com-btn clearfix"><i class="com-ico"></i>评论</span>
+                        <span class="thumb-btn clearfix"><i class="thumb-ico"></i>点赞</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <img src="../../img/innisfreeIco/avatar.png" />
+            <div class="item-right clearfix">
+                <h5>挺可以的，性价比也很好，值得购买，而且发货的速度也很快，反正我还是挺满意的。</h5>
+                <div class="item-rb">
+                    <strong class="itemname">小乔同学仔</strong> &nbsp;&nbsp;
+                    <span>(2017-04-28)</span>
+                    <div class="item-inte">
+                        <span class="com-btn clearfix"><i class="com-ico"></i>评论</span>
+                        <span class="thumb-btn clearfix"><i class="thumb-ico"></i>点赞</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <img src="../../img/innisfreeIco/avatar.png" />
+            <div class="item-right clearfix">
+                <h5>挺可以的，性价比也很好，值得购买，而且发货的速度也很快，反正我还是挺满意的。</h5>
+                <div class="item-rb">
+                    <strong class="itemname">小乔同学仔</strong> &nbsp;&nbsp;
+                    <span>(2017-04-28)</span>
+                    <div class="item-inte">
+                        <span class="com-btn clearfix"><i class="com-ico"></i>评论</span>
+                        <span class="thumb-btn clearfix"><i class="thumb-ico"></i>点赞</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <img src="../../img/innisfreeIco/avatar.png" />
+            <div class="item-right clearfix">
+                <h5>挺可以的，性价比也很好，值得购买，而且发货的速度也很快，反正我还是挺满意的。</h5>
+                <div class="item-rb">
+                    <strong class="itemname">小乔同学仔</strong> &nbsp;&nbsp;
+                    <span>(2017-04-28)</span>
+                    <div class="item-inte">
+                        <span class="com-btn clearfix"><i class="com-ico"></i>评论</span>
+                        <span class="thumb-btn clearfix"><i class="thumb-ico"></i>点赞</span>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+    </div>
+    <div class="comment-ctr">
+        <span data-dire="-1" class="prev ctr"><a href="javascript:;"></a> </span>
+        <span><strong>1</strong>/<span>5</span></span>
+        <span data-dire="1" class="next ctr"><a href="javascript:;"></a> </span>
+    </div>
+    <div class="comment-dt">
+        <div class="comment-hd">
+            <h4>评价详情</h4>
+            <div class="cross">
+                <span class=""><i class="cross-ico"></i></span>
+            </div>
+        </div>
+        <div class="dt-main">
+            <div class="item">
+                <img src="../../img/innisfreeIco/avatar.png"/>
+                <div class="item-right clearfix">
+                    <h4>小乔同学仔</h4>
+                    <h5>(2017-04-28)</h5>
+                </div>
+                <h4 style="padding-left: 40px;">
+                    挺可以的，性价比也很好，值得购买，而且发货的速度也很快，反正我还是挺满意的
+                </h4>
+            </div>
+        </div>
+        <div class="son-comment">
+            <div class="son-cmt-hd">
+                <h4><i></i>全部评论<span>&nbsp;(<span>8</span>)</span></h4>
+            </div>
+            <div class="item">
+                <img src="../../img/innisfreeIco/avatar.png"/>
+                <div class="item-right clearfix">
+                    <h4>小乔同学仔</h4>
+                    <h5>(2017-04-28)</h5>
+                </div>
+                <h4>
+                    挺可以的，性价比也很好，值得购买，而且发货的速度也很快，反正我还是挺满意的
+                </h4>
+            </div>
+            <div class="item">
+                <img src="../../img/innisfreeIco/avatar.png"/>
+                <div class="item-right clearfix">
+                    <h4>小乔同学仔</h4>
+                    <h5>(2017-04-28)</h5>
+                </div>
+                <h4>
+                    挺可以的，性价比也很好，值得购买，而且发货的速度也很快，反正我还是挺满意的
+                </h4>
+            </div>
+            <div class="item">
+                <img src="../../img/innisfreeIco/avatar.png"/>
+                <div class="item-right clearfix">
+                    <h4>小乔同学仔</h4>
+                    <h5>(2017-04-28)</h5>
+                </div>
+                <h4>
+                    挺可以的，性价比也很好，值得购买，而且发货的速度也很快，反正我还是挺满意的
+                </h4>
+            </div>
+            <!--<div class="item">
+                <img src="../../img/innisfreeIco/avatar.png" />
+                <div class="item-right clearfix">
+                    <h4>小乔同学仔</h4>
+                    <h5>(2017-04-28)</h5>
+                </div>
+                <h4>
+            挺可以的，性价比也很好，值得购买，而且发货的速度也很快，反正我还是挺满意的
+        </h4>
+            </div>
+            <div class="item">
+                <img src="../../img/innisfreeIco/avatar.png" />
+                <div class="item-right clearfix">
+                    <h4>小乔同学仔</h4>
+                    <h5>(2017-04-28)</h5>
+                </div>
+                <h4>
+            挺可以的，性价比也很好，值得购买，而且发货的速度也很快，反正我还是挺满意的
+        </h4>
+            </div>
+            <div class="item">
+                <img src="../../img/innisfreeIco/avatar.png" />
+                <div class="item-right clearfix">
+                    <h4>小乔同学仔</h4>
+                    <h5>(2017-04-28)</h5>
+                </div>
+                <h4>
+            挺可以的，性价比也很好，值得购买，而且发货的速度也很快，反正我还是挺满意的
+        </h4>
+            </div>
+            <div class="item">
+                <img src="../../img/innisfreeIco/avatar.png" />
+                <div class="item-right clearfix">
+                    <h4>小乔同学仔</h4>
+                    <h5>(2017-04-28)</h5>
+                </div>
+                <h4>
+            挺可以的，性价比也很好，值得购买，而且发货的速度也很快，反正我还是挺满意的
+        </h4>
+            </div>-->
+        </div>
+        <div class="tot-ctr" id="com-btn">
+            <div class="good-btn clearfix">
+                <input type="text" name="comment" class="com-input"/>
+                <input type="button" name="subcom" class="subcom" value="发送"/>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div id="hotgoods-container" class="hotgoods-container clearfix">
+    <h4>销量推荐</h4>
+    <!--<div class="hotgood top1">-->
+    <!--<div>-->
+    <!--<img src="/img/innisfreeIco/pic_loading.png" />-->
+    <!--<span class="good_name">自然关爱日防赛霜</span>-->
+    <!--<span class="good_price">¥70.0</span>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<div class="hotgood top2">-->
+    <!--<div>-->
+    <!--<img src="/img/innisfreeIco/pic_loading.png" />-->
+    <!--<span class="good_name">自然关爱日防赛霜</span>-->
+    <!--<span class="good_price">¥70.0</span>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<div class="hotgood top3">-->
+    <!--<div>-->
+    <!--<img src="/img/innisfreeIco/pic_loading.png" />-->
+    <!--<span class="good_name">自然关爱日防赛霜</span>-->
+    <!--<span class="good_price">¥70.0</span>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<div class="hotgood top4">-->
+    <!--<div>-->
+    <!--<img src="/img/innisfreeIco/pic_loading.png" />-->
+    <!--<span class="good_name">自然关爱日防赛霜</span>-->
+    <!--<span class="good_price">¥70.0</span>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<div class="hotgood top5">-->
+    <!--<div>-->
+    <!--<img src="/img/innisfreeIco/pic_loading.png" />-->
+    <!--<span class="good_name">自然关爱日防赛霜</span>-->
+    <!--<span class="good_price">¥70.0</span>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<div class="hotgood top6">-->
+    <!--<div>-->
+    <!--<img src="/img/innisfreeIco/pic_loading.png" />-->
+    <!--<span class="good_name">自然关爱日防赛霜</span>-->
+    <!--<span class="good_price">¥70.0</span>-->
+    <!--</div>-->
+    <!--</div>-->
+</div>
+<div class="tot-ctr">
+    <div class="good-btn clearfix">
+        <a data-type='0' class="btn collect" href="javascript:;"><i></i>加</a>
+        <a class="btn add-car" href="javascript:;">加入购物车</a>
+        <a class="btn buy" href="javascript:;">立即购买</a>
+    </div>
+</div>
+<div style="width: 100%;height: 60px"></div>
+<div id="div_login">
+    <span id="login_close"></span>
+    <div class="login_content">
+        <input type="phone" class="form-control input" id="phone" placeholder="用户名">
+        <div id="div_show_pwd"><input type="password" class="form-control input" id="password" placeholder="密码">
+            <i id="show_pwd"></i></div>
+        <div id="error"></div>
+        <button type="button" class="btn login" id="btn_login">登录</button>
+        <div class="word_div">
+            <span id="forget" class="word"><a href="">忘记密码？</a></span>
+            <span id="register" class="word"><a href="/views/user/regiter.html">注册新用户</a></span>
+        </div>
+    </div>
+</div>
+<div id="img-scale">
+    <!--<div>-->
+        <img src=""/>
+    <!--</div>-->
+</div>
+</body>
+<script type="text/javascript" src="../../js/goodInfo/goodInfo.js"></script>
+<script type="text/javascript" src="../../js/goodInfo/goodInfo1.js"></script>
+<script type="text/javascript" src="/js/topsix.js"></script>
 
 </html>
