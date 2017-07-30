@@ -3,11 +3,166 @@
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
-		<link rel="stylesheet" href="../css/addLocation.css" />
+		<link rel="stylesheet" href="/css/style.css" />
+		<link rel="stylesheet" type="text/css" href="/css/chat.css"/>
+		<link rel="stylesheet" type="text/css" href="/css/navigation.css"/>
+		<link rel="stylesheet" type="text/css" href="/css/user/history_content.css" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	    <script src="/jquery/dist/jquery.js"></script>
+		<script src="/js/navigation.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/js/user/history.js"></script>
+		<script>
+			var size=0;
+		    window.onbeforeunload = onbeforeunload_handler;
+	        window.onunload = onunload_handler;
+	        function onbeforeunload_handler() {
+	            var warning = "确认退出?";
+	            return warning;
+	        }
+	        function onunload_handler() {
+				var user=JSON.parse(sessionStorage.user);
+	        	id=user._id
+	            ws.close(1000,id);
+	        }     
+			var ws=new WebSocket("ws://localhost:8181");
+			ws.onopen=function(e){
+				console.log('Connection to server opened'+sessionStorage.use);
+		         ws.send("/user "+sessionStorage.user);
+			}
+			 //收到消息处理
+        ws.onmessage = function (e) {
+            var data = JSON.parse(e.data);
+            if(data.type=="init"){
+               console.log("id"+data.id);
+            }else{
+            	console.log(data.message);
+            	console.log(data.id);
+            	console.log(data.avatar);
+            	console.log(data.nickname);
+            	appendLog(data.id, data.nickname, data.message,data.avatar);
+            }
+        }
+         //显示
+        function appendLog(id, nickname, message,avatar) {
+        	var user=JSON.parse(sessionStorage.user);
+        	_id=user._id;
+            if (typeof message == "undefined") return;
+            if(_id==id){
+            	$("#messages").append(
+            		 "<li class='mine'>"+
+            		      "<div class='left'>"+
+            		        message+
+            		       "</div>"+
+            		       "<span class='nickname'>"+
+            		           nickname+
+            		        "</span>"+
+            		        "<div class='right'>"+
+            		          "<img src='"+avatar.replace(/\\/g,"/")+"' />"+
+            		         "</div>"+
+            		    "</li>"
+            	)
+            }else{
+            	$("#messages").append(
+            		 "<li class='others'>"+
+            		      "<div class='left'>"+
+            		       "<img src='"+avatar.replace(/\\/g,"/")+"' />"+
+            		       "</div>"+
+            		       "<span class='nickname'>"+
+            		           nickname+
+            		        "</span>"+
+            		        "<div class='right'>"+          		         
+            		            message+
+            		         "</div>"+
+            		    "</li>"
+            	)
+            }
+            size++;
+            var height1=$("#message li").length;
+            console.log("height1"+height1)
+            var height2=$(".chatContent").height();
+             console.log("height2"+height2)
+           if(size>6){
+           	var top= $(".chatContent").scrollTop();
+           	top=top+90;
+           	 $(".chatContent").animate({scrollTop:top+"px"});
+           }
+        }
+          //发送消息
+        function sendMessage() {
+        	var user=JSON.parse(sessionStorage.user);
+        	id=user._id
+            var messageField = document.getElementById('message');
+            if (ws.readyState === WebSocket.OPEN) {
+                ws.send(id+"|"+messageField.value);
+            }
+             messageField.value = '';
+             messageField.focus();
+        }
+		</script>
 	</head>
 	<body>
-		
+		<div class="nav">
+			<span class="nav_menu"></span>
+			<a href="/views/homepage.html" class="nav_logo"></a>
+			<a href="/views/user/user.html" class="nav_user"></a>
+			<a href="/views/order/cart.html" class="nav_cart">
+				<p class="nav_cartnum">0</p>
+			</a>
+
+			<div class="nav_modal">
+				<div class="nav_modal_content">
+					<div class="nav_modal_title">
+						<span class="nav_modal_logo"></span>
+						<span class="nav_modal_close">
+							<i></i>
+						</span>
+					</div>
+					<ul class="nav_modal_tab">
+						<li>产品类别</li>
+						<li>浏览历史</li>
+					</ul>
+					<div class="nav_modal_page">
+						<ul class="nav_modal_type">
+						</ul>
+					</div>
+					<div id="history_content" class="nav_modal_page"></div>
+				</div>
+			</div>
+		</div>
+		<div class="cheatBox">
+			<div class="herder">
+				<h1>我的社区</h1>
+			</div>
+			<div class="chatContent">
+				<ul id="messages">
+					<!--<li class="mine">
+						<div class="left">
+							发散开来很疯狂拉升克里夫哈萨克联合反恐啊师傅回来看还是
+						</div>
+						<span class="nickname">王茂富</span>
+						<div class="right">
+							<img src="/img/upload/Te9ntyzFKCnp8IKbdLF5uFHZ.JPG" />
+						</div>
+					</li>
+					<li class="others">
+						<div class="left">
+							<img src="/img/upload/Te9ntyzFKCnp8IKbdLF5uFHZ.JPG" />
+						</div>
+						<span class="nickname">小仙女</span>
+						<div class="right">
+							啊实打实看到杀伤力看过啊傻瓜看刚发生了对方
+						</div>
+					</li>-->
+				</ul>
+			</div>
+			<div class="sendBox">
+				<form style="width: 100%;height: 100%;display: block;" onsubmit="sendMessage(); return false;">
+				    <input type="text" id="message" style="display: block;"/>
+					<input type="button"  value="发送" id="send" style="display: block;" onclick="sendMessage();" />
+				</form>
+			
+			</div>
+		</div>
 	</body>
 
 </html>

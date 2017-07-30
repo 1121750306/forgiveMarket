@@ -1,0 +1,147 @@
+::-webkit-scrollbar{
+	width: 0px;
+}
+html,body{
+	height: 100%;
+}
+*{
+	margin:0px;
+	padding:0px;
+}
+.cheatBox{
+	width: 100%;
+	height:100%;
+	/*margin-top: 50px;*/
+	background: #dcf7e7;
+	padding-top: 50px;
+	box-sizing: border-box;
+}
+.cheatBox .herder{
+	width: 100%;
+	height: 40px;
+	background: rgba(5, 83, 33, 1);
+	color: yellowgreen;
+	/*font-size: 1.5rem;*/
+}
+.cheatBox .herder h1{
+	height: 100%;
+	text-align: center;
+	line-height: 40px;
+	font-size: 1.5rem;;
+}
+.cheatBox .chatContent{
+	width: 100%;
+	height:87%;
+	background: #dcf7e7;
+	overflow-y: scroll;
+}
+.cheatBox .chatContent ul{
+	list-style: none;
+	width: 100%;
+	height: auto;
+/*	height: 100%;*/
+}
+.cheatBox .chatContent ul li{
+	width: 100%;
+	margin-top:10px;
+	height:80px;
+	/*background: #098;*/
+	position: relative;
+}
+.cheatBox .chatContent ul li.mine .left{
+	font-size: 1rem;
+	width: 80%;
+	float: left;
+	margin-top:30px;
+	border:1px solid #549a5f;
+	padding:3px;
+	border-radius: 4px;
+	margin-left:5%;
+	color: #123;
+}
+.cheatBox .chatContent ul li.mine .right{
+	width: 9%;
+	float: right;
+	height: 54%;
+	margin-right: 7px;
+	margin-top:6px;
+}
+.cheatBox .chatContent ul li.mine .right img{
+	display: block;
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+}
+.cheatBox .chatContent ul li.mine .nickname{
+	position: absolute;
+	font-size: 1rem;
+	display: block;
+	width: 40%;
+	text-align: right;
+	right: 14%;
+	color: #c72aa4;
+	height: 20px;
+}
+.cheatBox .chatContent ul li.others .left{
+	width: 9%;
+	float: left;
+	height: 54%;
+	/*margin: 5px 5px;*/
+	margin-left: 7px;
+	margin-top: 6px;
+	
+}
+.cheatBox .chatContent ul li.others .left img{
+	display: block;
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+}
+.cheatBox .chatContent ul li.others .right{
+	font-size: 1rem;
+	text-indent: 2px;
+	width: 80%;
+	float: right;
+	margin-top:30px;
+	padding:3px;
+	margin-right: 5%;
+	border-radius: 3px;
+    color: #2f56ca;
+	border:1px solid #549a5f;
+}
+.cheatBox .chatContent ul li.others .nickname{
+	position: absolute;
+	font-size: 1rem;
+	display: block;
+	width: 40%;
+	text-align: left;
+	left: 14%;
+	color: #c72aa4;
+	height: 20px;
+}
+.cheatBox .sendBox{
+	width: 100%;
+	height: 6.5%;
+	background: #dcf7e7;
+}
+.cheatBox .sendBox #message{
+	font-size: 1rem;
+	width: 79%;
+	float: left;
+	height: 100%;
+	padding-left:5px;
+	display: block;
+	border:none;
+	outline: none;
+}
+.cheatBox .sendBox #send{
+	width: 18.6%;
+	height: 100%;
+	float:right;
+	background: rgba(5, 83, 33, 1);
+	color:#fff;
+	border: none;
+	cursor:pointer;
+	font-size: 1.3rem;
+	border-radius: 2px;
+}
