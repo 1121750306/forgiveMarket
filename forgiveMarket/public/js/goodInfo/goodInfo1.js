@@ -7,7 +7,7 @@ $(function(){
         // })
         var flag=0;
         console.log($(".qqqq"))
-        $(".qqqq").click(function(){
+        $("body").on('click','.qqqq',function(){
             if(flag){
                 return false;
             }
@@ -21,7 +21,7 @@ $(function(){
             var tsY = (-1*$(this).offset().top+$(window).scrollTop()+($(window).height()-$(this).height())/2);
 console.log($(this).offset().top)
             // console.log(($(window).height()+$(this).height()))
-            $('body').after('<div class="img-bg" style="width: 100%;z-index:1000;background:#ccc;height: 3000px;top: -500px;position: fixed"></div>')
+//          $('body').after('<div class="img-bg" style="width: 100%;z-index:1000;background:#ccc;height: 3000px;top: -500px;position: fixed"></div>')
             console.log(($(window).height()+$(this).height())/2);
             $(this).parent().css('display','relative')
             $(this).parent().css('z-index','3000')
