@@ -86,7 +86,7 @@ function updateOrder(oid, flag, cb) {
  * @param {Object} cb
  */
 function createOrder(user, otids, locationid, cb) {
-	isEnough(user, otids, function(flag, total) {
+	isEnough(user, otids, function(flag) {
 		if(flag == 2) {
 			cb("库存不足", null);
 			return;
@@ -185,7 +185,7 @@ function isEnough(user, otids, cb) {
 				cb(2);
 				return;
 			}
-			cb(1, total);
+			cb(1);
 		}, function(err) {
 			cb(3);
 		});
