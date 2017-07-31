@@ -11,6 +11,7 @@
 	    <script src="/jquery/dist/jquery.js"></script>
 		<script src="/js/navigation.js" type="text/javascript" charset="utf-8"></script>
 		<script src="/js/user/history.js"></script>
+		<script src="/js/common.js"></script>
 		<script>
 			var size=0;
 		    window.onbeforeunload = onbeforeunload_handler;
@@ -92,9 +93,15 @@
         	var user=JSON.parse(sessionStorage.user);
         	id=user._id
             var messageField = document.getElementById('message');
-            if (ws.readyState === WebSocket.OPEN) {
-                ws.send(id+"|"+messageField.value);
+            var txt=messageField.value;
+            if(txt==""||txt==undefined||txt.length<=0){
+            	toast("请输入内容");
+            }else{
+            	if (ws.readyState === WebSocket.OPEN) {
+	                ws.send(id+"|"+messageField.value);
+	              }
             }
+            
              messageField.value = '';
              messageField.focus();
         }
