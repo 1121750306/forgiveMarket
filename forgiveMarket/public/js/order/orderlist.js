@@ -91,7 +91,7 @@ $(function() {
 		});
 		
 		//页面锁定取消
-		$("body").css("overflow", "auto");
+		$("body").addClass("overauto").removeClass("overhide");
 		
 	})
 	$(".com_cancel").click(function(){
@@ -100,7 +100,7 @@ $(function() {
 		$(".comment").animate({top:"100%"},500);
 		
 		//页面锁定取消
-		$("body").css("overflow", "auto");
+		$("body").addClass("overauto").removeClass("overhide");
 	})
 	
 	//重载界面
@@ -195,7 +195,7 @@ $(function() {
 							//拼接订单项li
 							var itemLi ='<li class="cart_item" gid= "' + orderitem.gid + '" otid="' + orderitem.otid + '">\
 											<div class="item_top">\
-												<img src=""/>\
+												<img class="item_photo" src=""/>\
 												<div class="item_info">\
 													<h2>' + orderitem.gname + '</h2>\
 													<ul class="good_size"><li><h3>' + orderitem.gsizename + '</h3></li></ul>\
@@ -232,16 +232,20 @@ $(function() {
 									//评论详情
 									$(".order .order_item").eq(i).find(".cart .cart_item").eq(j).append('\
 											<div class="item_bottom">\
-												<h3 class="comment_info">' + orderitem.cid.content + '</h3>\
-												<ul class="comment_photo"></ul>\
+												<div class="comment_top">\
+													<h3 class="comment_info">' + orderitem.cid.content + '</h3>\
+													<ul class="comment_photo"></ul>\
+												</div>\
 												<h3 class="comment_date">评论时间：' + orderitem.cid.date + '</h3>\
 											</div>');
 											
 									//评论图片
 									var commentphotos = orderitem.cid.photo;
 									for (var k = 0; k < commentphotos.length; k++) {
-										$(".order .order_item").eq(i).find(".cart .cart_item").eq(j).find(".comment_photo")
-											.append('<div style="position:relative"><li class="qqqq" style="background: url(' + commentphotos[k].replace(/\\/g, "/") + ') 50% 50% no-repeat;background-size: 100% 100%;"></li></div>');
+										$(".order .order_item").eq(i).find(".cart .cart_item").eq(j).find(".comment_photo").append
+											('<li>\
+												<img class="qqqq" src="' + commentphotos[k].replace(/\\/g, "/") + '" />\
+											</li>');
 									}
 									
 								}
@@ -269,7 +273,7 @@ $(function() {
 											url:"/goodphoto/getShowPhoto/" + gid,
 											async:true,
 											success:function(photo){
-												cartitem.find("img").attr("src","/img/upload/" + photo);
+												cartitem.find(".item_photo").attr("src","/img/upload/" + photo);
 												
 												photos.num--;
 												if (photos.num == 0) {
@@ -402,7 +406,7 @@ $(function() {
 		$(".comment").animate({top:"0%"},500);
 		
 		//页面锁定
-		$("body").css("overflow", "hidden");
+		$("body").addClass("overhide").removeClass("overauto");
 	}
 	
 	//查看评论控制

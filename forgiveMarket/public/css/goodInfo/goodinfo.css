@@ -1,8 +1,8 @@
 .overhide{
 	overflow: hidden;
 }
-.overscro{
-	overflow: scroll;
+.overauto{
+	overflow: auto;
 }
 #load{
 	width: 100%;

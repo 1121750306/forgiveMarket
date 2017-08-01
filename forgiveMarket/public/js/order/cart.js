@@ -55,7 +55,7 @@ $(function(){
 													<div class="item_check">\
 														<input type="checkbox" />\
 													</div>\
-													<img src="/img/upload/' + photo + '"/>\
+													<img class="item_photo" src="/img/upload/' + photo + '"/>\
 													<div class="item_info">\
 														<h2>' + good.gname + '</h2>\
 														<ul class="good_size">' + goodsizeUl + '</ul>\

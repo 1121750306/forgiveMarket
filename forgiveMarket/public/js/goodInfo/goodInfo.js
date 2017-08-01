@@ -326,7 +326,7 @@ $(function() {
 						'<div class="item-right clearfix">' +
 						'<h5>' + data[i].content + '</h5>' +
 
-						'<div style="width:100%;padding:5px 0" class="clearfix">';
+						'<div style="display:flex;align-items:center;width:100%;padding:5px 0" class="clearfix">';
 					if(data[i].photos != null) {
 						if(data[i].photos.length > 0) {
 							for(var m = 0; m < data[i].photos.length; m++) {
@@ -406,7 +406,7 @@ $(function() {
 						'<div class="item-right clearfix">' +
 						'<h5>' + commentData[i].content + '</h5>' +
 						
-						'<div style="width:100%;padding:5px 0" class="clearfix">';
+						'<div style="display:flex;align-items:center;width:100%;padding:5px 0" class="clearfix">';
 					if(commentData[i].photos != null) {
 						if(commentData[i].photos.length > 0) {
 							for(var m = 0; m < commentData[i].photos.length; m++) {

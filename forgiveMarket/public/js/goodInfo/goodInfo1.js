@@ -30,17 +30,19 @@ console.log($(this).offset().top)
             $(this).css("transition",'all '+time+'s')
             $(this).css('transform', 'translate('+tsX+'px,'+tsY+'px)'+'scale('+dic+') ');
             $(this).css('border','0')
+            $('body').addClass('overhide');
+            $('body').removeClass('overauto');
             setTimeout(function(){
                 console.log(".qqqq");
-                $('body').addClass('overhide');
                 $(".img-bg").click(function(){
                 console.log(888);
 
                 $(this).remove();
                 $('.'+className).css('transform','');
-                
+                $('body').addClass('overauto');
+                $('body').removeClass('overhide');
                 setTimeout(function(){
-                	$('.'+className).parent().css('z-index','1');
+                	$('.'+className).parent().css('z-index','auto');
                     flag = false;
                 },time*1000)
             })

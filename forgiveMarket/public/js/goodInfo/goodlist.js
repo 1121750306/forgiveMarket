@@ -180,7 +180,7 @@ function search() {
 												
 												//组合li
 												var li ='<li class="cart_item" gid="' + gid + '">\
-															<img src="/img/upload/' + photo + '"/>\
+															<img class="item_photo" src="/img/upload/' + photo + '"/>\
 															<div class="item_info">\
 																<h2>' + gname + '</h2>\
 																<ul class="good_size">' + goodsizeUl + '</ul>\
