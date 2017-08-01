@@ -125,6 +125,7 @@ function search() {
 	
 	//加载白幕控制
 	var loading = 0;
+	loadstart();
 	
 	$(".cart").empty();	
 	$.ajax({
@@ -194,21 +195,27 @@ function search() {
 												
 												loading--;
 												if (loading == 0) {
-													//清除加载白幕
-													$(".loading").hide();
+													//加载完成
+													loadcomplete();
 												}
 											},
 											error:function(err){
+												//加载失败
+												loadfail();
 												console.log(err);
 											}
 										});
 									},
 									error:function(err){
+										//加载失败
+										loadfail();
 										console.log(err);
 									}
 								});
 							},
 							error:function(err){
+								//加载失败
+								loadfail();
 								console.log(err);
 							}
 						});
@@ -216,8 +223,8 @@ function search() {
 				}
 				
 			} else{
-				//清除加载白幕
-				$(".loading").hide();
+				//加载完成
+				loadcomplete();
 			}
 				
 		}

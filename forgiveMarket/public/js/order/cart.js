@@ -14,104 +14,104 @@ $(function(){
 		
 		//加载白幕控制
 		var loading = 0;
+		loadstart();
 		
 		//请求购物车数据
-			$.ajax({
-				type:"get",
-				url:"/order/getorderitembyuser/" + user._id + "/0",
-				async:true,
-				success:function(result){
-					if (result.type == "success") {
-						var goods = result.message;
-						//修改导航栏购物车商品数量
-						$(".nav_cartnum").html(goods.length);
+		$.ajax({
+			type:"get",
+			url:"/order/getorderitembyuser/" + user._id + "/0",
+			async:true,
+			success:function(result){
+				if (result.type == "success") {
+					var goods = result.message;
+					//修改导航栏购物车商品数量
+					$(".nav_cartnum").html(goods.length);
+					
+					if (goods.length != 0) {
+						//购物车不为空
+						$(".cart").show();
 						
-						if (goods.length != 0) {
-							//购物车不为空
-							$(".cart").show();
+						loading = goods.length;
+						
+						//遍历商品列表
+						for (var i = 0; i < goods.length; i++) {
+							(function (i) {
+								var good = goods[i];
 							
-							loading = goods.length;
-							
-							//遍历商品列表
-							for (var i = 0; i < goods.length; i++) {
-								(function (i) {
-									var good = goods[i];
-								
-									//获取照片
-									$.ajax({
-										type:"get",
-										url:"/goodphoto/getShowPhoto/" + good.gid,
-										async:true,
-										success:function(photo){
-											//拼接商品规格
-											var goodsizeUl = "";
-											for (var j = 0; j < good.gsizes.length; j++) {
-												goodsizeUl = goodsizeUl + "<li><h3>" + good.gsizes[j] +"</h3></li>";
-											}
-											
-											//组合li
-											var li ='<li class="cart_item" gid="' + good.gid + '" otid="' + good.otid + '">\
-														<div class="item_check">\
-															<input type="checkbox" />\
-														</div>\
-														<img src="/img/upload/' + photo + '"/>\
-														<div class="item_info">\
-															<h2>' + good.gname + '</h2>\
-															<ul class="good_size">' + goodsizeUl + '</ul>\
-															<div class="info_bottom">\
-																<p class="item_price">￥' + good.price + '</p>\
-																<div class="num_ctrl">\
-																	<span><i class="item_sub"></i></span>\
-																	<input class="item_num" type="text" value="' + good.num + '"/>\
-																	<span><i class="item_add"></i></span>\
-																</div>\
+								//获取照片
+								$.ajax({
+									type:"get",
+									url:"/goodphoto/getShowPhoto/" + good.gid,
+									async:true,
+									success:function(photo){
+										//拼接商品规格
+										var goodsizeUl = "";
+										for (var j = 0; j < good.gsizes.length; j++) {
+											goodsizeUl = goodsizeUl + "<li><h3>" + good.gsizes[j] +"</h3></li>";
+										}
+										
+										//组合li
+										var li ='<li class="cart_item" gid="' + good.gid + '" otid="' + good.otid + '">\
+													<div class="item_check">\
+														<input type="checkbox" />\
+													</div>\
+													<img src="/img/upload/' + photo + '"/>\
+													<div class="item_info">\
+														<h2>' + good.gname + '</h2>\
+														<ul class="good_size">' + goodsizeUl + '</ul>\
+														<div class="info_bottom">\
+															<p class="item_price">￥' + good.price + '</p>\
+															<div class="num_ctrl">\
+																<span><i class="item_sub"></i></span>\
+																<input class="item_num" type="text" value="' + good.num + '"/>\
+																<span><i class="item_add"></i></span>\
 															</div>\
 														</div>\
-													</li>';
-													
-											$(".cart").append(li);
-											
-											loading--;
-											if (loading == 0) {
-												//清除加载白幕
-												$(".loading").hide();
-											}
-											
-										},
-										error:function(err){
-											console.log(err);
+													</div>\
+												</li>';
+												
+										$(".cart").append(li);
+										
+										loading--;
+										if (loading == 0) {
+											//加载成功
+											loadcomplete();
 										}
-									});
-								
-								})(i);		
+										
+									},
+									error:function(err){
+										//加载失败
+										loadfail();
+										console.log(err);
+									}
+								});
 							
-							}
-							
-						}else{
-							//购物车为空
-							//清除加载白幕
-							$(".loading").hide();
-							
-							$(".attention").show();
-							$(".cart_empty").show();
+							})(i);		
+						
 						}
 						
-					}else {
-						//设置导航栏购物车商品数量为0
-						$(".nav_cartnum").html("0");
+					}else{
 						//购物车为空
+						//加载成功
+						loadcomplete();
+						
 						$(".attention").show();
 						$(".cart_empty").show();
-						
 					}
 					
-				},
-				error:function(err){
-					//设置导航栏购物车商品数量为0
-					$(".nav_cartnum").html("0");
-					console.log(err);
+				}else {
+					//加载失败
+					loadfail();
+					console.log(result.message);
 				}
-			});
+				
+			},
+			error:function(err){
+				//加载失败
+				loadfail();
+				console.log(err);
+			}
+		});
 	}
 	addOnLoginListener(function(err, result){
 		if (!err) {

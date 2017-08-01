@@ -109,7 +109,7 @@ $(function() {
 		view = index;
 		
 		//显示加载白页
-		$(".loading").show();
+		loadstart();
 		
 		//修改订单页类型
 		$(".order_type li").eq(index).addClass("underline").siblings("li").removeClass("underline");
@@ -128,9 +128,6 @@ $(function() {
 			async:true,
 			success:function(data){
 				if (data.flag == "200") {
-					//去除加载白页
-					$(".loading").hide();
-					
 					//去除提示信息
 					$(".attention").hide();
 					
@@ -259,9 +256,6 @@ $(function() {
 					
 					//判断是否有图片需要加载
 					if (photos.num != 0) {
-						//显示加载白页
-						$(".loading").show();
-						
 						//获取照片
 						for (var i = 0; i < photos.detail.length; i++) {
 							(function (i) {
@@ -279,12 +273,14 @@ $(function() {
 												
 												photos.num--;
 												if (photos.num == 0) {
-													//清除加载白页
-													$(".loading").hide();
+													//加载完成
+													loadcomplete();
 												}
 												
 											},
 											error:function(err){
+												//加载失败
+												loadfail();
 												console.log(err);
 											}
 										});
@@ -294,12 +290,15 @@ $(function() {
 							})(i);
 							
 						}
+					}else {
+						//加载完成
+						loadcomplete();
 					}
 					
 					
 				} else{
-					//去除加载白页
-					$(".loading").hide();
+					//加载完成
+					loadcomplete();
 					
 					//无数据时显示信息
 					$(".attention").show();

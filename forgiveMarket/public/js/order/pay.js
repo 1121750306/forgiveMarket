@@ -7,7 +7,8 @@ var orderid = null;
 $(function() {
 	//加载白幕控制
 	var loading = 2;
-
+	loadstart();
+	
 	//请求默认收货地址数据
 	$.ajax({
 		type: "get",
@@ -33,12 +34,14 @@ $(function() {
 
 			loading--;
 			if(loading == 0) {
-				//清除加载白幕
-				$(".loading").hide();
+				//加载完成
+				loadcomplete();
 			}
 
 		},
 		error: function(err) {
+			//加载失败
+			loadfail();
 			console.log(err);
 		}
 	});
@@ -117,13 +120,15 @@ $(function() {
 							if(otnum == 0) {
 								loading--;
 								if(loading == 0) {
-									//清除加载白幕
-									$(".loading").hide();
+									//加载完成
+									loadcomplete();
 								}
 							}
 
 						},
 						error: function(err) {
+							//加载失败
+							loadfail();
 							console.log(err);
 						}
 
@@ -131,6 +136,8 @@ $(function() {
 
 				},
 				error: function(err) {
+					//加载失败
+					loadfail();
 					console.log(err);
 				}
 			});

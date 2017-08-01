@@ -21,3 +21,33 @@ function isLogin(){
 	}
 	return false;
 }
+
+//加载白页控制
+var wait;
+function loadstart () {
+	$(".loading").show();
+	
+	wait = setInterval(function(){
+		var waitp = $(".loading p").html();
+		if (waitp.substr(3).length < 3) {
+			$(".loading p").html(waitp + ".");
+		} else{
+			$(".loading p").html("请稍候");
+		}
+	},500);
+}
+
+function loadcomplete () {
+	clearInterval(wait);
+	$(".loading").hide();
+}
+
+function loadfail () {
+	clearInterval(wait);
+	$(".loading p").html("点此刷新");
+	$(".loading p").css("text-decoration","underline");
+	$(".loading p").bind("click",function(){
+		location.reload();
+	});
+	
+}
