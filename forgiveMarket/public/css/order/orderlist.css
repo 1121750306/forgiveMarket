@@ -107,8 +107,8 @@ body{
 	height: auto;
 	min-height: 40px;
 	padding: 5px;
-	padding-bottom: 0;
 	font-size: 1rem;
+	word-wrap: break-word;
 }
 
 .comment_photo{
