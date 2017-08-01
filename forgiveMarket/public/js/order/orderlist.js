@@ -42,6 +42,19 @@ $(function() {
 			contentType: false,
 			async:true,
 			success:function(data){
+				$(".compic li").each(function(index){
+					console.log("index==="+index);
+				if(index!=0){
+		     			$(".compic li").eq(index).remove();
+		     	}else{  		
+		     		$(".compic li").eq(index).find("input").val("");
+		     		$(".compic li").eq(index).find("img").attr('src','');
+		     		$(".compic li").eq(index).find("img").css('display','none');
+		     	    $(".compic li").eq(index).find("div").css('display','none');
+     		
+            	}
+     
+				})
 				var oid = $(".comment").attr("oid");
 				
 				if (oid) {
