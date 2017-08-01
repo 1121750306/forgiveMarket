@@ -341,6 +341,34 @@ body {
 	border: none;
 }
 
+.input_password{
+	width: 100%;
+	margin-top: 10px;
+	border: 1px solid #ccc;
+	box-sizing: border-box;
+}
+
+.input_password>ul{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.input_password>ul>li{
+	margin: 0;
+	padding: 0;
+	float: left;
+	text-align: center;
+	box-sizing: border-box;
+	border-right: 1px solid #ccc;
+}
+.input_password>ul>li:active{
+	background-color: #ccc;
+}
+#last_li{
+	border: none;
+}
+
 #btn_pay {
 	width: 90%;
 	height: 40px;
@@ -375,4 +403,13 @@ body {
 	left: 50%;
 	margin-left: -30px;
 	margin-top: -30px;
+}
+.pwd_box{
+	width: 50%;
+	height: 30px;
+	margin: 10px auto;
+}
+#pwd{
+	width: 100%;
+	height: inherit;
 }

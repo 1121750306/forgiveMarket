@@ -2,11 +2,23 @@ $(document).ready(function() {
 	var user = JSON.parse(sessionStorage.user);
 	console.log(user)
 	$("#avatar img").attr("src", user.avatar);
-	$("#ubg img").attr("src", user.ubg);
 	$("#uname .content").text(user.uname);
 	$("#uid .content").text(user._id);
 	$("#sex .content").text(user.sex == 1 ? "男" : "女");
-	$("#signal .content").text(user.signal);
+
+	if(user.signal == undefined || user.signal == null ||
+		user.signal == "undefined" || user.signal == "null" || user.signal == "") {
+		$("#signal .content").text("没有签名");
+	} else {
+		$("#signal .content").text(user.signal);
+	}
+	if(user.ubg == undefined || user.ubg == null ||
+		user.ubg == "undefined" || user.ubg == "null" || user.ubg == "") {
+		$("#ubg img").attr("src", "/img/innisfreeIco/ubg.jpg");
+	} else {
+		$("#ubg img").attr("src", user.ubg);
+	}
+
 	$("#uname").click(function() {
 		$("#div_uname input").val(user.uname);
 		showEditUname();
@@ -20,14 +32,14 @@ $(document).ready(function() {
 		$("#div_signal textarea").val(user.signal);
 		showEditSignal();
 	});
-	
-	$("#avatar img").click(function(){
+
+	$("#avatar img").click(function() {
 		$("#input_avatar").click();
 	})
-	$("#ubg img").click(function(){
+	$("#ubg img").click(function() {
 		$("#input_ubg").click();
 	})
-	
+
 	$("#avatar input")[0].addEventListener("change", readDataByAvater, false);
 	$("#ubg input")[0].addEventListener("change", readDataByBg, false);
 	$("#submit").click(function() {
@@ -53,7 +65,7 @@ $(document).ready(function() {
 					sessionStorage.user = JSON.stringify(data.result);
 					toast("修改成功");
 				} else {
-					console.log("msg:"+data.flag);
+					console.log("msg:" + data.flag);
 					toast("修改失败");
 				}
 			}

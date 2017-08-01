@@ -12,8 +12,8 @@ body {
 
 .search {
 	position: relative;
-	margin: 60px 0 0 0;
-	width: 100%;
+	margin: 60px 0 1% 1%;
+	width: 98%;
 	height: 40px;
 	border: 2px solid #ACBD93;
 	border-radius: 10px;
@@ -41,7 +41,7 @@ body {
 
 .search-title {
 	position: relative;
-	margin-top: 58px;
+	margin-top: 35px;
 	margin-left: 8%;
 }
 
@@ -204,11 +204,11 @@ body {
 .innisinformation {
 	position: relative;
 	width: 100%;
-	height: 1400px;
+	/*height: 1400px;*/
 }
 
 .innisinfoimg {
-	position: absolute;
+	/*position: absolute;*/
 	width: 100%;
 }
 

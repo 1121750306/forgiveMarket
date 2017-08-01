@@ -10,10 +10,19 @@ $(function() {
 		$("#unlogin").css("display", "none");
 		$("#username").text(user.uname);
 		$("#user_photo img").attr("src", user.avatar);
-		$("#balance").text("余额：￥" + user.balance);
-		$("#signal").text(user.signal);
-		$("#ubg").attr("src",user.ubg);
-		$("#ubg").css("display","block");
+		if(user.signal == undefined || user.signal == null ||
+			user.signal == "undefined" || user.signal == "null" || user.signal == "") {
+			$("#signal").text("没有签名");
+		} else {
+			$("#signal").text(user.signal);
+		}
+		if(user.ubg == undefined || user.ubg == null ||
+			user.ubg =="undefined" || user.ubg == "null" || user.ubg == "") {
+			$("#ubg").attr("src", "/img/innisfreeIco/ubg.jpg");
+		} else {
+			$("#ubg").attr("src", user.ubg);
+		}
+		$("#ubg").css("display", "block");
 	} else {
 		$("#login").css("display", "none");
 		$("#user_function").css("display", "none");
@@ -33,7 +42,7 @@ $(function() {
 		});
 	})
 
-	$("#login").click(function(){
+	$("#login").click(function() {
 		window.location.assign("/views/user/userinfo.html");
 	})
 	addOnLoginListener(function(err, result) {
