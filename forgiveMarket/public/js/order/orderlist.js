@@ -19,6 +19,10 @@ $(function() {
 		var otid = $(".comment").attr("otid");
 		var gid = $(".com_txt input[name=gid]").val();
 		var content = $(".com_txt textarea").val();
+		if(content==""||content==undefined||content.length<=0){
+			toast("请输入内容");
+			return;
+		}
 		var imgNum=0;	    
 		for(var i=0;i<$(".compic li img").length;i++){
 		      if($(".compic li input")[i].files[0]!=undefined){
