@@ -38,8 +38,9 @@ console.log($(this).offset().top)
 
                 $(this).remove();
                 $('.'+className).css('transform','');
-                $('.'+className).parent().css('z-index','1');
+                
                 setTimeout(function(){
+                	$('.'+className).parent().css('z-index','1');
                     flag = false;
                 },time*1000)
             })
@@ -47,7 +48,7 @@ console.log($(this).offset().top)
 
         })
     }
-    imgScale('qqqq',1)
+    imgScale('qqqq',0.7)
 
 })
 

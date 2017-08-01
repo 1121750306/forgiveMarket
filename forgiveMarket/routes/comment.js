@@ -125,7 +125,12 @@ router.get('/getgoodComment:gid',function(req,res,next){
 	console.log(gid)
 	comment.getCommentByGid(gid,function(err,docs){
 		if(!err){
-			console.log(docs);
+//			console.log(docs);
+			for(var i = 0 ; i <docs.length ; i++){
+//				var d = new Date(docs[i].date);
+				
+				console.log(docs[i].date.getTime())
+			}
 //			if(docs.length == 1){
 //				console.log('不是数组，转为数组');
 //				docs = [docs[0]];
