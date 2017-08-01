@@ -102,7 +102,7 @@ $(function(){
 			
 			//组合li
 			var li ='<li class="cart_item" gid="' + good.gid + '">\
-						<img src="/img/upload/' + good.photo + '"/>\
+						<img class="item_photo" src="/img/upload/' + good.photo + '"/>\
 						<div class="item_info">\
 							<h2>' + good.gname + '</h2>\
 							<ul class="good_size">' + good.goodsizeUl + '</ul>\
