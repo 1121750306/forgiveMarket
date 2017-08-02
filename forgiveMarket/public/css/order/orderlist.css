@@ -342,7 +342,8 @@ body{
 	margin-left: 8px;
 	margin-top:3px ;
 	border-radius: 3px;
-	background:rgba(5, 83, 33, 1);
+	background:#404040 ;
+	
 	color: #fff;
 	font-size: 1.5rem;
 }
@@ -352,6 +353,6 @@ body{
 }
 
 .com_content .com_txt p:nth-child(3) input{
-    background:#404040 ;
+    background:rgba(5, 83, 33, 1);
 }
 

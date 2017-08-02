@@ -51,15 +51,16 @@
             if(_id==id){
             	$("#messages").append(
             		 "<li class='mine'>"+
-            		      "<div class='left'>"+
-            		        message+
-            		       "</div>"+
+            		     
             		       "<span class='nickname'>"+
             		           nickname+
             		        "</span>"+
             		        "<div class='right'>"+
             		          "<img src='"+avatar.replace(/\\/g,"/")+"' />"+
             		         "</div>"+
+            		          "<div class='left'>"+
+            		        message+
+            		       "</div>"+
             		    "</li>"
             	)
             }else{
