@@ -27,6 +27,7 @@ html,body{
 	height: 100%;
 	text-align: center;
 	line-height: 40px;
+	margin:0px;
 	font-size: 1.2rem;;
 }
 .cheatBox .chatContent{
@@ -63,7 +64,9 @@ html,body{
 .cheatBox .chatContent ul li.mine .right{
 	width: 9%;
 	float: right;
-	height: 54%;
+	height: 0;
+	padding-bottom: 9%;
+	border-radius:50% ;
 	margin-right: 7px;
 	margin-top:6px;
 }
@@ -86,11 +89,12 @@ html,body{
 .cheatBox .chatContent ul li.others .left{
 	width: 9%;
 	float: left;
-	height: 54%;
+	height: 0;
+	padding-bottom: 9%;
 	/*margin: 5px 5px;*/
 	margin-left: 7px;
 	margin-top: 6px;
-	
+	border-radius:50% ;
 }
 .cheatBox .chatContent ul li.others .left img{
 	display: block;

@@ -56,8 +56,8 @@
             		       "<span class='nickname'>"+
             		           nickname+
             		        "</span>"+
-            		        "<div class='right'>"+
-            		          "<img src='"+avatar.replace(/\\/g,"/")+"' />"+
+            		        "<div class='right' style='background: url("+avatar.replace(/\\/g,"/")+") 50% 50% no-repeat;background-size: 100% 100%;'>"+
+            		         /* "<img src='"+avatar.replace(/\\/g,"/")+"' />"+*/
             		         "</div>"+
             		          "<div class='left'>"+
             		        message+
@@ -67,8 +67,8 @@
             }else{
             	$("#messages").append(
             		 "<li class='others'>"+
-            		      "<div class='left'>"+
-            		       "<img src='"+avatar.replace(/\\/g,"/")+"' />"+
+            		      "<div class='left' style='background: url("+avatar.replace(/\\/g,"/")+") 50% 50% no-repeat;background-size: 100% 100%;'>"+
+            		       /*"<img src='"+avatar.replace(/\\/g,"/")+"' />"+*/
             		       "</div>"+
             		       "<span class='nickname'>"+
             		           nickname+
