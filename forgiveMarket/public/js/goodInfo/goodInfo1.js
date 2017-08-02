@@ -17,7 +17,9 @@ $(function(){
             console.log($(this).width()+'px');
             console.log($(window).scrollTop());
             // $(this).attr('width',$('body').width()+'px');
-            var dic = $('body').width()/$(this).width();
+            var dic1 = $('body').width()/$(this).width();
+            var dic2 = $('body').height()/$(this).height();
+            var dic = dic1>dic2?dic2:dic1;
 
             var tsX = -1*$(this).offset().left+($('body').width()-$(this).width())/2;
             var tsY = (-1*$(this).offset().top+$(window).scrollTop()+($(window).height()-$(this).height())/2);
