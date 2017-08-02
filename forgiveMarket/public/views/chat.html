@@ -25,7 +25,7 @@
 	        	id=user._id
 	            ws.close(1000,id);
 	        }     
-			var ws=new WebSocket("ws://localhost:8181");
+			var ws=new WebSocket("ws://180.76.237.59:8181");
 			ws.onopen=function(e){
 				console.log('Connection to server opened'+sessionStorage.use);
 		         ws.send("/user "+sessionStorage.user);
