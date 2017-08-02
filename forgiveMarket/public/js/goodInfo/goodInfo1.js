@@ -10,7 +10,7 @@ $(function(){
         console.log($(".qqqq"))
         $("body").on('click','.'+className,function(){
             if(flag){
-
+            	$(".img-bg").click()
                 return false;
             }
             flag=1;
