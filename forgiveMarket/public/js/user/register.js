@@ -1,4 +1,7 @@
 var phonem = /^1(3|4|5|7|8)\d{9}$/;
+var lastDate;
+var lock = false;
+var timeid;
 $(document).ready(function() {
 	//初始化bmob
 	Bmob.initialize("39aceb7ec7b1fadab42c3c5240d8d843", "f518a18e8a118cf90550b44aa8fc75c9");
@@ -14,24 +17,57 @@ $(document).ready(function() {
 		}
 	});
 
-	$("#get_code").click(function() {
-		var phone = $("#phone").val();
-		if (!phonem.test(phone)) {
-			$("#error").css("opacity", "1");
-			$("#error").text("手机号码错误");
-			return;
-		}
-		Bmob.Sms.requestSmsCode({
-			"mobilePhoneNumber": phone,
-			"template": "注册短信验证"
-		}).then(function(obj) {
-			console.log("smsId:" + obj.smsId);
-		}, function(err) {
-			console.log("发送失败:" + err);
-		});
-	})
+	$("#get_code").click(getCodeClick);
 	$("#register").click(register);
 });
+
+function getCodeClick() {
+	if (lock)
+		return;
+	lock = true;
+	var phone = $("#phone").val();
+	if (!phonem.test(phone)) {
+		$("#error").css("opacity", "1");
+		$("#error").text("手机号码错误");
+		lock = false;
+		return;
+	}
+
+	Bmob.Sms.requestSmsCode({
+		"mobilePhoneNumber": phone
+	}).then(function(obj) {
+		console.log("smsId:" + obj.smsId);
+		toast("已经发送验证码");
+		$("#get_code").css("background-color", "#333");
+		$("#get_code").css("border", "1px solid #333");
+		lastDate = new Date();
+		resetTime();
+	}, function(err) {
+		lock = false;
+		toast("发送失败");
+		console.log("发送失败:" + err);
+	});
+}
+
+function resetTime() {
+	timeid = setTimeout(getTime, 300);
+}
+
+function getTime() {
+	var currentData = new Date();
+	var currentSecond = Math.floor((currentData.getTime() - lastDate.getTime()) / 1000);
+	var leftSecond = 60 - currentSecond;
+	$("#get_code").text("重新获取(" + leftSecond + "s)");
+	console.log(currentSecond);
+	if (leftSecond <= 0) {
+		$("#get_code").css("background-color", "green");
+		$("#get_code").css("border", "1px solid green");
+		$("#get_code").text("获取验证码")
+		lock = false;
+		return;
+	}
+	timeid = setTimeout(getTime, 300);
+}
 
 function register() {
 	var phone = $("#phone").val();
@@ -79,6 +115,9 @@ function register() {
 			console.log("发送失败:" + err);
 		});
 
+	}, function(err) {
+		console.log("发送失败:" + JSON.stringify(err));
+		toast("验证码错误");
 	});
 	//	console.log(phone + password)
 }
