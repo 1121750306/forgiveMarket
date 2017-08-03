@@ -4,6 +4,7 @@ var mongoose = require("mongoose");
 var good = require("../models/good");
 var goodtype = require("../models/goodtype");
 var goodInfo = require("../models/goodInfo");
+var goodphoto=require("../models/goodphoto");
 var goodsizetype = require("../models/goodsizetype");
 var goodsize= require("../models/goodsize");
 //注册models监听并传递models
@@ -55,6 +56,24 @@ router.post("/Add",function(req,res,next){
 	good.addGood(goodObj,function(err,doc){
 		if(!err){
 			goodid=doc._id;
+			
+			var goodphotoObj={gid:mongoose.Types.ObjectId(goodid),url:"default.png",flag:0};
+			goodphoto.addphoto(goodphotoObj,function(_err,_doc){
+				if(!_err){
+					console.log(_doc);
+				}else{
+					console.log(_err);
+				}
+			});
+			var goodphotoObj2={gid:mongoose.Types.ObjectId(goodid),url:"default.jpg",flag:1};
+			goodphoto.addphoto(goodphotoObj2,function(_err1,_doc1){
+				if(!_err1){
+					console.log(_doc1);
+				}else{
+					console.log(_err1);
+				}
+			});
+			
 			if(typeof(container)=="string"){
 				realContainer=container;
 			}else if(typeof(container)=="object"){

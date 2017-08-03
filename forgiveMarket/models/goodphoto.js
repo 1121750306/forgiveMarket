@@ -25,6 +25,9 @@ function getPhotoByGoodid(id,cb){
 function getShowPhoto(id,cb){
 	goodphotoModel.find({gid:id,flag:0},cb);
 }
+function checkDefault(gid,cb){
+	goodphotoModel.find({gid:gid,url:'default.png'},cb);
+}
 /**
  * 检查图片是否存在
  * @param {Object} gid
@@ -34,8 +37,13 @@ function getShowPhoto(id,cb){
 function checkPhoto(gid,url,cb){
 	goodphotoModel.find({gid:gid,url:url},cb);
 }
+function deletePhoto(gid,flag,cb){
+	goodphotoModel.find({gid:gid,flag:flag}).remove(cb);
+}
 module.exports.initModel = initModel;
 module.exports.addphoto = addphoto;
 module.exports.getPhotoByGoodid = getPhotoByGoodid;
 module.exports.getShowPhoto = getShowPhoto;
 module.exports.checkPhoto = checkPhoto;
+module.exports.checkDefault = checkDefault;
+module.exports.deletePhoto = deletePhoto;

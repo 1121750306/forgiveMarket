@@ -57,13 +57,68 @@ router.post("/upload",function(req,res,next){
 				goodphoto.checkPhoto(goodid,urls,function(errs,result){
 					if(!errs){
 						if(result.length==0){
-						goodphoto.addphoto(obj,function(err,doc){
-								if(!err){
-									console.log(doc);
-								}else{
-									consoel.log(err);
-								}
-							});
+							  //商品详情图片
+							 if(flag==1){
+							 
+							 	goodphoto.deletePhoto(goodid,1,function(_err,_doc){
+							 		if(!_err){
+							 			console.log("删除图片"+_doc);
+								 		var nObj={gid:mongoose.Types.ObjectId(goodid),url:urls,flag:1};
+								 		goodphoto.addphoto(nObj,function(err2,doc2){
+								 			if(!err2){
+								 				console.log(doc2);
+								 			}else{
+								 				console.log(err2);
+								 			}
+								 		});							 			
+							 		}else{
+							 			console.log(_err);
+							 		}
+
+							 	});
+							 }else{
+							 	//商品轮播图片
+							 	goodphoto.checkDefault(goodid,function(err4,doc4){
+							 		if(!err4){
+							 			console.log("doc4==="+doc4.length);
+							 			if(doc4.length==0||doc4.length==undefined){
+										 	var nObj={gid:mongoose.Types.ObjectId(goodid),url:urls,flag:0};
+										 	goodphoto.getShowPhoto(goodid,function(_err,_doc){
+										 		var len=_doc.length;
+										 		if(len<=4){
+										 			goodphoto.addphoto(nObj,function(err2,doc2){
+											 			if(!err2){
+											 				console.log(doc2);
+											 			}else{
+											 				console.log(err2);
+											 			}
+											 		});
+										 		}
+										 	});							 			   
+							 		    }else{
+							 		    	goodphoto.deletePhoto(goodid,0,function(_err,_doc){
+									 		if(!_err){
+									 			console.log("删除图片"+_doc);
+										 		var nObj={gid:mongoose.Types.ObjectId(goodid),url:urls,flag:0};
+										 		goodphoto.addphoto(nObj,function(err2,doc2){
+										 			if(!err2){
+										 				console.log(doc2);
+										 			}else{
+										 				console.log(err2);
+										 			}
+										 		});							 			
+									 		}else{
+									 			console.log(_err);
+									 		}
+									 	 });
+							 		    }
+							 		}else{
+							 			console.log(err4);
+							 		}
+							 		
+							 	})
+
+							 }
 						}
 					}else{
 						console.log(err);
