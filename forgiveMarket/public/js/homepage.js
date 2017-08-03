@@ -304,7 +304,7 @@ $(function() {
 	})
 
 	fixImage();
-
+	fixAdturnul();
 	//搜索按钮事件
 	$("#btn_search").click(function() {
 		var content = $("#input_search").val();
@@ -447,6 +447,13 @@ function fixImage() {
 	$(".adcontainer").width(width * 8);
 	$(".adcontainer").css("left", -width + "px");
 	return width;
+}
+
+function fixAdturnul(){
+	var width = $("#adturn").width();
+	var adturnulWidth = $(".adturnul").width();
+	var left = (width - adturnulWidth)/2;
+	$(".adturnul").css("left",left + "px");
 }
 
 function setImage(obj, gid) {
