@@ -274,7 +274,6 @@ router.post('/deleteorder', function(req, res, next) {
 		orderitem.deleteOrderItemById(otids[i],function(oterr){
 			count--;
 			
-				console.log("deleteorderitem");
 			if (oterr) {
 				console.log(new Date() + "ERROR: " + oterr);
 				res.send({
@@ -283,7 +282,6 @@ router.post('/deleteorder', function(req, res, next) {
 				});
 				
 			}else if (count == 0) {
-				console.log("deleteorder");
 				order.deleteOrderById(oid, function(oerr){
 					if (!oerr) {
 						res.send({

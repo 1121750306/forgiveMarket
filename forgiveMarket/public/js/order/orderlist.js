@@ -391,6 +391,11 @@ $(function() {
 			},
 			async:true,
 			success:function(data){
+				if (data.type == "success") {
+					toast("删除成功");
+				}else{
+					toast("删除失败");
+				}
 				reloadView(0);
 			},
 			error:function(err){
