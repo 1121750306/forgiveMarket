@@ -43,6 +43,25 @@ function addOrder(uid, flag, callback) {
 }
 
 /**
+ * 通过id删除订单
+ * @param {Object} oid
+ * @param {Object} callback
+ */
+function deleteOrderById(id, callback) {
+	orderModel.find({_id:id}, function(err, data){
+		if (!err) {
+			if (data.length != 0) {
+				data[0].remove(callback);
+			} else{
+				callback("订单id有误");
+			}
+		}else {
+			callback(err);
+		}
+	});
+}
+
+/**
  * 通过id和flag查找订单
  * @param {Object} uid
  * @param {Object} flag
@@ -351,6 +370,7 @@ function getOrderNumber(uid, cb) {
 }
 
 module.exports.initModel = initModel;
+module.exports.deleteOrderById = deleteOrderById;
 module.exports.addOrder = addOrder;
 module.exports.getOrderByIdAndFlag = getOrderByIdAndFlag;
 module.exports.updateOrder = updateOrder;

@@ -83,6 +83,8 @@ body {
 	height: 80px;
 }
 
+.content
+
 .cart {
 	display: block;
 }
@@ -264,7 +266,7 @@ body {
 
 #pay_pwd {}
 
-.content {
+#pay_pwd>.content {
 	width: 100%;
 	padding: 0;
 }
@@ -302,15 +304,15 @@ body {
 	margin-left: 0;
 }
 
-.content .box .pawDiv:nth-child(6) input.paw {
+#pay_pwd>.content .box .pawDiv:nth-child(6) input.paw {
 	border: none;
 }
 
-.content .box input.paw:focus {
+#pay_pwd>.content .box input.paw:focus {
 	outline: 0;
 }
 
-.content .box .pawDiv {
+#pay_pwd>.content .box .pawDiv {
 	display: inline-block;
 	line-height: 30px;
 	width: 32px;

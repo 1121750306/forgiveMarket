@@ -263,6 +263,50 @@ router.post('/updateorderitem', function(req, res, next) {
 
 });
 
+//删除商品订单
+router.post('/deleteorder', function(req, res, next) {
+	var oid = req.body.oid;
+	var otids = JSON.parse(req.body.otids);
+	
+	var count = otids.length;
+
+	for (var i = 0; i < otids.length; i++) {
+		orderitem.deleteOrderItemById(otids[i],function(oterr){
+			count--;
+			
+				console.log("deleteorderitem");
+			if (oterr) {
+				console.log(new Date() + "ERROR: " + oterr);
+				res.send({
+					type: "error",
+					message: "删除商品订单项失败"
+				});
+				
+			}else if (count == 0) {
+				console.log("deleteorder");
+				order.deleteOrderById(oid, function(oerr){
+					if (!oerr) {
+						res.send({
+							type: "success",
+							message: "删除商品订单成功"
+						});
+						
+					} else{
+						console.log(new Date() + "ERROR: " + oerr);
+						res.send({
+							type: "error",
+							message: "删除商品订单失败"
+						});
+						
+					}
+				})
+			}
+			
+		})
+	}
+
+});
+
 //删除商品订单项
 router.get('/deleteorderitembyid/:otid', function(req, res, next) {
 	var otid = req.params.otid;

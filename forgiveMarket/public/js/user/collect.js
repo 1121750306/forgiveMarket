@@ -11,16 +11,9 @@ $(document).ready(function() {
 				if (result != null && result.length != 0) {
 					for (var i = 0; i < result.length; i++) {
 						var liId = "good_li" + i;
-						let html = `<li id='${liId}' gid='${result[i].gid}'>\
-								<img src="/img/innisfreeIco/pic_loading.png" />\
-								<div>\
-									<h2>${result[i].name}</h2>\
-									<span class="collect_type">${result[i].type}</span>\
-								</div>\
-								<span class="collect_price">${result[i].price}</span>\
-								<span class="collect_date">${result[i].time}</span>\
-								<i class="collect_delete"></i>\
-							</li>`;
+						var html = "<li id='"+liId+"' gid='"+result[i].gid+"'><img src='/img/innisfreeIco/pic_loading.png' /><div><h2>"+result[i].name+"</h2>"
+						+"<span class='collect_type'>"+result[i].type+"</span></div><span class='collect_price'>"+result[i].price+"</span>"
+						+"<span class='collect_date'>"+result[i].time+"</span><i class='collect_delete'></i></li>";
 						$("#collect_content ul").append(html);
 						setImage($("#collect_content ul").find("#" + liId), result[i].gid);
 					}

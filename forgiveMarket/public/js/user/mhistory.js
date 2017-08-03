@@ -21,11 +21,10 @@ $(document).ready(function() {
 
 						for (var j = 0; j < result[i].goods.length; j++) {
 							var liId = "good_li" + j;
-							let html = `<li id='${liId}' gid='${result[i].goods[j].gid}'>\
-								<img src="../../img/innisfree-img/goods/1000000336_l.png" />\
-								<h2>${result[i].goods[j].goodname}</h2>\
-								<span class="price">￥${result[i].goods[j].goodprice}</span>\
-							</li>`;
+							var html = "<li id='"+liId+"' gid='"+result[i].goods[j].gid+"'>"
+							+"<img src='/img/innisfreeIco/pic_loading.png' />"
+							+"<h2>"+result[i].goods[j].goodname+"</h2>"
+							+"<span class='price'>￥"+result[i].goods[j].goodprice+"</span></li>";
 							$(ul).append(html);
 							setImage($(ul).find("#" + liId), result[i].goods[j].gid);
 						}

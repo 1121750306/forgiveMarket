@@ -182,6 +182,11 @@ $(function() {
 								.after("<span class='order_operation'>去付款</span>");
 							//绑定事件
 							$(".order .order_item").eq(i).find(".order_operation").bind("click",topay);
+							
+							$(".order .order_item").eq(i).find(".order_date").after("<p class='order_delete'>删除订单</p>");
+							//绑定事件
+							$(".order .order_item").eq(i).find(".order_delete").bind("click",todelete);
+							
 						}else if (index == 2){
 							$(".order .order_item").eq(i).find(".order_location")
 								.after("<span class='order_operation'>确认收货</span>");
@@ -366,6 +371,32 @@ $(function() {
 		url += "&&oid=" + oid;
 		
 		location.assign("/views/order/pay.html" + url);
+	}
+	
+	//删除订单控制
+	function todelete (e) {
+		var oid = $(e.target).parents(".order_item").attr("oid");
+		var orderitem = $(e.target).parents(".order_item").find(".cart_item");
+		var otids =[];
+		for (var i = 0; i < orderitem.length; i++) {
+			otids.push(orderitem.eq(i).attr("otid"));
+		}
+		
+		$.ajax({
+			type:"post",
+			url:"/order/deleteorder",
+			data:{
+				oid:oid,
+				otids:JSON.stringify(otids)
+			},
+			async:true,
+			success:function(data){
+				reloadView(0);
+			},
+			error:function(err){
+				console.log(err);
+			}
+		});
 	}
 	
 	//确认收货控制

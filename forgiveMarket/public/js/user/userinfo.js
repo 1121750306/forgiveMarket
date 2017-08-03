@@ -29,7 +29,12 @@ $(document).ready(function() {
 	});
 
 	$("#signal").click(function() {
-		$("#div_signal textarea").val(user.signal);
+		if(user.signal == undefined || user.signal == null ||
+			user.signal == "undefined" || user.signal == "null" || user.signal == "") {
+			$("#div_signal textarea").text("没有签名");
+		} else {
+			$("#div_signal textarea").text(user.signal);
+		}
 		showEditSignal();
 	});
 

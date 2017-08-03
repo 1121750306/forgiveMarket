@@ -29,6 +29,8 @@ $(function() {
 		$("#unlogin").css("display", "block");
 	}
 
+	fixAvatar();
+
 	$("#logout").click(function() {
 		$.ajax({
 			type: "post",
@@ -68,3 +70,10 @@ $(function() {
 		}
 	});
 });
+
+
+function fixAvatar(){
+	var width = $("#user_info").width();
+	$("#user_photo img").width(width*0.2);
+	$("#user_photo img").height(width*0.2);
+}
